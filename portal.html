@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bayi Yönetim Paneli – Yapıgüç Beton</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{--red:#c0001a;--red2:#8a0012;--blk:#111;--lt:#f4f6f9;--dk:#111827;--gr:#6b7280;--wh:#fff;--sw:260px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Roboto',sans-serif;background:var(--lt);color:var(--dk);display:flex;min-height:100vh;}
+
+/* SIDEBAR */
+.sb{width:var(--sw);background:var(--blk);color:#fff;display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:100;transition:transform .3s;overflow-y:auto;}
+.sb-logo{padding:18px 16px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:10px;}
+.sb-logo img{height:38px;}
+.sb-logo div h2{font-size:14px;font-weight:900;color:#fff;}
+.sb-logo div p{font-size:10px;color:#888;text-transform:uppercase;}
+.sb-user{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08);}
+.sb-avatar{width:44px;height:44px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;}
+.sb-name{font-size:14px;font-weight:700;color:#fff;}
+.sb-role{font-size:11px;color:#888;}
+.sb-badge{display:inline-block;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;margin-left:6px;}
+.sb-badge.green{background:#16a34a;}
+.sb-badge.yellow{background:#d97706;}
+.sb-section{font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:1px;padding:12px 16px 4px;}
+.sb-item{display:flex;align-items:center;gap:10px;padding:10px 16px;color:#aaa;text-decoration:none;font-size:13px;font-weight:500;transition:all .2s;cursor:pointer;border:none;background:none;width:100%;text-align:left;border-left:3px solid transparent;}
+.sb-item:hover,.sb-item.active{background:rgba(192,0,26,.15);color:#fff;border-left-color:var(--red);}
+.sb-item i{width:18px;text-align:center;font-size:14px;}
+.sb-item .badge{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:10px;}
+.sb-bottom{padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);margin-top:auto;}
+.sb-logout{display:flex;align-items:center;gap:8px;color:#888;font-size:13px;padding:8px;border-radius:6px;transition:all .2s;cursor:pointer;border:none;background:none;width:100%;}
+.sb-logout:hover{color:var(--red);}
+
+/* MAIN */
+.main{margin-left:var(--sw);flex:1;display:flex;flex-direction:column;min-height:100vh;}
+.topbar{background:var(--wh);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 8px rgba(0,0,0,.08);position:sticky;top:0;z-index:50;}
+.topbar-left{display:flex;align-items:center;gap:12px;}
+.topbar-left h1{font-size:17px;font-weight:800;color:var(--blk);}
+.topbar-right{display:flex;align-items:center;gap:10px;}
+.tb-btn{background:var(--lt);border:none;width:36px;height:36px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gr);position:relative;transition:all .2s;}
+.tb-btn:hover{background:#e5e7eb;}
+.tb-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;background:var(--red);border-radius:50%;}
+.tb-user{display:flex;align-items:center;gap:8px;padding:6px 12px;background:var(--lt);border-radius:8px;cursor:pointer;}
+.tb-user img{width:28px;height:28px;border-radius:50%;background:var(--red);}
+.tb-user span{font-size:13px;font-weight:600;color:var(--blk);}
+.content{padding:24px;flex:1;}
+
+/* PANELS */
+.panel{display:none;animation:fadeIn .3s ease;}
+.panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px;}
+.stat-card{background:var(--wh);border-radius:14px;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,.06);display:flex;align-items:center;gap:14px;transition:all .3s;}
+.stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.10);}
+.stat-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.si-red{background:#fee2e2;color:var(--red);}
+.si-blue{background:#dbeafe;color:#1d4ed8;}
+.si-green{background:#d1fae5;color:#065f46;}
+.si-orange{background:#ffedd5;color:#c2410c;}
+.si-purple{background:#ede9fe;color:#7c3aed;}
+.stat-val{font-size:24px;font-weight:900;color:var(--blk);}
+.stat-lbl{font-size:12px;color:var(--gr);}
+.stat-chg{font-size:11px;font-weight:600;margin-top:2px;}
+.chg-up{color:#16a34a;}.chg-dn{color:var(--red);}.chg-neu{color:#d97706;}
+
+/* CARDS */
+.card{background:var(--wh);border-radius:14px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:20px;}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.card-header h3{font-size:15px;font-weight:700;color:var(--blk);display:flex;align-items:center;gap:8px;}
+.card-header h3 i{color:var(--red);}
+.card-header a,.card-header button{font-size:12px;color:var(--red);text-decoration:none;background:none;border:none;cursor:pointer;font-weight:600;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;}
+th{text-align:left;font-size:11px;font-weight:700;color:var(--gr);text-transform:uppercase;letter-spacing:.5px;padding:10px 12px;border-bottom:2px solid #f0f0f0;}
+td{padding:11px 12px;border-bottom:1px solid #f9f9f9;font-size:13px;color:var(--dk);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#fafafa;}
+.badge{display:inline-block;padding:3px 9px;border-radius:10px;font-size:11px;font-weight:700;}
+.b-green{background:#d1fae5;color:#065f46;}
+.b-yellow{background:#fef3c7;color:#92400e;}
+.b-red{background:#fee2e2;color:#991b1b;}
+.b-blue{background:#dbeafe;color:#1e40af;}
+.b-gray{background:#f3f4f6;color:#374151;}
+.b-purple{background:#ede9fe;color:#6d28d9;}
+
+/* FORM */
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+.fg label{font-size:12px;font-weight:600;color:var(--blk);}
+.fg input,.fg select,.fg textarea{padding:10px 13px;border:1.5px solid #d1d5db;border-radius:8px;font-size:13px;font-family:inherit;outline:none;transition:border .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--red);}
+.fg textarea{resize:vertical;min-height:80px;}
+.fg-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.btn-red{background:var(--red);color:#fff;padding:11px 24px;border-radius:8px;font-size:13px;font-weight:700;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:all .2s;}
+.btn-red:hover{background:var(--red2);}
+.btn-gray{background:#f3f4f6;color:var(--blk);padding:11px 20px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:all .2s;}
+.btn-gray:hover{background:#e5e7eb;}
+.smsg{display:none;background:#d1fae5;border-radius:8px;padding:12px 16px;color:#065f46;font-weight:600;margin-bottom:14px;font-size:13px;}
+.smsg.show{display:flex;align-items:center;gap:8px;}
+
+/* PRICE CARDS */
+.price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.price-card{background:var(--lt);border-radius:12px;padding:18px;border-left:4px solid var(--red);}
+.price-card h4{font-size:13px;font-weight:800;color:var(--blk);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.price-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #e5e7eb;font-size:12px;}
+.price-row:last-child{border-bottom:none;}
+.price-name{color:var(--gr);}
+.price-val{font-weight:700;color:var(--red);}
+.price-old{text-decoration:line-through;color:#aaa;font-size:11px;margin-right:4px;}
+.disc{background:var(--red);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:6px;}
+
+/* DOCS */
+.doc-item{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid #f0f0f0;}
+.doc-item:last-child{border-bottom:none;}
+.doc-left{display:flex;align-items:center;gap:12px;}
+.doc-icon{width:38px;height:38px;background:#fee2e2;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--red);font-size:16px;}
+.doc-name{font-size:13px;font-weight:600;color:var(--blk);}
+.doc-size{font-size:11px;color:var(--gr);}
+.doc-dl{background:var(--lt);border:none;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;color:var(--blk);cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .2s;}
+.doc-dl:hover{background:var(--red);color:#fff;}
+
+/* NOTIFICATIONS */
+.notif-list{display:flex;flex-direction:column;gap:10px;}
+.notif-item{display:flex;gap:12px;padding:14px;background:var(--lt);border-radius:10px;border-left:3px solid var(--red);}
+.notif-item.unread{background:#fff8f8;}
+.notif-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.ni-red{background:#fee2e2;color:var(--red);}
+.ni-blue{background:#dbeafe;color:#1d4ed8;}
+.ni-green{background:#d1fae5;color:#16a34a;}
+.notif-title{font-size:13px;font-weight:700;color:var(--blk);margin-bottom:3px;}
+.notif-text{font-size:12px;color:var(--gr);line-height:1.5;}
+.notif-time{font-size:11px;color:#aaa;margin-top:4px;}
+
+/* PROFILE */
+.profile-header{background:linear-gradient(135deg,var(--blk),#1a0005);border-radius:14px;padding:28px;color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:20px;}
+.profile-avatar-lg{width:72px;height:72px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#fff;flex-shrink:0;}
+.profile-info h2{font-size:20px;font-weight:900;}
+.profile-info p{font-size:13px;color:#aaa;margin-top:4px;}
+.profile-stats{display:flex;gap:24px;margin-top:14px;}
+.ps-item strong{display:block;font-size:20px;font-weight:900;color:var(--red);}
+.ps-item span{font-size:11px;color:#888;}
+
+/* CHART BARS */
+.chart-bar{display:flex;flex-direction:column;gap:10px;}
+.bar-item{display:flex;align-items:center;gap:10px;}
+.bar-label{font-size:12px;color:var(--gr);width:120px;flex-shrink:0;}
+.bar-track{flex:1;height:8px;background:#f0f0f0;border-radius:4px;overflow:hidden;}
+.bar-fill{height:100%;background:var(--red);border-radius:4px;transition:width 1s ease;}
+.bar-val{font-size:12px;font-weight:700;color:var(--blk);width:50px;text-align:right;}
+
+/* MOBILE */
+.sb-toggle{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--blk);}
+@media(max-width:768px){
+  .sb{transform:translateX(-100%);}
+  .sb.open{transform:translateX(0);}
+  .main{margin-left:0;}
+  .sb-toggle{display:block;}
+  .fg-grid{grid-template-columns:1fr;}
+  .grid-2{grid-template-columns:1fr;}
+  .grid-3{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sb" id="sidebar">
+  <div class="sb-logo">
+    <img src="logo.png" alt="Yapıgüç"/>
+    <div><h2>Yapıgüç Beton</h2><p>Bayi Yönetim Paneli</p></div>
+  </div>
+  <div class="sb-user">
+    <div class="sb-avatar">A</div>
+    <div class="sb-name">Ahmet Yılmaz</div>
+    <div class="sb-role">Yetkili Bayi <span class="sb-badge green">Aktif</span></div>
+    <div style="font-size:11px;color:#666;margin-top:4px">Bayi Kodu: YG-2024-041</div>
+  </div>
+  <nav style="flex:1;padding:8px 0;">
+    <div class="sb-section">Ana Menü</div>
+    <button class="sb-item active" onclick="showPanel('dashboard',this)"><i class="fas fa-chart-pie"></i> Dashboard</button>
+    <button class="sb-item" onclick="showPanel('orders',this)"><i class="fas fa-shopping-cart"></i> Siparişlerim <span class="badge">3</span></button>
+    <button class="sb-item" onclick="showPanel('new-order',this)"><i class="fas fa-plus-circle"></i> Yeni Sipariş</button>
+    <button class="sb-item" onclick="showPanel('tracking',this)"><i class="fas fa-truck"></i> Sipariş Takibi</button>
+    <div class="sb-section">Bilgiler</div>
+    <button class="sb-item" onclick="showPanel('prices',this)"><i class="fas fa-tags"></i> Fiyat Listesi</button>
+    <button class="sb-item" onclick="showPanel('docs',this)"><i class="fas fa-file-alt"></i> Belgeler</button>
+    <button class="sb-item" onclick="showPanel('announcements',this)"><i class="fas fa-bullhorn"></i> Duyurular <span class="badge">2</span></button>
+    <button class="sb-item" onclick="showPanel('stats',this)"><i class="fas fa-chart-bar"></i> İstatistikler</button>
+    <div class="sb-section">Hesap</div>
+    <button class="sb-item" onclick="showPanel('notifications',this)"><i class="fas fa-bell"></i> Bildirimler <span class="badge">4</span></button>
+    <button class="sb-item" onclick="showPanel('profile',this)"><i class="fas fa-user"></i> Profilim</button>
+    <button class="sb-item" onclick="showPanel('support',this)"><i class="fas fa-headset"></i> Destek</button>
+  </nav>
+  <div class="sb-bottom">
+    <a href="index.html" class="sb-item" style="text-decoration:none"><i class="fas fa-globe"></i> Ana Site</a>
+    <button class="sb-logout" onclick="window.location.href='bayi-giris.html'"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <button class="sb-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+      <h1 id="page-title">Dashboard</h1>
+    </div>
+    <div class="topbar-right">
+      <button class="tb-btn" onclick="showPanel('notifications',document.querySelector('[onclick*=notifications]'))"><i class="fas fa-bell"></i><div class="tb-dot"></div></button>
+      <button class="tb-btn" onclick="showPanel('support',document.querySelector('[onclick*=support]'))"><i class="fas fa-headset"></i></button>
+      <div class="tb-user" onclick="showPanel('profile',document.querySelector('[onclick*=profile]'))">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700">A</div>
+        <span>Ahmet Y.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div class="panel active" id="panel-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-icon si-red"><i class="fas fa-shopping-cart"></i></div><div><div class="stat-val">12</div><div class="stat-lbl">Toplam Sipariş</div><div class="stat-chg chg-up"><i class="fas fa-arrow-up"></i> %18 bu ay</div></div></div>
+        <div class="stat-card"><div class="stat-icon si-blue"><i class="fas fa-clock"></i></div><div><div class="stat-val">3</div><div class="stat-lbl">Bekleyen Sipariş</div><div class="stat-chg chg-neu"><i class="fas fa-minus"></i> İşlemde</div></div></div>
+        <div class="stat-card"><div class="stat-icon si-green"><i class="fas fa-lira-sign"></i></div><div><div class="stat-val">₺84.500</div><div class="stat-lbl">Toplam Alım</div><div class="stat-chg chg-up"><i class="fas fa-arrow-up"></i> %22 bu ay</div></div></div>
+        <div class="stat-card"><div class="stat-icon si-orange"><i class="fas fa-percent"></i></div><div><div class="stat-val">%15</div><div class="stat-lbl">Bayi İndirimi</div><div class="stat-chg chg-up">Aktif</div></div></div>
+        <div class="stat-card"><div class="stat-icon si-purple"><i class="fas fa-star"></i></div><div><div class="stat-val">4.8</div><div class="stat-lbl">Müşteri Puanı</div><div class="stat-chg chg-up">★★★★★</div></div></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><h3><i class="fas fa-history"></i> Son Siparişler</h3><button onclick="showPanel('orders',document.querySelector('[onclick*=orders]'))">Tümü →</button></div>
+          <table>
+            <thead><tr><th>Sipariş No</th><th>Ürün</th><th>Tutar</th><th>Durum</th></tr></thead>
+            <tbody>
+              <tr><td><strong>#2026-041</strong></td><td>Aşık Taşı 500m²</td><td>₺18.750</td><td><span class="badge b-green">Teslim</span></td></tr>
+              <tr><td><strong>#2026-042</strong></td><td>Yol Bordürü 200 adet</td><td>₺12.400</td><td><span class="badge b-yellow">Hazırlanıyor</span></td></tr>
+              <tr><td><strong>#2026-043</strong></td><td>Kırma Blok 300 adet</td><td>₺9.600</td><td><span class="badge b-blue">Onay Bekliyor</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3><i class="fas fa-chart-bar"></i> Aylık Alım Grafiği</h3></div>
+          <div class="chart-bar">
+            <div class="bar-item"><div class="bar-label">Ocak</div><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><div class="bar-val">₺12K</div></div>
+            <div class="bar-item"><div class="bar-label">Şubat</div><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><div class="bar-val">₺16K</div></div>
+            <div class="bar-item"><div class="bar-label">Mart</div><div class="bar-track"><div class="bar-fill" style="width:35%"></div></div><div class="bar-val">₺9K</div></div>
+            <div class="bar-item"><div class="bar-label">Nisan</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="bar-val">₺22K</div></div>
+            <div class="bar-item"><div class="bar-label">Mayıs</div><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div><div class="bar-val">₺15K</div></div>
+            <div class="bar-item"><div class="bar-label">Haziran</div><div class="bar-track"><div class="bar-fill" style="width:38%"></div></div><div class="bar-val">₺10K</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><h3><i class="fas fa-bullhorn"></i> Son Duyurular</h3></div>
+          <div class="notif-list">
+            <div class="notif-item unread"><div class="notif-icon ni-red"><i class="fas fa-fire"></i></div><div><div class="notif-title">🔥 Yaz Kampanyası!</div><div class="notif-text">Tüm parkelerde %10 ek indirim.</div><div class="notif-time">15 Haziran 2026</div></div></div>
+            <div class="notif-item"><div class="notif-icon ni-blue"><i class="fas fa-truck"></i></div><div><div class="notif-title">Ücretsiz Nakliye</div><div class="notif-text">500m² üzeri siparişlerde.</div><div class="notif-time">10 Haziran 2026</div></div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3><i class="fas fa-calculator"></i> Hızlı Hesap</h3></div>
+          <div class="fg"><label>Ürün</label>
+            <select id="qc-prod" onchange="quickCalc()">
+              <option value="35">Aşık Taşı (35 adet/m²)</option>
+              <option value="100">Küp Taşı (100 adet/m²)</option>
+              <option value="28.5">Baklava Desenli (28.5 adet/m²)</option>
+              <option value="25">Kare Taş 20x20 (25 adet/m²)</option>
+            </select>
+          </div>
+          <div class="fg"><label>Alan (m²)</label><input id="qc-area" type="number" value="100" oninput="quickCalc()"/></div>
+          <div style="background:#fff8f8;border-radius:8px;padding:14px;text-align:center;margin-top:8px">
+            <div style="font-size:11px;color:var(--gr)">Gereken Miktar</div>
+            <div id="qc-result" style="font-size:28px;font-weight:900;color:var(--red)">3.850 adet</div>
+            <div id="qc-price" style="font-size:12px;color:var(--gr);margin-top:4px">Tahmini: ₺144.095 (bayi fiyatı)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SİPARİŞLERİM -->
+    <div class="panel" id="panel-orders">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-shopping-cart"></i> Tüm Siparişlerim</h3>
+          <div style="display:flex;gap:8px">
+            <select style="padding:6px 10px;border:1px solid #e5e7eb;border-radius:6px;font-size:12px" onchange="filterOrders(this.value)">
+              <option value="all">Tüm Durumlar</option>
+              <option value="delivered">Teslim Edildi</option>
+              <option value="preparing">Hazırlanıyor</option>
+              <option value="pending">Onay Bekliyor</option>
+              <option value="cancelled">İptal</option>
+            </select>
+          </div>
+        </div>
+        <table>
+          <thead><tr><th>Sipariş No</th><th>Tarih</th><th>Ürün</th><th>Miktar</th><th>Tutar</th><th>Durum</th><th>İşlem</th></tr></thead>
+          <tbody id="orders-table">
+            <tr data-status="delivered"><td><strong>#2026-041</strong></td><td>12 Haz 2026</td><td>Aşık Taşı</td><td>500 m²</td><td>₺18.750</td><td><span class="badge b-green">Teslim Edildi</span></td><td><button class="doc-dl" onclick="showOrderDetail('041')"><i class="fas fa-eye"></i></button></td></tr>
+            <tr data-status="preparing"><td><strong>#2026-042</strong></td><td>15 Haz 2026</td><td>Yol Bordürü</td><td>200 adet</td><td>₺12.400</td><td><span class="badge b-yellow">Hazırlanıyor</span></td><td><button class="doc-dl" onclick="showOrderDetail('042')"><i class="fas fa-eye"></i></button></td></tr>
+            <tr data-status="pending"><td><strong>#2026-043</strong></td><td>18 Haz 2026</td><td>Kırma Blok</td><td>300 adet</td><td>₺9.600</td><td><span class="badge b-blue">Onay Bekliyor</span></td><td><button class="doc-dl" onclick="showOrderDetail('043')"><i class="fas fa-eye"></i></button></td></tr>
+            <tr data-status="delivered"><td><strong>#2026-038</strong></td><td>2 Haz 2026</td><td>Küp Taşı</td><td>1000 adet</td><td>₺22.000</td><td><span class="badge b-green">Teslim Edildi</span></td><td><button class="doc-dl"><i class="fas fa-eye"></i></button></td></tr>
+            <tr data-status="delivered"><td><strong>#2026-031</strong></td><td>20 May 2026</td><td>Şev Taşı</td><td>150 adet</td><td>₺14.250</td><td><span class="badge b-green">Teslim Edildi</span></td><td><button class="doc-dl"><i class="fas fa-eye"></i></button></td></tr>
+            <tr data-status="cancelled"><td><strong>#2026-025</strong></td><td>8 May 2026</td><td>Beton Bariyer</td><td>20 adet</td><td>₺7.500</td><td><span class="badge b-red">İptal Edildi</span></td><td><button class="doc-dl"><i class="fas fa-eye"></i></button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- YENİ SİPARİŞ -->
+    <div class="panel" id="panel-new-order">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-plus-circle"></i> Yeni Sipariş Ver</h3></div>
+        <div class="smsg" id="order-smsg"><i class="fas fa-check-circle"></i> Siparişiniz alındı! En kısa sürede onaylanacaktır.</div>
+        <form onsubmit="submitOrder(event)">
+          <div class="fg-grid">
+            <div class="fg"><label>Ürün Kategorisi *</label>
+              <select required onchange="updateProducts(this)">
+                <option value="">Seçiniz...</option>
+                <option>Beton Parke</option><option>Bordür &amp; Oluklar</option>
+                <option>Duvar Elemanları</option><option>Beton Bariyer</option><option>Doğal Taşlar</option>
+              </select>
+            </div>
+            <div class="fg"><label>Ürün *</label>
+              <select id="product-select" required><option value="">Önce kategori seçin</option></select>
+            </div>
+            <div class="fg"><label>Miktar *</label><input placeholder="Örn: 500 m² veya 200 adet" required type="text"/></div>
+            <div class="fg"><label>Renk Tercihi</label><input placeholder="Gri, Kırmızı, Siyah, Beyaz..." type="text"/></div>
+            <div class="fg"><label>Teslimat Adresi *</label><input placeholder="Şehir / İlçe / Adres" required type="text"/></div>
+            <div class="fg"><label>Tahmini Teslimat Tarihi</label><input type="date"/></div>
+          </div>
+          <div class="fg"><label>Notlar</label><textarea placeholder="Özel istekler, boyut detayları..."></textarea></div>
+          <div style="background:#fff8f8;border:1px solid #fecaca;border-radius:8px;padding:12px 14px;font-size:12px;color:#991b1b;margin-bottom:14px;display:flex;align-items:center;gap:8px">
+            <i class="fas fa-tag"></i> <strong>Bayi indiriminiz (%15)</strong> otomatik uygulanacaktır.
+          </div>
+          <div style="display:flex;gap:10px">
+            <button class="btn-red" type="submit"><i class="fas fa-paper-plane"></i> Siparişi Gönder</button>
+            <button class="btn-gray" type="reset"><i class="fas fa-undo"></i> Temizle</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- SİPARİŞ TAKİBİ -->
+    <div class="panel" id="panel-tracking">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-truck"></i> Sipariş Takibi</h3></div>
+        <div class="fg" style="max-width:300px;margin-bottom:20px">
+          <label>Sipariş No ile Ara</label>
+          <div style="display:flex;gap:8px">
+            <input id="track-input" placeholder="#2026-042" type="text"/>
+            <button class="btn-red" onclick="trackOrder()" style="white-space:nowrap"><i class="fas fa-search"></i> Ara</button>
+          </div>
+        </div>
+        <div id="track-result" style="display:none">
+          <div style="background:var(--lt);border-radius:12px;padding:20px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+              <div><strong style="font-size:16px">#2026-042</strong> — Yol Bordürü 200 adet<br/><span style="font-size:12px;color:var(--gr)">15 Haziran 2026 tarihinde verildi</span></div>
+              <span class="badge b-yellow">Hazırlanıyor</span>
+            </div>
+            <div style="position:relative;padding-left:24px">
+              <div style="position:absolute;left:8px;top:0;bottom:0;width:2px;background:#e5e7eb"></div>
+              <div style="margin-bottom:16px;position:relative"><div style="position:absolute;left:-20px;top:2px;width:12px;height:12px;background:var(--red);border-radius:50%"></div><div style="font-size:13px;font-weight:700">Sipariş Alındı</div><div style="font-size:11px;color:var(--gr)">15 Haz 2026, 09:30</div></div>
+              <div style="margin-bottom:16px;position:relative"><div style="position:absolute;left:-20px;top:2px;width:12px;height:12px;background:var(--red);border-radius:50%"></div><div style="font-size:13px;font-weight:700">Onaylandı</div><div style="font-size:11px;color:var(--gr)">15 Haz 2026, 14:15</div></div>
+              <div style="margin-bottom:16px;position:relative"><div style="position:absolute;left:-20px;top:2px;width:12px;height:12px;background:#d97706;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #d97706"></div><div style="font-size:13px;font-weight:700;color:#d97706">Hazırlanıyor</div><div style="font-size:11px;color:var(--gr)">Tahmini teslim: 20 Haz 2026</div></div>
+              <div style="margin-bottom:16px;position:relative"><div style="position:absolute;left:-20px;top:2px;width:12px;height:12px;background:#e5e7eb;border-radius:50%"></div><div style="font-size:13px;color:#aaa">Kargoya Verildi</div></div>
+              <div style="position:relative"><div style="position:absolute;left:-20px;top:2px;width:12px;height:12px;background:#e5e7eb;border-radius:50%"></div><div style="font-size:13px;color:#aaa">Teslim Edildi</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FİYAT LİSTESİ -->
+    <div class="panel" id="panel-prices">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-tags"></i> Bayi Fiyat Listesi</h3>
+          <span style="font-size:11px;color:var(--gr)">Güncelleme: Haziran 2026 <span class="badge b-red">%15 İndirimli</span></span>
+        </div>
+        <div class="price-grid">
+          <div class="price-card"><h4>🧱 Beton Parke</h4>
+            <div class="price-row"><span class="price-name">Aşık Taşı (m²)</span><span class="price-val"><span class="price-old">₺44</span>₺37,40 <span class="disc">-15%</span></span></div>
+            <div class="price-row"><span class="price-name">Küp Taşı (adet)</span><span class="price-val"><span class="price-old">₺28</span>₺23,80</span></div>
+            <div class="price-row"><span class="price-name">Kare Taş (m²)</span><span class="price-val"><span class="price-old">₺52</span>₺44,20</span></div>
+            <div class="price-row"><span class="price-name">Kesik I Taşı (m²)</span><span class="price-val"><span class="price-old">₺46</span>₺39,10</span></div>
+            <div class="price-row"><span class="price-name">Çim Taşı (m²)</span><span class="price-val"><span class="price-old">₺58</span>₺49,30</span></div>
+          </div>
+          <div class="price-card"><h4>🚧 Bordür &amp; Oluklar</h4>
+            <div class="price-row"><span class="price-name">Yol Bordürü (adet)</span><span class="price-val"><span class="price-old">₺75</span>₺63,75</span></div>
+            <div class="price-row"><span class="price-name">Bahçe Bordürü (adet)</span><span class="price-val"><span class="price-old">₺55</span>₺46,75</span></div>
+            <div class="price-row"><span class="price-name">Refüj Bordürü (adet)</span><span class="price-val"><span class="price-old">₺85</span>₺72,25</span></div>
+            <div class="price-row"><span class="price-name">Drenaj Oluğu (adet)</span><span class="price-val"><span class="price-old">₺65</span>₺55,25</span></div>
+            <div class="price-row"><span class="price-name">Yağmur Oluğu (adet)</span><span class="price-val"><span class="price-old">₺60</span>₺51,00</span></div>
+          </div>
+          <div class="price-card"><h4>🏗️ Duvar Elemanları</h4>
+            <div class="price-row"><span class="price-name">Düz Blok (adet)</span><span class="price-val"><span class="price-old">₺38</span>₺32,30</span></div>
+            <div class="price-row"><span class="price-name">Kırma Blok (adet)</span><span class="price-val"><span class="price-old">₺45</span>₺38,25</span></div>
+            <div class="price-row"><span class="price-name">Fugalı Blok (adet)</span><span class="price-val"><span class="price-old">₺48</span>₺40,80</span></div>
+            <div class="price-row"><span class="price-name">Şev Taşı (adet)</span><span class="price-val"><span class="price-old">₺95</span>₺80,75</span></div>
+            <div class="price-row"><span class="price-name">Harpuşta (adet)</span><span class="price-val"><span class="price-old">₺120</span>₺102,00</span></div>
+          </div>
+          <div class="price-card"><h4>🚦 Bariyer &amp; Doğal Taş</h4>
+            <div class="price-row"><span class="price-name">Bariyer 150 cm</span><span class="price-val"><span class="price-old">₺480</span>₺408,00</span></div>
+            <div class="price-row"><span class="price-name">Bariyer 200 cm</span><span class="price-val"><span class="price-old">₺620</span>₺527,00</span></div>
+            <div class="price-row"><span class="price-name">Bazalt Plak (m²)</span><span class="price-val"><span class="price-old">₺185</span>₺157,25</span></div>
+            <div class="price-row"><span class="price-name">Bazalt Küp (m²)</span><span class="price-val"><span class="price-old">₺210</span>₺178,50</span></div>
+          </div>
+        </div>
+        <p style="font-size:11px;color:var(--gr);margin-top:14px"><i class="fas fa-info-circle"></i> Fiyatlar KDV hariçtir. 500 m² üzeri siparişlerde ek %5 indirim uygulanır.</p>
+      </div>
+    </div>
+
+    <!-- BELGELER -->
+    <div class="panel" id="panel-docs">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-file-alt"></i> Belgeler &amp; Dökümanlar</h3></div>
+        <div class="doc-item"><div class="doc-left"><div class="doc-icon"><i class="fas fa-file-pdf"></i></div><div><div class="doc-name">Ürün Kataloğu 2026</div><div class="doc-size">PDF – 4.2 MB</div></div></div><button class="doc-dl"><i class="fas fa-download"></i> İndir</button></div>
+        <div class="doc-item"><div class="doc-left"><div class="doc-icon"><i class="fas fa-file-pdf"></i></div><div><div class="doc-name">Bayi Fiyat Listesi – Haziran 2026</div><div class="doc-size">PDF – 1.1 MB</div></div></div><button class="doc-dl"><i class="fas fa-download"></i> İndir</button></div>
+        <div class="doc-item"><div class="doc-left"><div class="doc-icon"><i class="fas fa-file-pdf"></i></div><div><div class="doc-name">TSE &amp; ISO Kalite Sertifikaları</div><div class="doc-size">PDF – 2.8 MB</div></div></div><button class="doc-dl"><i class="fas fa-download"></i> İndir</button></div>
+        <div class="doc-item"><div class="doc-left"><div class="doc-icon"><i class="fas fa-file-pdf"></i></div><div><div class="doc-name">Teknik Veri Sayfaları</div><div class="doc-size">PDF – 3.5 MB</div></div></div><button class="doc-dl"><i class="fas fa-download"></i> İndir</button></div>
+        <div class="doc-item"><div class="doc-left"><div class="doc-icon"><i class="fas fa-file-pdf"></i></div><div><div class="doc-name">Bayi Sözleşmesi Örneği</div><div class="doc-size">PDF – 0.8 MB</div></div></div><button class="doc-dl"><i class="fas fa-download"></i> İndir</button></div>
+        <div class="doc-item"><div class="doc-left"><div class="doc-icon"><i class="fas fa-file-pdf"></i></div><div><div class="doc-name">Montaj &amp; Uygulama Kılavuzu</div><div class="doc-size">PDF – 6.1 MB</div></div></div><button class="doc-dl"><i class="fas fa-download"></i> İndir</button></div>
+        <div class="doc-item"><div class="doc-left"><div class="doc-icon"><i class="fas fa-file-pdf"></i></div><div><div class="doc-name">CE Belgesi</div><div class="doc-size">PDF – 0.7 MB</div></div></div><button class="doc-dl"><i class="fas fa-download"></i> İndir</button></div>
+      </div>
+    </div>
+
+    <!-- DUYURULAR -->
+    <div class="panel" id="panel-announcements">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-bullhorn"></i> Duyurular &amp; Kampanyalar</h3></div>
+        <div class="notif-list">
+          <div class="notif-item unread"><div class="notif-icon ni-red"><i class="fas fa-fire"></i></div><div><div class="notif-title">🔥 Yaz Kampanyası – Tüm Parkelerde %10 Ek İndirim!</div><div class="notif-text">1 Haziran – 31 Ağustos 2026 tarihleri arasında tüm beton parke ürünlerinde bayi indirimine ek olarak %10 kampanya indirimi uygulanmaktadır.</div><div class="notif-time">15 Haziran 2026</div></div></div>
+          <div class="notif-item unread"><div class="notif-icon ni-blue"><i class="fas fa-truck"></i></div><div><div class="notif-title">🚚 500 m² Üzeri Siparişlerde Ücretsiz Nakliye</div><div class="notif-text">Haziran ayı boyunca 500 m² ve üzeri tüm siparişlerde nakliye ücretsizdir.</div><div class="notif-time">10 Haziran 2026</div></div></div>
+          <div class="notif-item"><div class="notif-icon ni-green"><i class="fas fa-star"></i></div><div><div class="notif-title">Yeni Ürün: Bazalt Küp Taş</div><div class="notif-text">Doğal bazalt küp taş ürünümüz artık bayi kataloğunda. Özel bayi fiyatı için fiyat listesini inceleyin.</div><div class="notif-time">1 Haziran 2026</div></div></div>
+          <div class="notif-item"><div class="notif-icon ni-red"><i class="fas fa-calendar"></i></div><div><div class="notif-title">Fabrika Ziyareti – Temmuz 2026</div><div class="notif-text">Bayilerimizi fabrikamıza davet ediyoruz. Üretim süreçlerini yerinde görmek için kayıt yaptırın.</div><div class="notif-time">25 Mayıs 2026</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- İSTATİSTİKLER -->
+    <div class="panel" id="panel-stats">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-icon si-red"><i class="fas fa-shopping-bag"></i></div><div><div class="stat-val">12</div><div class="stat-lbl">Toplam Sipariş</div></div></div>
+        <div class="stat-card"><div class="stat-icon si-green"><i class="fas fa-check-circle"></i></div><div><div class="stat-val">9</div><div class="stat-lbl">Teslim Edildi</div></div></div>
+        <div class="stat-card"><div class="stat-icon si-blue"><i class="fas fa-clock"></i></div><div><div class="stat-val">3</div><div class="stat-lbl">Devam Eden</div></div></div>
+        <div class="stat-card"><div class="stat-icon si-orange"><i class="fas fa-lira-sign"></i></div><div><div class="stat-val">₺84.500</div><div class="stat-lbl">Toplam Harcama</div></div></div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><h3><i class="fas fa-chart-pie"></i> Ürün Dağılımı</h3></div>
+          <div class="chart-bar">
+            <div class="bar-item"><div class="bar-label">Beton Parke</div><div class="bar-track"><div class="bar-fill" style="width:65%"></div></div><div class="bar-val">%65</div></div>
+            <div class="bar-item"><div class="bar-label">Bordür</div><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><div class="bar-val">%20</div></div>
+            <div class="bar-item"><div class="bar-label">Duvar Elemanı</div><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><div class="bar-val">%10</div></div>
+            <div class="bar-item"><div class="bar-label">Diğer</div><div class="bar-track"><div class="bar-fill" style="width:5%"></div></div><div class="bar-val">%5</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3><i class="fas fa-calendar-alt"></i> Aylık Özet</h3></div>
+          <table>
+            <thead><tr><th>Ay</th><th>Sipariş</th><th>Tutar</th></tr></thead>
+            <tbody>
+              <tr><td>Haziran 2026</td><td>3</td><td>₺40.750</td></tr>
+              <tr><td>Mayıs 2026</td><td>4</td><td>₺29.250</td></tr>
+              <tr><td>Nisan 2026</td><td>3</td><td>₺22.000</td></tr>
+              <tr><td>Mart 2026</td><td>2</td><td>₺12.500</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- BİLDİRİMLER -->
+    <div class="panel" id="panel-notifications">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-bell"></i> Bildirimler</h3><button onclick="markAllRead()">Tümünü Okundu İşaretle</button></div>
+        <div class="notif-list" id="notif-list">
+          <div class="notif-item unread"><div class="notif-icon ni-green"><i class="fas fa-check-circle"></i></div><div><div class="notif-title">Sipariş #2026-041 Teslim Edildi</div><div class="notif-text">Aşık Taşı 500 m² siparişiniz başarıyla teslim edildi.</div><div class="notif-time">12 Haziran 2026, 14:30</div></div></div>
+          <div class="notif-item unread"><div class="notif-icon ni-blue"><i class="fas fa-file-invoice"></i></div><div><div class="notif-title">Fatura Hazır</div><div class="notif-text">#2026-041 siparişinizin faturası hazır. İndirebilirsiniz.</div><div class="notif-time">12 Haziran 2026, 15:00</div></div></div>
+          <div class="notif-item unread"><div class="notif-icon ni-red"><i class="fas fa-tag"></i></div><div><div class="notif-title">Yeni Kampanya!</div><div class="notif-text">Yaz kampanyası başladı. Tüm parkelerde %10 ek indirim.</div><div class="notif-time">15 Haziran 2026, 09:00</div></div></div>
+          <div class="notif-item unread"><div class="notif-icon ni-blue"><i class="fas fa-clock"></i></div><div><div class="notif-title">Sipariş #2026-042 Hazırlanıyor</div><div class="notif-text">Yol Bordürü siparişiniz hazırlanmaya başlandı.</div><div class="notif-time">15 Haziran 2026, 11:20</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFİL -->
+    <div class="panel" id="panel-profile">
+      <div class="profile-header">
+        <div class="profile-avatar-lg">A</div>
+        <div class="profile-info">
+          <h2>Ahmet Yılmaz</h2>
+          <p>Yılmaz İnşaat Ltd. Şti. — Yetkili Bayi</p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <span class="badge b-green">Aktif Bayi</span>
+            <span class="badge b-blue">Bayi Kodu: YG-2024-041</span>
+          </div>
+          <div class="profile-stats">
+            <div class="ps-item"><strong>12</strong><span>Sipariş</span></div>
+            <div class="ps-item"><strong>₺84K</strong><span>Toplam</span></div>
+            <div class="ps-item"><strong>%15</strong><span>İndirim</span></div>
+            <div class="ps-item"><strong>2024</strong><span>Üyelik</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><h3><i class="fas fa-user-edit"></i> Profil Bilgileri</h3></div>
+          <div class="smsg" id="profile-smsg"><i class="fas fa-check-circle"></i> Bilgileriniz güncellendi!</div>
+          <form onsubmit="saveProfile(event)">
+            <div class="fg-grid">
+              <div class="fg"><label>Ad Soyad</label><input type="text" value="Ahmet Yılmaz"/></div>
+              <div class="fg"><label>Firma Adı</label><input type="text" value="Yılmaz İnşaat Ltd."/></div>
+              <div class="fg"><label>E-posta</label><input type="email" value="bayi@yapigucbeton.com.tr"/></div>
+              <div class="fg"><label>Telefon</label><input type="tel" value="0532 XXX XX XX"/></div>
+              <div class="fg"><label>Faaliyet Bölgesi</label><input type="text" value="Hatay / Antakya"/></div>
+              <div class="fg"><label>Vergi No</label><input type="text" placeholder="Vergi numaranız"/></div>
+            </div>
+            <button class="btn-red" type="submit"><i class="fas fa-save"></i> Kaydet</button>
+          </form>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3><i class="fas fa-lock"></i> Şifre Değiştir</h3></div>
+          <div class="smsg" id="pass-smsg"><i class="fas fa-check-circle"></i> Şifreniz güncellendi!</div>
+          <form onsubmit="changePass(event)">
+            <div class="fg"><label>Mevcut Şifre</label><input type="password" placeholder="••••••••" required/></div>
+            <div class="fg"><label>Yeni Şifre</label><input type="password" placeholder="••••••••" required/></div>
+            <div class="fg"><label>Yeni Şifre (Tekrar)</label><input type="password" placeholder="••••••••" required/></div>
+            <button class="btn-red" type="submit"><i class="fas fa-key"></i> Şifreyi Güncelle</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESTEK -->
+    <div class="panel" id="panel-support">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><h3><i class="fas fa-headset"></i> Destek Talebi Oluştur</h3></div>
+          <div class="smsg" id="support-smsg"><i class="fas fa-check-circle"></i> Destek talebiniz alındı! En kısa sürede dönüş yapacağız.</div>
+          <form onsubmit="submitSupport(event)">
+            <div class="fg"><label>Konu *</label>
+              <select required>
+                <option value="">Seçiniz...</option>
+                <option>Sipariş Sorunu</option>
+                <option>Fiyat Bilgisi</option>
+                <option>Teslimat Sorunu</option>
+                <option>Teknik Destek</option>
+                <option>Fatura/Muhasebe</option>
+                <option>Diğer</option>
+              </select>
+            </div>
+            <div class="fg"><label>Mesajınız *</label><textarea placeholder="Sorununuzu detaylı açıklayın..." required style="min-height:120px"></textarea></div>
+            <button class="btn-red" type="submit"><i class="fas fa-paper-plane"></i> Gönder</button>
+          </form>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3><i class="fas fa-phone-alt"></i> Hızlı İletişim</h3></div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <a href="tel:+905323746945" style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--lt);border-radius:10px;text-decoration:none;color:var(--dk);transition:all .2s" onmouseover="this.style.background='#fee2e2'" onmouseout="this.style.background='var(--lt)'">
+              <div style="width:40px;height:40px;background:var(--red);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff"><i class="fas fa-phone"></i></div>
+              <div><div style="font-size:13px;font-weight:700">Telefon</div><div style="font-size:12px;color:var(--gr)">0532 374 69 45</div></div>
+            </a>
+            <a href="https://wa.me/905405163636" target="_blank" style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--lt);border-radius:10px;text-decoration:none;color:var(--dk);transition:all .2s" onmouseover="this.style.background='#dcfce7'" onmouseout="this.style.background='var(--lt)'">
+              <div style="width:40px;height:40px;background:#25d366;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff"><i class="fab fa-whatsapp"></i></div>
+              <div><div style="font-size:13px;font-weight:700">WhatsApp</div><div style="font-size:12px;color:var(--gr)">0540 516 36 36</div></div>
+            </a>
+            <a href="https://t.me/+905405163636" target="_blank" style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--lt);border-radius:10px;text-decoration:none;color:var(--dk);transition:all .2s" onmouseover="this.style.background='#e0f2fe'" onmouseout="this.style.background='var(--lt)'">
+              <div style="width:40px;height:40px;background:#0088cc;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff"><i class="fab fa-telegram"></i></div>
+              <div><div style="font-size:13px;font-weight:700">Telegram</div><div style="font-size:12px;color:var(--gr)">0540 516 36 36</div></div>
+            </a>
+            <a href="mailto:bayii@yapigucbeton.com.tr" style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--lt);border-radius:10px;text-decoration:none;color:var(--dk);transition:all .2s" onmouseover="this.style.background='#fee2e2'" onmouseout="this.style.background='var(--lt)'">
+              <div style="width:40px;height:40px;background:var(--red);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff"><i class="fas fa-envelope"></i></div>
+              <div><div style="font-size:13px;font-weight:700">E-posta</div><div style="font-size:12px;color:var(--gr)">bayii@yapigucbeton.com.tr</div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SİPARİŞ DETAY MODAL -->
+<div id="order-modal" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:5000;align-items:center;justify-content:center;padding:20px">
+  <div onclick="event.stopPropagation()" style="background:#fff;border-radius:16px;padding:28px;max-width:480px;width:100%;position:relative">
+    <button onclick="document.getElementById('order-modal').style.display='none'" style="position:absolute;top:14px;right:14px;background:#f3f4f6;border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px">✕</button>
+    <h3 style="font-size:17px;font-weight:800;margin-bottom:16px"><i class="fas fa-shopping-cart" style="color:var(--red);margin-right:8px"></i>Sipariş Detayı</h3>
+    <div id="order-detail-content"></div>
+  </div>
+</div>
+
+<script>
+const products={
+  'Beton Parke':['Aşık Taşı','Dikdörtgen Taş','Kare Taş','Begonit Taşı','Küp Taşı','Sekizgen Taş','Kesik I Taşı','Çim Taşı','Görme Engelli Taşı','Kare Plak Taş','Wash Beton Karo'],
+  'Bordür & Oluklar':['Yol Bordürü','Bahçe Bordürü','Refüj Bordürü','L Bordür','Drenaj Oluğu','Yağmur Oluğu','Oluklu Bordür'],
+  'Duvar Elemanları':['Düz Blok','Kırma Blok','Fugalı Blok','Çift Taraflı Kırma Blok','Set Blok Çiçeklik','Kırma Set Blok Çiçeklik','Kapak Taşı','Set Çiçeklik','Şev Taşı','Harpuşta','Baba Şapkası'],
+  'Beton Bariyer':['Beton Bariyer 150 cm','Beton Bariyer 200 cm'],
+  'Doğal Taşlar':['Bazalt Plak Taş','Bazalt Küp Taş']
+};
+
+const prices={'Aşık Taşı':37.40,'Küp Taşı':23.80,'Kare Taş':44.20,'Kesik I Taşı':39.10,'Çim Taşı':49.30,'Yol Bordürü':63.75,'Bahçe Bordürü':46.75,'Kırma Blok':38.25};
+
+function updateProducts(sel){
+  const ps=document.getElementById('product-select');
+  ps.innerHTML='<option value="">Seçiniz...</option>';
+  (products[sel.value]||[]).forEach(p=>{const o=document.createElement('option');o.textContent=p;ps.appendChild(o);});
+}
+
+function showPanel(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.querySelectorAll('.sb-item').forEach(n=>n.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  const titles={dashboard:'Dashboard',orders:'Siparişlerim','new-order':'Yeni Sipariş',tracking:'Sipariş Takibi',prices:'Fiyat Listesi',docs:'Belgeler',announcements:'Duyurular',stats:'İstatistikler',notifications:'Bildirimler',profile:'Profilim',support:'Destek'};
+  document.getElementById('page-title').textContent=titles[id]||id;
+  if(window.innerWidth<=768) document.getElementById('sidebar').classList.remove('open');
+}
+
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');}
+
+function quickCalc(){
+  const prod=parseFloat(document.getElementById('qc-prod').value)||35;
+  const area=parseFloat(document.getElementById('qc-area').value)||0;
+  const total=Math.ceil(area*prod*1.1);
+  const price=(total*(prices['Aşık Taşı']||37.40)).toLocaleString('tr-TR',{maximumFractionDigits:0});
+  document.getElementById('qc-result').textContent=total.toLocaleString('tr-TR')+' adet';
+  document.getElementById('qc-price').textContent='Tahmini: ₺'+price+' (bayi fiyatı)';
+}
+
+function filterOrders(status){
+  document.querySelectorAll('#orders-table tr').forEach(tr=>{
+    tr.style.display=(status==='all'||tr.dataset.status===status)?'':'none';
+  });
+}
+
+function trackOrder(){
+  const val=document.getElementById('track-input').value;
+  if(val.trim()){document.getElementById('track-result').style.display='block';}
+}
+
+function showOrderDetail(no){
+  const details={
+    '041':'<p><strong>Sipariş No:</strong> #2026-041</p><p><strong>Ürün:</strong> Aşık Taşı</p><p><strong>Miktar:</strong> 500 m²</p><p><strong>Tutar:</strong> ₺18.750</p><p><strong>Tarih:</strong> 12 Haziran 2026</p><p><strong>Durum:</strong> <span class="badge b-green">Teslim Edildi</span></p>',
+    '042':'<p><strong>Sipariş No:</strong> #2026-042</p><p><strong>Ürün:</strong> Yol Bordürü</p><p><strong>Miktar:</strong> 200 adet</p><p><strong>Tutar:</strong> ₺12.400</p><p><strong>Tarih:</strong> 15 Haziran 2026</p><p><strong>Durum:</strong> <span class="badge b-yellow">Hazırlanıyor</span></p>',
+    '043':'<p><strong>Sipariş No:</strong> #2026-043</p><p><strong>Ürün:</strong> Kırma Blok</p><p><strong>Miktar:</strong> 300 adet</p><p><strong>Tutar:</strong> ₺9.600</p><p><strong>Tarih:</strong> 18 Haziran 2026</p><p><strong>Durum:</strong> <span class="badge b-blue">Onay Bekliyor</span></p>',
+  };
+  document.getElementById('order-detail-content').innerHTML=details[no]||'Detay bulunamadı.';
+  document.getElementById('order-modal').style.display='flex';
+}
+
+function submitOrder(e){
+  e.preventDefault();
+  const m=document.getElementById('order-smsg');
+  m.classList.add('show');
+  e.target.reset();
+  document.getElementById('product-select').innerHTML='<option value="">Önce kategori seçin</option>';
+  setTimeout(()=>m.classList.remove('show'),5000);
+}
+
+function saveProfile(e){
+  e.preventDefault();
+  const m=document.getElementById('profile-smsg');
+  m.classList.add('show');
+  setTimeout(()=>m.classList.remove('show'),3000);
+}
+
+function changePass(e){
+  e.preventDefault();
+  const m=document.getElementById('pass-smsg');
+  m.classList.add('show');
+  e.target.reset();
+  setTimeout(()=>m.classList.remove('show'),3000);
+}
+
+function submitSupport(e){
+  e.preventDefault();
+  const m=document.getElementById('support-smsg');
+  m.classList.add('show');
+  e.target.reset();
+  setTimeout(()=>m.classList.remove('show'),5000);
+}
+
+function markAllRead(){
+  document.querySelectorAll('.notif-item.unread').forEach(n=>n.classList.remove('unread'));
+}
+</script>
+</body>
+</html>
