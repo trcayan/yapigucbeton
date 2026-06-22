@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Yapıgüç Beton – Beton Elemanları Üretim Tesisi</title>
+<meta content="Yapıgüç Beton – Parke taşı, bordür, şev taşı, duvar elemanları ve beton bariyer üretimi." name="description"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<style>
+:root{--red:#c0001a;--red2:#8a0012;--blk:#111111;--lt:#f4f6f9;--dk:#111827;--gr:#6b7280;--wh:#ffffff;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Roboto',sans-serif;color:var(--dk);background:var(--wh);}
+
+.topbar{background:var(--blk);color:#aaa;font-size:13px;padding:7px 0;}
+.topbar .c{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+.topbar a{color:#aaa;text-decoration:none;margin-left:14px;}.topbar a:hover{color:var(--red);}
+.topbar i{margin-right:4px;color:var(--red);}
+.c{max-width:1180px;margin:0 auto;padding:0 20px;}
+header{background:var(--wh);box-shadow:0 2px 12px rgba(0,0,0,.10);position:sticky;top:36px;z-index:1000;}
+.hi{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:20px;}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo img{height:58px;width:auto;object-fit:contain;}
+.logo-t h1{font-size:20px;font-weight:900;color:var(--blk);line-height:1.1;}
+.logo-t p{font-size:11px;color:var(--gr);letter-spacing:1px;text-transform:uppercase;}
+nav{display:flex;align-items:center;gap:4px;}
+nav a{color:var(--dk);text-decoration:none;font-size:14px;font-weight:500;padding:8px 13px;border-radius:6px;transition:all .2s;}
+nav a:hover{background:var(--lt);color:var(--red);}
+.bnav{background:var(--red)!important;color:var(--wh)!important;font-weight:700!important;border-radius:6px;}
+.bnav:hover{background:var(--red2)!important;}
+.hbg{display:none;font-size:24px;cursor:pointer;color:var(--blk);}
+.hero{position:relative;overflow:hidden;color:var(--wh);background:linear-gradient(135deg,#0d0d0d,#1a0005,#2a0008);padding:0;}
+.hero-bg{position:absolute;inset:0;background:url('img/slider.jpg?expires=1784566579&signature=8eb131b04d5d8290b3e168e202f47bb147a08d60dff9a811d26c70362458779d') center/cover no-repeat;opacity:.15;}
+.hero-in{position:relative;display:flex;align-items:center;min-height:480px;padding:70px 0;gap:40px;flex-wrap:wrap;}
+.hero-t{flex:1;min-width:280px;}
+.badge{display:inline-block;background:var(--red);color:var(--wh);font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;}
+.hero-t h2{font-size:clamp(28px,4vw,48px);font-weight:900;line-height:1.15;margin-bottom:16px;}
+.hero-t h2 span{color:var(--red);}
+.hero-t p{font-size:17px;color:#bbb;line-height:1.7;margin-bottom:30px;max-width:520px;}
+.hbtns{display:flex;gap:14px;flex-wrap:wrap;}
+.bp{background:var(--red);color:var(--wh);padding:14px 28px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;border:none;cursor:pointer;}
+.bp:hover{background:var(--red2);transform:translateY(-2px);}
+.bo{background:transparent;color:var(--wh);padding:14px 28px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;border:2px solid rgba(255,255,255,.4);cursor:pointer;}
+.bo:hover{border-color:var(--wh);background:rgba(255,255,255,.08);}
+.stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:40px;padding-top:30px;border-top:1px solid rgba(255,255,255,.12);}
+.stat strong{display:block;font-size:32px;font-weight:900;color:var(--red);}
+.stat span{font-size:13px;color:#888;}
+.qa{background:var(--red);}
+.qa-g{display:grid;grid-template-columns:repeat(3,1fr);}
+.qa-i{display:flex;align-items:center;gap:14px;padding:20px 28px;color:var(--wh);text-decoration:none;border-right:1px solid rgba(255,255,255,.2);transition:background .2s;}
+.qa-i:last-child{border-right:none;}.qa-i:hover{background:rgba(0,0,0,.15);}
+.qa-i i{font-size:26px;opacity:.9;}.qa-i strong{display:block;font-size:15px;font-weight:700;}.qa-i span{font-size:12px;opacity:.85;}
+section{padding:70px 0;}
+.sh{text-align:center;margin-bottom:50px;}
+.stag{display:inline-block;background:#fde8e8;color:var(--red);font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+.sh h2{font-size:clamp(24px,3vw,36px);font-weight:900;color:var(--blk);margin-bottom:12px;}
+.sh p{color:var(--gr);font-size:16px;max-width:580px;margin:0 auto;line-height:1.7;}
+.prods{background:var(--lt);}
+.cat-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:36px;}
+.ct{padding:8px 18px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;border:2px solid #e5e7eb;background:var(--wh);color:var(--gr);transition:all .2s;}
+.ct.active,.ct:hover{background:var(--red);color:var(--wh);border-color:var(--red);}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px;}
+.pc{background:var(--wh);border-radius:14px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);transition:all .3s;display:none;flex-direction:column;}
+.pc.show{display:flex;}
+.pc:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(0,0,0,.13);}
+.pi{height:200px;overflow:hidden;position:relative;flex-shrink:0;}
+.pi img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.pc:hover .pi img{transform:scale(1.06);}
+.pcb{position:absolute;top:12px;left:12px;background:var(--red);color:var(--wh);font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;}
+.pb{padding:18px;flex:1;}
+.pb h3{font-size:16px;font-weight:700;color:var(--blk);margin-bottom:5px;}
+.pb .dim{font-size:12px;color:var(--red);font-weight:600;margin-bottom:8px;}
+.pb p{font-size:13px;color:var(--gr);line-height:1.6;margin-bottom:10px;}
+.pf{padding:12px 18px;border-top:1px solid #f0f0f0;display:flex;gap:8px;}
+.bs{flex:1;padding:9px 12px;border-radius:6px;font-size:13px;font-weight:600;text-align:center;text-decoration:none;cursor:pointer;border:none;transition:all .2s;}
+.bsp{background:var(--red);color:var(--wh);}.bsp:hover{background:var(--red2);}
+.bso{background:transparent;color:var(--red);border:1.5px solid var(--red);}.bso:hover{background:var(--red);color:var(--wh);}
+.ord{background:var(--wh);}
+.ftabs{display:flex;gap:0;margin-bottom:36px;border-bottom:2px solid #e5e7eb;}
+.ftab{padding:14px 28px;font-size:15px;font-weight:600;cursor:pointer;border:none;background:none;color:var(--gr);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;}
+.ftab.active{color:var(--red);border-bottom-color:var(--red);}
+.fp{display:none;}.fp.active{display:block;}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.fgr{display:flex;flex-direction:column;gap:6px;}
+.fgr.full{grid-column:1/-1;}
+.fgr label{font-size:13px;font-weight:600;color:var(--blk);}
+.fgr input,.fgr select,.fgr textarea{padding:11px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;font-family:inherit;transition:border .2s;outline:none;background:var(--wh);}
+.fgr input:focus,.fgr select:focus,.fgr textarea:focus{border-color:var(--red);}
+.fgr textarea{resize:vertical;min-height:100px;}
+.fw{background:var(--lt);border-radius:16px;padding:36px;box-shadow:0 2px 20px rgba(0,0,0,.06);}
+.fsub{margin-top:10px;background:var(--red);color:var(--wh);padding:14px 36px;border-radius:8px;font-size:15px;font-weight:700;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
+.fsub:hover{background:var(--red2);transform:translateY(-1px);}
+.smsg{display:none;text-align:center;padding:20px;background:#d1fae5;border-radius:10px;color:#065f46;font-weight:600;margin-bottom:14px;}
+.smsg i{font-size:36px;display:block;margin-bottom:10px;}
+.why{background:var(--blk);color:var(--wh);}
+.why .sh h2{color:var(--wh);}.why .sh p{color:#888;}
+.wg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;}
+.wc{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:28px 24px;text-align:center;transition:all .3s;}
+.wc:hover{background:rgba(255,255,255,.10);transform:translateY(-4px);}
+.wi{width:60px;height:60px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+.wi i{font-size:24px;color:var(--wh);}
+.wc h3{font-size:16px;font-weight:700;margin-bottom:10px;}
+.wc p{font-size:14px;color:#888;line-height:1.6;}
+.gal{background:var(--lt);}
+.gg{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.gi{border-radius:10px;overflow:hidden;aspect-ratio:1;}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.gi:hover img{transform:scale(1.08);}
+.gi.wide{grid-column:span 2;aspect-ratio:2/1;}
+.loc{background:var(--wh);}
+.lg{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+.lc{background:var(--lt);border-radius:16px;padding:32px;border-left:5px solid var(--red);}
+.lc h3{font-size:20px;font-weight:800;color:var(--blk);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.lc h3 i{color:var(--red);}
+.li{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start;}
+.lic{width:42px;height:42px;background:var(--wh);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.08);}
+.lic i{color:var(--red);font-size:17px;}
+.li strong{display:block;font-size:12px;color:var(--gr);margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px;}
+.li a,.li span{font-size:15px;color:var(--dk);text-decoration:none;font-weight:500;display:block;}
+.li a:hover{color:var(--red);}
+.cbtns{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+.wab{display:inline-flex;align-items:center;gap:10px;background:#25d366;color:var(--wh);padding:13px 20px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;transition:all .2s;}
+.wab:hover{background:#1da851;transform:translateY(-2px);}
+.tgb{display:inline-flex;align-items:center;gap:10px;background:#0088cc;color:var(--wh);padding:13px 20px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;transition:all .2s;}
+.tgb:hover{background:#006fa3;transform:translateY(-2px);}
+.clb{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:var(--wh);padding:13px 20px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;transition:all .2s;}
+.clb:hover{background:var(--red2);transform:translateY(-2px);}
+.map{border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.12);height:420px;}
+.map iframe{width:100%;height:100%;border:none;}
+.ctsec{background:var(--lt);}
+.cfb{background:var(--wh);border-radius:14px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,.07);}
+.cfb h3{font-size:18px;font-weight:700;color:var(--blk);margin-bottom:20px;}
+footer{background:#0a0a0a;color:#888;}
+.ft{padding:50px 0 30px;}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;}
+.fb h3{font-size:20px;font-weight:900;color:var(--wh);margin-bottom:12px;}
+.fb p{font-size:14px;line-height:1.7;margin-bottom:18px;}
+.fc h4{font-size:14px;font-weight:700;color:var(--wh);margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px;}
+.fc ul{list-style:none;}.fc ul li{margin-bottom:8px;}
+.fc ul li a{color:#888;text-decoration:none;font-size:14px;transition:color .2s;}
+.fc ul li a:hover{color:var(--red);}
+.sl{display:flex;gap:10px;}
+.sl a{width:36px;height:36px;background:rgba(255,255,255,.08);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#888;text-decoration:none;transition:all .2s;}
+.sl a:hover{background:var(--red);color:var(--wh);}
+.fbot{border-top:1px solid rgba(255,255,255,.06);padding:18px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.fbot p{font-size:13px;}.fbot a{color:var(--red);text-decoration:none;}
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:5000;align-items:center;justify-content:center;}
+.mo.open{display:flex;}
+.md{background:var(--wh);border-radius:16px;padding:36px;max-width:560px;width:90%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.3);}
+.mc{position:absolute;top:16px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--gr);}
+.md h2{font-size:22px;font-weight:800;color:var(--blk);margin-bottom:6px;}
+.md p.sub{font-size:14px;color:var(--gr);margin-bottom:24px;}
+@media(max-width:900px){.fgrid{grid-template-columns:1fr 1fr;}.lg{grid-template-columns:1fr;}.qa-g{grid-template-columns:1fr;}.qa-i{border-right:none;border-bottom:1px solid rgba(255,255,255,.2);}.gg{grid-template-columns:repeat(2,1fr);}.gi.wide{grid-column:span 2;}}
+@media(max-width:680px){nav{display:none;}.hbg{display:block;}.fg{grid-template-columns:1fr;}.fgrid{grid-template-columns:1fr;}.gg{grid-template-columns:repeat(2,1fr);}}
+</style>
+<meta content="parke taşı, bordür taşı, beton eleman, şev taşı, beton bariyer, kilit parke, Hatay beton, Antakya parke, yapıgüç beton" name="keywords"/>
+<meta content="index, follow" name="robots"/>
+<meta content="Yapıgüç Beton" name="author"/>
+<meta content="Yapıgüç – Beton Elemanları Üretim Tesisi" property="og:title"/>
+<meta content="Parke taşı, bordür, şev taşı, duvar elemanları ve beton bariyer üretimi. 30+ yıl deneyim, ISO belgeli üretim." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://www.yapigucbeton.com" property="og:url"/>
+<meta content="https://www.yapigucbeton.com/logo.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Yapıgüç – Beton Elemanları Üretim Tesisi" name="twitter:title"/>
+<meta content="Parke taşı, bordür, şev taşı ve beton bariyer üretimi. Hatay/Antakya fabrika." name="twitter:description"/>
+<link href="https://www.yapigucbeton.com" rel="canonical"/>
+<style>
+  /* PRELOADER */
+  #preloader{position:fixed;inset:0;background:#fff;z-index:99999;display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s;}
+  #preloader.hide{opacity:0;visibility:hidden;}
+  .pl-inner{text-align:center;}
+  .pl-logo{width:80px;height:80px;margin:0 auto 16px;animation:plPulse 1s ease-in-out infinite;}
+  @keyframes plPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+  .pl-bar{width:200px;height:4px;background:#f0f0f0;border-radius:2px;margin:0 auto;overflow:hidden;}
+  .pl-fill{height:100%;background:var(--red);border-radius:2px;animation:plFill 1.5s ease-in-out forwards;}
+  @keyframes plFill{0%{width:0%;}100%{width:100%;}}
+  .pl-text{font-size:13px;color:#888;margin-top:10px;font-family:'Roboto',sans-serif;}
+
+  /* SCROLL TO TOP */
+  #scroll-top{position:fixed;bottom:90px;right:24px;width:44px;height:44px;background:var(--red);color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:18px;display:none;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(192,0,26,.4);transition:all .3s;z-index:7999;}
+  #scroll-top.show{display:flex;}
+  #scroll-top:hover{background:var(--red2);transform:translateY(-3px);}
+
+  /* KVKK BANNER */
+  #kvkk-banner{position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;color:#ccc;padding:16px 24px;z-index:8999;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;box-shadow:0 -4px 20px rgba(0,0,0,.3);}
+  #kvkk-banner p{font-size:13px;line-height:1.5;flex:1;min-width:200px;}
+  #kvkk-banner a{color:var(--red);text-decoration:none;}
+  .kvkk-btns{display:flex;gap:8px;flex-shrink:0;}
+  .kvkk-accept{background:var(--red);color:#fff;border:none;padding:9px 20px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;}
+  .kvkk-reject{background:transparent;color:#888;border:1px solid #555;padding:9px 16px;border-radius:6px;font-size:13px;cursor:pointer;}
+
+  /* SAYAÇ ANİMASYONU */
+  .count-num{display:inline-block;}
+
+  /* PRINT BUTONU */
+  .print-btn{display:inline-flex;align-items:center;gap:6px;background:#f3f4f6;color:#374151;border:none;padding:8px 16px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;}
+  .print-btn:hover{background:#e5e7eb;}
+  @media print{
+    .topbar,header,.qa,.hbtns,.quick-actions,#scroll-top,#kvkk-banner,.yüzen-butonlar,nav,.hbg,footer,.mo,.cert-modal,#product-modal{display:none!important;}
+    body{color:#000!important;}
+  }
+
+  /* MOBİL MENÜ İYİLEŞTİRME */
+  @media(max-width:680px){
+    .mobile-nav{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.95);z-index:9998;flex-direction:column;align-items:center;justify-content:center;gap:24px;}
+    .mobile-nav.open{display:flex;}
+    .mobile-nav a{color:#fff;text-decoration:none;font-size:22px;font-weight:700;transition:color .2s;}
+    .mobile-nav a:hover{color:var(--red);}
+    .mobile-close{position:absolute;top:20px;right:20px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;}
+  }
+  </style>
+</head>
+<body>
+<div id="preloader">
+<div class="pl-inner">
+<img alt="Yapıgüç" class="pl-logo" src="logo.png?expires=1784566579&amp;signature=3c513b49e7da210bc6eb5023bbcdbeac753ccc3ce5a78ddfa743e30284fc4dc5"/>
+<div class="pl-bar"><div class="pl-fill"></div></div>
+<div class="pl-text">Yükleniyor...</div>
+</div>
+</div>
+<div class="topbar">
+<div class="c">
+<div><i class="fas fa-map-marker-alt"></i> Anayazı Mah. Paymar Sokak No:1, Antakya / Hatay   <i class="fas fa-clock"></i> Pzt–Cuma: 08:00–19:00</div>
+<div>
+<i class="fas fa-phone"></i><a href="tel:+905323746945">0532 374 69 45</a>
+<i class="fab fa-whatsapp" style="margin-left:12px"></i><a href="https://wa.me/905405163636">WhatsApp: 0540 516 36 36</a>
+<i class="fab fa-telegram" style="margin-left:12px"></i><a href="https://t.me/+905405163636">Telegram</a>
+</div>
+</div>
+</div>
+<header>
+<div class="c">
+<div class="hi">
+<a class="logo" href="#">
+<img alt="Yapıgüç Logo" src="logo.png?expires=1784566579&amp;signature=3c513b49e7da210bc6eb5023bbcdbeac753ccc3ce5a78ddfa743e30284fc4dc5"/>
+<div class="logo-t">
+<h1>Yapıgüç</h1>
+<p>Beton Elemanları Üretim Tesisi</p>
+</div>
+</a>
+<nav>
+<a href="#urunler">Ürünler</a>
+<a href="hakkimizda.html">Hakkımızda</a>
+<a href="#galeri">Galeri</a>
+<a href="#kalite">Kalite</a>
+<a href="#referanslar">Referanslar</a>
+<a href="#sss">SSS</a>
+<a href="#konum">Konum</a>
+<a href="#iletisim">İletişim</a>
+<a href="bayi-giris.html" onmouseout="this.style.background='#111'" onmouseover="this.style.background='#333'" style="background:#111;color:#fff;font-weight:700;border-radius:6px;padding:8px 13px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .2s;"><i class="fas fa-store"></i> Bayi Girişi</a>
+<a class="bnav" href="#" onclick="openModal('order')"><i class="fas fa-shopping-cart"></i> Sipariş Ver</a>
+</nav>
+<div class="hbg" onclick="openMobileMenu()"><i class="fas fa-bars"></i></div>
+</div>
+</div>
+</header>
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="c">
+<div class="hero-in">
+<div class="hero-t">
+<div class="badge"><i class="fas fa-industry"></i>  Hatay / Antakya Fabrika</div>
+<h2>Kaliteli <span>Beton Elemanları</span><br/>Güvenilir Üretim</h2>
+<p>Yapıgüç Beton olarak parke taşı, bordür, şev taşı, duvar elemanları ve beton bariyer üretiyoruz. 30 yılı aşkın deneyimimizle projelerinize güç katıyoruz.</p>
+<div class="hbtns">
+<a class="bp" href="#" onclick="openModal('order')"><i class="fas fa-shopping-cart"></i> Online Sipariş Ver</a>
+<a class="bo" href="#" onclick="openModal('quote')"><i class="fas fa-file-invoice"></i> Teklif İste</a>
+</div>
+<div class="stats">
+<div class="stat"><strong><span class="count-num" data-suffix="+" data-target="30">0+</span></strong><span>Yıl Deneyim</span></div>
+<div class="stat"><strong><span class="count-num" data-suffix="+" data-target="31">0+</span></strong><span>Ürün Çeşidi</span></div>
+<div class="stat"><strong><span class="count-num" data-suffix="+" data-target="1000">0+</span></strong><span>Tamamlanan Proje</span></div>
+<div class="stat"><strong>%<span class="count-num" data-suffix="" data-target="100">0</span></strong><span>Müşteri Memnuniyeti</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="qa">
+<div class="c" style="padding:0">
+<div class="qa-g">
+<a class="qa-i" href="#" onclick="openModal('order')"><i class="fas fa-shopping-cart"></i><div><strong>Online Sipariş</strong><span>Hızlı ve kolay sipariş verin</span></div></a>
+<a class="qa-i" href="#" onclick="openModal('quote')"><i class="fas fa-file-invoice-dollar"></i><div><strong>Teklif İste</strong><span>Ücretsiz fiyat teklifi alın</span></div></a>
+<a class="qa-i" href="https://wa.me/905405163636" target="_blank"><i class="fab fa-whatsapp"></i><div><strong>WhatsApp: 0540 516 36 36</strong><span>Anında iletişim kurun</span></div></a>
+</div>
+</div>
+</div>
+<section class="prods" id="urunler">
+<div class="c">
+<div class="sh">
+<div class="stag">Ürünlerimiz</div>
+<h2>Beton Elemanları Kataloğu</h2>
+<p>31 farklı ürün çeşidiyle her türlü inşaat ve peyzaj projesine uygun beton çözümleri sunuyoruz.</p>
+</div>
+<div class="cat-tabs">
+<button class="ct active" onclick="filterCat('all',this)">Tüm Ürünler (31)</button>
+<button class="ct" onclick="filterCat('parke',this)">Beton Parke (11)</button>
+<button class="ct" onclick="filterCat('bordur',this)">Bordür &amp; Oluklar (7)</button>
+<button class="ct" onclick="filterCat('duvar',this)">Duvar Elemanları (11)</button>
+<button class="ct" onclick="filterCat('dogal',this)">Doğal Taşlar (2)</button>
+</div>
+<div class="pg">
+<div class="pc show" data-cat="parke" style="cursor:pointer"><div class="pi"><img alt="Aşık Taşı" src="img/asik-tasi.jpg?expires=1784566579&amp;signature=966adabe56f0cf4ca0d0930739f5d09d1423e3ff34306e4c4986f640ca665e62"/><div class="pcb">Beton Parke</div></div><div class="pb"><h3>Aşık Taşı (Kilit Parke)</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 10×20×8 cm</div><p>En çok tercih edilen kilitli taş. Yüksek dayanıklılığı ve estetik görünümüyle parklar, kaldırımlar ve yollarda kullanılır.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="parke" style="cursor:pointer"><div class="pi"><img alt="Dikdörtgen Taş" src="img/kesik-i.jpg?expires=1784566579&amp;signature=a41e1fd3576a8adf9dbceb57d43cc2ca6f565757008604f21b9e0df006a24a81"/><div class="pcb">Beton Parke</div></div><div class="pb"><h3>Dikdörtgen Taş</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 10×20×8 cm</div><p>Dikdörtgen kilitli parke taşı. Yaya yolları, otoparklar ve geniş alanlarda tercih edilen dayanıklı zemin çözümü.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="parke" style="cursor:pointer"><div class="pi"><img alt="Kare Taş" src="img/kup-tasi.jpg?expires=1784566579&amp;signature=6cd8693a06a3c57b4ae1f9168b6cab1bdcb0afaad859a15d22aa7110963d8700"/><div class="pcb">Beton Parke</div></div><div class="pb"><h3>Kare Taş</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 20×20 / 30×30 cm</div><p>Sade ve zarif tasarımıyla şık mekanlar oluşturmanıza olanak tanır. Farklı renk seçenekleriyle sunulur.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="parke" style="cursor:pointer"><div class="pi"><img alt="Begonit Taşı" src="img/baklava.jpg?expires=1784566579&amp;signature=4fd4dbdb488b455aa28f9f4fdadfb4b91cde42ac9c4ba5881ae1a91364126542"/><div class="pcb">Beton Parke</div></div><div class="pb"><h3>Begonit Taşı</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 10×20×8 cm</div><p>Doğal granit taşlara alternatif, yedi farklı modüler yapıdan oluşan estetik parke taşı.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="parke" style="cursor:pointer"><div class="pi"><img alt="Küp Taşı" src="img/kup-tasi-1.jpg?expires=1784566579&amp;signature=cf89eb4bc3ef39f89f244619605a53bbfaf6333e45e18057211184a68843994b"/><div class="pcb">Beton Parke</div></div><div class="pb"><h3>Küp Taşı</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 4×4×4 cm</div><p>Farklı desenleriyle estetik zemin uygulamaları için ideal. Diğer parke taşlarıyla kombine edilebilir.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="parke" style="cursor:pointer"><div class="pi"><img alt="Sekizgen Taş" src="img/kup-tasi-1.jpg?expires=1784566579&amp;signature=cf89eb4bc3ef39f89f244619605a53bbfaf6333e45e18057211184a68843994b"/><div class="pcb">Beton Parke</div></div><div class="pb"><h3>Sekizgen Taş</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 20×20×8 cm</div><p>Benzersiz 8 köşeli tasarımı ile dikkat çeken, şık ve estetik parke taşı. Yüksek mukavemet sunar.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="parke" style="cursor:pointer"><div class="pi"><img alt="Kesik I Taşı" src="img/kesik-i-1.jpg?expires=1784566579&amp;signature=2b4ee8bab74670d820bcc86b8b6fa61d8d557b7f0a8eada2c275883687eb4d37"/><div class="pcb">Beton Parke</div></div><div class="pb"><h3>Kesik I Taşı</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 10×20 cm</div><p>Yan yana dizildiğinde birbirine kenetlenerek sağlamlık ve dayanıklılığı artıran özel kilitli parke taşı.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="parke" style="cursor:pointer"><div class="pi"><img alt="Çim Taşı" src="img/baklava-1.jpg?expires=1784566579&amp;signature=f980784594eb7016970cb6224822a6d090f8a72a427f8b65c74828c2fb670f04"/><div class="pcb">Beton Parke</div></div><div class="pb"><h3>Çim Taşı</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 40×40 cm</div><p>Çevre dostu yapı elemanı. Çimlerin ara boşluklarda büyümesine olanak tanır. %60 yeşil alan.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="parke" style="cursor:pointer"><div class="pi"><img alt="Görme Engelli Taşı" src="img/kesik-i-1.jpg?expires=1784566579&amp;signature=2b4ee8bab74670d820bcc86b8b6fa61d8d557b7f0a8eada2c275883687eb4d37"/><div class="pcb">Beton Parke</div></div><div class="pb"><h3>Görme Engelli Taşları</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 30×30×6 cm</div><p>Görme engelliler için özel üretilen yönlendirme ve uyarı taşları. Kamu alanları için zorunlu uygulama.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="parke" style="cursor:pointer"><div class="pi"><img alt="Kare Plak Taş" src="img/baklava-3.jpg?expires=1784566579&amp;signature=ffc70eeccbdd76b7d32eaebb173d6174ee4a415694e1206c83fa6dbba94f59d3"/><div class="pcb">Beton Parke</div></div><div class="pb"><h3>Kare Plak Taş</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 30×30 cm</div><p>Projelerin tercihi olan kare plak taşı. Geniş yüzeyi ve sade görünümüyle modern mekan tasarımlarında kullanılır.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="parke" style="cursor:pointer"><div class="pi"><img alt="Wash Beton" src="img/baklava-3.jpg?expires=1784566579&amp;signature=ffc70eeccbdd76b7d32eaebb173d6174ee4a415694e1206c83fa6dbba94f59d3"/><div class="pcb">Beton Parke</div></div><div class="pb"><h3>Wash Beton Karo</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 30×30 / 40×40 cm</div><p>Bina ve site çevresi peyzaj çalışmalarında tercih edilen, dayanıklı ve estetik wash beton karo taşı.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="bordur" style="cursor:pointer"><div class="pi"><img alt="Yol Bordürü" src="img/limonluk.jpg?expires=1784566579&amp;signature=7a8515808c1784a4f070c70a0c5140ccff8bf78f1e78f1756abd184f680eb89c"/><div class="pcb">Bordür &amp; Oluk</div></div><div class="pb"><h3>Yol Bordürü</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 15×25×50 cm</div><p>Yaya yolları ve araç yollarını ayıran, yüksek dayanımlı beton bordür taşı. Cadde ve sokak uygulamaları için idealdir.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="bordur" style="cursor:pointer"><div class="pi"><img alt="Bahçe Bordürü" src="img/limonluk.jpg?expires=1784566579&amp;signature=7a8515808c1784a4f070c70a0c5140ccff8bf78f1e78f1756abd184f680eb89c"/><div class="pcb">Bordür &amp; Oluk</div></div><div class="pb"><h3>Bahçe Bordürü (Limonluk)</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 10×20×50 cm</div><p>Park ve bahçe alanlarını ayıran, zarif ve estetik görünümüyle dikkat çeken özel bordür taşı.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="bordur" style="cursor:pointer"><div class="pi"><img alt="Refüj Bordürü" src="img/limonluk.jpg?expires=1784566579&amp;signature=7a8515808c1784a4f070c70a0c5140ccff8bf78f1e78f1756abd184f680eb89c"/><div class="pcb">Bordür &amp; Oluk</div></div><div class="pb"><h3>Refüj Bordürü</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 15×30×50 cm</div><p>Cadde ve sokak düzenleyicisi olarak kullanılan refüj bordürü. Yüksek mukavemeti ile uzun ömürlü kullanım sağlar.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="bordur" style="cursor:pointer"><div class="pi"><img alt="L Bordür" src="img/limonluk.jpg?expires=1784566579&amp;signature=7a8515808c1784a4f070c70a0c5140ccff8bf78f1e78f1756abd184f680eb89c"/><div class="pcb">Bordür &amp; Oluk</div></div><div class="pb"><h3>L Bordür (Ağaç Dibi)</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 50×50×20 cm</div><p>Ağaç çevresini belirlemek için kullanılan L tipi bordür. Peyzaj düzenlemelerinde estetik ve işlevsel çözüm sunar.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="bordur" style="cursor:pointer"><div class="pi"><img alt="Drenaj Oluğu" src="img/limonluk-4.jpg?expires=1784566579&amp;signature=882be6ff6a1f3244c210ebd5f0f4765628eac4e761b77d2824eaf2e302ae4bf0"/><div class="pcb">Bordür &amp; Oluk</div></div><div class="pb"><h3>Drenaj Oluğu</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 20×30×12 cm</div><p>Yağmur sularının kontrollü tahliyesi için üretilen drenaj oluğu. Su birikmesini ve akıntı problemlerini önler.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="bordur" style="cursor:pointer"><div class="pi"><img alt="Yağmur Oluğu" src="img/limonluk.jpg?expires=1784566579&amp;signature=7a8515808c1784a4f070c70a0c5140ccff8bf78f1e78f1756abd184f680eb89c"/><div class="pcb">Bordür &amp; Oluk</div></div><div class="pb"><h3>Yağmur Oluğu</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 20×30×8 cm</div><p>Yağmur sularının birikmesini önleyen, suyun kontrollü tahliyesini sağlayan önemli altyapı elemanı.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="bordur" style="cursor:pointer"><div class="pi"><img alt="Oluklu Bordür" src="img/limonluk.jpg?expires=1784566579&amp;signature=7a8515808c1784a4f070c70a0c5140ccff8bf78f1e78f1756abd184f680eb89c"/><div class="pcb">Bordür &amp; Oluk</div></div><div class="pb"><h3>Oluklu Bordür</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 15×25×50 cm</div><p>Hem bordür hem drenaj işlevi gören oluklu bordür taşı. Yol kenarlarında su tahliyesi ve sınır belirleme için kullanılır.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="duvar" style="cursor:pointer"><div class="pi"><img alt="Düz Blok" src="img/kirma-blok.jpg?expires=1784566579&amp;signature=1ba9270b3c4bb5e879dd5df40261452c3c87804a934b9f3e252afe89cc1aa246"/><div class="pcb">Duvar Elemanları</div></div><div class="pb"><h3>Düz Blok</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 10×20×40 cm</div><p>Sağlam, dayanıklı ve pratik duvar çözümü. İnşaat projelerinde temel duvar elemanı olarak yaygın kullanım.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="duvar" style="cursor:pointer"><div class="pi"><img alt="Kırma Blok" src="img/kirma-blok.jpg?expires=1784566579&amp;signature=1ba9270b3c4bb5e879dd5df40261452c3c87804a934b9f3e252afe89cc1aa246"/><div class="pcb">Duvar Elemanları</div></div><div class="pb"><h3>Kırma Blok</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 20×20×40 cm</div><p>Sağlam, dayanıklı ve dekoratif duvar çözümü. Split-face yüzey dokusuyla doğal taş görünümü sunar.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="duvar" style="cursor:pointer"><div class="pi"><img alt="Fugalı Blok" src="img/kirma-blok.jpg?expires=1784566579&amp;signature=1ba9270b3c4bb5e879dd5df40261452c3c87804a934b9f3e252afe89cc1aa246"/><div class="pcb">Duvar Elemanları</div></div><div class="pb"><h3>Fugalı Blok</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 20×20×40 cm</div><p>Estetik, dayanıklı ve popüler dekoratif duvar çözümü. Fuga detayıyla modern mimari projelerde tercih edilir.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="duvar" style="cursor:pointer"><div class="pi"><img alt="Çift Taraflı Kırma Blok" src="img/kirma-blok.jpg?expires=1784566579&amp;signature=1ba9270b3c4bb5e879dd5df40261452c3c87804a934b9f3e252afe89cc1aa246"/><div class="pcb">Duvar Elemanları</div></div><div class="pb"><h3>Çift Taraflı Kırma Blok</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 20×20×40 cm</div><p>Her iki yüzeyi desenli olan blok taşı. Bahçe duvarları ve görünür yüzeylerde estetik çözüm sunar.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="duvar" style="cursor:pointer"><div class="pi"><img alt="Set Blok Çiçeklik" src="img/kirma-blok.jpg?expires=1784566579&amp;signature=1ba9270b3c4bb5e879dd5df40261452c3c87804a934b9f3e252afe89cc1aa246"/><div class="pcb">Duvar Elemanları</div></div><div class="pb"><h3>Set Blok Çiçeklik</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 40×40×20 cm</div><p>Estetik ve fonksiyonel çiçeklik set blok. Bahçe ve peyzaj düzenlemelerinde dekoratif sınır oluşturmak için kullanılır.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="duvar" style="cursor:pointer"><div class="pi"><img alt="Kırma Set Blok Çiçeklik" src="img/kirma-blok.jpg?expires=1784566579&amp;signature=1ba9270b3c4bb5e879dd5df40261452c3c87804a934b9f3e252afe89cc1aa246"/><div class="pcb">Duvar Elemanları</div></div><div class="pb"><h3>Kırma Set Blok Çiçeklik</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 30×40×20 cm</div><p>Esnek ve dekoratif kırma set blok çiçeklik. Farklı renk ve doku seçenekleriyle peyzaj projelerine uyum sağlar.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="duvar" style="cursor:pointer"><div class="pi"><img alt="Kapak Taşı" src="img/kirma-blok.jpg?expires=1784566579&amp;signature=1ba9270b3c4bb5e879dd5df40261452c3c87804a934b9f3e252afe89cc1aa246"/><div class="pcb">Duvar Elemanları</div></div><div class="pb"><h3>Kapak Taşı</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 20×40 cm</div><p>Desenli, fonksiyonel ve estetik kapak taşı. Duvar üstü kapatma ve dekoratif bitirme uygulamalarında kullanılır.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="duvar" style="cursor:pointer"><div class="pi"><img alt="Set Çiçeklik" src="img/kirma-blok.jpg?expires=1784566579&amp;signature=1ba9270b3c4bb5e879dd5df40261452c3c87804a934b9f3e252afe89cc1aa246"/><div class="pcb">Duvar Elemanları</div></div><div class="pb"><h3>Set Çiçeklik</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 40×40×20 cm</div><p>Sağlam ve dayanıklı set çiçeklik taşı. Bahçe ve park düzenlemelerinde estetik sınır ve çiçeklik oluşturmak için idealdir.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="duvar" style="cursor:pointer"><div class="pi"><img alt="Şev Taşı" src="img/sev-tasi.jpg?expires=1784566579&amp;signature=abd8ca91d840e55476da4ce811192c05926a14b93d21b799174b831ce96d3ea3"/><div class="pcb">Duvar Elemanları</div></div><div class="pb"><h3>Şev Taşı</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 40×40×20 cm</div><p>Sağlam ve şık toprak tutucu şev taşı. Eğimli arazilerde toprak kaymasını önler, estetik istinat duvarı oluşturur.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="duvar" style="cursor:pointer"><div class="pi"><img alt="Harpuşta" src="img/sev-tasi.jpg?expires=1784566579&amp;signature=abd8ca91d840e55476da4ce811192c05926a14b93d21b799174b831ce96d3ea3"/><div class="pcb">Duvar Elemanları</div></div><div class="pb"><h3>Harpuşta</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 30×50 cm</div><p>Bahçe duvarı üstü harpuşta taşı. Duvarları yağmur suyundan korur ve estetik bir bitiş sağlar.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="duvar" style="cursor:pointer"><div class="pi"><img alt="Baba Şapkası" src="img/sev-tasi.jpg?expires=1784566579&amp;signature=abd8ca91d840e55476da4ce811192c05926a14b93d21b799174b831ce96d3ea3"/><div class="pcb">Duvar Elemanları</div></div><div class="pb"><h3>Baba Şapkası</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 30×30 cm</div><p>Bahçe duvarı kolon taşı. Duvar kolonlarının üstüne yerleştirilen dekoratif ve koruyucu kapak elemanı.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="duvar" style="cursor:pointer"><div class="pi"><img alt="Beton Bariyer 200 cm" src="img/bariyer.jpg?expires=1784566579&amp;signature=f1b18e9e3649281c98fa8aead25637d33dacdf4cea0e5fde1f730376b8f68c76"/><div class="pcb">Beton Bariyer</div></div><div class="pb"><h3>Beton Bariyer 200 cm</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 200 cm uzunluk</div><p>Yol güvenliği ve trafik yönetimi için Jersey tipi beton bariyer. Yüksek darbe dayanımı ile uzun ömürlü kullanım.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="dogal" style="cursor:pointer"><div class="pi"><img alt="Bazalt Plak Taş" src="img/kup-tasi-4.jpg?expires=1784566579&amp;signature=d81b1332b9b0137d97e125a6d487fdc07e9aa4f5711549795e28c570d6d50fec"/><div class="pcb">Doğal Taşlar</div></div><div class="pb"><h3>Bazalt Plak Taş</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 30×30 cm</div><p>Doğal bazalt taşından üretilen plak taş. Yüksek dayanıklılığı ve doğal görünümüyle prestijli projelerde tercih edilir.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+<div class="pc show" data-cat="dogal" style="cursor:pointer"><div class="pi"><img alt="Bazalt Küp Taş" src="img/kup-tasi-4.jpg?expires=1784566579&amp;signature=d81b1332b9b0137d97e125a6d487fdc07e9aa4f5711549795e28c570d6d50fec"/><div class="pcb">Doğal Taşlar</div></div><div class="pb"><h3>Bazalt Küp Taş</h3><div class="dim"><i class="fas fa-ruler-combined"></i> 4×6 cm</div><p>Doğal bazalt küp taşı. Tarihi meydanlar, yürüyüş yolları ve dekoratif zemin uygulamalarında kullanılır.</p></div><div class="pf"><a class="bs bsp" href="#" onclick="openModal('order')">Sipariş Ver</a><a class="bs bso" href="#" onclick="openModal('quote')">Teklif Al</a></div></div>
+</div>
+</div>
+</section>
+<section class="ord" id="siparis">
+<div class="c">
+<div class="sh"><div class="stag">Hızlı İşlem</div><h2>Online Sipariş &amp; Teklif</h2><p>Formu doldurun, ekibimiz en kısa sürede sizinle iletişime geçsin.</p></div>
+<div class="fw">
+<div class="ftabs">
+<button class="ftab active" onclick="switchTab('ot','qt',this)"><i class="fas fa-shopping-cart"></i> Online Sipariş</button>
+<button class="ftab" onclick="switchTab('qt','ot',this)"><i class="fas fa-file-invoice"></i> Teklif İste</button>
+</div>
+<div class="fp active" id="ot">
+<form onsubmit="submitForm(event,'os')">
+<div class="fg">
+<div class="fgr"><label>Ad Soyad *</label><input placeholder="Adınız ve soyadınız" required="" type="text"/></div>
+<div class="fgr"><label>Firma Adı</label><input placeholder="Firma adı (varsa)" type="text"/></div>
+<div class="fgr"><label>Telefon *</label><input placeholder="05XX XXX XX XX" required="" type="tel"/></div>
+<div class="fgr"><label>E-posta</label><input placeholder="ornek@email.com" type="email"/></div>
+<div class="fgr"><label>Ürün *</label>
+<select required="">
+<option value="">Seçiniz...</option>
+<optgroup label="Beton Parke"><option>Aşık Taşı</option><option>Dikdörtgen Taş</option><option>Kare Taş</option><option>Begonit Taşı</option><option>Küp Taşı</option><option>Sekizgen Taş</option><option>Kesik I Taşı</option><option>Çim Taşı</option><option>Görme Engelli Taşı</option><option>Kare Plak Taş</option><option>Wash Beton Karo</option></optgroup>
+<optgroup label="Bordür &amp; Oluklar"><option>Yol Bordürü</option><option>Bahçe Bordürü</option><option>Refüj Bordürü</option><option>L Bordür</option><option>Drenaj Oluğu</option><option>Yağmur Oluğu</option><option>Oluklu Bordür</option></optgroup>
+<optgroup label="Duvar Elemanları"><option>Düz Blok</option><option>Kırma Blok</option><option>Fugalı Blok</option><option>Çift Taraflı Kırma Blok</option><option>Set Blok Çiçeklik</option><option>Kırma Set Blok Çiçeklik</option><option>Kapak Taşı</option><option>Set Çiçeklik</option><option>Şev Taşı</option><option>Harpuşta</option><option>Baba Şapkası</option></optgroup>
+<optgroup label="Beton Bariyer"><option>Beton Bariyer 150 cm</option><option>Beton Bariyer 200 cm</option></optgroup>
+<optgroup label="Doğal Taşlar"><option>Bazalt Plak Taş</option><option>Bazalt Küp Taş</option></optgroup>
+</select>
+</div>
+<div class="fgr"><label>Miktar / Adet</label><input placeholder="Örn: 50 adet, 100 m²" type="text"/></div>
+<div class="fgr"><label>Teslimat Adresi *</label><input placeholder="Şehir / İlçe / Adres" required="" type="text"/></div>
+<div class="fgr"><label>Teslimat Tarihi</label><input type="date"/></div>
+<div class="fgr full"><label>Notlar</label><textarea placeholder="Ürün özellikleri, boyutlar, renk tercihi, özel istekler..."></textarea></div>
+</div>
+<div class="smsg" id="os"><i class="fas fa-check-circle"></i>Siparişiniz alındı! Ekibimiz en kısa sürede sizinle iletişime geçecektir.</div>
+<button class="fsub" type="submit"><i class="fas fa-paper-plane"></i> Siparişi Gönder</button>
+</form>
+</div>
+<div class="fp" id="qt">
+<form onsubmit="submitForm(event,'qs')">
+<div class="fg">
+<div class="fgr"><label>Ad Soyad *</label><input placeholder="Adınız ve soyadınız" required="" type="text"/></div>
+<div class="fgr"><label>Firma Adı</label><input placeholder="Firma adı (varsa)" type="text"/></div>
+<div class="fgr"><label>Telefon *</label><input placeholder="05XX XXX XX XX" required="" type="tel"/></div>
+<div class="fgr"><label>E-posta *</label><input placeholder="ornek@email.com" required="" type="email"/></div>
+<div class="fgr"><label>Proje Türü</label><select><option value="">Seçiniz...</option><option>Konut Projesi</option><option>Ticari Yapı</option><option>Endüstriyel Tesis</option><option>Altyapı Projesi</option><option>Kamu Projesi</option><option>Peyzaj / Çevre Düzenleme</option><option>Diğer</option></select></div>
+<div class="fgr"><label>Bütçe Aralığı</label><select><option value="">Belirtmek istemiyorum</option><option>100.000 TL altı</option><option>100.000 – 500.000 TL</option><option>500.000 – 1.000.000 TL</option><option>1.000.000 TL üzeri</option></select></div>
+<div class="fgr full"><label>Proje Açıklaması *</label><textarea placeholder="Ürün türleri, miktarlar, özel gereksinimler..." required=""></textarea></div>
+<div class="fgr full"><label>Proje Konumu</label><input placeholder="Şehir / İlçe" type="text"/></div>
+</div>
+<div class="smsg" id="qs"><i class="fas fa-check-circle"></i>Teklif talebiniz alındı! 24 saat içinde size dönüş yapacağız.</div>
+<button class="fsub" type="submit"><i class="fas fa-file-invoice-dollar"></i> Teklif Talep Et</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<section class="why" id="hakkimizda">
+<div class="c">
+<div class="sh"><div class="stag" style="background:rgba(192,0,26,.3);color:#ff6680">Neden Biz?</div><h2>Yapıgüç Beton Farkı</h2><p>30 yılı aşkın deneyim ve binlerce tamamlanan proje ile sektörün güvenilir ismi.</p></div>
+<div class="wg">
+<div class="wc"><div class="wi"><i class="fas fa-medal"></i></div><h3>Kalite Güvencesi</h3><p>TSE ve uluslararası standartlara uygun üretim. Her parti beton laboratuvar testinden geçer.</p></div>
+<div class="wc"><div class="wi"><i class="fas fa-truck-fast"></i></div><h3>Hızlı Teslimat</h3><p>Türkiye genelinde geniş lojistik ağımızla zamanında ve güvenli teslimat garantisi.</p></div>
+<div class="wc"><div class="wi"><i class="fas fa-drafting-compass"></i></div><h3>Mühendislik Desteği</h3><p>Uzman mühendis kadromuzla projenize özel teknik danışmanlık ve çözüm üretimi.</p></div>
+<div class="wc"><div class="wi"><i class="fas fa-handshake"></i></div><h3>Rekabetçi Fiyat</h3><p>Fabrikadan direkt satış avantajıyla piyasanın en uygun fiyatlarını sunuyoruz.</p></div>
+<div class="wc"><div class="wi"><i class="fas fa-headset"></i></div><h3>7/24 Destek</h3><p>WhatsApp ve Telegram hattımızla her zaman yanınızdayız. Sorularınız anında yanıt bulur.</p></div>
+<div class="wc"><div class="wi"><i class="fas fa-leaf"></i></div><h3>Çevre Dostu</h3><p>Sürdürülebilir üretim anlayışıyla çevre dostu malzeme ve yöntemler kullanıyoruz.</p></div>
+</div>
+</div>
+</section>
+<section class="gal" id="galeri">
+<div class="c">
+<div class="sh"><div class="stag">Galeri</div><h2>Uygulama Görselleri</h2><p>Gerçekleştirdiğimiz projelerden seçme görüntüler.</p></div>
+<div class="gg">
+<div class="gi wide"><img alt="Küp Taşı Uygulama" src="img/kup-tasi-4.jpg?expires=1784566579&amp;signature=d81b1332b9b0137d97e125a6d487fdc07e9aa4f5711549795e28c570d6d50fec"/></div>
+<div class="gi"><img alt="Baklava Parke" src="img/baklava-1.jpg?expires=1784566579&amp;signature=f980784594eb7016970cb6224822a6d090f8a72a427f8b65c74828c2fb670f04"/></div>
+<div class="gi"><img alt="Kesik I Taşı" src="img/kesik-i-1.jpg?expires=1784566579&amp;signature=2b4ee8bab74670d820bcc86b8b6fa61d8d557b7f0a8eada2c275883687eb4d37"/></div>
+<div class="gi"><img alt="Bordür Uygulama" src="img/limonluk-4.jpg?expires=1784566579&amp;signature=882be6ff6a1f3244c210ebd5f0f4765628eac4e761b77d2824eaf2e302ae4bf0"/></div>
+<div class="gi"><img alt="Duvar Taşı" src="img/kirma-blok.jpg?expires=1784566579&amp;signature=1ba9270b3c4bb5e879dd5df40261452c3c87804a934b9f3e252afe89cc1aa246"/></div>
+<div class="gi wide"><img alt="Renkli Parke" src="img/baklava-3.jpg?expires=1784566579&amp;signature=ffc70eeccbdd76b7d32eaebb173d6174ee4a415694e1206c83fa6dbba94f59d3"/></div>
+<div class="gi"><img alt="Küp Taşı Desen" src="img/kup-tasi-1.jpg?expires=1784566579&amp;signature=cf89eb4bc3ef39f89f244619605a53bbfaf6333e45e18057211184a68843994b"/></div>
+<div class="gi"><img alt="Şev Taşı" src="img/sev-tasi.jpg?expires=1784566579&amp;signature=abd8ca91d840e55476da4ce811192c05926a14b93d21b799174b831ce96d3ea3"/></div>
+</div>
+</div>
+</section>
+<section class="loc" id="konum">
+<div class="c">
+<div class="sh"><div class="stag">Fabrikamız</div><h2>Konum &amp; İletişim</h2><p>Hatay / Antakya'daki fabrikamızda sizi bekliyoruz.</p></div>
+<div class="lg">
+<div>
+<div class="lc">
+<h3><i class="fas fa-industry"></i> Yapıgüç Beton Fabrikası</h3>
+<div class="li"><div class="lic"><i class="fas fa-map-marker-alt"></i></div><div><strong>Adres</strong><span>Anayazı Mah. Paymar Sokak No:1</span><span>Coca Cola Arkası, Antakya / Hatay</span></div></div>
+<div class="li"><div class="lic"><i class="fas fa-phone"></i></div><div><strong>Telefon</strong><a href="tel:+905323746945">0532 374 69 45</a></div></div>
+<div class="li"><div class="lic"><i class="fas fa-clock"></i></div><div><strong>Çalışma Saatleri</strong><span>Pazartesi – Cuma: 08:00 – 19:00</span></div></div>
+<div class="li"><div class="lic"><i class="fas fa-envelope"></i></div><div><strong>E-posta Adreslerimiz</strong>
+<a href="mailto:info@yapigucbeton.com.tr">info@yapigucbeton.com.tr</a>
+<a href="mailto:satis@yapigucbeton.com.tr" style="display:block;font-size:13px;color:var(--gr);margin-top:3px">satis@yapigucbeton.com.tr</a>
+<a href="mailto:muhasebe@yapigucbeton.com.tr" style="display:block;font-size:13px;color:var(--gr);margin-top:3px">muhasebe@yapigucbeton.com.tr</a>
+<a href="mailto:satinalma@yapigucbeton.com.tr" style="display:block;font-size:13px;color:var(--gr);margin-top:3px">satinalma@yapigucbeton.com.tr</a>
+<a href="mailto:bayii@yapigucbeton.com.tr" style="display:block;font-size:13px;color:var(--gr);margin-top:3px">bayii@yapigucbeton.com.tr</a>
+</div></div>
+<div class="cbtns">
+<a class="clb" href="tel:+905323746945"><i class="fas fa-phone"></i> 0532 374 69 45 – Ara</a>
+<a class="wab" href="https://wa.me/905405163636" target="_blank"><i class="fab fa-whatsapp" style="font-size:20px"></i> WhatsApp: 0540 516 36 36</a>
+<a class="tgb" href="https://t.me/+905405163636" target="_blank"><i class="fab fa-telegram" style="font-size:20px"></i> Telegram: 0540 516 36 36</a>
+</div>
+</div>
+</div>
+<div class="map">
+<iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d500!2d36.20594776534193!3d36.31018678401355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1525ed9c3dfcaac1%3A0x56eed11909880627!2zWWFwxLFnw7zDpyBraWxpdCBwYXJrZSB2ZSBib3Jkw7xyIMO8cmV0aW0gdGVzaXNp!5e0!3m2!1str!2str!4v1718800000000!5m2!1str!2str"></iframe>
+</div>
+</div>
+</div>
+</section>
+<!-- KALİTE BELGELERİ -->
+<section id="kalite" style="background:var(--wh);padding:70px 0">
+<div class="c">
+<div class="sh">
+<div class="stag">Kalite Güvencesi</div>
+<h2>Sertifika &amp; Kalite Belgelerimiz</h2>
+<p>Uluslararası standartlara uygun üretim yapıyor, bağımsız kuruluşlar tarafından denetleniyoruz.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:20px;margin-bottom:40px">
+<div onclick="openCert('sertifika-iso9001.jpeg')" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,.07)'" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,.13)'" style="background:var(--lt);border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.07);transition:all .3s;cursor:pointer">
+<div style="height:160px;background:#fff;display:flex;align-items:center;justify-content:center;padding:10px"><img alt="ISO 9001" src="sertifika-iso9001.jpeg?expires=1784566579&amp;signature=e42011df142c31dc7f8a1cea401a28bdf0d3065784981ab203d6d1d77379a00c" style="max-height:140px;max-width:100%;object-fit:contain"/></div>
+<div style="padding:14px;text-align:center"><div style="background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;display:inline-block;margin-bottom:6px">ISO 9001:2015</div><div style="font-size:13px;font-weight:700;color:var(--blk)">Kalite Yönetim Sistemi</div><div style="font-size:11px;color:var(--gr);margin-top:4px">Geçerlilik: 30.12.2026</div></div>
+</div>
+<div onclick="openCert('sertifika-iso14001.jpeg')" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,.07)'" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,.13)'" style="background:var(--lt);border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.07);transition:all .3s;cursor:pointer">
+<div style="height:160px;background:#fff;display:flex;align-items:center;justify-content:center;padding:10px"><img alt="ISO 14001" src="sertifika-iso14001.jpeg?expires=1784566579&amp;signature=4c5dfab4dd6c059136699d182df562d1742c797702177c75f21fd7adddfc58d4" style="max-height:140px;max-width:100%;object-fit:contain"/></div>
+<div style="padding:14px;text-align:center"><div style="background:#16a34a;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;display:inline-block;margin-bottom:6px">ISO 14001:2015</div><div style="font-size:13px;font-weight:700;color:var(--blk)">Çevre Yönetim Sistemi</div><div style="font-size:11px;color:var(--gr);margin-top:4px">MilCert Uluslararası</div></div>
+</div>
+<div onclick="openCert('sertifika-iso45001.jpeg')" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,.07)'" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,.13)'" style="background:var(--lt);border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.07);transition:all .3s;cursor:pointer">
+<div style="height:160px;background:#fff;display:flex;align-items:center;justify-content:center;padding:10px"><img alt="ISO 45001" src="sertifika-iso45001.jpeg?expires=1784566579&amp;signature=ce81abc384ae072d0d4b516b488a104b5fb0ee11e1a7d702dca15653d4c8dea1" style="max-height:140px;max-width:100%;object-fit:contain"/></div>
+<div style="padding:14px;text-align:center"><div style="background:#1d4ed8;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;display:inline-block;margin-bottom:6px">ISO 45001:2018</div><div style="font-size:13px;font-weight:700;color:var(--blk)">İş Sağlığı &amp; Güvenliği</div><div style="font-size:11px;color:var(--gr);margin-top:4px">MilCert Uluslararası</div></div>
+</div>
+<div onclick="openCert('sertifika-iso10002.jpeg')" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,.07)'" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,.13)'" style="background:var(--lt);border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.07);transition:all .3s;cursor:pointer">
+<div style="height:160px;background:#fff;display:flex;align-items:center;justify-content:center;padding:10px"><img alt="ISO 10002" src="sertifika-iso10002.jpeg?expires=1784566579&amp;signature=9701a7bbe7592afc9817f702def5000bcf65a7e9ab70b52b8d66b1af762b509a" style="max-height:140px;max-width:100%;object-fit:contain"/></div>
+<div style="padding:14px;text-align:center"><div style="background:#7c3aed;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;display:inline-block;margin-bottom:6px">ISO 10002:2018</div><div style="font-size:13px;font-weight:700;color:var(--blk)">Müşteri Memnuniyeti</div><div style="font-size:11px;color:var(--gr);margin-top:4px">MilCert Uluslararası</div></div>
+</div>
+<div onclick="openCert('sertifika-ce.jpeg')" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,.07)'" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,.13)'" style="background:var(--lt);border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.07);transition:all .3s;cursor:pointer">
+<div style="height:160px;background:#fff;display:flex;align-items:center;justify-content:center;padding:10px"><img alt="CE Belgesi" src="sertifika-ce.jpeg?expires=1784566579&amp;signature=b342c97514312c6fa248d17d3625138896de1f62945304c60299cce7522104fe" style="max-height:140px;max-width:100%;object-fit:contain"/></div>
+<div style="padding:14px;text-align:center"><div style="background:#0369a1;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;display:inline-block;margin-bottom:6px">CE Belgesi</div><div style="font-size:13px;font-weight:700;color:var(--blk)">Avrupa Uygunluk İşareti</div><div style="font-size:11px;color:var(--gr);margin-top:4px">AB Standartları Uyumlu</div></div>
+</div>
+</div>
+<div style="background:linear-gradient(135deg,#0d0d0d,#1a0005);border-radius:16px;padding:32px;display:flex;align-items:center;gap:30px;flex-wrap:wrap">
+<div style="flex:1;min-width:200px"><div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:8px"><i class="fas fa-award" style="color:var(--red);margin-right:8px"></i>IYAS Akredite Kuruluş</div><div style="color:#888;font-size:14px;line-height:1.6">Sertifikalarımız IYAS akreditasyonuna sahip MilCert Uluslararası Belgelendirme tarafından düzenlenmiştir. Akreditasyon No: <strong style="color:#fff">IYAS-MS-0145</strong></div></div>
+<div style="display:flex;gap:20px;flex-wrap:wrap">
+<div style="text-align:center"><div style="font-size:28px;font-weight:900;color:var(--red)">5</div><div style="font-size:12px;color:#888">Uluslararası Sertifika</div></div>
+<div style="text-align:center"><div style="font-size:28px;font-weight:900;color:var(--red)">%100</div><div style="font-size:12px;color:#888">Müşteri Memnuniyeti</div></div>
+<div style="text-align:center"><div style="font-size:28px;font-weight:900;color:var(--red)">30+</div><div style="font-size:12px;color:#888">Yıl Deneyim</div></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Sertifika Lightbox -->
+<div id="cert-modal" onclick="closeCert()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9000;align-items:center;justify-content:center;padding:20px">
+<div onclick="event.stopPropagation()" style="position:relative;max-width:720px;width:100%;max-height:90vh">
+<button onclick="closeCert()" style="position:absolute;top:-44px;right:0;background:none;border:none;color:#fff;font-size:30px;cursor:pointer"><i class="fas fa-times"></i></button>
+<img alt="Sertifika" id="cert-img" src="" style="width:100%;max-height:85vh;object-fit:contain;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)"/>
+</div>
+</div>
+<section class="ctsec" id="iletisim">
+<div class="c">
+<div style="text-align:right;margin-bottom:16px"><button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Sayfayı Yazdır / PDF Al</button></div>
+<div class="sh"><div class="stag">Mesaj Gönderin</div><h2>Bize Yazın</h2><p>Sorularınız için formu doldurun, en kısa sürede dönüş yapalım.</p></div>
+<div style="max-width:600px;margin:0 auto">
+<div class="cfb">
+<h3><i class="fas fa-paper-plane" style="color:var(--red);margin-right:8px"></i>Mesaj Gönderin</h3>
+<form onsubmit="submitForm(event,'cs')">
+<div class="fgr" style="margin-bottom:14px"><label>Ad Soyad *</label><input placeholder="Adınız" required="" type="text"/></div>
+<div class="fgr" style="margin-bottom:14px"><label>Telefon *</label><input placeholder="05XX XXX XX XX" required="" type="tel"/></div>
+<div class="fgr" style="margin-bottom:14px"><label>E-posta</label><input placeholder="ornek@email.com" type="email"/></div>
+<div class="fgr" style="margin-bottom:14px"><label>Mesajınız *</label><textarea placeholder="Mesajınızı yazın..." required=""></textarea></div>
+<div class="smsg" id="cs"><i class="fas fa-check-circle"></i>Mesajınız iletildi! En kısa sürede dönüş yapacağız.</div>
+<button class="fsub" style="width:100%;justify-content:center" type="submit"><i class="fas fa-paper-plane"></i> Gönder</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- REFERANSLAR -->
+<section id="referanslar" style="background:var(--lt);padding:70px 0">
+<div class="c">
+<div class="sh"><div class="stag">Referanslarımız</div><h2>Tamamlanan Projeler</h2><p>Türkiye'nin dört bir yanında hayata geçirdiğimiz projelerden seçmeler.</p></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-bottom:40px">
+<div onmouseout="this.style.transform=''" onmouseover="this.style.transform='translateY(-6px)'" style="background:var(--wh);border-radius:14px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);transition:all .3s">
+<div style="height:200px;overflow:hidden"><img alt="Antakya Belediyesi" src="img/kup-tasi-4.jpg?expires=1784566579&amp;signature=d81b1332b9b0137d97e125a6d487fdc07e9aa4f5711549795e28c570d6d50fec" style="width:100%;height:100%;object-fit:cover"/></div>
+<div style="padding:20px"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:40px;height:40px;background:#fee2e2;border-radius:8px;display:flex;align-items:center;justify-content:center"><i class="fas fa-city" style="color:var(--red)"></i></div><div><div style="font-size:15px;font-weight:700;color:var(--blk)">Antakya Belediyesi</div><div style="font-size:12px;color:var(--gr)">Hatay, 2025</div></div></div><p style="font-size:13px;color:var(--gr);line-height:1.6">Şehir merkezi yaya yolu yenileme projesi. 15.000 m² aşık taşı ve bordür uygulaması.</p><div style="display:flex;gap:8px;margin-top:12px"><span style="background:#fee2e2;color:var(--red);font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px">15.000 m²</span><span style="background:#fee2e2;color:var(--red);font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px">Kamu</span></div></div>
+</div>
+<div onmouseout="this.style.transform=''" onmouseover="this.style.transform='translateY(-6px)'" style="background:var(--wh);border-radius:14px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);transition:all .3s">
+<div style="height:200px;overflow:hidden"><img alt="Organize Sanayi" src="img/baklava-1.jpg?expires=1784566579&amp;signature=f980784594eb7016970cb6224822a6d090f8a72a427f8b65c74828c2fb670f04" style="width:100%;height:100%;object-fit:cover"/></div>
+<div style="padding:20px"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:40px;height:40px;background:#fee2e2;border-radius:8px;display:flex;align-items:center;justify-content:center"><i class="fas fa-industry" style="color:var(--red)"></i></div><div><div style="font-size:15px;font-weight:700;color:var(--blk)">İskenderun OSB</div><div style="font-size:12px;color:var(--gr)">Hatay, 2024</div></div></div><p style="font-size:13px;color:var(--gr);line-height:1.6">Organize sanayi bölgesi iç yol ve otopark zemin kaplaması. Baklava desenli parke taşı.</p><div style="display:flex;gap:8px;margin-top:12px"><span style="background:#fee2e2;color:var(--red);font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px">22.000 m²</span><span style="background:#fee2e2;color:var(--red);font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px">Sanayi</span></div></div>
+</div>
+<div onmouseout="this.style.transform=''" onmouseover="this.style.transform='translateY(-6px)'" style="background:var(--wh);border-radius:14px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);transition:all .3s">
+<div style="height:200px;overflow:hidden"><img alt="Konut Projesi" src="img/kirma-blok.jpg?expires=1784566579&amp;signature=1ba9270b3c4bb5e879dd5df40261452c3c87804a934b9f3e252afe89cc1aa246" style="width:100%;height:100%;object-fit:cover"/></div>
+<div style="padding:20px"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:40px;height:40px;background:#fee2e2;border-radius:8px;display:flex;align-items:center;justify-content:center"><i class="fas fa-home" style="color:var(--red)"></i></div><div><div style="font-size:15px;font-weight:700;color:var(--blk)">Elit Konut Sitesi</div><div style="font-size:12px;color:var(--gr)">Adana, 2024</div></div></div><p style="font-size:13px;color:var(--gr);line-height:1.6">500 konutluk site çevre düzenlemesi. Kırma blok duvar, bordür ve parke taşı uygulaması.</p><div style="display:flex;gap:8px;margin-top:12px"><span style="background:#fee2e2;color:var(--red);font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px">8.500 m²</span><span style="background:#fee2e2;color:var(--red);font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px">Konut</span></div></div>
+</div>
+<div onmouseout="this.style.transform=''" onmouseover="this.style.transform='translateY(-6px)'" style="background:var(--wh);border-radius:14px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);transition:all .3s">
+<div style="height:200px;overflow:hidden"><img alt="Karayolu" src="img/sev-tasi.jpg?expires=1784566579&amp;signature=abd8ca91d840e55476da4ce811192c05926a14b93d21b799174b831ce96d3ea3" style="width:100%;height:100%;object-fit:cover"/></div>
+<div style="padding:20px"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:40px;height:40px;background:#fee2e2;border-radius:8px;display:flex;align-items:center;justify-content:center"><i class="fas fa-road" style="color:var(--red)"></i></div><div><div style="font-size:15px;font-weight:700;color:var(--blk)">Karayolları 6. Bölge</div><div style="font-size:12px;color:var(--gr)">Hatay, 2025</div></div></div><p style="font-size:13px;color:var(--gr);line-height:1.6">D-400 karayolu şev stabilizasyonu. 3.200 adet şev taşı ve beton bariyer uygulaması.</p><div style="display:flex;gap:8px;margin-top:12px"><span style="background:#fee2e2;color:var(--red);font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px">3.200 adet</span><span style="background:#fee2e2;color:var(--red);font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px">Altyapı</span></div></div>
+</div>
+<div onmouseout="this.style.transform=''" onmouseover="this.style.transform='translateY(-6px)'" style="background:var(--wh);border-radius:14px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);transition:all .3s">
+<div style="height:200px;overflow:hidden"><img alt="Park Projesi" src="img/limonluk-4.jpg?expires=1784566579&amp;signature=882be6ff6a1f3244c210ebd5f0f4765628eac4e761b77d2824eaf2e302ae4bf0" style="width:100%;height:100%;object-fit:cover"/></div>
+<div style="padding:20px"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:40px;height:40px;background:#fee2e2;border-radius:8px;display:flex;align-items:center;justify-content:center"><i class="fas fa-tree" style="color:var(--red)"></i></div><div><div style="font-size:15px;font-weight:700;color:var(--blk)">Merkez Millet Bahçesi</div><div style="font-size:12px;color:var(--gr)">Mersin, 2024</div></div></div><p style="font-size:13px;color:var(--gr);line-height:1.6">Millet bahçesi peyzaj düzenlemesi. Çim taşı, bordür ve dekoratif parke uygulaması.</p><div style="display:flex;gap:8px;margin-top:12px"><span style="background:#fee2e2;color:var(--red);font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px">12.000 m²</span><span style="background:#fee2e2;color:var(--red);font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px">Peyzaj</span></div></div>
+</div>
+<div onmouseout="this.style.transform=''" onmouseover="this.style.transform='translateY(-6px)'" style="background:var(--wh);border-radius:14px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);transition:all .3s">
+<div style="height:200px;overflow:hidden"><img alt="Liman" src="img/bariyer.jpg?expires=1784566579&amp;signature=f1b18e9e3649281c98fa8aead25637d33dacdf4cea0e5fde1f730376b8f68c76" style="width:100%;height:100%;object-fit:cover"/></div>
+<div style="padding:20px"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:40px;height:40px;background:#fee2e2;border-radius:8px;display:flex;align-items:center;justify-content:center"><i class="fas fa-anchor" style="color:var(--red)"></i></div><div><div style="font-size:15px;font-weight:700;color:var(--blk)">İskenderun Limanı</div><div style="font-size:12px;color:var(--gr)">Hatay, 2023</div></div></div><p style="font-size:13px;color:var(--gr);line-height:1.6">Liman güvenlik bariyeri projesi. 450 adet beton bariyer ve yol bordürü uygulaması.</p><div style="display:flex;gap:8px;margin-top:12px"><span style="background:#fee2e2;color:var(--red);font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px">450 adet</span><span style="background:#fee2e2;color:var(--red);font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px">Güvenlik</span></div></div>
+</div>
+</div>
+</div>
+</section>
+<!-- MÜŞTERİ YORUMLARI -->
+<section id="yorumlar" style="background:var(--wh);padding:70px 0">
+<div class="c">
+<div class="sh"><div class="stag">Müşteri Yorumları</div><h2>Müşterilerimiz Ne Diyor?</h2><p>Binlerce memnun müşterimizden bazı görüşler.</p></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px">
+<div style="background:var(--lt);border-radius:14px;padding:24px;border-top:4px solid var(--red)">
+<div style="color:#f59e0b;font-size:16px;margin-bottom:12px">★★★★★</div>
+<p style="font-size:14px;color:var(--gr);line-height:1.7;margin-bottom:16px;font-style:italic">"Kaliteli ürün, zamanında teslimat. Antakya'daki projemizde Yapıgüç Beton ile çalıştık, çok memnun kaldık. Kesinlikle tavsiye ederim."</p>
+<div style="display:flex;align-items:center;gap:10px"><div style="width:40px;height:40px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">M</div><div><div style="font-size:14px;font-weight:700;color:var(--blk)">Mehmet Kaya</div><div style="font-size:12px;color:var(--gr)">İnşaat Müteahhidi, Hatay</div></div></div>
+</div>
+<div style="background:var(--lt);border-radius:14px;padding:24px;border-top:4px solid var(--red)">
+<div style="color:#f59e0b;font-size:16px;margin-bottom:12px">★★★★★</div>
+<p style="font-size:14px;color:var(--gr);line-height:1.7;margin-bottom:16px;font-style:italic">"Fiyat/kalite oranı mükemmel. Fabrikadan direkt alım yapabilmek büyük avantaj. Teknik ekip çok yardımcı oldu."</p>
+<div style="display:flex;align-items:center;gap:10px"><div style="width:40px;height:40px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">A</div><div><div style="font-size:14px;font-weight:700;color:var(--blk)">Ali Demir</div><div style="font-size:12px;color:var(--gr)">Peyzaj Firması, Adana</div></div></div>
+</div>
+<div style="background:var(--lt);border-radius:14px;padding:24px;border-top:4px solid var(--red)">
+<div style="color:#f59e0b;font-size:16px;margin-bottom:12px">★★★★★</div>
+<p style="font-size:14px;color:var(--gr);line-height:1.7;margin-bottom:16px;font-style:italic">"ISO belgeli üretim güven veriyor. Belediye projelerimizde sürekli tercih ettiğimiz bir firma. Kalite hiç düşmüyor."</p>
+<div style="display:flex;align-items:center;gap:10px"><div style="width:40px;height:40px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">F</div><div><div style="font-size:14px;font-weight:700;color:var(--blk)">Fatma Şahin</div><div style="font-size:12px;color:var(--gr)">Belediye Teknik Müdürü</div></div></div>
+</div>
+<div style="background:var(--lt);border-radius:14px;padding:24px;border-top:4px solid var(--red)">
+<div style="color:#f59e0b;font-size:16px;margin-bottom:12px">★★★★★</div>
+<p style="font-size:14px;color:var(--gr);line-height:1.7;margin-bottom:16px;font-style:italic">"WhatsApp üzerinden sipariş verdim, 2 gün içinde teslim ettiler. Hızlı ve güvenilir. Ürün kalitesi de çok iyi."</p>
+<div style="display:flex;align-items:center;gap:10px"><div style="width:40px;height:40px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">H</div><div><div style="font-size:14px;font-weight:700;color:var(--blk)">Hasan Yıldız</div><div style="font-size:12px;color:var(--gr)">Müteahhit, Mersin</div></div></div>
+</div>
+<div style="background:var(--lt);border-radius:14px;padding:24px;border-top:4px solid var(--red)">
+<div style="color:#f59e0b;font-size:16px;margin-bottom:12px">★★★★★</div>
+<p style="font-size:14px;color:var(--gr);line-height:1.7;margin-bottom:16px;font-style:italic">"CE ve ISO belgeli ürünler kullanmak zorundaydık. Yapıgüç Beton tüm belgeleri eksiksiz sundu. Profesyonel yaklaşım."</p>
+<div style="display:flex;align-items:center;gap:10px"><div style="width:40px;height:40px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">S</div><div><div style="font-size:14px;font-weight:700;color:var(--blk)">Serkan Arslan</div><div style="font-size:12px;color:var(--gr)">Proje Müdürü, Ankara</div></div></div>
+</div>
+<div style="background:var(--lt);border-radius:14px;padding:24px;border-top:4px solid var(--red)">
+<div style="color:#f59e0b;font-size:16px;margin-bottom:12px">★★★★☆</div>
+<p style="font-size:14px;color:var(--gr);line-height:1.7;margin-bottom:16px;font-style:italic">"Geniş ürün yelpazesi ve rekabetçi fiyatlar. Bayi sistemi çok pratik, özel fiyatlardan yararlanıyoruz."</p>
+<div style="display:flex;align-items:center;gap:10px"><div style="width:40px;height:40px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">E</div><div><div style="font-size:14px;font-weight:700;color:var(--blk)">Emre Çelik</div><div style="font-size:12px;color:var(--gr)">Yetkili Bayi, İskenderun</div></div></div>
+</div>
+</div>
+</div>
+</section>
+<!-- ÜRÜN HESAPLAYICI -->
+<section id="hesaplayici" style="background:linear-gradient(135deg,#0d0d0d,#1a0005);padding:70px 0">
+<div class="c">
+<div class="sh"><div class="stag" style="background:rgba(192,0,26,.3);color:#ff6680">Hesaplayıcı</div><h2 style="color:#fff">Ürün Miktarı Hesaplayıcı</h2><p style="color:#888">Projeniz için kaç adet ürün gerektiğini hesaplayın.</p></div>
+<div style="max-width:700px;margin:0 auto;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:36px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<label style="font-size:13px;font-weight:600;color:#ccc">Ürün Türü</label>
+<select id="calc-product" onchange="calcUpdate()" style="padding:12px 14px;border:1.5px solid rgba(255,255,255,.2);border-radius:8px;font-size:14px;background:rgba(255,255,255,.08);color:#fff;outline:none">
+<option value="35">Aşık Taşı (35 adet/m²)</option>
+<option value="100">Küp Taşı (100 adet/m²)</option>
+<option value="28.5">Baklava Desenli (28.5 adet/m²)</option>
+<option value="25">Kare Taş 20x20 (25 adet/m²)</option>
+<option value="11">Kare Taş 30x30 (11 adet/m²)</option>
+<option value="6.25">Kare Plak 40x40 (6.25 adet/m²)</option>
+<option value="2">Çim Taşı 40x40 (2 adet/m²)</option>
+<option value="20">Yol Bordürü (20 adet/m)</option>
+<option value="20">Bahçe Bordürü (20 adet/m)</option>
+</select>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<label id="calc-unit-label" style="font-size:13px;font-weight:600;color:#ccc">Alan (m²)</label>
+<input id="calc-area" min="1" oninput="calcUpdate()" style="padding:12px 14px;border:1.5px solid rgba(255,255,255,.2);border-radius:8px;font-size:14px;background:rgba(255,255,255,.08);color:#fff;outline:none" type="number" value="100"/>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<label style="font-size:13px;font-weight:600;color:#ccc">Fire Payı (%)</label>
+<select id="calc-waste" onchange="calcUpdate()" style="padding:12px 14px;border:1.5px solid rgba(255,255,255,.2);border-radius:8px;font-size:14px;background:rgba(255,255,255,.08);color:#fff;outline:none">
+<option value="5">%5 (Düz zemin)</option>
+<option selected="" value="10">%10 (Normal)</option>
+<option value="15">%15 (Karmaşık şekil)</option>
+<option value="20">%20 (Çok kesimli)</option>
+</select>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<label style="font-size:13px;font-weight:600;color:#ccc">Kat Sayısı</label>
+<input id="calc-layer" max="3" min="1" oninput="calcUpdate()" style="padding:12px 14px;border:1.5px solid rgba(255,255,255,.2);border-radius:8px;font-size:14px;background:rgba(255,255,255,.08);color:#fff;outline:none" type="number" value="1"/>
+</div>
+</div>
+<div style="background:rgba(192,0,26,.15);border:1px solid rgba(192,0,26,.3);border-radius:12px;padding:24px;text-align:center">
+<div style="font-size:13px;color:#888;margin-bottom:8px">Gereken Miktar</div>
+<div id="calc-result" style="font-size:42px;font-weight:900;color:var(--red)">3.850</div>
+<div id="calc-unit" style="font-size:14px;color:#ccc;margin-bottom:16px">adet</div>
+<div id="calc-detail" style="font-size:13px;color:#888">100 m² × 35 adet/m² × %10 fire = 3.850 adet</div>
+<a href="#" onclick="openModal('order')" onmouseout="this.style.background='var(--red)'" onmouseover="this.style.background='#8a0012'" style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;margin-top:16px;transition:all .2s"><i class="fas fa-shopping-cart"></i> Bu Miktarı Sipariş Et</a>
+</div>
+</div>
+</div>
+</section>
+<!-- SSS -->
+<section id="sss" style="background:var(--lt);padding:70px 0">
+<div class="c">
+<div class="sh"><div class="stag">SSS</div><h2>Sık Sorulan Sorular</h2><p>Merak ettiğiniz soruların cevapları burada.</p></div>
+<div style="max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:12px">
+<div class="faq-item" style="background:var(--wh);border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06)">
+<button onclick="toggleFaq(this)" style="width:100%;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left">
+<span style="font-size:15px;font-weight:700;color:var(--blk)">Minimum sipariş miktarı nedir?</span>
+<i class="fas fa-chevron-down" style="color:var(--red);transition:transform .3s"></i>
+</button>
+<div class="faq-body" style="display:none;padding:0 20px 18px;font-size:14px;color:var(--gr);line-height:1.7">Minimum sipariş miktarımız ürün türüne göre değişmektedir. Parke taşlarında minimum 10 m², bordür ürünlerinde minimum 20 adet, beton bariyerlerde minimum 5 adet olarak belirlenmiştir. Küçük miktarlar için lütfen bizimle iletişime geçin.</div>
+</div>
+<div class="faq-item" style="background:var(--wh);border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06)">
+<button onclick="toggleFaq(this)" style="width:100%;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left">
+<span style="font-size:15px;font-weight:700;color:var(--blk)">Teslimat süresi ne kadar?</span>
+<i class="fas fa-chevron-down" style="color:var(--red);transition:transform .3s"></i>
+</button>
+<div class="faq-body" style="display:none;padding:0 20px 18px;font-size:14px;color:var(--gr);line-height:1.7">Stokta bulunan ürünler için teslimat süresi 2-5 iş günüdür. Özel üretim gerektiren siparişlerde bu süre 7-14 iş gününe uzayabilir. Hatay ve çevre illere 24-48 saat içinde teslimat yapılabilmektedir.</div>
+</div>
+<div class="faq-item" style="background:var(--wh);border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06)">
+<button onclick="toggleFaq(this)" style="width:100%;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left">
+<span style="font-size:15px;font-weight:700;color:var(--blk)">Ürünleriniz hangi standartlara uygun?</span>
+<i class="fas fa-chevron-down" style="color:var(--red);transition:transform .3s"></i>
+</button>
+<div class="faq-body" style="display:none;padding:0 20px 18px;font-size:14px;color:var(--gr);line-height:1.7">Tüm ürünlerimiz TS EN 1338 (beton parke taşı), TS EN 1340 (beton bordür taşı) ve ilgili TSE standartlarına uygundur. Ayrıca CE belgesi, ISO 9001, ISO 14001, ISO 45001 ve ISO 10002 sertifikalarımız mevcuttur.</div>
+</div>
+<div class="faq-item" style="background:var(--wh);border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06)">
+<button onclick="toggleFaq(this)" style="width:100%;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left">
+<span style="font-size:15px;font-weight:700;color:var(--blk)">Nakliye ücreti nasıl hesaplanır?</span>
+<i class="fas fa-chevron-down" style="color:var(--red);transition:transform .3s"></i>
+</button>
+<div class="faq-body" style="display:none;padding:0 20px 18px;font-size:14px;color:var(--gr);line-height:1.7">Nakliye ücreti mesafe ve sipariş miktarına göre belirlenmektedir. 500 m² ve üzeri siparişlerde Hatay iline ücretsiz teslimat yapılmaktadır. Diğer iller için nakliye ücreti sipariş sırasında bildirilmektedir.</div>
+</div>
+<div class="faq-item" style="background:var(--wh);border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06)">
+<button onclick="toggleFaq(this)" style="width:100%;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left">
+<span style="font-size:15px;font-weight:700;color:var(--blk)">Renk seçenekleri nelerdir?</span>
+<i class="fas fa-chevron-down" style="color:var(--red);transition:transform .3s"></i>
+</button>
+<div class="faq-body" style="display:none;padding:0 20px 18px;font-size:14px;color:var(--gr);line-height:1.7">Standart renklerimiz: Beton grisi, kırmızı, siyah ve beyaz. Yüzey seçenekleri: Düz, irmikli, mineralli ve kumlamalı. Özel renk talepleri için minimum sipariş miktarı uygulanmaktadır. Renk kartımız için bizimle iletişime geçebilirsiniz.</div>
+</div>
+<div class="faq-item" style="background:var(--wh);border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06)">
+<button onclick="toggleFaq(this)" style="width:100%;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;text-align:left">
+<span style="font-size:15px;font-weight:700;color:var(--blk)">Bayi olmak için ne gerekiyor?</span>
+<i class="fas fa-chevron-down" style="color:var(--red);transition:transform .3s"></i>
+</button>
+<div class="faq-body" style="display:none;padding:0 20px 18px;font-size:14px;color:var(--gr);line-height:1.7">Bayi olmak için vergi levhası, ticaret sicil belgesi ve imza sirkülerinizle başvurabilirsiniz. Bayi başvurusu için <a href="bayi-giris.html" style="color:var(--red);font-weight:600">Bayi Portalı</a>'nı ziyaret edin. Başvurunuz 2-3 iş günü içinde değerlendirilir.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- YÜZEN BUTONLAR -->
+<div style="position:fixed;bottom:24px;right:24px;z-index:8000;display:flex;flex-direction:column;gap:10px">
+<a href="https://t.me/+905405163636" onmouseout="this.style.transform=''" onmouseover="this.style.transform='scale(1.1)'" style="width:52px;height:52px;background:#0088cc;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;text-decoration:none;box-shadow:0 4px 16px rgba(0,136,204,.4);transition:all .3s" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+<a href="https://wa.me/905405163636" onmouseout="this.style.transform=''" onmouseover="this.style.transform='scale(1.1)'" style="width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:all .3s" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
+<!-- DİL SEÇİCİ -->
+<div style="position:fixed;top:80px;right:16px;z-index:7000;display:flex;flex-direction:column;gap:6px">
+<button id="btn-tr" onclick="setLang('tr')" style="background:var(--red);color:#fff;border:none;padding:5px 10px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer">TR</button>
+<button id="btn-en" onclick="setLang('en')" style="background:#e5e7eb;color:#374151;border:none;padding:5px 10px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer">EN</button>
+<button id="btn-ar" onclick="setLang('ar')" style="background:#e5e7eb;color:#374151;border:none;padding:5px 10px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer">AR</button>
+</div>
+<!-- ÜRÜN DETAY MODAL -->
+<div id="product-modal" onclick="closeProductModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:8500;align-items:center;justify-content:center;padding:20px">
+<div onclick="event.stopPropagation()" style="background:#fff;border-radius:20px;max-width:600px;width:100%;max-height:90vh;overflow-y:auto;position:relative">
+<button onclick="closeProductModal()" style="position:absolute;top:16px;right:16px;background:#f3f4f6;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;z-index:1"><i class="fas fa-times"></i></button>
+<div style="height:260px;overflow:hidden;border-radius:20px 20px 0 0"><img alt="" id="pm-img" src="" style="width:100%;height:100%;object-fit:cover"/></div>
+<div style="padding:28px">
+<div id="pm-cat" style="background:#fee2e2;color:var(--red);font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;display:inline-block;margin-bottom:10px"></div>
+<h2 id="pm-name" style="font-size:22px;font-weight:900;color:#111;margin-bottom:6px"></h2>
+<div id="pm-dims" style="font-size:13px;color:var(--red);font-weight:600;margin-bottom:14px"></div>
+<p id="pm-desc" style="font-size:14px;color:#6b7280;line-height:1.7;margin-bottom:20px"></p>
+<div style="display:flex;gap:10px">
+<a href="#" onclick="closeProductModal();openModal('order')" style="flex:1;background:var(--red);color:#fff;padding:13px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;text-align:center;display:block"><i class="fas fa-shopping-cart"></i> Sipariş Ver</a>
+<a href="#" onclick="closeProductModal();openModal('quote')" style="flex:1;background:#f3f4f6;color:#111;padding:13px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;text-align:center;display:block"><i class="fas fa-file-invoice"></i> Teklif Al</a>
+</div>
+</div>
+</div>
+</div>
+<footer>
+<div class="ft">
+<div class="c">
+<div class="fgrid">
+<div class="fb">
+<h3>Yapıgüç</h3>
+<p>Beton Elemanları Üretim Tesisi olarak 30 yılı aşkın deneyimimizle Türkiye genelinde kaliteli parke taşı, bordür, şev taşı, duvar elemanları ve beton bariyer üretiyoruz.</p>
+<div class="sl">
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="https://wa.me/905405163636"><i class="fab fa-whatsapp"></i></a>
+<a href="https://t.me/+905405163636"><i class="fab fa-telegram"></i></a>
+</div>
+</div>
+<div class="fc"><h4>Ürünler</h4><ul>
+<li><a href="#urunler">Beton Parke (11 çeşit)</a></li>
+<li><a href="#urunler">Bordür &amp; Oluklar (7 çeşit)</a></li>
+<li><a href="#urunler">Duvar Elemanları (11 çeşit)</a></li>
+<li><a href="#urunler">Beton Bariyer</a></li>
+<li><a href="#urunler">Doğal Taşlar</a></li>
+</ul></div>
+<div class="fc"><h4>Hızlı Bağlantılar</h4><ul>
+<li><a href="hakkimizda.html">Hakkımızda</a></li>
+<li><a href="#galeri">Galeri</a></li>
+<li><a href="#konum">Konum</a></li>
+<li><a href="#siparis">Online Sipariş</a></li>
+<li><a href="#siparis">Teklif İste</a></li>
+<li><a href="bayi-giris.html"><i class="fas fa-store" style="margin-right:4px"></i>Bayi Girişi</a></li>
+</ul></div>
+<div class="fc"><h4>İletişim</h4><ul>
+<li><a href="tel:+905323746945"><i class="fas fa-phone" style="margin-right:6px;color:var(--red)"></i>0532 374 69 45</a></li>
+<li><a href="https://wa.me/905405163636"><i class="fab fa-whatsapp" style="margin-right:6px;color:var(--red)"></i>0540 516 36 36</a></li>
+<li><a href="https://t.me/+905405163636"><i class="fab fa-telegram" style="margin-right:6px;color:var(--red)"></i>0540 516 36 36</a></li>
+<li><a href="mailto:info@yapigucbeton.com.tr"><i class="fas fa-envelope" style="margin-right:6px;color:var(--red)"></i>info@yapigucbeton.com.tr</a></li>
+<li><span><i class="fas fa-map-marker-alt" style="margin-right:6px;color:var(--red)"></i>Antakya / Hatay</span></li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="c"><div class="fbot"><p>© 2026 Yapıgüç – Tüm hakları saklıdır. | <a href="https://www.yapiguc.net">yapiguc.net</a> | <a href="strateji.html" style="color:var(--red)">Pazar Stratejisi</a></p><p>yapigucbeton.com  |  yapigucbeton.com.tr</p></div></div>
+</footer>
+<div class="mo" id="modal-order">
+<div class="md">
+<button class="mc" onclick="closeModal('order')"><i class="fas fa-times"></i></button>
+<h2><i class="fas fa-shopping-cart" style="color:var(--red);margin-right:8px"></i>Online Sipariş</h2>
+<p class="sub">Formu doldurun, ekibimiz en kısa sürede sizinle iletişime geçsin.</p>
+<form onsubmit="submitForm(event,'mos')">
+<div class="fgr" style="margin-bottom:12px"><label>Ad Soyad *</label><input placeholder="Adınız ve soyadınız" required="" type="text"/></div>
+<div class="fgr" style="margin-bottom:12px"><label>Telefon *</label><input placeholder="05XX XXX XX XX" required="" type="tel"/></div>
+<div class="fgr" style="margin-bottom:12px"><label>Ürün *</label>
+<select required=""><option value="">Seçiniz...</option>
+<optgroup label="Beton Parke"><option>Aşık Taşı</option><option>Dikdörtgen Taş</option><option>Kare Taş</option><option>Begonit Taşı</option><option>Küp Taşı</option><option>Sekizgen Taş</option><option>Kesik I Taşı</option><option>Çim Taşı</option><option>Görme Engelli Taşı</option><option>Kare Plak Taş</option><option>Wash Beton Karo</option></optgroup>
+<optgroup label="Bordür &amp; Oluklar"><option>Yol Bordürü</option><option>Bahçe Bordürü</option><option>Refüj Bordürü</option><option>L Bordür</option><option>Drenaj Oluğu</option><option>Yağmur Oluğu</option><option>Oluklu Bordür</option></optgroup>
+<optgroup label="Duvar Elemanları"><option>Düz Blok</option><option>Kırma Blok</option><option>Fugalı Blok</option><option>Çift Taraflı Kırma Blok</option><option>Set Blok Çiçeklik</option><option>Kırma Set Blok Çiçeklik</option><option>Kapak Taşı</option><option>Set Çiçeklik</option><option>Şev Taşı</option><option>Harpuşta</option><option>Baba Şapkası</option></optgroup>
+<optgroup label="Beton Bariyer"><option>Beton Bariyer 150 cm</option><option>Beton Bariyer 200 cm</option></optgroup>
+<optgroup label="Doğal Taşlar"><option>Bazalt Plak Taş</option><option>Bazalt Küp Taş</option></optgroup>
+</select></div>
+<div class="fgr" style="margin-bottom:12px"><label>Miktar / Notlar</label><textarea placeholder="Miktar, boyut, renk tercihi, özel istekler..." style="min-height:80px"></textarea></div>
+<div class="smsg" id="mos"><i class="fas fa-check-circle"></i>Siparişiniz alındı! En kısa sürede dönüş yapacağız.</div>
+<button class="fsub" style="width:100%;justify-content:center" type="submit"><i class="fas fa-paper-plane"></i> Siparişi Gönder</button>
+</form>
+</div>
+</div>
+<div class="mo" id="modal-quote">
+<div class="md">
+<button class="mc" onclick="closeModal('quote')"><i class="fas fa-times"></i></button>
+<h2><i class="fas fa-file-invoice-dollar" style="color:var(--red);margin-right:8px"></i>Teklif İste</h2>
+<p class="sub">Projenizi anlatın, size özel fiyat teklifi hazırlayalım.</p>
+<form onsubmit="submitForm(event,'mqs')">
+<div class="fgr" style="margin-bottom:12px"><label>Ad Soyad *</label><input placeholder="Adınız ve soyadınız" required="" type="text"/></div>
+<div class="fgr" style="margin-bottom:12px"><label>Telefon *</label><input placeholder="05XX XXX XX XX" required="" type="tel"/></div>
+<div class="fgr" style="margin-bottom:12px"><label>E-posta *</label><input placeholder="ornek@email.com" required="" type="email"/></div>
+<div class="fgr" style="margin-bottom:12px"><label>Proje Açıklaması *</label><textarea placeholder="Ürün türleri, miktarlar, proje detayları..." required="" style="min-height:100px"></textarea></div>
+<div class="smsg" id="mqs"><i class="fas fa-check-circle"></i>Teklif talebiniz alındı! 24 saat içinde dönüş yapacağız.</div>
+<button class="fsub" style="width:100%;justify-content:center" type="submit"><i class="fas fa-file-invoice-dollar"></i> Teklif Talep Et</button>
+</form>
+</div>
+</div>
+<script>
+function toggleFaq(btn){
+  const body=btn.nextElementSibling;
+  const icon=btn.querySelector('i');
+  const isOpen=body.style.display==='block';
+  document.querySelectorAll('.faq-body').forEach(b=>b.style.display='none');
+  document.querySelectorAll('.faq-item button i').forEach(i=>i.style.transform='');
+  if(!isOpen){body.style.display='block';icon.style.transform='rotate(180deg)';}
+}
+
+function calcUpdate(){
+  const prod=parseFloat(document.getElementById('calc-product').value)||35;
+  const area=parseFloat(document.getElementById('calc-area').value)||0;
+  const waste=parseFloat(document.getElementById('calc-waste').value)||10;
+  const layer=parseFloat(document.getElementById('calc-layer').value)||1;
+  const total=Math.ceil(area*prod*(1+waste/100)*layer);
+  document.getElementById('calc-result').textContent=total.toLocaleString('tr-TR');
+  const sel=document.getElementById('calc-product');
+  const prodName=sel.options[sel.selectedIndex].text.split('(')[0].trim();
+  const unit=prodName.includes('Bordür')?'adet (m)':'adet';
+  document.getElementById('calc-unit').textContent=unit;
+  document.getElementById('calc-detail').textContent=area+' m² × '+prod+' adet/m² × %'+waste+' fire × '+layer+' kat = '+total.toLocaleString('tr-TR')+' '+unit;
+}
+
+const translations={
+  tr:{
+    hero_title:'Kaliteli <span style="color:var(--red)">Beton Elemanları</span><br/>Güvenilir Üretim',
+    hero_sub:'Yapıgüç Beton olarak parke taşı, bordür, şev taşı, duvar elemanları ve beton bariyer üretiyoruz. 30 yılı aşkın deneyimimizle projelerinize güç katıyoruz.',
+    order_btn:'<i class="fas fa-shopping-cart"></i> Online Sipariş Ver',
+    quote_btn:'<i class="fas fa-file-invoice"></i> Teklif İste',
+    nav_products:'Ürünler', nav_about:'Hakkımızda', nav_gallery:'Galeri',
+    nav_quality:'Kalite', nav_refs:'Referanslar', nav_faq:'SSS',
+    nav_location:'Konum', nav_contact:'İletişim', nav_dealer:'Bayi Girişi',
+    products_title:'Beton Elemanları Kataloğu',
+    products_sub:'31 farklı ürün çeşidiyle her türlü inşaat ve peyzaj projesine uygun beton çözümleri sunuyoruz.',
+    order_title:'Online Sipariş & Teklif',
+    order_sub:'Formu doldurun, ekibimiz en kısa sürede sizinle iletişime geçsin.',
+    contact_title:'Bize Ulaşın',
+    contact_sub:'Sorularınız için bize yazın veya arayın.',
+    address_label:'Adres', phone_label:'Telefon', hours_label:'Çalışma Saatleri',
+    email_label:'E-posta Adreslerimiz',
+    whatsapp_btn:'WhatsApp ile Yazın',
+    telegram_btn:'Telegram ile Yazın',
+    call_btn:'Ara',
+    footer_rights:'Tüm hakları saklıdır'
+  },
+  en:{
+    hero_title:'Quality <span style="color:var(--red)">Concrete Elements</span><br/>Reliable Production',
+    hero_sub:'As Yapıgüç Beton, we produce paving stones, curbs, slope stones, wall elements and concrete barriers with over 30 years of experience.',
+    order_btn:'<i class="fas fa-shopping-cart"></i> Order Online',
+    quote_btn:'<i class="fas fa-file-invoice"></i> Get a Quote',
+    nav_products:'Products', nav_about:'About Us', nav_gallery:'Gallery',
+    nav_quality:'Quality', nav_refs:'References', nav_faq:'FAQ',
+    nav_location:'Location', nav_contact:'Contact', nav_dealer:'Dealer Login',
+    products_title:'Concrete Elements Catalog',
+    products_sub:'We offer concrete solutions suitable for all types of construction and landscaping projects with 31 different product varieties.',
+    order_title:'Online Order & Quote',
+    order_sub:'Fill out the form and our team will contact you as soon as possible.',
+    contact_title:'Contact Us',
+    contact_sub:'Write or call us for your questions.',
+    address_label:'Address', phone_label:'Phone', hours_label:'Working Hours',
+    email_label:'Our Email Addresses',
+    whatsapp_btn:'Write on WhatsApp',
+    telegram_btn:'Write on Telegram',
+    call_btn:'Call',
+    footer_rights:'All rights reserved'
+  },
+  ar:{
+    hero_title:'عناصر خرسانية <span style="color:var(--red)">عالية الجودة</span><br/>إنتاج موثوق',
+    hero_sub:'في يابيغوتش بيتون، ننتج أحجار الرصف والحواف وأحجار المنحدرات وعناصر الجدران والحواجز الخرسانية بخبرة تزيد عن 30 عاماً.',
+    order_btn:'<i class="fas fa-shopping-cart"></i> اطلب عبر الإنترنت',
+    quote_btn:'<i class="fas fa-file-invoice"></i> احصل على عرض سعر',
+    nav_products:'المنتجات', nav_about:'من نحن', nav_gallery:'معرض الصور',
+    nav_quality:'الجودة', nav_refs:'المراجع', nav_faq:'الأسئلة الشائعة',
+    nav_location:'الموقع', nav_contact:'اتصل بنا', nav_dealer:'دخول الموزع',
+    products_title:'كتالوج العناصر الخرسانية',
+    products_sub:'نقدم حلولاً خرسانية مناسبة لجميع أنواع مشاريع البناء والمناظر الطبيعية بـ 31 نوعاً مختلفاً من المنتجات.',
+    order_title:'الطلب والعرض عبر الإنترنت',
+    order_sub:'املأ النموذج وسيتواصل معك فريقنا في أقرب وقت ممكن.',
+    contact_title:'اتصل بنا',
+    contact_sub:'اكتب لنا أو اتصل بنا لأسئلتك.',
+    address_label:'العنوان', phone_label:'الهاتف', hours_label:'ساعات العمل',
+    email_label:'عناوين بريدنا الإلكتروني',
+    whatsapp_btn:'تواصل عبر واتساب',
+    telegram_btn:'تواصل عبر تيليغرام',
+    call_btn:'اتصل',
+    footer_rights:'جميع الحقوق محفوظة'
+  }
+};
+function setLang(lang){
+  document.querySelectorAll('#btn-tr,#btn-en,#btn-ar').forEach(b=>{b.style.background='#e5e7eb';b.style.color='#374151';});
+  document.getElementById('btn-'+lang).style.background='var(--red)';
+  document.getElementById('btn-'+lang).style.color='#fff';
+  if(lang==='ar'){document.body.style.direction='rtl';}else{document.body.style.direction='ltr';}
+  const t=translations[lang];
+  if(t){
+    const h=document.querySelector('.hero-t h2');
+    const p=document.querySelector('.hero-t p');
+    const b1=document.querySelector('.hbtns .bp');
+    const b2=document.querySelector('.hbtns .bo');
+    if(h)h.innerHTML=t.hero_title;
+    if(p)p.textContent=t.hero_sub;
+    if(b1)b1.innerHTML='<i class="fas fa-shopping-cart"></i> '+t.order_btn;
+    if(b2)b2.innerHTML='<i class="fas fa-file-invoice"></i> '+t.quote_btn;
+  }
+}
+
+function openProductModal(name,img,dims,desc,cat){
+  const m=document.getElementById('product-modal');
+  document.getElementById('pm-img').src=img;
+  document.getElementById('pm-name').textContent=name;
+  document.getElementById('pm-dims').textContent=dims;
+  document.getElementById('pm-desc').textContent=desc;
+  document.getElementById('pm-cat').textContent=cat;
+  m.style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closeProductModal(){
+  document.getElementById('product-modal').style.display='none';
+  document.body.style.overflow='';
+}
+
+
+// PRELOADER
+window.addEventListener('load',function(){
+  setTimeout(function(){
+    const pl=document.getElementById('preloader');
+    if(pl){pl.classList.add('hide');setTimeout(()=>pl.remove(),600);}
+    startCounters();
+  },800);
+});
+
+// SCROLL TO TOP
+window.addEventListener('scroll',function(){
+  const btn=document.getElementById('scroll-top');
+  if(btn){btn.classList.toggle('show',window.scrollY>400);}
+});
+
+// KVKK
+function acceptKvkk(){
+  document.getElementById('kvkk-banner').style.display='none';
+  localStorage.setItem('kvkk','accepted');
+}
+function rejectKvkk(){
+  document.getElementById('kvkk-banner').style.display='none';
+  localStorage.setItem('kvkk','rejected');
+}
+if(localStorage.getItem('kvkk')){
+  const b=document.getElementById('kvkk-banner');
+  if(b)b.style.display='none';
+}
+
+// MOBİL MENÜ
+function openMobileMenu(){
+  document.getElementById('mobile-nav').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeMobileMenu(){
+  document.getElementById('mobile-nav').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// SAYAÇ ANİMASYONU
+function startCounters(){
+  document.querySelectorAll('.count-num').forEach(el=>{
+    const target=parseInt(el.dataset.target)||0;
+    const suffix=el.dataset.suffix||'';
+    const duration=1500;
+    const step=target/60;
+    let current=0;
+    const timer=setInterval(()=>{
+      current=Math.min(current+step,target);
+      el.textContent=Math.floor(current).toLocaleString('tr-TR')+suffix;
+      if(current>=target){clearInterval(timer);el.textContent=target.toLocaleString('tr-TR')+suffix;}
+    },duration/60);
+  });
+}
+
+// INTERSECTION OBSERVER - sayfa görünüme girince sayaç başlat
+const heroSection=document.querySelector('.hero');
+if(heroSection){
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){startCounters();obs.disconnect();}});
+  },{threshold:0.3});
+  obs.observe(heroSection);
+}
+
+function openCert(img){
+  const m=document.getElementById('cert-modal');
+  document.getElementById('cert-img').src=img;
+  m.style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closeCert(){
+  document.getElementById('cert-modal').style.display='none';
+  document.body.style.overflow='';
+}
+function filterCat(cat,btn){
+  document.querySelectorAll('.ct').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pc').forEach(card=>{
+    if(cat==='all'||card.dataset.cat===cat){card.classList.add('show');}
+    else{card.classList.remove('show');}
+  });
+}
+function switchTab(showId,hideId,btn){
+  document.getElementById(showId).classList.add('active');
+  document.getElementById(hideId).classList.remove('active');
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+}
+function openModal(type){document.getElementById('modal-'+type).classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(type){document.getElementById('modal-'+type).classList.remove('open');document.body.style.overflow='';}
+document.querySelectorAll('.mo').forEach(o=>{o.addEventListener('click',function(e){if(e.target===this){this.classList.remove('open');document.body.style.overflow='';}});});
+function submitForm(e,id){
+  e.preventDefault();
+  const form=e.target;
+  const inputs=form.querySelectorAll('input,select,textarea');
+  let body='';
+  inputs.forEach(inp=>{if(inp.value&&inp.placeholder!='ornek@email.com'){body+=inp.placeholder+': '+inp.value+'\n';}});
+  // Gizli yönlendirme
+  const mailto='mailto:trgokmenyilmaz@hotmail.com?cc=info@yapigucbeton.com.tr&subject=Yapıgüç Beton - Yeni Form Başvurusu&body='+encodeURIComponent(body);
+  window.open(mailto,'_blank');
+  const m=document.getElementById(id);
+  m.style.display='block';
+  form.reset();
+  setTimeout(()=>{m.style.display='none';},5000);
+}
+function toggleMenu(){const nav=document.querySelector('nav');if(nav.style.display==='flex'){nav.removeAttribute('style');}else{Object.assign(nav.style,{display:'flex',flexDirection:'column',position:'absolute',top:'86px',left:'0',right:'0',background:'#fff',padding:'16px',boxShadow:'0 8px 24px rgba(0,0,0,.12)',zIndex:'999'});}}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});});
+</script>
+<div class="mobile-nav" id="mobile-nav">
+<button class="mobile-close" onclick="closeMobileMenu()"><i class="fas fa-times"></i></button>
+<a href="#urunler" onclick="closeMobileMenu()">Ürünler</a>
+<a href="hakkimizda.html" onclick="closeMobileMenu()">Hakkımızda</a>
+<a href="#galeri" onclick="closeMobileMenu()">Galeri</a>
+<a href="#kalite" onclick="closeMobileMenu()">Kalite</a>
+<a href="#referanslar" onclick="closeMobileMenu()">Referanslar</a>
+<a href="#sss" onclick="closeMobileMenu()">SSS</a>
+<a href="#konum" onclick="closeMobileMenu()">Konum</a>
+<a href="#iletisim" onclick="closeMobileMenu()">İletişim</a>
+<a href="bayi-giris.html" style="color:var(--red)!important"><i class="fas fa-store"></i> Bayi Girişi</a>
+</div>
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Yukarı Çık"><i class="fas fa-arrow-up"></i></button>
+<div id="kvkk-banner">
+<p>🍪 Bu web sitesi, size daha iyi hizmet sunmak için çerezler kullanmaktadır. Sitemizi kullanmaya devam ederek <a href="#">Gizlilik Politikamızı</a> ve <a href="#">KVKK Aydınlatma Metnimizi</a> kabul etmiş sayılırsınız.</p>
+<div class="kvkk-btns">
+<button class="kvkk-accept" onclick="acceptKvkk()">Kabul Et</button>
+<button class="kvkk-reject" onclick="rejectKvkk()">Reddet</button>
+</div>
+</div>
+</body>
+</html>
