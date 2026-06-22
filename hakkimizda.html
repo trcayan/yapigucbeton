@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hakkımızda – Yapıgüç Beton</title>
+<meta name="description" content="Yapıgüç Beton hakkında. 20+ yıl deneyim, 2685+ proje, ISO belgeli üretim, güçlü lojistik."/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{--red:#c0001a;--red2:#8a0012;--blk:#111;--lt:#f4f6f9;--dk:#111827;--gr:#6b7280;--wh:#fff;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Roboto',sans-serif;color:var(--dk);background:var(--wh);}
+.c{max-width:1100px;margin:0 auto;padding:0 20px;}
+/* HEADER */
+header{background:var(--blk);padding:14px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3);}
+.hi{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo img{height:44px;}
+.logo-t h1{font-size:18px;font-weight:900;color:#fff;}
+.logo-t p{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:1px;}
+.back-btn{display:flex;align-items:center;gap:6px;color:#aaa;text-decoration:none;font-size:13px;transition:color .2s;}
+.back-btn:hover{color:var(--red);}
+/* HERO */
+.hero{background:linear-gradient(135deg,#0d0d0d,#1a0005,#2a0008);color:#fff;padding:80px 0;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:url('img/slider.jpg') center/cover;opacity:.12;}
+.hero-in{position:relative;max-width:700px;}
+.hero-tag{display:inline-block;background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;}
+.hero h2{font-size:clamp(28px,4vw,48px);font-weight:900;line-height:1.15;margin-bottom:16px;}
+.hero h2 span{color:var(--red);}
+.hero p{font-size:16px;color:#bbb;line-height:1.7;margin-bottom:28px;max-width:580px;}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap;padding-top:28px;border-top:1px solid rgba(255,255,255,.12);}
+.hs-item strong{display:block;font-size:36px;font-weight:900;color:var(--red);}
+.hs-item span{font-size:13px;color:#888;}
+/* SECTIONS */
+section{padding:70px 0;}
+.sh{text-align:center;margin-bottom:50px;}
+.stag{display:inline-block;background:#fee2e2;color:var(--red);font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+.sh h2{font-size:clamp(24px,3vw,36px);font-weight:900;color:var(--blk);margin-bottom:12px;}
+.sh p{color:var(--gr);font-size:16px;max-width:580px;margin:0 auto;line-height:1.7;}
+/* INTRO */
+.intro{background:var(--lt);}
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+.intro-text h2{font-size:clamp(22px,2.5vw,32px);font-weight:900;color:var(--blk);margin-bottom:16px;line-height:1.3;}
+.intro-text h2 span{color:var(--red);}
+.intro-text p{font-size:15px;color:var(--gr);line-height:1.8;margin-bottom:16px;}
+.intro-img{border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.15);}
+.intro-img img{width:100%;height:380px;object-fit:cover;}
+/* FEATURES */
+.features{background:var(--wh);}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+.feat-card{background:var(--lt);border-radius:16px;padding:28px;border-top:4px solid var(--red);transition:all .3s;}
+.feat-card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(0,0,0,.10);}
+.feat-icon{width:56px;height:56px;background:var(--red);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin-bottom:16px;}
+.feat-card h3{font-size:17px;font-weight:800;color:var(--blk);margin-bottom:10px;}
+.feat-card p{font-size:14px;color:var(--gr);line-height:1.7;}
+/* PRODUCTS LIST */
+.prod-list{background:var(--lt);}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.prod-item{background:var(--wh);border-radius:10px;padding:16px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:all .2s;}
+.prod-item:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.10);}
+.prod-item i{color:var(--red);font-size:18px;width:24px;text-align:center;}
+.prod-item span{font-size:14px;font-weight:600;color:var(--blk);}
+/* WHY */
+.why{background:var(--blk);color:#fff;}
+.why .sh h2{color:#fff;}
+.why .sh p{color:#888;}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.why-item{display:flex;align-items:flex-start;gap:14px;padding:20px;background:rgba(255,255,255,.05);border-radius:12px;border:1px solid rgba(255,255,255,.08);transition:all .3s;}
+.why-item:hover{background:rgba(255,255,255,.10);}
+.why-check{width:32px;height:32px;background:var(--red);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:#fff;}
+.why-item h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;}
+.why-item p{font-size:12px;color:#888;line-height:1.5;}
+/* CERTS */
+.certs{background:var(--wh);}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;}
+.cert-card{background:var(--lt);border-radius:12px;padding:20px;text-align:center;transition:all .3s;cursor:pointer;}
+.cert-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.10);}
+.cert-card img{max-height:100px;max-width:100%;object-fit:contain;margin-bottom:10px;}
+.cert-card h4{font-size:12px;font-weight:700;color:var(--blk);}
+.cert-card p{font-size:11px;color:var(--gr);margin-top:3px;}
+/* REGIONS */
+.regions{background:var(--lt);}
+.region-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;}
+.region-item{background:var(--wh);border-radius:10px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.region-item i{font-size:24px;color:var(--red);margin-bottom:8px;display:block;}
+.region-item h4{font-size:14px;font-weight:700;color:var(--blk);}
+.region-item p{font-size:12px;color:var(--gr);margin-top:3px;}
+/* CTA */
+.cta{background:linear-gradient(135deg,#0d0d0d,#1a0005);color:#fff;padding:70px 0;text-align:center;}
+.cta h2{font-size:clamp(24px,3vw,38px);font-weight:900;margin-bottom:14px;}
+.cta h2 span{color:var(--red);}
+.cta p{font-size:16px;color:#aaa;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-red{background:var(--red);color:#fff;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
+.btn-red:hover{background:var(--red2);transform:translateY(-2px);}
+.btn-out{background:transparent;color:#fff;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:2px solid rgba(255,255,255,.3);transition:all .2s;}
+.btn-out:hover{border-color:#fff;background:rgba(255,255,255,.08);}
+/* FOOTER */
+footer{background:#0a0a0a;color:#888;padding:24px 0;text-align:center;font-size:13px;}
+footer a{color:var(--red);text-decoration:none;}
+/* LIGHTBOX */
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9000;align-items:center;justify-content:center;padding:20px;}
+.lb.open{display:flex;}
+.lb img{max-width:700px;width:100%;max-height:85vh;object-fit:contain;border-radius:12px;}
+.lb-close{position:absolute;top:20px;right:20px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;}
+@media(max-width:768px){.intro-grid{grid-template-columns:1fr;}.hero-stats{gap:20px;}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="c">
+<div class="hi">
+<a class="logo" href="index.html">
+<img alt="Yapıgüç" src="logo.png"/>
+<div class="logo-t"><h1>Yapıgüç</h1><p>Beton Elemanları Üretim Tesisi</p></div>
+</a>
+<a class="back-btn" href="index.html"><i class="fas fa-arrow-left"></i> Ana Sayfaya Dön</a>
+</div>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<div class="c">
+<div class="hero-in">
+<div class="hero-tag"><i class="fas fa-industry"></i> &nbsp;Hatay / Antakya</div>
+<h2>Bir Tedarikçiden Fazlası,<br/><span>Güvenilir Bir Çözüm Ortağı</span></h2>
+<p>Yapıgüç Beton olarak yalnızca beton elemanları üretmiyor; projelerin zamanında, kaliteli ve güvenli şekilde hayata geçirilmesine katkı sağlıyoruz. Mühendislik kökenli kurumsal yapımız ve 20 yılı aşkın deneyimimizle müşterilerimize sadece ürün değil, güvenilir bir çözüm ortaklığı sunuyoruz.</p>
+<div class="hero-stats">
+<div class="hs-item"><strong>20+</strong><span>Yıl Deneyim</span></div>
+<div class="hs-item"><strong>2.685+</strong><span>Tamamlanan Proje</span></div>
+<div class="hs-item"><strong>5</strong><span>ISO & CE Belgesi</span></div>
+<div class="hs-item"><strong>13+</strong><span>Ürün Kategorisi</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+<div class="c">
+<div class="intro-grid">
+<div class="intro-text">
+<h2>Betonun Gücünü <span>Mühendislik Tecrübesiyle</span> Birleştiriyoruz</h2>
+<p>Piyasada birçok üretici bulabilirsiniz. Ancak her üretici, sahada yaşanan sorunları bilen bir mühendislik altyapısına sahip değildir. Yapıgüç Beton'un farkı tam da burada ortaya çıkar.</p>
+<p>Ürettiğimiz her ürün, yılların saha tecrübesi, mühendislik bilgisi ve proje deneyimi ile şekillenir. Çünkü biz sadece üretim yapan bir firma değiliz; aynı zamanda yapı güçlendirme, deprem performans analizleri, statik projeler ve restorasyon projelerinde aktif görev alan bir mühendislik grubuyuz.</p>
+<p>Bu nedenle müşterilerimize yalnızca ürün değil, <strong>doğru çözümü</strong> sunuyoruz.</p>
+</div>
+<div class="intro-img">
+<img alt="Yapıgüç Beton Fabrika" src="img/kirma-blok.jpg"/>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+<div class="c">
+<div class="sh">
+<div class="stag">Neden Yapıgüç?</div>
+<h2>Güçlü Üretim, Güçlü Lojistik,<br/>Sağlam İş Ortaklıkları</h2>
+<p>Her projede kaliteyi, güveni ve sürdürülebilir iş birliğini ön planda tutuyoruz.</p>
+</div>
+<div class="feat-grid">
+<div class="feat-card">
+<div class="feat-icon"><i class="fas fa-industry"></i></div>
+<h3>Güçlü Üretim Altyapısı</h3>
+<p>Hatay Antakya'daki modern tesisimizde laboratuvar kontrollü, yüksek dayanımlı hammaddeler ve özel vibrasyon sistemleriyle maksimum mukavemet sağlayan ürünler üretiyoruz.</p>
+</div>
+<div class="feat-card">
+<div class="feat-icon"><i class="fas fa-truck-fast"></i></div>
+<h3>Güçlü Lojistik Kabiliyeti</h3>
+<p>Güçlü araç parkımız ve deneyimli sevkiyat ekiplerimizle siparişlerinizi planlanan zamanda şantiyelerinize ulaştırıyoruz. Hatay'dan Türkiye geneline hızlı teslimat.</p>
+</div>
+<div class="feat-card">
+<div class="feat-icon"><i class="fas fa-handshake"></i></div>
+<h3>Sağlam İş Ortaklıkları</h3>
+<p>Belediyeler, kamu kurumları, müteahhitlik firmaları ve özel sektör yatırımcılarıyla uzun vadeli iş ortaklıkları kuruyoruz. Müşterilerimizin büyük bölümü tekrar Yapıgüç'ü tercih ediyor.</p>
+</div>
+<div class="feat-card">
+<div class="feat-icon"><i class="fas fa-drafting-compass"></i></div>
+<h3>Mühendislik Gücü</h3>
+<p>Yapı güçlendirme, deprem performans analizleri, riskli yapı tespitleri, mühendislik ve müşavirlik hizmetleri ile üretimimizi mühendislik tecrübesiyle destekliyoruz.</p>
+</div>
+<div class="feat-card">
+<div class="feat-icon"><i class="fas fa-medal"></i></div>
+<h3>Kalite Güvencesi</h3>
+<p>ISO 9001, ISO 10002, ISO 14001, ISO 45001 ve CE belgeleriyle uluslararası kalite standartlarını benimsemiş kurumsal bir yapıya sahibiz.</p>
+</div>
+<div class="feat-card">
+<div class="feat-icon"><i class="fas fa-headset"></i></div>
+<h3>Satış Sonrası Destek</h3>
+<p>Satış öncesinde olduğu gibi satış sonrasında da müşterilerimizin yanındayız. Taahhütlerimizi yerine getiriyor, müşteri memnuniyetini işimizin ayrılmaz parçası olarak görüyoruz.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ÜRÜN LİSTESİ -->
+<section class="prod-list">
+<div class="c">
+<div class="sh">
+<div class="stag">Ürün Yelpazesi</div>
+<h2>Geniş Ürün Kataloğumuz</h2>
+<p>Modern üretim tesisimizde üretilen tüm beton eleman çeşitleri.</p>
+</div>
+<div class="prod-grid">
+<div class="prod-item"><i class="fas fa-th"></i><span>Kilit Parke Taşları</span></div>
+<div class="prod-item"><i class="fas fa-th-large"></i><span>Prizma Parke Taşları</span></div>
+<div class="prod-item"><i class="fas fa-minus"></i><span>Kaldırım Bordürleri</span></div>
+<div class="prod-item"><i class="fas fa-road"></i><span>Refüj Bordürleri</span></div>
+<div class="prod-item"><i class="fas fa-leaf"></i><span>Bahçe Bordürleri</span></div>
+<div class="prod-item"><i class="fas fa-tint"></i><span>Yağmur Olukları</span></div>
+<div class="prod-item"><i class="fas fa-eye-slash"></i><span>Görme Engelli Parkeleri</span></div>
+<div class="prod-item"><i class="fas fa-shield-alt"></i><span>Beton Bariyerler</span></div>
+<div class="prod-item"><i class="fas fa-mountain"></i><span>Şev Taşları</span></div>
+<div class="prod-item"><i class="fas fa-circle"></i><span>Beton Borular</span></div>
+<div class="prod-item"><i class="fas fa-dot-circle"></i><span>Muayene Bacaları</span></div>
+<div class="prod-item"><i class="fas fa-border-all"></i><span>Duvar Elemanları</span></div>
+<div class="prod-item"><i class="fas fa-cube"></i><span>Özel Beton Ürünleri</span></div>
+<div class="prod-item"><i class="fas fa-gem"></i><span>Bazalt Doğal Taşlar</span></div>
+</div>
+<div style="text-align:center;margin-top:30px">
+<a class="btn-red" href="index.html#urunler"><i class="fas fa-th-list"></i> Tüm Ürün Kataloğunu Gör</a>
+</div>
+</div>
+</section>
+
+<!-- NEDEN YAPIĞÜÇ -->
+<section class="why">
+<div class="c">
+<div class="sh">
+<div class="stag" style="background:rgba(192,0,26,.3);color:#ff8080">Avantajlarımız</div>
+<h2>Neden Yapıgüç Beton?</h2>
+<p>Rakiplerimizden bizi ayıran 12 temel güç.</p>
+</div>
+<div class="why-grid">
+<div class="why-item"><div class="why-check"><i class="fas fa-check"></i></div><div><h4>20+ Yıl Sektör Deneyimi</h4><p>Uzun yıllara dayanan tecrübemizle her projeye doğru çözümü sunuyoruz.</p></div></div>
+<div class="why-item"><div class="why-check"><i class="fas fa-check"></i></div><div><h4>2.685+ Tamamlanan Proje</h4><p>Binlerce başarılı proje referansımızla güvenilirliğimizi kanıtladık.</p></div></div>
+<div class="why-item"><div class="why-check"><i class="fas fa-check"></i></div><div><h4>Yüksek Üretim Kapasitesi</h4><p>Büyük ölçekli belediye ve altyapı projelerini karşılayacak kapasiteye sahibiz.</p></div></div>
+<div class="why-item"><div class="why-check"><i class="fas fa-check"></i></div><div><h4>Geniş Ürün Yelpazesi</h4><p>13+ ürün kategorisiyle tek noktadan tüm ihtiyaçlarınızı karşılıyoruz.</p></div></div>
+<div class="why-item"><div class="why-check"><i class="fas fa-check"></i></div><div><h4>Güçlü Araç Parkı</h4><p>Kendi araç filomuzla zamanında ve güvenli teslimat garantisi veriyoruz.</p></div></div>
+<div class="why-item"><div class="why-check"><i class="fas fa-check"></i></div><div><h4>Kalite Kontrollü Üretim</h4><p>Her ürün laboratuvar testlerinden geçerek müşteriye ulaşır.</p></div></div>
+<div class="why-item"><div class="why-check"><i class="fas fa-check"></i></div><div><h4>Mühendislik Desteği</h4><p>Teknik danışmanlık ve mühendislik hizmetleriyle projenize değer katıyoruz.</p></div></div>
+<div class="why-item"><div class="why-check"><i class="fas fa-check"></i></div><div><h4>Güçlü Referanslar</h4><p>Kamu ve özel sektörde güçlü referans projelerimiz bulunmaktadır.</p></div></div>
+<div class="why-item"><div class="why-check"><i class="fas fa-check"></i></div><div><h4>Sağlam İş Ortaklıkları</h4><p>Uzun vadeli iş birlikleri kurarak müşteri değil, iş ortağı kazanıyoruz.</p></div></div>
+<div class="why-item"><div class="why-check"><i class="fas fa-check"></i></div><div><h4>Zamanında Teslimat</h4><p>Şantiyenizde bekleme yaşatmadan planlanan tarihlerde teslim ediyoruz.</p></div></div>
+<div class="why-item"><div class="why-check"><i class="fas fa-check"></i></div><div><h4>Rekabetçi Fiyat</h4><p>Fabrikadan direkt satış avantajıyla en uygun fiyatları sunuyoruz.</p></div></div>
+<div class="why-item"><div class="why-check"><i class="fas fa-check"></i></div><div><h4>Satış Sonrası Destek</h4><p>Satış sonrasında da yanınızdayız. Taahhütlerimizi her zaman yerine getiriyoruz.</p></div></div>
+</div>
+</div>
+</section>
+
+<!-- KALİTE BELGELERİ -->
+<section class="certs">
+<div class="c">
+<div class="sh">
+<div class="stag">Kalite Güvencesi</div>
+<h2>Uluslararası Sertifikalarımız</h2>
+<p>IYAS akredite MilCert Uluslararası Belgelendirme tarafından onaylı belgelerimiz.</p>
+</div>
+<div class="cert-grid">
+<div class="cert-card" onclick="openLb('sertifika-iso9001.jpeg')">
+<img alt="ISO 9001" src="sertifika-iso9001.jpeg"/>
+<h4>ISO 9001:2015</h4>
+<p>Kalite Yönetim Sistemi</p>
+</div>
+<div class="cert-card" onclick="openLb('sertifika-iso14001.jpeg')">
+<img alt="ISO 14001" src="sertifika-iso14001.jpeg"/>
+<h4>ISO 14001:2015</h4>
+<p>Çevre Yönetim Sistemi</p>
+</div>
+<div class="cert-card" onclick="openLb('sertifika-iso45001.jpeg')">
+<img alt="ISO 45001" src="sertifika-iso45001.jpeg"/>
+<h4>ISO 45001:2018</h4>
+<p>İş Sağlığı & Güvenliği</p>
+</div>
+<div class="cert-card" onclick="openLb('sertifika-iso10002.jpeg')">
+<img alt="ISO 10002" src="sertifika-iso10002.jpeg"/>
+<h4>ISO 10002:2018</h4>
+<p>Müşteri Memnuniyeti</p>
+</div>
+<div class="cert-card" onclick="openLb('sertifika-ce.jpeg')">
+<img alt="CE Belgesi" src="sertifika-ce.jpeg"/>
+<h4>CE Belgesi</h4>
+<p>Avrupa Uygunluk İşareti</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- HİZMET BÖLGELERİ -->
+<section class="regions">
+<div class="c">
+<div class="sh">
+<div class="stag">Hizmet Bölgeleri</div>
+<h2>Hatay'dan Türkiye'ye</h2>
+<p>Hatay merkezli üretim gücümüzle geniş bir coğrafyaya hizmet veriyoruz.</p>
+</div>
+<div class="region-grid">
+<div class="region-item"><i class="fas fa-star"></i><h4>Hatay</h4><p>Merkez & Fabrika</p></div>
+<div class="region-item"><i class="fas fa-map-marker-alt"></i><h4>Adana</h4><p>Hızlı Teslimat</p></div>
+<div class="region-item"><i class="fas fa-map-marker-alt"></i><h4>Mersin</h4><p>Hızlı Teslimat</p></div>
+<div class="region-item"><i class="fas fa-map-marker-alt"></i><h4>Gaziantep</h4><p>Bölgesel Hizmet</p></div>
+<div class="region-item"><i class="fas fa-map-marker-alt"></i><h4>Osmaniye</h4><p>Bölgesel Hizmet</p></div>
+<div class="region-item"><i class="fas fa-map-marker-alt"></i><h4>K.Maraş</h4><p>Deprem Bölgesi</p></div>
+<div class="region-item"><i class="fas fa-globe"></i><h4>Türkiye Geneli</h4><p>Ulusal Hizmet</p></div>
+<div class="region-item"><i class="fas fa-flag"></i><h4>Suriye / Halep</h4><p>İhracat Hedefi</p></div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+<div class="c">
+<h2>Geleceği Birlikte <span>İnşa Edelim</span></h2>
+<p>Yapıgüç Beton'u tercih ettiğinizde yalnızca ürün satın almazsınız; üretim gücünü, mühendislik deneyimini, lojistik kabiliyetini ve güvenilir bir iş ortağını yanınıza alırsınız.</p>
+<div class="cta-btns">
+<a class="btn-red" href="index.html#siparis"><i class="fas fa-shopping-cart"></i> Sipariş Ver</a>
+<a class="btn-out" href="index.html#konum"><i class="fas fa-phone"></i> İletişime Geç</a>
+<a class="btn-out" href="https://wa.me/905405163636" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+</div>
+<div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:14px;color:#666;font-style:italic">
+"Güçlü Üretim • Güçlü Lojistik • Sağlam İş Ortaklıkları • Mühendislik Gücü • Güvenilir Çözümler"
+</div>
+</div>
+</section>
+
+<footer>
+<div class="c">
+<p>© 2026 Yapıgüç – Tüm hakları saklıdır. | <a href="index.html">Ana Sayfa</a> | <a href="https://www.yapiguc.net">yapiguc.net</a></p>
+</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLb()">
+<button class="lb-close" onclick="closeLb()"><i class="fas fa-times"></i></button>
+<img id="lb-img" src="" alt="Sertifika"/>
+</div>
+
+<script>
+function openLb(src){document.getElementById('lb-img').src=src;document.getElementById('lb').classList.add('open');document.body.style.overflow='hidden';}
+function closeLb(){document.getElementById('lb').classList.remove('open');document.body.style.overflow='';}
+</script>
+</body>
+</html>
