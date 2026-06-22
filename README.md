@@ -1,2 +1,2 @@
-# yapigucbeton
-Yapıgüç Beton - Beton Elemanları Üretim Tesisi
+# Yapiguc Beton
+www.yapigucbeton.com.tr
