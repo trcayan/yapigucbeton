@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bayi Girişi – Yapıgüç Beton</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{--red:#c0001a;--red2:#8a0012;--blk:#111111;--gr:#6b7280;--wh:#ffffff;--lt:#f4f6f9;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Roboto',sans-serif;background:linear-gradient(135deg,#0d0d0d,#1a0005,#2a0008);min-height:100vh;display:flex;flex-direction:column;}
+.bg{position:fixed;inset:0;background:url('https://tashanbetonelemanlari.com/wp-content/uploads/revslider/anasayfa/slider-1.jpg') center/cover;opacity:.08;z-index:0;}
+.wrap{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;}
+.logo-area{text-align:center;margin-bottom:32px;}
+.logo-area img{height:70px;margin-bottom:12px;}
+.logo-area h1{color:#fff;font-size:22px;font-weight:900;}
+.logo-area p{color:#888;font-size:13px;letter-spacing:1px;text-transform:uppercase;}
+.card{background:#fff;border-radius:20px;padding:40px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,.4);}
+.card h2{font-size:22px;font-weight:800;color:var(--blk);margin-bottom:6px;}
+.card p.sub{font-size:14px;color:var(--gr);margin-bottom:28px;}
+.tabs{display:flex;gap:0;margin-bottom:28px;border-bottom:2px solid #e5e7eb;}
+.tab{flex:1;padding:12px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:none;color:var(--gr);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;text-align:center;}
+.tab.active{color:var(--red);border-bottom-color:var(--red);}
+.panel{display:none;}.panel.active{display:block;}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.fg label{font-size:13px;font-weight:600;color:var(--blk);}
+.fg input,.fg select,.fg textarea{padding:12px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;font-family:inherit;outline:none;transition:border .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--red);}
+.fg textarea{resize:vertical;min-height:80px;}
+.pw-wrap{position:relative;}
+.pw-wrap input{width:100%;padding-right:44px;}
+.pw-eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;color:var(--gr);background:none;border:none;font-size:16px;}
+.btn{width:100%;padding:14px;background:var(--red);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;}
+.btn:hover{background:var(--red2);transform:translateY(-1px);}
+.divider{text-align:center;color:var(--gr);font-size:13px;margin:20px 0;position:relative;}
+.divider::before,.divider::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:#e5e7eb;}
+.divider::before{left:0;}.divider::after{right:0;}
+
+
+
+.err{background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:10px 14px;font-size:13px;color:#991b1b;margin-bottom:14px;display:none;}
+.err.show{display:block;}
+.success{background:#d1fae5;border:1px solid #6ee7b7;border-radius:8px;padding:10px 14px;font-size:13px;color:#065f46;margin-bottom:14px;display:none;}
+.success.show{display:block;}
+.back{display:flex;align-items:center;gap:8px;color:#888;text-decoration:none;font-size:14px;margin-bottom:24px;transition:color .2s;}
+.back:hover{color:#fff;}
+.back i{font-size:16px;}
+footer-note{display:block;text-align:center;color:#555;font-size:12px;margin-top:24px;}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="wrap">
+  <a class="back" href="index.html"><i class="fas fa-arrow-left"></i> Ana Sayfaya Dön</a>
+  <div class="logo-area">
+    <img alt="Yapıgüç Logo" src="logo.png"/>
+    <h1>Yapıgüç</h1>
+    <p>Bayi Portalı</p>
+  </div>
+  <div class="card">
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('login-panel','register-panel',this)"><i class="fas fa-sign-in-alt"></i> Bayi Girişi</button>
+      <button class="tab" onclick="switchTab('register-panel','login-panel',this)"><i class="fas fa-user-plus"></i> Bayi Başvurusu</button>
+    </div>
+
+    <!-- GİRİŞ PANELİ -->
+    <div class="panel active" id="login-panel">
+      
+      <div class="err" id="login-err"><i class="fas fa-exclamation-circle"></i> Kullanıcı adı veya şifre hatalı!</div>
+      <form onsubmit="doLogin(event)">
+        <div class="fg"><label>E-posta / Kullanıcı Adı</label><input id="email" placeholder="bayi@firma.com" required type="email"/></div>
+        <div class="fg"><label>Şifre</label>
+          <div class="pw-wrap"><input id="password" placeholder="••••••••" required type="password"/><button class="pw-eye" onclick="togglePw()" type="button"><i class="fas fa-eye" id="pw-icon"></i></button></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;"><input type="checkbox" style="accent-color:var(--red)"/> Beni hatırla</label>
+          <a href="#" style="font-size:13px;color:var(--red);text-decoration:none;">Şifremi unuttum</a>
+        </div>
+        <button class="btn" type="submit"><i class="fas fa-sign-in-alt"></i> Giriş Yap</button>
+      </form>
+    </div>
+
+    <!-- BAŞVURU PANELİ -->
+    <div class="panel" id="register-panel">
+      <div class="success" id="reg-success"><i class="fas fa-check-circle"></i> Başvurunuz alındı! En kısa sürede sizinle iletişime geçeceğiz.</div>
+      <form onsubmit="doRegister(event)">
+        <div class="fg"><label>Firma Adı *</label><input placeholder="Firma / Şirket adı" required type="text"/></div>
+        <div class="fg"><label>Yetkili Kişi *</label><input placeholder="Ad Soyad" required type="text"/></div>
+        <div class="fg"><label>E-posta *</label><input placeholder="ornek@firma.com" required type="email"/></div>
+        <div class="fg"><label>Telefon *</label><input placeholder="05XX XXX XX XX" required type="tel"/></div>
+        <div class="fg"><label>Faaliyet Bölgesi</label><input placeholder="Şehir / İlçe" type="text"/></div>
+        <div class="fg"><label>Mesajınız</label><textarea placeholder="Kendinizi ve firmanızı kısaca tanıtın..."></textarea></div>
+        <button class="btn" type="submit"><i class="fas fa-paper-plane"></i> Başvuru Gönder</button>
+      </form>
+    </div>
+  </div>
+  <span style="display:block;text-align:center;color:#555;font-size:12px;margin-top:20px;">© 2026 Yapıgüç Beton | <a href="index.html" style="color:#888;text-decoration:none;">yapigucbeton.com</a></span>
+</div>
+<script>
+const DEMO_EMAIL = 'bayi@yapigucbeton.com.tr';
+const DEMO_PASS = 'Yapiguc2026!';
+function switchTab(showId,hideId,btn){
+  document.getElementById(showId).classList.add('active');
+  document.getElementById(hideId).classList.remove('active');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+}
+function togglePw(){
+  const inp=document.getElementById('password');
+  const ico=document.getElementById('pw-icon');
+  if(inp.type==='password'){inp.type='text';ico.className='fas fa-eye-slash';}
+  else{inp.type='password';ico.className='fas fa-eye';}
+}
+function doLogin(e){
+  e.preventDefault();
+  const email=document.getElementById('email').value;
+  const pass=document.getElementById('password').value;
+  const err=document.getElementById('login-err');
+  if(email===DEMO_EMAIL && pass===DEMO_PASS){
+    window.location.href='portal.html';
+  } else {
+    err.classList.add('show');
+    setTimeout(()=>err.classList.remove('show'),3000);
+  }
+}
+function doRegister(e){
+  // Form verilerini topla ve gizli e-postaya gönder
+  const firma = e.target.querySelector('input[placeholder="Firma / Şirket adı"]')?.value || '';
+  const yetkili = e.target.querySelector('input[placeholder="Ad Soyad"]')?.value || '';
+  const tel = e.target.querySelector('input[placeholder="05XX XXX XX XX"]')?.value || '';
+  const email = e.target.querySelector('input[type="email"]')?.value || '';
+  const bolge = e.target.querySelector('input[placeholder="Şehir / İlçe"]')?.value || '';
+  const msg = e.target.querySelector('textarea')?.value || '';
+  const body = `Bayi Başvurusu\nFirma: ${firma}\nYetkili: ${yetkili}\nTelefon: ${tel}\nE-posta: ${email}\nBölge: ${bolge}\nMesaj: ${msg}`;
+  window.open('mailto:trgokmenyilmaz@hotmail.com?cc=bayii@yapigucbeton.com.tr&subject=Yapıgüç Beton - Bayi Başvurusu&body='+encodeURIComponent(body),'_blank');
+  e.preventDefault();
+  const s=document.getElementById('reg-success');
+  s.classList.add('show');
+  e.target.reset();
+  setTimeout(()=>s.classList.remove('show'),5000);
+}
+</script>
+</body>
+</html>
