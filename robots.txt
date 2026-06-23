@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /portal.html
+Disallow: /bayi-giris.html
+
+Sitemap: https://yapigucbeton.com.tr/sitemap.xml
+
+# Yapıgüç Beton - Beton Elemanları Üretim Tesisi
+# https://yapigucbeton.com.tr
