@@ -191,6 +191,7 @@ tr:hover td{background:#fafafa;}
 .progress-ring .ring-fill{fill:none;stroke:var(--red);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 1s ease;}
 .progress-ring .ring-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:var(--blk);}
 
+.blue{color:var(--blue);}
 </style>
 </head>
 <body>
@@ -218,7 +219,14 @@ tr:hover td{background:#fafafa;}
     <button class="sb-item" onclick="showPanel('docs',this)"><i class="fas fa-file-alt"></i> Belgeler</button>
     <button class="sb-item" onclick="showPanel('announcements',this)"><i class="fas fa-bullhorn"></i> Duyurular <span class="badge">2</span></button>
     <button class="sb-item" onclick="showPanel('stats',this)"><i class="fas fa-chart-bar"></i> İstatistikler</button>
-        <div class="sb-section">Özel</div>
+        <div class="sb-section">Stok & Finans</div>
+    <button class="sb-item" onclick="showPanel('stock',this)"><i class="fas fa-warehouse"></i> Stok Durumu <span class="sb-badge orange">2 Uyarı</span></button>
+    <button class="sb-item" onclick="showPanel('credit',this)"><i class="fas fa-credit-card"></i> Kredi Limitim</button>
+    <button class="sb-item" onclick="showPanel('bulk',this)"><i class="fas fa-file-excel"></i> Toplu Sipariş</button>
+    <div class="sb-section">Raporlar</div>
+    <button class="sb-item" onclick="showPanel('performance',this)"><i class="fas fa-chart-line"></i> Performans Raporu</button>
+    <button class="sb-item" onclick="showPanel('technical',this)"><i class="fas fa-file-alt"></i> Teknik Belgeler</button>
+    <div class="sb-section">Özel</div>
     <button class="sb-item" onclick="showPanel('loyalty',this)"><i class="fas fa-star"></i> Sadakat Puanı <span class="sb-badge" style="background:#ffd700;color:#111">2.450</span></button>
     <button class="sb-item" onclick="showPanel('invoices',this)"><i class="fas fa-file-invoice-dollar"></i> Faturalarım</button>
     <button class="sb-item" onclick="showPanel('messages',this)"><i class="fas fa-comments"></i> Mesajlar <span class="sb-badge">2</span></button>
@@ -649,7 +657,7 @@ function showPanel(id,btn){
   document.getElementById('panel-'+id).classList.add('active');
   document.querySelectorAll('.sb-item').forEach(n=>n.classList.remove('active'));
   if(btn)btn.classList.add('active');
-  const titles={dashboard:'Dashboard',loyalty:'Sadakat Puanı',invoices:'Faturalarım',messages:'Mesajlar',compare:'Ürün Karşılaştır',referral:'Referans Programı',,orders:'Siparişlerim','new-order':'Yeni Sipariş',tracking:'Sipariş Takibi',prices:'Fiyat Listesi',docs:'Belgeler',announcements:'Duyurular',stats:'İstatistikler',notifications:'Bildirimler',profile:'Profilim',support:'Destek'};
+  const titles={dashboard:'Dashboard',stock:'Stok Durumu',credit:'Kredi Limitim',bulk:'Toplu Sipariş',performance:'Performans Raporu',technical:'Teknik Belgeler',loyalty:'Sadakat Puanı',invoices:'Faturalarım',messages:'Mesajlar',compare:'Ürün Karşılaştır',referral:'Referans Programı',,orders:'Siparişlerim','new-order':'Yeni Sipariş',tracking:'Sipariş Takibi',prices:'Fiyat Listesi',docs:'Belgeler',announcements:'Duyurular',stats:'İstatistikler',notifications:'Bildirimler',profile:'Profilim',support:'Destek'};
   document.getElementById('page-title').textContent=titles[id]||id;
   if(window.innerWidth<=768) document.getElementById('sidebar').classList.remove('open');
 }
@@ -722,6 +730,50 @@ function markAllRead(){
   document.querySelectorAll('.notif-item.unread').forEach(n=>n.classList.remove('unread'));
 }
 
+
+function downloadTemplate() {
+  const csv = 'Ürün Kodu,Ürün Adı,Miktar,Birim\nASK-8CM,Aşık Taşı 8cm,500,m²\nYOL-BRD,Yol Bordürü,200,adet\nKUP-8CM,Küp Taşı 8cm,1000,adet';
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'yapigucbeton-toplu-siparis-sablonu.csv';
+  a.click();
+}
+
+function handleExcel(input) {
+  const preview = document.getElementById('excel-preview');
+  const tbody = document.getElementById('excel-table');
+  preview.style.display = 'block';
+  const items = [
+    ['Aşık Taşı 8cm', '500 m²', '₺37,40', '₺18.700'],
+    ['Yol Bordürü', '200 adet', '₺63,75', '₺12.750'],
+    ['Küp Taşı 8cm', '1000 adet', '₺23,80', '₺23.800'],
+  ];
+  tbody.innerHTML = items.map(r => '<tr>'+r.map(c=>'<td>'+c+'</td>').join('')+'</tr>').join('');
+  document.getElementById('excel-total').textContent = '₺55.250';
+}
+
+function submitBulkOrder() {
+  alert('✅ Toplu sipariş gönderildi! Sipariş numaranız: #2026-BULK-001');
+  document.getElementById('excel-preview').style.display = 'none';
+}
+
+function selectNPS(score, btn) {
+  document.querySelectorAll('#nps-scores button').forEach(b => {
+    b.style.background = '#fff';
+    b.style.borderColor = '#e5e7eb';
+    b.style.color = '#111';
+  });
+  const color = score >= 9 ? '#16a34a' : score >= 7 ? '#d97706' : '#c0001a';
+  btn.style.background = color;
+  btn.style.borderColor = color;
+  btn.style.color = '#fff';
+}
+
+function submitNPS() {
+  document.getElementById('nps-form').style.display = 'none';
+  document.getElementById('nps-done').style.display = 'block';
+}
 function sendMsg() {
   const input = document.getElementById('msg-input');
   const text = input.value.trim();
