@@ -1,0 +1,29 @@
+{
+  "name": "Yapıgüç Beton",
+  "short_name": "Yapıgüç",
+  "description": "Hatay Antakya Parke Taşı, Bordür, Beton Eleman Üretimi",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#c0001a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {"src": "favicon.png", "sizes": "32x32", "type": "image/png"},
+    {"src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png"},
+    {"src": "logo.png", "sizes": "512x512", "type": "image/png"}
+  ],
+  "categories": ["business", "shopping"],
+  "lang": "tr",
+  "shortcuts": [
+    {
+      "name": "Sipariş Ver",
+      "url": "/#siparis",
+      "description": "Online sipariş ver"
+    },
+    {
+      "name": "Bayi Girişi",
+      "url": "/bayi-giris.html",
+      "description": "Bayi portalına giriş"
+    }
+  ]
+}
