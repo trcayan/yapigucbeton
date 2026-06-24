@@ -304,6 +304,7 @@ footer{background:#0a0a0a;color:#888;}
 <nav>
 <a href="#urunler">Ürünler</a>
 <a href="hakkimizda.html">Hakkımızda</a>
+<a href="parke-tasi-nasil-dosenir.html">Blog</a>
 <a href="#galeri">Galeri</a>
 <a href="#kalite">Kalite</a>
 <a href="#referanslar">Referanslar</a>
@@ -793,7 +794,8 @@ footer{background:#0a0a0a;color:#888;}
 <li><a href="#urunler">Doğal Taşlar</a></li>
 </ul></div>
 <div class="fc"><h4>Hızlı Bağlantılar</h4><ul>
-<li><a href="hakkimizda.html">Hakkımızda</a></li>
+<li><a href="hakkimizda.html">Hakkımızda</a>
+<a href="parke-tasi-nasil-dosenir.html">Blog</a></li>
 <li><a href="#galeri">Galeri</a></li>
 <li><a href="#konum">Konum</a></li>
 <li><a href="#siparis">Online Sipariş</a></li>
@@ -1036,6 +1038,42 @@ if(heroSection){
   obs.observe(heroSection);
 }
 
+
+// PWA Service Worker
+if('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('SW registered'))
+      .catch(err => console.log('SW error:', err));
+  });
+}
+
+// Geri Arama
+function openCallback() {
+  document.getElementById('callback-modal').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closeCallback() {
+  document.getElementById('callback-modal').style.display='none';
+  document.body.style.overflow='';
+}
+function submitCallback(e) {
+  e.preventDefault();
+  const s = document.getElementById('cb-success');
+  s.style.display='block';
+  e.target.reset();
+  const body = 'Geri Arama Talebi - ' + new Date().toLocaleString('tr-TR');
+  window.open('mailto:trgokmenyilmaz@hotmail.com?subject=Geri Arama Talebi&body='+encodeURIComponent(body),'_blank');
+  setTimeout(() => { s.style.display='none'; closeCallback(); }, 3000);
+}
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', function(e) {
+    if(e.target===this) { this.classList.remove('open'); document.body.style.overflow=''; }
+  });
+});
+document.getElementById('callback-modal')?.addEventListener('click', function(e) {
+  if(e.target===this) closeCallback();
+});
 function openCert(img){
   const m=document.getElementById('cert-modal');
   document.getElementById('cert-img').src=img;
@@ -1100,5 +1138,47 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click'
 <button class="kvkk-reject" onclick="rejectKvkk()">Reddet</button>
 </div>
 </div>
+
+<!-- Geri Arama Butonu -->
+<div id="callback-btn" style="position:fixed;bottom:90px;left:24px;z-index:7998;">
+  <button onclick="openCallback()" style="background:#1d4ed8;color:#fff;border:none;width:52px;height:52px;border-radius:50%;cursor:pointer;font-size:20px;box-shadow:0 4px 16px rgba(29,78,216,.4);transition:all .3s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform=''">
+    <i class="fas fa-phone-alt"></i>
+  </button>
+</div>
+
+<!-- Geri Arama Modal -->
+<div id="callback-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9001;align-items:center;justify-content:center;padding:20px">
+  <div style="background:#fff;border-radius:16px;padding:32px;max-width:380px;width:100%;position:relative">
+    <button onclick="closeCallback()" style="position:absolute;top:14px;right:14px;background:#f3f4f6;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px">✕</button>
+    <h3 style="font-size:18px;font-weight:800;color:#111;margin-bottom:6px"><i class="fas fa-phone-alt" style="color:#c0001a;margin-right:8px"></i>Sizi Arayalım!</h3>
+    <p style="font-size:13px;color:#6b7280;margin-bottom:20px">Numaranızı bırakın, en kısa sürede sizi arayalım.</p>
+    <div id="cb-success" style="display:none;background:#d1fae5;border-radius:8px;padding:12px;color:#065f46;font-weight:600;margin-bottom:14px;font-size:13px"><i class="fas fa-check-circle"></i> Talebiniz alındı! En kısa sürede arayacağız.</div>
+    <form onsubmit="submitCallback(event)">
+      <div style="margin-bottom:12px"><label style="font-size:12px;font-weight:600;color:#111;display:block;margin-bottom:4px">Ad Soyad *</label><input required placeholder="Adınız" style="width:100%;padding:10px 12px;border:1.5px solid #d1d5db;border-radius:7px;font-size:13px;outline:none"/></div>
+      <div style="margin-bottom:12px"><label style="font-size:12px;font-weight:600;color:#111;display:block;margin-bottom:4px">Telefon *</label><input required type="tel" placeholder="05XX XXX XX XX" style="width:100%;padding:10px 12px;border:1.5px solid #d1d5db;border-radius:7px;font-size:13px;outline:none"/></div>
+      <div style="margin-bottom:16px"><label style="font-size:12px;font-weight:600;color:#111;display:block;margin-bottom:4px">Uygun Saat</label><select style="width:100%;padding:10px 12px;border:1.5px solid #d1d5db;border-radius:7px;font-size:13px;outline:none"><option>08:00 - 10:00</option><option>10:00 - 12:00</option><option>12:00 - 14:00</option><option>14:00 - 16:00</option><option>16:00 - 19:00</option></select></div>
+      <button type="submit" style="width:100%;background:#c0001a;color:#fff;padding:12px;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">📞 Geri Arama İste</button>
+    </form>
+  </div>
+</div>
+
+<!-- Tawk.to Canlı Chat -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/yapigucbeton/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+Tawk_API.onLoad = function(){
+  Tawk_API.setAttributes({
+    'name': 'Ziyaretçi',
+    'email': ''
+  }, function(error){});
+};
+</script>
 </body>
 </html>
