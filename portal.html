@@ -165,6 +165,32 @@ tr:hover td{background:#fafafa;}
   .grid-2{grid-template-columns:1fr;}
   .grid-3{grid-template-columns:1fr 1fr;}
 }
+
+/* YENİ ÖZELLİKLER CSS */
+.loyalty-card{background:linear-gradient(135deg,#c0001a,#8a0012);border-radius:14px;padding:24px;color:#fff;margin-bottom:20px;}
+.loyalty-card h3{font-size:16px;font-weight:800;margin-bottom:4px;}
+.loyalty-card .points{font-size:42px;font-weight:900;color:#ffd700;}
+.loyalty-bar{background:rgba(255,255,255,.2);border-radius:10px;height:8px;margin:10px 0;}
+.loyalty-fill{background:#ffd700;border-radius:10px;height:100%;transition:width 1s ease;}
+.loyalty-levels{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.7);}
+.msg-item{display:flex;gap:10px;margin-bottom:14px;}
+.msg-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;}
+.msg-bubble{background:var(--lt);border-radius:0 10px 10px 10px;padding:10px 14px;flex:1;}
+.msg-bubble.mine{background:#fee2e2;border-radius:10px 0 10px 10px;}
+.msg-time{font-size:10px;color:#aaa;margin-top:4px;}
+.invoice-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #f0f0f0;}
+.invoice-item:last-child{border-bottom:none;}
+.compare-table{width:100%;border-collapse:collapse;}
+.compare-table th{background:var(--red);color:#fff;padding:10px 12px;font-size:12px;text-align:left;}
+.compare-table td{padding:10px 12px;border-bottom:1px solid #f0f0f0;font-size:12px;}
+.compare-table tr:nth-child(even) td{background:#fafafa;}
+.rating-stars{color:#f59e0b;font-size:16px;}
+.progress-ring{position:relative;width:80px;height:80px;}
+.progress-ring svg{transform:rotate(-90deg);}
+.progress-ring .ring-bg{fill:none;stroke:#f0f0f0;stroke-width:6;}
+.progress-ring .ring-fill{fill:none;stroke:var(--red);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 1s ease;}
+.progress-ring .ring-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:var(--blk);}
+
 </style>
 </head>
 <body>
@@ -192,6 +218,12 @@ tr:hover td{background:#fafafa;}
     <button class="sb-item" onclick="showPanel('docs',this)"><i class="fas fa-file-alt"></i> Belgeler</button>
     <button class="sb-item" onclick="showPanel('announcements',this)"><i class="fas fa-bullhorn"></i> Duyurular <span class="badge">2</span></button>
     <button class="sb-item" onclick="showPanel('stats',this)"><i class="fas fa-chart-bar"></i> İstatistikler</button>
+        <div class="sb-section">Özel</div>
+    <button class="sb-item" onclick="showPanel('loyalty',this)"><i class="fas fa-star"></i> Sadakat Puanı <span class="sb-badge" style="background:#ffd700;color:#111">2.450</span></button>
+    <button class="sb-item" onclick="showPanel('invoices',this)"><i class="fas fa-file-invoice-dollar"></i> Faturalarım</button>
+    <button class="sb-item" onclick="showPanel('messages',this)"><i class="fas fa-comments"></i> Mesajlar <span class="sb-badge">2</span></button>
+    <button class="sb-item" onclick="showPanel('compare',this)"><i class="fas fa-balance-scale"></i> Ürün Karşılaştır</button>
+    <button class="sb-item" onclick="showPanel('referral',this)"><i class="fas fa-users"></i> Referans Programı</button>
     <div class="sb-section">Hesap</div>
     <button class="sb-item" onclick="showPanel('notifications',this)"><i class="fas fa-bell"></i> Bildirimler <span class="badge">4</span></button>
     <button class="sb-item" onclick="showPanel('profile',this)"><i class="fas fa-user"></i> Profilim</button>
@@ -617,7 +649,7 @@ function showPanel(id,btn){
   document.getElementById('panel-'+id).classList.add('active');
   document.querySelectorAll('.sb-item').forEach(n=>n.classList.remove('active'));
   if(btn)btn.classList.add('active');
-  const titles={dashboard:'Dashboard',orders:'Siparişlerim','new-order':'Yeni Sipariş',tracking:'Sipariş Takibi',prices:'Fiyat Listesi',docs:'Belgeler',announcements:'Duyurular',stats:'İstatistikler',notifications:'Bildirimler',profile:'Profilim',support:'Destek'};
+  const titles={dashboard:'Dashboard',loyalty:'Sadakat Puanı',invoices:'Faturalarım',messages:'Mesajlar',compare:'Ürün Karşılaştır',referral:'Referans Programı',,orders:'Siparişlerim','new-order':'Yeni Sipariş',tracking:'Sipariş Takibi',prices:'Fiyat Listesi',docs:'Belgeler',announcements:'Duyurular',stats:'İstatistikler',notifications:'Bildirimler',profile:'Profilim',support:'Destek'};
   document.getElementById('page-title').textContent=titles[id]||id;
   if(window.innerWidth<=768) document.getElementById('sidebar').classList.remove('open');
 }
@@ -688,6 +720,39 @@ function submitSupport(e){
 
 function markAllRead(){
   document.querySelectorAll('.notif-item.unread').forEach(n=>n.classList.remove('unread'));
+}
+
+function sendMsg() {
+  const input = document.getElementById('msg-input');
+  const text = input.value.trim();
+  if(!text) return;
+  const container = document.getElementById('msg-container');
+  const div = document.createElement('div');
+  div.className = 'msg-item';
+  div.style.flexDirection = 'row-reverse';
+  div.innerHTML = `<div class="msg-avatar" style="background:var(--red);color:#fff">A</div>
+    <div style="text-align:right">
+      <div class="msg-bubble mine"><p style="font-size:13px;margin:0">${text}</p></div>
+      <div class="msg-time">Şimdi</div>
+    </div>`;
+  container.appendChild(div);
+  input.value = '';
+  container.scrollTop = container.scrollHeight;
+  setTimeout(() => {
+    const reply = document.createElement('div');
+    reply.className = 'msg-item';
+    reply.innerHTML = `<div class="msg-avatar" style="background:#fee2e2;color:var(--red)">YG</div>
+      <div><div class="msg-bubble">
+        <div style="font-size:12px;font-weight:700;color:var(--red);margin-bottom:4px">Yapıgüç Beton</div>
+        <p style="font-size:13px;margin:0">Mesajınız alındı! En kısa sürede dönüş yapacağız. 📞 0532 374 69 45</p>
+      </div><div class="msg-time">Şimdi</div></div>`;
+    container.appendChild(reply);
+    container.scrollTop = container.scrollHeight;
+  }, 1500);
+}
+
+function copyRef() {
+  navigator.clipboard.writeText('YG-REF-041').then(() => alert('✅ Referans kodu kopyalandı: YG-REF-041'));
 }
 </script>
 </body>
