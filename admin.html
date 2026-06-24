@@ -183,6 +183,11 @@ input:checked+.slider:before{transform:translateX(18px);}
     <button class="sb-item" onclick="showPanel('documents',this)"><i class="fas fa-file-alt"></i> Belgeler</button>
     <button class="sb-item" onclick="showPanel('announcements',this)"><i class="fas fa-bullhorn"></i> Duyurular</button>
     
+    <div class="sb-section">Raporlar</div>
+    <button class="sb-item" onclick="showPanel('revenue',this)"><i class="fas fa-chart-line"></i> Gelir Raporu</button>
+    <div class="sb-section">Yönetim</div>
+    <button class="sb-item" onclick="showPanel('users',this)"><i class="fas fa-users-cog"></i> Kullanıcı Yönetimi</button>
+    <button class="sb-item" onclick="showPanel('system',this)"><i class="fas fa-server"></i> Sistem Ayarları</button>
     <div class="sb-section">Sistem</div>
     <button class="sb-item" onclick="showPanel('settings',this)"><i class="fas fa-cog"></i> Ayarlar</button>
     <button class="sb-item" onclick="showPanel('logs',this)"><i class="fas fa-history"></i> İşlem Logları</button>
@@ -550,6 +555,127 @@ input:checked+.slider:before{transform:translateX(18px);}
       </div>
     </div>
 
+
+    <!-- GELİR RAPORU -->
+    <div class="panel" id="panel-revenue">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="si si-green"><i class="fas fa-lira-sign"></i></div><div><div class="stat-val">₺284K</div><div class="stat-lbl">Bu Ay Ciro</div><div class="stat-chg chg-up">+%31</div></div></div>
+        <div class="stat-card"><div class="si si-blue"><i class="fas fa-chart-line"></i></div><div><div class="stat-val">₺1.2M</div><div class="stat-lbl">Yıllık Ciro</div><div class="stat-chg chg-up">+%18</div></div></div>
+        <div class="stat-card"><div class="si si-orange"><i class="fas fa-store"></i></div><div><div class="stat-val">₺186K</div><div class="stat-lbl">Bayi Cirosu</div><div class="stat-chg chg-up">%65 pay</div></div></div>
+        <div class="stat-card"><div class="si si-red"><i class="fas fa-globe"></i></div><div><div class="stat-val">₺98K</div><div class="stat-lbl">Web Cirosu</div><div class="stat-chg chg-up">%35 pay</div></div></div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><h3><i class="fas fa-chart-bar"></i> Ürün Bazlı Satış</h3></div>
+          <div class="chart-bar">
+            <div class="bar-item"><div class="bar-label">Aşık Taşı</div><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div><div class="bar-val">₺241K</div></div>
+            <div class="bar-item"><div class="bar-label">Bordür</div><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><div class="bar-val">₺128K</div></div>
+            <div class="bar-item"><div class="bar-label">Şev Taşı</div><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><div class="bar-val">₺85K</div></div>
+            <div class="bar-item"><div class="bar-label">Beton Bariyer</div><div class="bar-track"><div class="bar-fill" style="width:25%"></div></div><div class="bar-val">₺71K</div></div>
+            <div class="bar-item"><div class="bar-label">Duvar Elemanı</div><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><div class="bar-val">₺57K</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3><i class="fas fa-map-marker-alt"></i> Bölge Bazlı Satış</h3></div>
+          <div class="chart-bar">
+            <div class="bar-item"><div class="bar-label">Hatay</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-val">₺142K</div></div>
+            <div class="bar-item"><div class="bar-label">Adana</div><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div><div class="bar-val">₺78K</div></div>
+            <div class="bar-item"><div class="bar-label">Mersin</div><div class="bar-track"><div class="bar-fill" style="width:35%"></div></div><div class="bar-val">₺50K</div></div>
+            <div class="bar-item"><div class="bar-label">Gaziantep</div><div class="bar-track"><div class="bar-fill" style="width:25%"></div></div><div class="bar-val">₺36K</div></div>
+            <div class="bar-item"><div class="bar-label">Diğer</div><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div><div class="bar-val">₺22K</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-table"></i> Aylık Gelir Tablosu</h3></div>
+        <table>
+          <thead><tr><th>Ay</th><th>Sipariş</th><th>Bayi Ciro</th><th>Web Ciro</th><th>Toplam</th><th>Büyüme</th></tr></thead>
+          <tbody>
+            <tr><td>Haziran 2026</td><td>47</td><td>₺186K</td><td>₺98K</td><td><strong>₺284K</strong></td><td><span class="badge b-green">+%31</span></td></tr>
+            <tr><td>Mayıs 2026</td><td>38</td><td>₺142K</td><td>₺75K</td><td><strong>₺217K</strong></td><td><span class="badge b-green">+%18</span></td></tr>
+            <tr><td>Nisan 2026</td><td>42</td><td>₺158K</td><td>₺86K</td><td><strong>₺244K</strong></td><td><span class="badge b-green">+%22</span></td></tr>
+            <tr><td>Mart 2026</td><td>31</td><td>₺118K</td><td>₺62K</td><td><strong>₺180K</strong></td><td><span class="badge b-red">-%8</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- KULLANICI YÖNETİMİ -->
+    <div class="panel" id="panel-users">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-users-cog"></i> Kullanıcı Yönetimi</h3><button class="btn btn-red btn-sm" onclick="showModal('new-user-modal')"><i class="fas fa-plus"></i> Yeni Kullanıcı</button></div>
+        <table>
+          <thead><tr><th>Kullanıcı</th><th>Rol</th><th>Son Giriş</th><th>Durum</th><th>İşlem</th></tr></thead>
+          <tbody>
+            <tr><td><strong>admin@yapigucbeton.com.tr</strong><br/><small>Gökmen Yılmaz</small></td><td><span class="badge b-red">Süper Admin</span></td><td>Bugün 14:52</td><td><label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label></td><td><button class="btn btn-blue btn-sm"><i class="fas fa-edit"></i></button></td></tr>
+            <tr><td><strong>satis@yapigucbeton.com.tr</strong><br/><small>Satış Ekibi</small></td><td><span class="badge b-blue">Satış Admin</span></td><td>Bugün 11:30</td><td><label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label></td><td><button class="btn btn-blue btn-sm"><i class="fas fa-edit"></i></button></td></tr>
+            <tr><td><strong>muhasebe@yapigucbeton.com.tr</strong><br/><small>Muhasebe</small></td><td><span class="badge b-green">Muhasebe</span></td><td>Dün 16:00</td><td><label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label></td><td><button class="btn btn-blue btn-sm"><i class="fas fa-edit"></i></button></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-shield-alt"></i> Yetki Matrisi</h3></div>
+        <table>
+          <thead><tr><th>Özellik</th><th>Süper Admin</th><th>Satış Admin</th><th>Muhasebe</th></tr></thead>
+          <tbody>
+            <tr><td>Dashboard</td><td>✅</td><td>✅</td><td>✅</td></tr>
+            <tr><td>Sipariş Yönetimi</td><td>✅</td><td>✅</td><td>👁️</td></tr>
+            <tr><td>Bayi Yönetimi</td><td>✅</td><td>✅</td><td>❌</td></tr>
+            <tr><td>Fiyat Yönetimi</td><td>✅</td><td>❌</td><td>❌</td></tr>
+            <tr><td>Kullanıcı Yönetimi</td><td>✅</td><td>❌</td><td>❌</td></tr>
+            <tr><td>Gelir Raporu</td><td>✅</td><td>👁️</td><td>✅</td></tr>
+            <tr><td>Sistem Ayarları</td><td>✅</td><td>❌</td><td>❌</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SİSTEM AYARLARI -->
+    <div class="panel" id="panel-system">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><h3><i class="fas fa-envelope"></i> E-posta Ayarları</h3></div>
+          <div class="fg"><label>Bildirim E-postası</label><input type="email" value="trgokmenyilmaz@hotmail.com"/></div>
+          <div class="fg"><label>CC E-postası</label><input type="email" value="info@yapigucbeton.com.tr"/></div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px"><span>Yeni sipariş bildirimi</span><label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px"><span>Bayi başvurusu bildirimi</span><label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px"><span>Günlük özet raporu</span><label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px"><span>Stok uyarısı</span><label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label></div>
+          </div>
+          <button class="btn btn-red" onclick="alert('✅ E-posta ayarları kaydedildi!')"><i class="fas fa-save"></i> Kaydet</button>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3><i class="fas fa-cogs"></i> Sistem Bilgisi</h3></div>
+          <table>
+            <tbody>
+              <tr><td style="color:var(--gr)">Site URL</td><td><strong>yapigucbeton.com.tr</strong></td></tr>
+              <tr><td style="color:var(--gr)">Hosting</td><td>GitHub Pages + Cloudflare</td></tr>
+              <tr><td style="color:var(--gr)">SSL</td><td><span class="badge b-green">Aktif</span></td></tr>
+              <tr><td style="color:var(--gr)">CDN</td><td><span class="badge b-green">Cloudflare</span></td></tr>
+              <tr><td style="color:var(--gr)">PWA</td><td><span class="badge b-green">Aktif</span></td></tr>
+              <tr><td style="color:var(--gr)">Google Search Console</td><td><span class="badge b-green">Doğrulandı</span></td></tr>
+              <tr><td style="color:var(--gr)">Sitemap URL sayısı</td><td>17 URL</td></tr>
+              <tr><td style="color:var(--gr)">Son güncelleme</td><td>23 Haz 2026</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:14px;display:flex;gap:8px">
+            <button class="btn btn-blue btn-sm" onclick="window.open('https://search.google.com/search-console','_blank')"><i class="fas fa-search"></i> Search Console</button>
+            <button class="btn btn-gray btn-sm" onclick="window.open('https://dash.cloudflare.com','_blank')"><i class="fab fa-cloudflare"></i> Cloudflare</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-database"></i> Veri Yönetimi</h3></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+          <button class="btn btn-blue" onclick="alert('Yedek alınıyor...')"><i class="fas fa-download"></i> Veri Yedeği Al</button>
+          <button class="btn btn-gray" onclick="alert('Önbellek temizlendi!')"><i class="fas fa-broom"></i> Önbellek Temizle</button>
+          <button class="btn btn-gray" onclick="window.open('https://github.com/trcayan/yapigucbeton','_blank')"><i class="fab fa-github"></i> GitHub Repo</button>
+          <button class="btn btn-red" onclick="if(confirm('Emin misiniz?'))alert('Sistem yeniden başlatıldı!')"><i class="fas fa-redo"></i> Sistemi Yenile</button>
+        </div>
+      </div>
+    </div>
+
     <!-- LOGLAR -->
     <div class="panel" id="panel-logs">
       <div class="card">
@@ -701,7 +827,7 @@ function showPanel(id, btn) {
     'dealer-requests':'Bayi Başvuruları', 'dealer-orders':'Bayi Siparişleri',
     products:'Ürün Yönetimi', prices:'Fiyat Yönetimi', campaigns:'Kampanyalar',
     orders:'Tüm Siparişler', quotes:'Teklif Talepleri', gallery:'Galeri Yönetimi',
-    documents:'Belgeler', announcements:'Duyurular', settings:'Ayarlar', logs:'İşlem Logları'
+    documents:'Belgeler', announcements:'Duyurular', settings:'Ayarlar', logs:'İşlem Logları',revenue:'Gelir Raporu',users:'Kullanıcı Yönetimi',system:'Sistem Ayarları'
   };
   document.getElementById('page-title').textContent = titles[id] || id;
 }
