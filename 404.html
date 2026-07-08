@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sayfa Bulunamadı (404) | Yapıgüç Beton</title>
+<meta name="robots" content="noindex, follow"/>
+<link rel="icon" href="favicon.png"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:linear-gradient(135deg,#0d0d0d,#1a0005);min-height:100vh;display:flex;align-items:center;justify-content:center;color:#fff;padding:20px;}
+.box{text-align:center;max-width:500px;}
+.num{font-size:120px;font-weight:900;color:#c0001a;line-height:1;margin-bottom:10px;}
+h1{font-size:24px;font-weight:700;margin-bottom:12px;}
+p{color:#aaa;font-size:15px;line-height:1.7;margin-bottom:28px;}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn{padding:13px 24px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;transition:all .2s;}
+.btn-red{background:#c0001a;color:#fff;}
+.btn-red:hover{background:#8a0012;}
+.btn-out{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3);}
+.btn-out:hover{border-color:#fff;}
+.links{margin-top:32px;display:flex;flex-direction:column;gap:8px;}
+.links a{color:#888;text-decoration:none;font-size:13px;transition:color .2s;}
+.links a:hover{color:#c0001a;}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="num">404</div>
+  <h1>Sayfa Bulunamadı</h1>
+  <p>Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış olabilir. Aşağıdaki bağlantılardan devam edebilirsiniz.</p>
+  <div class="btns">
+    <a href="/" class="btn btn-red">🏠 Ana Sayfaya Dön</a>
+    <a href="/#urunler" class="btn btn-out">🧱 Ürünlerimiz</a>
+  </div>
+  <div class="links">
+    <a href="/hakkimizda.html">📋 Hakkımızda</a>
+    <a href="/bayi-giris.html">🏪 Bayi Girişi</a>
+    <a href="/parke-tasi-nasil-dosenir.html">📖 Parke Taşı Rehberi</a>
+    <a href="tel:+905323746945">📞 0532 374 69 45</a>
+    <a href="https://wa.me/905405163636">💬 WhatsApp</a>
+  </div>
+</div>
+<script>
+// 5 saniye sonra ana sayfaya yönlendir
+setTimeout(() => { window.location.href = '/'; }, 10000);
+</script>
+</body>
+</html>
