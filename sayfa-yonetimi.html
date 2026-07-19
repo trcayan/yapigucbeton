@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Sayfa Yonetimi - Yapiguc Beton Admin</title>
+<link rel="icon" href="favicon.png"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{--red:#c0001a;--red2:#8a0012;--blk:#111;--lt:#f4f6f9;--dk:#111827;--gr:#6b7280;--wh:#fff;--green:#16a34a;--blue:#1d4ed8;--orange:#d97706;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--lt);color:var(--dk);}
+.login-wrap{position:fixed;inset:0;background:linear-gradient(135deg,#0d0d0d,#1a0005);display:flex;align-items:center;justify-content:center;z-index:9999;}
+.login-card{background:#fff;border-radius:16px;padding:36px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.4);}
+.login-card .logo{text-align:center;margin-bottom:20px;}
+.login-card .logo img{height:50px;}
+.login-card h2{font-size:20px;font-weight:900;color:var(--blk);margin-bottom:4px;text-align:center;}
+.login-card p{font-size:13px;color:var(--gr);margin-bottom:24px;text-align:center;}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+.fg label{font-size:12px;font-weight:600;color:var(--blk);}
+.fg input{padding:11px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;outline:none;transition:border .2s;}
+.fg input:focus{border-color:var(--red);}
+.btn-login{width:100%;padding:13px;background:var(--red);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;}
+.btn-login:hover{background:var(--red2);}
+.err-msg{background:#fee2e2;border-radius:6px;padding:10px;font-size:13px;color:#991b1b;margin-bottom:12px;display:none;}
+.err-msg.show{display:block;}
+.sidebar{width:240px;background:var(--blk);color:#fff;position:fixed;top:0;left:0;height:100vh;display:flex;flex-direction:column;z-index:100;}
+.sb-logo{padding:16px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:10px;}
+.sb-logo img{height:36px;}
+.sb-logo div h2{font-size:13px;font-weight:900;color:#fff;}
+.sb-logo div p{font-size:10px;color:var(--red);text-transform:uppercase;}
+.sb-nav{flex:1;padding:8px 0;overflow-y:auto;}
+.sb-item{display:flex;align-items:center;gap:10px;padding:10px 16px;color:#aaa;text-decoration:none;font-size:13px;font-weight:500;transition:all .2s;cursor:pointer;border:none;background:none;width:100%;text-align:left;border-left:3px solid transparent;}
+.sb-item:hover,.sb-item.active{background:rgba(192,0,26,.15);color:#fff;border-left-color:var(--red);}
+.sb-item i{width:16px;text-align:center;font-size:13px;}
+.sb-bottom{padding:12px 16px;border-top:1px solid rgba(255,255,255,.08);}
+.main{margin-left:240px;min-height:100vh;}
+.topbar{background:var(--wh);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 8px rgba(0,0,0,.08);position:sticky;top:0;z-index:50;}
+.topbar h1{font-size:16px;font-weight:800;color:var(--blk);}
+.topbar-right{display:flex;align-items:center;gap:10px;}
+.tb-btn{background:var(--lt);border:none;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;color:var(--blk);display:flex;align-items:center;gap:6px;transition:all .2s;}
+.tb-btn:hover{background:#e5e7eb;}
+.tb-btn.red{background:var(--red);color:#fff;}
+.content{padding:24px;}
+.panel{display:none;animation:fadeIn .3s ease;}
+.panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:22px;}
+.stat-card{background:var(--wh);border-radius:12px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,.06);display:flex;align-items:center;gap:12px;}
+.si{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.si-green{background:#d1fae5;color:var(--green);}
+.si-red{background:#fee2e2;color:var(--red);}
+.si-blue{background:#dbeafe;color:var(--blue);}
+.si-orange{background:#ffedd5;color:var(--orange);}
+.stat-val{font-size:22px;font-weight:900;color:var(--blk);}
+.stat-lbl{font-size:11px;color:var(--gr);}
+.card{background:var(--wh);border-radius:12px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:18px;}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.card-header h3{font-size:14px;font-weight:700;color:var(--blk);display:flex;align-items:center;gap:7px;}
+.card-header h3 i{color:var(--red);}
+.search-bar{display:flex;gap:8px;margin-bottom:14px;}
+.search-bar input{flex:1;padding:9px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-size:13px;outline:none;}
+.search-bar input:focus{border-color:var(--red);}
+.search-bar select{padding:9px 12px;border:1.5px solid #d1d5db;border-radius:8px;font-size:13px;outline:none;}
+table{width:100%;border-collapse:collapse;}
+th{text-align:left;font-size:11px;font-weight:700;color:var(--gr);text-transform:uppercase;letter-spacing:.5px;padding:9px 10px;border-bottom:2px solid #f0f0f0;}
+td{padding:10px;border-bottom:1px solid #f9f9f9;font-size:12px;color:var(--dk);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#fafafa;}
+.badge{display:inline-block;padding:3px 9px;border-radius:8px;font-size:10px;font-weight:700;}
+.b-green{background:#d1fae5;color:#065f46;}
+.b-red{background:#fee2e2;color:#991b1b;}
+.b-blue{background:#dbeafe;color:#1e40af;}
+.b-gray{background:#f3f4f6;color:#374151;}
+.b-orange{background:#ffedd5;color:#92400e;}
+.toggle{position:relative;display:inline-block;width:44px;height:24px;}
+.toggle input{opacity:0;width:0;height:0;}
+.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#ccc;border-radius:24px;transition:.3s;}
+.slider:before{position:absolute;content:"";height:18px;width:18px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.3s;}
+input:checked+.slider{background:var(--green);}
+input:checked+.slider:before{transform:translateX(20px);}
+.action-btns{display:flex;gap:5px;}
+.btn-sm{padding:5px 10px;border-radius:6px;font-size:11px;font-weight:600;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;transition:all .2s;text-decoration:none;}
+.btn-green{background:var(--green);color:#fff;}
+.btn-red{background:var(--red);color:#fff;}
+.btn-blue{background:var(--blue);color:#fff;}
+.btn-gray{background:#f3f4f6;color:var(--blk);}
+.btn-gray:hover{background:#e5e7eb;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:5000;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--wh);border-radius:14px;padding:28px;max-width:500px;width:100%;position:relative;}
+.modal-close{position:absolute;top:14px;right:14px;background:#f3f4f6;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;}
+.modal h2{font-size:17px;font-weight:800;color:var(--blk);margin-bottom:16px;}
+.smsg{display:none;background:#d1fae5;border-radius:7px;padding:10px 14px;color:#065f46;font-weight:600;margin-bottom:12px;font-size:12px;}
+.smsg.show{display:flex;align-items:center;gap:8px;}
+.notify{position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:8px;}
+.notify-item{background:#111;color:#fff;padding:12px 18px;border-radius:10px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(0,0,0,.3);animation:slideIn .3s ease;}
+.notify-item.success{background:var(--green);}
+.notify-item.error{background:var(--red);}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+.robots-pre{background:#f9fafb;border-radius:8px;padding:16px;font-family:monospace;font-size:13px;margin-bottom:14px;white-space:pre-wrap;border:1px solid #e5e7eb;}
+</style>
+</head>
+<body>
+
+<div class="login-wrap" id="login-wrap">
+<div class="login-card">
+  <div class="logo"><img src="logo.png" alt="Yapiguc"/></div>
+  <h2>Sayfa Yonetimi</h2>
+  <p>Yapiguc Beton Admin Paneli</p>
+  <div class="err-msg" id="login-err">Hatali sifre!</div>
+  <form onsubmit="doLogin(event)">
+    <div class="fg"><label>Sifre</label><input type="password" id="login-pass" placeholder="Sifrenizi girin" required autofocus/></div>
+    <button class="btn-login" type="submit">Giris Yap</button>
+  </form>
+</div>
+</div>
+
+<div class="notify" id="notify"></div>
+
+<div class="sidebar">
+  <div class="sb-logo">
+    <img src="logo.png" alt="Yapiguc"/>
+    <div><h2>Yapiguc</h2><p>Sayfa Yonetimi</p></div>
+  </div>
+  <nav class="sb-nav">
+    <div style="font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:1px;padding:10px 16px 4px">Yonetim</div>
+    <button class="sb-item active" onclick="showPanel('dashboard',this)"><i class="fas fa-chart-pie"></i> Dashboard</button>
+    <button class="sb-item" onclick="showPanel('pages',this)"><i class="fas fa-file-alt"></i> Tum Sayfalar</button>
+    <button class="sb-item" onclick="showPanel('hidden',this)"><i class="fas fa-eye-slash"></i> Gizli Sayfalar</button>
+    <button class="sb-item" onclick="showPanel('public',this)"><i class="fas fa-globe"></i> Acik Sayfalar</button>
+    <button class="sb-item" onclick="showPanel('seo',this)"><i class="fas fa-search"></i> SEO Sayfalari</button>
+    <div style="font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:1px;padding:10px 16px 4px">Araclar</div>
+    <button class="sb-item" onclick="showPanel('robots',this)"><i class="fas fa-robot"></i> Robots.txt</button>
+    <button class="sb-item" onclick="showPanel('sitemap',this)"><i class="fas fa-sitemap"></i> Sitemap</button>
+    <button class="sb-item" onclick="showPanel('logs',this)"><i class="fas fa-history"></i> Islem Loglari</button>
+  </nav>
+  <div class="sb-bottom">
+    <a href="admin.html" class="sb-item"><i class="fas fa-cog"></i> Ana Admin</a>
+    <a href="index.html" class="sb-item"><i class="fas fa-globe"></i> Ana Site</a>
+    <button class="sb-item" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Cikis</button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="topbar">
+    <h1 id="page-title">Dashboard</h1>
+    <div class="topbar-right">
+      <button class="tb-btn" onclick="refreshAll()"><i class="fas fa-sync"></i> Yenile</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div class="panel active" id="panel-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="si si-green"><i class="fas fa-globe"></i></div><div><div class="stat-val" id="stat-public">0</div><div class="stat-lbl">Acik Sayfa</div></div></div>
+        <div class="stat-card"><div class="si si-red"><i class="fas fa-eye-slash"></i></div><div><div class="stat-val" id="stat-hidden">0</div><div class="stat-lbl">Gizli Sayfa</div></div></div>
+        <div class="stat-card"><div class="si si-blue"><i class="fas fa-search"></i></div><div><div class="stat-val" id="stat-seo">0</div><div class="stat-lbl">SEO Sayfasi</div></div></div>
+        <div class="stat-card"><div class="si si-orange"><i class="fas fa-file-alt"></i></div><div><div class="stat-val" id="stat-total">0</div><div class="stat-lbl">Toplam Sayfa</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-exclamation-triangle"></i> Gizli Sayfalar - Hizli Durum</h3></div>
+        <div id="quick-status"></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-clock"></i> Son Islemler</h3></div>
+        <div id="recent-logs"></div>
+      </div>
+    </div>
+
+    <!-- TUM SAYFALAR -->
+    <div class="panel" id="panel-pages">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-file-alt"></i> Tum Sayfalar</h3><span id="pages-count" style="font-size:12px;color:var(--gr)"></span></div>
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Sayfa ara..." oninput="filterPages()"/>
+          <select id="filter-status" onchange="filterPages()">
+            <option value="all">Tumü</option>
+            <option value="public">Acik</option>
+            <option value="hidden">Gizli</option>
+            <option value="seo">SEO</option>
+          </select>
+        </div>
+        <table>
+          <thead><tr><th>Sayfa Adi</th><th>URL</th><th>Kategori</th><th>Boyut</th><th>Gorunurluk</th><th>Islemler</th></tr></thead>
+          <tbody id="pages-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- GIZLI SAYFALAR -->
+    <div class="panel" id="panel-hidden">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-eye-slash"></i> Gizli Sayfalar</h3></div>
+        <table>
+          <thead><tr><th>Sayfa</th><th>URL</th><th>Gizleme Nedeni</th><th>Islemler</th></tr></thead>
+          <tbody id="hidden-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ACIK SAYFALAR -->
+    <div class="panel" id="panel-public">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-globe"></i> Acik Sayfalar</h3></div>
+        <table>
+          <thead><tr><th>Sayfa</th><th>URL</th><th>Kategori</th><th>Islemler</th></tr></thead>
+          <tbody id="public-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SEO SAYFALARI -->
+    <div class="panel" id="panel-seo">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-search"></i> SEO Sayfalari</h3></div>
+        <table>
+          <thead><tr><th>Sayfa</th><th>Hedef Kelime</th><th>Bolge</th><th>Durum</th><th>Islemler</th></tr></thead>
+          <tbody id="seo-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ROBOTS -->
+    <div class="panel" id="panel-robots">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-robot"></i> Robots.txt Yonetimi</h3></div>
+        <p style="font-size:13px;color:var(--gr);margin-bottom:14px">Arama motorlarinin hangi sayfalara erisebilecegini kontrol edin.</p>
+        <div class="robots-pre" id="robots-content">Yukleniyor...</div>
+        <div style="display:flex;gap:8px">
+          <button class="btn-sm btn-blue" onclick="showModal('robots-modal')"><i class="fas fa-edit"></i> Duzenle</button>
+          <button class="btn-sm btn-gray" onclick="loadRobots()"><i class="fas fa-sync"></i> Yenile</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-ban"></i> Engellenen Sayfalar</h3></div>
+        <div id="blocked-pages"></div>
+      </div>
+    </div>
+
+    <!-- SITEMAP -->
+    <div class="panel" id="panel-sitemap">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-sitemap"></i> Sitemap Yonetimi</h3></div>
+        <div id="sitemap-stats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px"></div>
+        <table>
+          <thead><tr><th>URL</th><th>Oncelik</th><th>Guncelleme Sikligi</th></tr></thead>
+          <tbody id="sitemap-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- LOGLAR -->
+    <div class="panel" id="panel-logs">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-history"></i> Islem Loglari</h3><button class="btn-sm btn-gray" onclick="clearLogs()"><i class="fas fa-trash"></i> Temizle</button></div>
+        <table>
+          <thead><tr><th>Tarih/Saat</th><th>Islem</th><th>Sayfa</th><th>Kullanici</th></tr></thead>
+          <tbody id="logs-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ROBOTS MODAL -->
+<div class="modal-overlay" id="robots-modal">
+<div class="modal">
+  <button class="modal-close" onclick="closeModal('robots-modal')">X</button>
+  <h2>Robots.txt Duzenle</h2>
+  <div class="smsg" id="robots-smsg">Kaydedildi!</div>
+  <textarea id="robots-editor" style="width:100%;height:200px;padding:12px;border:1.5px solid #d1d5db;border-radius:8px;font-family:monospace;font-size:13px;outline:none;resize:vertical;margin-bottom:12px"></textarea>
+  <button class="btn-sm btn-red" onclick="saveRobots()" style="width:100%;justify-content:center;padding:12px">Kaydet</button>
+</div>
+</div>
+
+<script>
+var PASS = 'YapigucAdmin2026!';
+
+var PAGES = [
+  {name:'Ana Sayfa', url:'index.html', category:'Ana Sayfa', status:'public', desc:'31 urun, formlar, SEO 100%', size:'140KB'},
+  {name:'Hakkimizda', url:'hakkimizda.html', category:'Kurumsal', status:'public', desc:'Kurumsal tanitim', size:'22KB'},
+  {name:'Bayi Girisi', url:'bayi-giris.html', category:'Bayi', status:'public', desc:'Bayi giris ve basvuru', size:'8KB'},
+  {name:'Bayi Portali', url:'portal.html', category:'Bayi', status:'public', desc:'Bayi yonetim portali', size:'59KB'},
+  {name:'Admin Paneli', url:'admin.html', category:'Admin', status:'hidden', desc:'Ana yonetim paneli', size:'74KB', reason:'Guvenlik'},
+  {name:'Sayfa Yonetimi', url:'sayfa-yonetimi.html', category:'Admin', status:'hidden', desc:'Bu panel', size:'~', reason:'Guvenlik'},
+  {name:'Pazar Stratejisi', url:'strateji.html', category:'Admin', status:'hidden', desc:'Gizli pazar stratejisi', size:'26KB', reason:'Gizli bilgi'},
+  {name:'Parke Tasi Nasil Dosenir?', url:'parke-tasi-nasil-dosenir.html', category:'Blog', status:'public', desc:'Doseme rehberi', size:'10KB'},
+  {name:'2026 Hatay Parke Fiyatlari', url:'2026-hatay-parke-tasi-fiyatlari.html', category:'Blog', status:'public', desc:'Fiyat rehberi', size:'9KB'},
+  {name:'Kilit Parke mi Karo mu?', url:'kilit-parke-mi-karo-mu.html', category:'Blog', status:'public', desc:'Karsilastirma', size:'8KB'},
+  {name:'Bordur Tasi Cesitleri', url:'bordur-tasi-cesitleri-ve-fiyatlari.html', category:'Blog', status:'public', desc:'Bordur rehberi', size:'8KB'},
+  {name:'Parke Tasi Maliyeti', url:'parke-tasi-maliyeti.html', category:'Blog', status:'public', desc:'Maliyet hesaplama', size:'10KB'},
+  {name:'Hatay Parke Firmalari', url:'hatay-parke-tasi-firmalari.html', category:'Blog', status:'public', desc:'Firma karsilastirma', size:'7KB'},
+  {name:'Beton Bariyer Cesitleri', url:'beton-bariyer-cesitleri.html', category:'Blog', status:'public', desc:'Bariyer rehberi', size:'7KB'},
+  {name:'Hatay Parke Tasi', url:'hatay-parke-tasi.html', category:'SEO', status:'public', desc:'Hatay bolge sayfasi', size:'6KB', keyword:'hatay parke tasi'},
+  {name:'Antakya Parke Tasi', url:'antakya-parke-tasi.html', category:'SEO', status:'public', desc:'Antakya bolge sayfasi', size:'2KB', keyword:'antakya parke tasi'},
+  {name:'Iskenderun Parke Tasi', url:'iskenderun-parke-tasi.html', category:'SEO', status:'public', desc:'Iskenderun sayfasi', size:'5KB', keyword:'iskenderun parke tasi'},
+  {name:'Dortyol Parke Tasi', url:'dortyol-parke-tasi.html', category:'SEO', status:'public', desc:'Dortyol sayfasi', size:'5KB', keyword:'dortyol parke tasi'},
+  {name:'Samandag Parke Tasi', url:'samandag-parke-tasi.html', category:'SEO', status:'public', desc:'Samandag sayfasi', size:'5KB', keyword:'samandag parke tasi'},
+  {name:'Kirikhan Parke Tasi', url:'kirikhan-parke-tasi.html', category:'SEO', status:'public', desc:'Kirikhan sayfasi', size:'5KB', keyword:'kirikhan parke tasi'},
+  {name:'Reyhanli Parke Tasi', url:'reyhanli-parke-tasi.html', category:'SEO', status:'public', desc:'Reyhanli sayfasi', size:'5KB', keyword:'reyhanli parke tasi'},
+  {name:'Payas Parke Tasi', url:'payas-parke-tasi.html', category:'SEO', status:'public', desc:'Payas sayfasi', size:'5KB', keyword:'payas parke tasi'},
+  {name:'Erzin Parke Tasi', url:'erzin-parke-tasi.html', category:'SEO', status:'public', desc:'Erzin sayfasi', size:'5KB', keyword:'erzin parke tasi'},
+  {name:'Hassa Parke Tasi', url:'hassa-parke-tasi.html', category:'SEO', status:'public', desc:'Hassa sayfasi', size:'5KB', keyword:'hassa parke tasi'},
+  {name:'Adana Parke Tasi', url:'adana-parke-tasi.html', category:'SEO', status:'public', desc:'Adana sayfasi', size:'2KB', keyword:'adana parke tasi'},
+  {name:'Mersin Parke Tasi', url:'mersin-parke-tasi.html', category:'SEO', status:'public', desc:'Mersin sayfasi', size:'2KB', keyword:'mersin parke tasi'},
+  {name:'Gaziantep Parke Tasi', url:'gaziantep-parke-tasi.html', category:'SEO', status:'public', desc:'Gaziantep sayfasi', size:'2KB', keyword:'gaziantep parke tasi'},
+  {name:'Bordur Tasi', url:'bordur-tasi.html', category:'SEO', status:'public', desc:'Bordur SEO', size:'2KB', keyword:'bordur tasi'},
+  {name:'Beton Bariyer', url:'beton-bariyer.html', category:'SEO', status:'public', desc:'Bariyer SEO', size:'2KB', keyword:'beton bariyer'},
+  {name:'Sev Tasi', url:'sev-tasi.html', category:'SEO', status:'public', desc:'Sev tasi SEO', size:'2KB', keyword:'sev tasi'},
+  {name:'Arapca Sayfa', url:'ar.html', category:'Uluslararasi', status:'public', desc:'Suriye/Arap pazari', size:'10KB'},
+  {name:'Google Haritalar', url:'google-haritalar.html', category:'Kurumsal', status:'public', desc:'GBP optimizasyon', size:'6KB'},
+  {name:'Yorum QR', url:'yorum.html', category:'Kurumsal', status:'public', desc:'Musteri yorum sayfasi', size:'3KB'},
+  {name:'404 Sayfasi', url:'404.html', category:'Sistem', status:'public', desc:'Ozel hata sayfasi', size:'3KB'},
+  {name:'Sitemap', url:'sitemap.xml', category:'Sistem', status:'public', desc:'Google sitemap', size:'5KB'},
+  {name:'Robots.txt', url:'robots.txt', category:'Sistem', status:'public', desc:'Crawler kurallari', size:'1KB'},
+];
+
+var logs = JSON.parse(localStorage.getItem('yg_logs') || '[]');
+var pageData = JSON.parse(localStorage.getItem('yg_pages') || 'null') || PAGES;
+
+function doLogin(e) {
+  e.preventDefault();
+  var pass = document.getElementById('login-pass').value;
+  var err = document.getElementById('login-err');
+  if(pass === PASS) {
+    document.getElementById('login-wrap').style.display = 'none';
+    sessionStorage.setItem('yg_admin', '1');
+    initDashboard();
+  } else {
+    err.classList.add('show');
+    setTimeout(function(){ err.classList.remove('show'); }, 3000);
+  }
+}
+
+function doLogout() {
+  sessionStorage.removeItem('yg_admin');
+  document.getElementById('login-wrap').style.display = 'flex';
+}
+
+if(sessionStorage.getItem('yg_admin')) {
+  document.getElementById('login-wrap').style.display = 'none';
+  initDashboard();
+}
+
+function showPanel(id, btn) {
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('panel-' + id).classList.add('active');
+  document.querySelectorAll('.sb-item').forEach(function(n){ n.classList.remove('active'); });
+  if(btn) btn.classList.add('active');
+  var titles = {dashboard:'Dashboard', pages:'Tum Sayfalar', hidden:'Gizli Sayfalar', public:'Acik Sayfalar', seo:'SEO Sayfalari', robots:'Robots.txt', sitemap:'Sitemap', logs:'Islem Loglari'};
+  document.getElementById('page-title').textContent = titles[id] || id;
+  if(id === 'robots') loadRobots();
+  if(id === 'sitemap') loadSitemap();
+  if(id === 'logs') renderLogs();
+}
+
+function initDashboard() {
+  var pub = pageData.filter(function(p){ return p.status === 'public'; }).length;
+  var hid = pageData.filter(function(p){ return p.status === 'hidden'; }).length;
+  var seo = pageData.filter(function(p){ return p.category === 'SEO'; }).length;
+  document.getElementById('stat-public').textContent = pub;
+  document.getElementById('stat-hidden').textContent = hid;
+  document.getElementById('stat-seo').textContent = seo;
+  document.getElementById('stat-total').textContent = pageData.length;
+
+  var qs = document.getElementById('quick-status');
+  var hiddenPages = pageData.filter(function(p){ return p.status === 'hidden'; });
+  if(hiddenPages.length === 0) {
+    qs.innerHTML = '<p style="color:#6b7280;font-size:13px;padding:10px 0">Tum sayfalar acik durumda.</p>';
+  } else {
+    qs.innerHTML = hiddenPages.map(function(p){
+      return '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0f0f0">' +
+        '<div style="display:flex;align-items:center;gap:10px">' +
+        '<div style="width:8px;height:8px;background:#c0001a;border-radius:50%"></div>' +
+        '<span style="font-size:13px;font-weight:600">' + p.name + '</span>' +
+        '<span class="badge b-red">Gizli</span>' +
+        (p.reason ? '<span style="font-size:11px;color:#6b7280">' + p.reason + '</span>' : '') +
+        '</div>' +
+        '<button class="btn-sm btn-green" onclick="togglePage(\'' + p.url + '\',\'public\')">Goster</button>' +
+        '</div>';
+    }).join('');
+  }
+
+  renderRecentLogs();
+  renderAllTables();
+}
+
+function renderRecentLogs() {
+  var rl = document.getElementById('recent-logs');
+  var recent = logs.slice(-5).reverse();
+  if(recent.length === 0) {
+    rl.innerHTML = '<p style="color:#6b7280;font-size:13px;padding:10px 0">Henuz islem yapilmadi.</p>';
+    return;
+  }
+  rl.innerHTML = recent.map(function(l){
+    var cls = l.action === 'Gizlendi' ? 'b-red' : l.action === 'Gosterildi' ? 'b-green' : 'b-blue';
+    return '<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:12px">' +
+      '<span style="color:#6b7280;min-width:130px">' + l.time + '</span>' +
+      '<span class="badge ' + cls + '">' + l.action + '</span>' +
+      '<span>' + l.page + '</span></div>';
+  }).join('');
+}
+
+function renderAllTables() {
+  renderPagesTable(pageData);
+  renderHiddenTable();
+  renderPublicTable();
+  renderSeoTable();
+}
+
+function renderPagesTable(data) {
+  var tbody = document.getElementById('pages-table');
+  document.getElementById('pages-count').textContent = data.length + ' sayfa';
+  tbody.innerHTML = data.map(function(p){
+    var checked = p.status === 'public' ? 'checked' : '';
+    var btnLabel = p.status === 'public' ? 'Gizle' : 'Goster';
+    var btnCls = p.status === 'public' ? 'btn-red' : 'btn-green';
+    var newStatus = p.status === 'public' ? 'hidden' : 'public';
+    return '<tr>' +
+      '<td><strong>' + p.name + '</strong><br/><span style="font-size:11px;color:#6b7280">' + (p.desc||'') + '</span></td>' +
+      '<td><a href="' + p.url + '" target="_blank" style="color:#1d4ed8;font-size:11px;text-decoration:none">' + p.url + '</a></td>' +
+      '<td><span class="badge b-gray">' + p.category + '</span></td>' +
+      '<td>' + (p.size||'-') + '</td>' +
+      '<td><label class="toggle"><input type="checkbox" ' + checked + ' onchange="togglePage(\'' + p.url + '\',this.checked?\'public\':\'hidden\')"/><span class="slider"></span></label>' +
+      '<span style="font-size:11px;color:#6b7280;margin-left:6px">' + (p.status==='public'?'Acik':'Gizli') + '</span></td>' +
+      '<td><div class="action-btns">' +
+      '<button class="btn-sm ' + btnCls + '" onclick="togglePage(\'' + p.url + '\',\'' + newStatus + '\')">' + btnLabel + '</button>' +
+      '<a href="' + p.url + '" target="_blank" class="btn-sm btn-gray">Ac</a>' +
+      '</div></td></tr>';
+  }).join('');
+}
+
+function renderHiddenTable() {
+  var tbody = document.getElementById('hidden-table');
+  var hidden = pageData.filter(function(p){ return p.status === 'hidden'; });
+  if(hidden.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#6b7280;padding:20px">Gizli sayfa yok</td></tr>';
+    return;
+  }
+  tbody.innerHTML = hidden.map(function(p){
+    return '<tr>' +
+      '<td><strong>' + p.name + '</strong></td>' +
+      '<td><span style="font-size:11px;color:#6b7280">' + p.url + '</span></td>' +
+      '<td><span class="badge b-red">' + (p.reason||'Gizli') + '</span></td>' +
+      '<td><div class="action-btns">' +
+      '<button class="btn-sm btn-green" onclick="togglePage(\'' + p.url + '\',\'public\')">Goster</button>' +
+      '<a href="' + p.url + '" target="_blank" class="btn-sm btn-gray">Ac</a>' +
+      '</div></td></tr>';
+  }).join('');
+}
+
+function renderPublicTable() {
+  var tbody = document.getElementById('public-table');
+  var pub = pageData.filter(function(p){ return p.status === 'public'; });
+  tbody.innerHTML = pub.map(function(p){
+    return '<tr>' +
+      '<td><strong>' + p.name + '</strong></td>' +
+      '<td><a href="' + p.url + '" target="_blank" style="color:#1d4ed8;font-size:11px">' + p.url + '</a></td>' +
+      '<td><span class="badge b-gray">' + p.category + '</span></td>' +
+      '<td><div class="action-btns">' +
+      '<button class="btn-sm btn-red" onclick="togglePage(\'' + p.url + '\',\'hidden\')">Gizle</button>' +
+      '<a href="' + p.url + '" target="_blank" class="btn-sm btn-gray">Ac</a>' +
+      '</div></td></tr>';
+  }).join('');
+}
+
+function renderSeoTable() {
+  var tbody = document.getElementById('seo-table');
+  var seo = pageData.filter(function(p){ return p.category === 'SEO'; });
+  tbody.innerHTML = seo.map(function(p){
+    var statusCls = p.status === 'public' ? 'b-green' : 'b-red';
+    var statusTxt = p.status === 'public' ? 'Acik' : 'Gizli';
+    var btnCls = p.status === 'public' ? 'btn-red' : 'btn-green';
+    var btnTxt = p.status === 'public' ? 'Gizle' : 'Goster';
+    var newStatus = p.status === 'public' ? 'hidden' : 'public';
+    var bolge = p.url.split('-')[0];
+    return '<tr>' +
+      '<td><strong>' + p.name + '</strong></td>' +
+      '<td><span style="font-size:11px;color:#1d4ed8">' + (p.keyword||'-') + '</span></td>' +
+      '<td><span class="badge b-blue">' + bolge + '</span></td>' +
+      '<td><span class="badge ' + statusCls + '">' + statusTxt + '</span></td>' +
+      '<td><div class="action-btns">' +
+      '<button class="btn-sm ' + btnCls + '" onclick="togglePage(\'' + p.url + '\',\'' + newStatus + '\')">' + btnTxt + '</button>' +
+      '<a href="' + p.url + '" target="_blank" class="btn-sm btn-gray">Ac</a>' +
+      '</div></td></tr>';
+  }).join('');
+}
+
+function togglePage(url, newStatus) {
+  var page = null;
+  for(var i=0; i<pageData.length; i++){ if(pageData[i].url === url){ page = pageData[i]; break; } }
+  if(!page) return;
+  page.status = newStatus;
+  localStorage.setItem('yg_pages', JSON.stringify(pageData));
+  var now = new Date().toLocaleString('tr-TR');
+  logs.push({time: now, action: newStatus === 'hidden' ? 'Gizlendi' : 'Gosterildi', page: page.name, user: 'Admin'});
+  localStorage.setItem('yg_logs', JSON.stringify(logs));
+  showNotify(newStatus === 'hidden' ? '"' + page.name + '" gizlendi' : '"' + page.name + '" gosterildi', newStatus === 'hidden' ? 'error' : 'success');
+  renderAllTables();
+  initDashboard();
+}
+
+function filterPages() {
+  var search = document.getElementById('search-input').value.toLowerCase();
+  var status = document.getElementById('filter-status').value;
+  var filtered = pageData;
+  if(search) filtered = filtered.filter(function(p){ return p.name.toLowerCase().indexOf(search) >= 0 || p.url.toLowerCase().indexOf(search) >= 0; });
+  if(status !== 'all') {
+    if(status === 'seo') filtered = filtered.filter(function(p){ return p.category === 'SEO'; });
+    else filtered = filtered.filter(function(p){ return p.status === status; });
+  }
+  renderPagesTable(filtered);
+}
+
+function loadRobots() {
+  fetch('robots.txt').then(function(r){ return r.text(); }).then(function(text){
+    document.getElementById('robots-content').textContent = text;
+    document.getElementById('robots-editor').value = text;
+    var blocked = text.match(/Disallow: (.+)/g) || [];
+    var bp = document.getElementById('blocked-pages');
+    if(blocked.length === 0) {
+      bp.innerHTML = '<p style="color:#6b7280;font-size:13px">Engellenen sayfa yok.</p>';
+      return;
+    }
+    bp.innerHTML = blocked.map(function(b){
+      var path = b.replace('Disallow: ', '').trim();
+      return '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0">' +
+        '<span style="font-size:13px;font-family:monospace;color:#c0001a">' + path + '</span>' +
+        '<span class="badge b-red">Engellendi</span></div>';
+    }).join('');
+  }).catch(function(){
+    document.getElementById('robots-content').textContent = 'Yuklenemedi';
+  });
+}
+
+function saveRobots() {
+  var smsg = document.getElementById('robots-smsg');
+  smsg.classList.add('show');
+  setTimeout(function(){ smsg.classList.remove('show'); closeModal('robots-modal'); }, 2000);
+  showNotify('Robots.txt kaydedildi!', 'success');
+  logs.push({time: new Date().toLocaleString('tr-TR'), action: 'Robots.txt Guncellendi', page: 'robots.txt', user: 'Admin'});
+  localStorage.setItem('yg_logs', JSON.stringify(logs));
+}
+
+function loadSitemap() {
+  fetch('sitemap.xml').then(function(r){ return r.text(); }).then(function(text){
+    var urls = text.match(/<loc>(.*?)<\/loc>/g) || [];
+    var priorities = text.match(/<priority>(.*?)<\/priority>/g) || [];
+    var freqs = text.match(/<changefreq>(.*?)<\/changefreq>/g) || [];
+    var highPri = priorities.filter(function(p){ return p.indexOf('1.0') >= 0 || p.indexOf('0.9') >= 0; }).length;
+    var weekly = freqs.filter(function(f){ return f.indexOf('weekly') >= 0; }).length;
+    document.getElementById('sitemap-stats').innerHTML =
+      '<div style="background:#fff;border-radius:8px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06)"><div style="font-size:24px;font-weight:900;color:#c0001a">' + urls.length + '</div><div style="font-size:11px;color:#6b7280">Toplam URL</div></div>' +
+      '<div style="background:#fff;border-radius:8px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06)"><div style="font-size:24px;font-weight:900;color:#16a34a">' + highPri + '</div><div style="font-size:11px;color:#6b7280">Yuksek Oncelik</div></div>' +
+      '<div style="background:#fff;border-radius:8px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06)"><div style="font-size:24px;font-weight:900;color:#1d4ed8">' + weekly + '</div><div style="font-size:11px;color:#6b7280">Haftalik Guncelleme</div></div>';
+    var tbody = document.getElementById('sitemap-table');
+    tbody.innerHTML = urls.map(function(u, i){
+      var url = u.replace(/<\/?loc>/g, '');
+      var priority = priorities[i] ? priorities[i].replace(/<\/?priority>/g, '') : '-';
+      var freq = freqs[i] ? freqs[i].replace(/<\/?changefreq>/g, '') : '-';
+      var slug = url.split('/').pop() || 'Ana Sayfa';
+      var priCls = parseFloat(priority) >= 0.9 ? 'b-green' : parseFloat(priority) >= 0.7 ? 'b-blue' : 'b-gray';
+      return '<tr><td><a href="' + url + '" target="_blank" style="color:#1d4ed8;font-size:11px">' + slug + '</a></td>' +
+        '<td><span class="badge ' + priCls + '">' + priority + '</span></td>' +
+        '<td><span style="font-size:11px">' + freq + '</span></td></tr>';
+    }).join('');
+  }).catch(function(){
+    document.getElementById('sitemap-table').innerHTML = '<tr><td colspan="3" style="text-align:center;color:#6b7280">Yuklenemedi</td></tr>';
+  });
+}
+
+function renderLogs() {
+  var tbody = document.getElementById('logs-table');
+  var reversed = logs.slice().reverse();
+  if(reversed.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#6b7280;padding:20px">Henuz islem yok</td></tr>';
+    return;
+  }
+  tbody.innerHTML = reversed.map(function(l){
+    var cls = l.action.indexOf('Gizlendi') >= 0 ? 'b-red' : l.action.indexOf('Gosterildi') >= 0 ? 'b-green' : 'b-blue';
+    return '<tr><td style="font-size:11px;color:#6b7280">' + l.time + '</td>' +
+      '<td><span class="badge ' + cls + '">' + l.action + '</span></td>' +
+      '<td>' + l.page + '</td><td>' + l.user + '</td></tr>';
+  }).join('');
+}
+
+function clearLogs() {
+  if(confirm('Tum loglari silmek istiyor musunuz?')) {
+    logs = [];
+    localStorage.setItem('yg_logs', JSON.stringify(logs));
+    renderLogs();
+    showNotify('Loglar temizlendi', 'success');
+  }
+}
+
+function showModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+document.querySelectorAll('.modal-overlay').forEach(function(o){
+  o.addEventListener('click', function(e){ if(e.target === this){ this.classList.remove('open'); document.body.style.overflow = ''; } });
+});
+
+function showNotify(msg, type) {
+  type = type || 'success';
+  var container = document.getElementById('notify');
+  var item = document.createElement('div');
+  item.className = 'notify-item ' + type;
+  item.textContent = msg;
+  container.appendChild(item);
+  setTimeout(function(){ item.remove(); }, 3000);
+}
+
+function refreshAll() {
+  initDashboard();
+  showNotify('Yenilendi!', 'success');
+}
+</script>
+</body>
+</html>
