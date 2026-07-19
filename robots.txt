@@ -4,3 +4,4 @@ Disallow: /portal.html
 Disallow: /admin.html
 
 Sitemap: https://yapigucbeton.com.tr/sitemap.xml
+Disallow: /strateji.html
