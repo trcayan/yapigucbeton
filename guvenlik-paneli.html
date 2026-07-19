@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>Guvenlik Paneli - Yapiguc Beton</title>
+<link rel="icon" href="favicon.png"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<script src="security.js"></script>
+<style>
+:root{--red:#c0001a;--red2:#8a0012;--blk:#111;--lt:#f4f6f9;--dk:#111827;--gr:#6b7280;--wh:#fff;--green:#16a34a;--blue:#1d4ed8;--orange:#d97706;--purple:#7c3aed;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--lt);color:var(--dk);}
+
+/* ── LOGIN EKRANI ── */
+.login-wrap{position:fixed;inset:0;background:linear-gradient(135deg,#0a0a0a 0%,#1a0005 50%,#0a0a1a 100%);display:flex;align-items:center;justify-content:center;z-index:9999;}
+.login-card{background:#fff;border-radius:20px;padding:40px;width:100%;max-width:400px;box-shadow:0 24px 80px rgba(0,0,0,.5);}
+.login-logo{text-align:center;margin-bottom:24px;}
+.login-logo img{height:52px;}
+.login-title{font-size:22px;font-weight:900;color:var(--blk);text-align:center;margin-bottom:4px;}
+.login-sub{font-size:13px;color:var(--gr);text-align:center;margin-bottom:28px;}
+.step-indicator{display:flex;gap:8px;justify-content:center;margin-bottom:24px;}
+.step-dot{width:10px;height:10px;border-radius:50%;background:#e5e7eb;transition:all .3s;}
+.step-dot.active{background:var(--red);transform:scale(1.3);}
+.step-dot.done{background:var(--green);}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+.fg label{font-size:12px;font-weight:700;color:var(--blk);display:flex;align-items:center;gap:6px;}
+.fg label i{color:var(--red);font-size:11px;}
+.input-wrap{position:relative;}
+.input-wrap input{width:100%;padding:12px 40px 12px 14px;border:1.5px solid #d1d5db;border-radius:9px;font-size:14px;outline:none;transition:all .2s;}
+.input-wrap input:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(192,0,26,.08);}
+.input-wrap .eye-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--gr);font-size:14px;}
+.strength-bar{height:4px;border-radius:2px;margin-top:6px;background:#e5e7eb;overflow:hidden;}
+.strength-fill{height:100%;border-radius:2px;transition:all .3s;}
+.totp-inputs{display:flex;gap:8px;justify-content:center;margin-bottom:6px;}
+.totp-inputs input{width:44px;height:52px;text-align:center;font-size:20px;font-weight:700;border:2px solid #d1d5db;border-radius:9px;outline:none;transition:all .2s;}
+.totp-inputs input:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(192,0,26,.08);}
+.totp-inputs input.filled{border-color:var(--green);background:#f0fdf4;}
+.btn-login{width:100%;padding:14px;background:var(--red);color:#fff;border:none;border-radius:9px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-login:hover{background:var(--red2);transform:translateY(-1px);}
+.btn-login:disabled{background:#ccc;cursor:not-allowed;transform:none;}
+.btn-secondary{width:100%;padding:11px;background:var(--lt);color:var(--blk);border:1.5px solid #d1d5db;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;margin-top:8px;transition:all .2s;}
+.btn-secondary:hover{background:#e5e7eb;}
+.alert{border-radius:9px;padding:12px 14px;font-size:13px;font-weight:600;margin-bottom:14px;display:none;align-items:center;gap:8px;}
+.alert.show{display:flex;}
+.alert-error{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;}
+.alert-warn{background:#ffedd5;color:#92400e;border:1px solid #fdba74;}
+.alert-success{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7;}
+.alert-info{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd;}
+.lockout-timer{text-align:center;font-size:28px;font-weight:900;color:var(--red);margin:12px 0;}
+.totp-hint{font-size:11px;color:var(--gr);text-align:center;margin-bottom:14px;}
+.totp-code-display{background:linear-gradient(135deg,#1a0005,#0d0d0d);border-radius:12px;padding:20px;text-align:center;margin-bottom:16px;}
+.totp-code-display .code{font-size:36px;font-weight:900;color:#fff;letter-spacing:8px;font-family:monospace;}
+.totp-code-display .timer-ring{margin-top:8px;}
+.totp-code-display .expires{font-size:11px;color:#aaa;margin-top:4px;}
+
+/* ── LAYOUT ── */
+.sidebar{width:240px;background:var(--blk);color:#fff;position:fixed;top:0;left:0;height:100vh;display:flex;flex-direction:column;z-index:100;}
+.sb-logo{padding:16px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:10px;}
+.sb-logo img{height:36px;}
+.sb-logo div h2{font-size:13px;font-weight:900;color:#fff;}
+.sb-logo div p{font-size:10px;color:var(--red);text-transform:uppercase;}
+.sb-nav{flex:1;padding:8px 0;overflow-y:auto;}
+.sb-item{display:flex;align-items:center;gap:10px;padding:10px 16px;color:#aaa;text-decoration:none;font-size:13px;font-weight:500;transition:all .2s;cursor:pointer;border:none;background:none;width:100%;text-align:left;border-left:3px solid transparent;}
+.sb-item:hover,.sb-item.active{background:rgba(192,0,26,.15);color:#fff;border-left-color:var(--red);}
+.sb-item i{width:16px;text-align:center;font-size:13px;}
+.sb-bottom{padding:12px 16px;border-top:1px solid rgba(255,255,255,.08);}
+.main{margin-left:240px;min-height:100vh;}
+.topbar{background:var(--wh);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 8px rgba(0,0,0,.08);position:sticky;top:0;z-index:50;}
+.topbar h1{font-size:16px;font-weight:800;color:var(--blk);}
+.session-badge{display:flex;align-items:center;gap:8px;background:var(--lt);padding:7px 14px;border-radius:8px;font-size:12px;font-weight:600;}
+.session-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.content{padding:24px;}
+.panel{display:none;animation:fadeIn .3s ease;}
+.panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── KARTLAR ── */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:22px;}
+.stat-card{background:var(--wh);border-radius:12px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,.06);display:flex;align-items:center;gap:12px;}
+.si{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.si-green{background:#d1fae5;color:var(--green);}
+.si-red{background:#fee2e2;color:var(--red);}
+.si-blue{background:#dbeafe;color:var(--blue);}
+.si-orange{background:#ffedd5;color:var(--orange);}
+.si-purple{background:#ede9fe;color:var(--purple);}
+.stat-val{font-size:22px;font-weight:900;color:var(--blk);}
+.stat-lbl{font-size:11px;color:var(--gr);}
+.card{background:var(--wh);border-radius:12px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:18px;}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.card-header h3{font-size:14px;font-weight:700;color:var(--blk);display:flex;align-items:center;gap:7px;}
+.card-header h3 i{color:var(--red);}
+
+/* ── LOG TABLOSU ── */
+table{width:100%;border-collapse:collapse;}
+th{text-align:left;font-size:11px;font-weight:700;color:var(--gr);text-transform:uppercase;letter-spacing:.5px;padding:9px 10px;border-bottom:2px solid #f0f0f0;}
+td{padding:9px 10px;border-bottom:1px solid #f9f9f9;font-size:12px;color:var(--dk);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#fafafa;}
+.badge{display:inline-block;padding:3px 9px;border-radius:8px;font-size:10px;font-weight:700;}
+.b-green{background:#d1fae5;color:#065f46;}
+.b-red{background:#fee2e2;color:#991b1b;}
+.b-blue{background:#dbeafe;color:#1e40af;}
+.b-gray{background:#f3f4f6;color:#374151;}
+.b-orange{background:#ffedd5;color:#92400e;}
+.b-purple{background:#ede9fe;color:#5b21b6;}
+.b-yellow{background:#fef9c3;color:#854d0e;}
+
+/* ── AYARLAR ── */
+.setting-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid #f0f0f0;}
+.setting-row:last-child{border-bottom:none;}
+.setting-info h4{font-size:13px;font-weight:700;color:var(--blk);margin-bottom:2px;}
+.setting-info p{font-size:11px;color:var(--gr);}
+.toggle{position:relative;display:inline-block;width:44px;height:24px;}
+.toggle input{opacity:0;width:0;height:0;}
+.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#ccc;border-radius:24px;transition:.3s;}
+.slider:before{position:absolute;content:"";height:18px;width:18px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.3s;}
+input:checked+.slider{background:var(--green);}
+input:checked+.slider:before{transform:translateX(20px);}
+.btn-sm{padding:6px 12px;border-radius:7px;font-size:11px;font-weight:600;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .2s;}
+.btn-red{background:var(--red);color:#fff;}
+.btn-red:hover{background:var(--red2);}
+.btn-blue{background:var(--blue);color:#fff;}
+.btn-green{background:var(--green);color:#fff;}
+.btn-gray{background:#f3f4f6;color:var(--blk);}
+.btn-gray:hover{background:#e5e7eb;}
+.btn-orange{background:var(--orange);color:#fff;}
+.btn-purple{background:var(--purple);color:#fff;}
+
+/* ── IP LİSTESİ ── */
+.ip-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.ip-item{display:flex;align-items:center;justify-content:space-between;background:var(--lt);border-radius:8px;padding:10px 14px;}
+.ip-item code{font-size:13px;font-family:monospace;color:var(--blk);}
+.ip-add-row{display:flex;gap:8px;}
+.ip-add-row input{flex:1;padding:9px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-size:13px;outline:none;}
+.ip-add-row input:focus{border-color:var(--red);}
+
+/* ── SIFRE GÜCÜ ── */
+.pass-rules{display:flex;flex-direction:column;gap:6px;margin-top:10px;}
+.rule-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--gr);}
+.rule-item i{font-size:11px;width:14px;}
+.rule-item.ok{color:var(--green);}
+.rule-item.ok i{color:var(--green);}
+
+/* ── NOTIFY ── */
+.notify{position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:8px;}
+.notify-item{background:#111;color:#fff;padding:12px 18px;border-radius:10px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(0,0,0,.3);animation:slideIn .3s ease;max-width:320px;}
+.notify-item.success{background:var(--green);}
+.notify-item.error{background:var(--red);}
+.notify-item.warn{background:var(--orange);}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:5000;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--wh);border-radius:14px;padding:28px;max-width:480px;width:100%;position:relative;}
+.modal-close{position:absolute;top:14px;right:14px;background:#f3f4f6;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;cursor:pointer;}
+.modal h2{font-size:17px;font-weight:800;color:var(--blk);margin-bottom:16px;}
+
+/* ── PROGRESS ── */
+.progress-bar{height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden;margin-top:6px;}
+.progress-fill{height:100%;border-radius:4px;transition:width .5s ease;}
+</style>
+</head>
+<body>
+
+<!-- ══ GİRİŞ EKRANI ══════════════════════════════════════════ -->
+<div class="login-wrap" id="login-wrap">
+<div class="login-card">
+  <div class="login-logo"><img src="logo.png" alt="Yapiguc"/></div>
+  <div class="login-title">Guvenlik Paneli</div>
+  <div class="login-sub">Yapiguc Beton - Yonetici Girisi</div>
+
+  <div class="step-indicator">
+    <div class="step-dot active" id="dot-1"></div>
+    <div class="step-dot" id="dot-2"></div>
+    <div class="step-dot" id="dot-3"></div>
+  </div>
+
+  <!-- ADIM 1: Sifre -->
+  <div id="step-1">
+    <div class="alert alert-error" id="err-1"></div>
+    <div class="alert alert-warn" id="warn-1"></div>
+    <div class="fg">
+      <label><i class="fas fa-lock"></i> Yonetici Sifresi</label>
+      <div class="input-wrap">
+        <input type="password" id="pass-input" placeholder="Sifrenizi girin" autocomplete="current-password"/>
+        <button class="eye-btn" type="button" onclick="toggleEye('pass-input','eye-1')"><i class="fas fa-eye" id="eye-1"></i></button>
+      </div>
+    </div>
+    <div id="lockout-box" style="display:none;text-align:center;padding:16px 0">
+      <i class="fas fa-lock" style="font-size:32px;color:var(--red);margin-bottom:8px;display:block"></i>
+      <div style="font-size:14px;font-weight:700;color:var(--red);margin-bottom:8px">Hesap Gecici Olarak Kilitlendi</div>
+      <div class="lockout-timer" id="lockout-timer">15:00</div>
+      <div style="font-size:12px;color:var(--gr)">Cok fazla yanlis giris denemesi</div>
+    </div>
+    <button class="btn-login" id="btn-step1" onclick="doStep1()">
+      <i class="fas fa-arrow-right"></i> Devam Et
+    </button>
+  </div>
+
+  <!-- ADIM 2: 2FA Kodu -->
+  <div id="step-2" style="display:none">
+    <div class="alert alert-info show" id="info-2">
+      <i class="fas fa-shield-alt"></i>
+      <span>Iki Adimli Dogrulama - Asagidaki kodu girin</span>
+    </div>
+    <div class="alert alert-error" id="err-2"></div>
+    <div class="totp-code-display">
+      <div style="font-size:11px;color:#aaa;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Gecerli Dogrulama Kodu</div>
+      <div class="code" id="totp-display">------</div>
+      <div class="expires" id="totp-expires">30 saniye icinde yenilenir</div>
+      <div class="progress-bar" style="margin-top:10px;background:rgba(255,255,255,.2)">
+        <div class="progress-fill" id="totp-progress" style="background:#fff;width:100%"></div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:var(--gr);text-align:center;margin-bottom:14px">Yukaridaki 6 haneli kodu asagiya girin:</div>
+    <div class="totp-inputs" id="totp-inputs">
+      <input type="text" maxlength="1" class="totp-digit" data-idx="0" oninput="totpInput(this)" onkeydown="totpKey(event,this)"/>
+      <input type="text" maxlength="1" class="totp-digit" data-idx="1" oninput="totpInput(this)" onkeydown="totpKey(event,this)"/>
+      <input type="text" maxlength="1" class="totp-digit" data-idx="2" oninput="totpInput(this)" onkeydown="totpKey(event,this)"/>
+      <input type="text" maxlength="1" class="totp-digit" data-idx="3" oninput="totpInput(this)" onkeydown="totpKey(event,this)"/>
+      <input type="text" maxlength="1" class="totp-digit" data-idx="4" oninput="totpInput(this)" onkeydown="totpKey(event,this)"/>
+      <input type="text" maxlength="1" class="totp-digit" data-idx="5" oninput="totpInput(this)" onkeydown="totpKey(event,this)"/>
+    </div>
+    <button class="btn-login" id="btn-step2" onclick="doStep2()">
+      <i class="fas fa-check-circle"></i> Dogrula ve Giris Yap
+    </button>
+    <button class="btn-secondary" onclick="backToStep1()">Geri Don</button>
+  </div>
+
+  <!-- ADIM 3: Basarili -->
+  <div id="step-3" style="display:none;text-align:center;padding:10px 0">
+    <div style="width:64px;height:64px;background:#d1fae5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px;color:var(--green)">
+      <i class="fas fa-check"></i>
+    </div>
+    <div style="font-size:18px;font-weight:900;color:var(--blk);margin-bottom:6px">Giris Basarili!</div>
+    <div style="font-size:13px;color:var(--gr)">Guvenlik paneline yonlendiriliyorsunuz...</div>
+  </div>
+</div>
+</div>
+
+<!-- ══ NOTIFY ══════════════════════════════════════════════ -->
+<div class="notify" id="notify"></div>
+
+<!-- ══ SIDEBAR ══════════════════════════════════════════════ -->
+<div class="sidebar">
+  <div class="sb-logo">
+    <img src="logo.png" alt="Yapiguc"/>
+    <div><h2>Yapiguc</h2><p>Guvenlik Paneli</p></div>
+  </div>
+  <nav class="sb-nav">
+    <div style="font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:1px;padding:10px 16px 4px">Guvenlik</div>
+    <button class="sb-item active" onclick="showPanel('dashboard',this)"><i class="fas fa-shield-alt"></i> Genel Bakis</button>
+    <button class="sb-item" onclick="showPanel('logs',this)"><i class="fas fa-list-alt"></i> Erisim Loglari</button>
+    <button class="sb-item" onclick="showPanel('attempts',this)"><i class="fas fa-exclamation-triangle"></i> Basarisiz Girisler</button>
+    <button class="sb-item" onclick="showPanel('session',this)"><i class="fas fa-clock"></i> Oturum Yonetimi</button>
+    <div style="font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:1px;padding:10px 16px 4px">Ayarlar</div>
+    <button class="sb-item" onclick="showPanel('settings',this)"><i class="fas fa-cog"></i> Guvenlik Ayarlari</button>
+    <button class="sb-item" onclick="showPanel('password',this)"><i class="fas fa-key"></i> Sifre Politikasi</button>
+    <button class="sb-item" onclick="showPanel('ip',this)"><i class="fas fa-network-wired"></i> IP Kisitlamasi</button>
+    <button class="sb-item" onclick="showPanel('totp',this)"><i class="fas fa-mobile-alt"></i> 2FA Yonetimi</button>
+  </nav>
+  <div class="sb-bottom">
+    <a href="admin.html" class="sb-item"><i class="fas fa-cog"></i> Ana Admin</a>
+    <a href="sayfa-yonetimi.html" class="sb-item"><i class="fas fa-file-alt"></i> Sayfa Yonetimi</a>
+    <a href="index.html" class="sb-item"><i class="fas fa-globe"></i> Ana Site</a>
+    <button class="sb-item" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Cikis</button>
+  </div>
+</div>
+
+<!-- ══ MAIN ══════════════════════════════════════════════════ -->
+<div class="main">
+  <div class="topbar">
+    <h1 id="page-title">Guvenlik Genel Bakis</h1>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="session-badge">
+        <div class="dot"></div>
+        <span>Oturum: <strong id="session-remaining">--</strong> dk kaldi</span>
+      </div>
+      <button class="btn-sm btn-gray" onclick="extendSession()"><i class="fas fa-redo"></i> Uzat</button>
+      <button class="btn-sm btn-red" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Cikis</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div class="panel active" id="panel-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="si si-green"><i class="fas fa-check-circle"></i></div><div><div class="stat-val" id="s-success">0</div><div class="stat-lbl">Basarili Giris</div></div></div>
+        <div class="stat-card"><div class="si si-red"><i class="fas fa-times-circle"></i></div><div><div class="stat-val" id="s-fail">0</div><div class="stat-lbl">Basarisiz Giris</div></div></div>
+        <div class="stat-card"><div class="si si-orange"><i class="fas fa-lock"></i></div><div><div class="stat-val" id="s-locked">0</div><div class="stat-lbl">Kilitlenme</div></div></div>
+        <div class="stat-card"><div class="si si-blue"><i class="fas fa-clock"></i></div><div><div class="stat-val" id="s-session">0</div><div class="stat-lbl">Aktif Oturum (dk)</div></div></div>
+        <div class="stat-card"><div class="si si-purple"><i class="fas fa-shield-alt"></i></div><div><div class="stat-val" id="s-total">0</div><div class="stat-lbl">Toplam Olay</div></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-traffic-light"></i> Guvenlik Durumu</h3></div>
+        <div id="security-status"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-history"></i> Son Olaylar</h3>
+          <button class="btn-sm btn-gray" onclick="showPanel('logs',null)"><i class="fas fa-list"></i> Tumu</button>
+        </div>
+        <table>
+          <thead><tr><th>Zaman</th><th>Olay</th><th>Detay</th><th>Seviye</th></tr></thead>
+          <tbody id="recent-events"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ERISIM LOGLARI -->
+    <div class="panel" id="panel-logs">
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-list-alt"></i> Tum Erisim Loglari</h3>
+          <div style="display:flex;gap:8px">
+            <button class="btn-sm btn-gray" onclick="exportLogs()"><i class="fas fa-download"></i> Disa Aktar</button>
+            <button class="btn-sm btn-red" onclick="clearAllLogs()"><i class="fas fa-trash"></i> Temizle</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:14px">
+          <select id="log-filter" onchange="renderLogs()" style="padding:8px 12px;border:1.5px solid #d1d5db;border-radius:7px;font-size:12px;outline:none">
+            <option value="all">Tum Olaylar</option>
+            <option value="LOGIN_SUCCESS">Basarili Giris</option>
+            <option value="LOGIN_FAIL">Basarisiz Giris</option>
+            <option value="ACCOUNT_LOCKED">Kilitlenme</option>
+            <option value="LOGOUT">Cikis</option>
+            <option value="SESSION_EXPIRED">Oturum Suresi Doldu</option>
+          </select>
+          <input type="text" id="log-search" placeholder="Ara..." oninput="renderLogs()" style="flex:1;padding:8px 12px;border:1.5px solid #d1d5db;border-radius:7px;font-size:12px;outline:none"/>
+        </div>
+        <table>
+          <thead><tr><th>Tarih/Saat</th><th>Olay</th><th>Detay</th><th>Seviye</th><th>Sayfa</th></tr></thead>
+          <tbody id="logs-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- BASARISIZ GIRISLER -->
+    <div class="panel" id="panel-attempts">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-exclamation-triangle"></i> Basarisiz Giris Denemeleri</h3></div>
+        <div id="attempts-info"></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-chart-bar"></i> Deneme Istatistikleri</h3></div>
+        <div id="attempts-stats"></div>
+      </div>
+    </div>
+
+    <!-- OTURUM YONETİMİ -->
+    <div class="panel" id="panel-session">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-clock"></i> Mevcut Oturum</h3></div>
+        <div id="session-info"></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-cog"></i> Oturum Ayarlari</h3></div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Oturum Suresi</h4><p>Hareketsizlik sonrasi otomatik cikis</p></div>
+          <select id="session-duration" style="padding:8px 12px;border:1.5px solid #d1d5db;border-radius:7px;font-size:13px;outline:none">
+            <option value="15">15 dakika</option>
+            <option value="30" selected>30 dakika</option>
+            <option value="60">1 saat</option>
+            <option value="120">2 saat</option>
+          </select>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Oturum Uzatma</h4><p>Her islemde oturum suresi sifirlansin</p></div>
+          <label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label>
+        </div>
+        <div style="margin-top:14px;display:flex;gap:8px">
+          <button class="btn-sm btn-green" onclick="extendSession()"><i class="fas fa-redo"></i> Oturumu Uzat</button>
+          <button class="btn-sm btn-red" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Oturumu Kapat</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUVENLIK AYARLARI -->
+    <div class="panel" id="panel-settings">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-shield-alt"></i> Guvenlik Ozellikleri</h3></div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Iki Adimli Dogrulama (2FA)</h4><p>Her girisde ek dogrulama kodu istenir</p></div>
+          <label class="toggle"><input type="checkbox" id="toggle-2fa" checked onchange="saveSetting('2fa',this.checked)"/><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Giris Kilitleme</h4><p>5 yanlis denemede hesap 15 dk kilitlenir</p></div>
+          <label class="toggle"><input type="checkbox" id="toggle-lockout" checked onchange="saveSetting('lockout',this.checked)"/><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Guvenlik Loglama</h4><p>Tum erisim olaylari kayit altina alinir</p></div>
+          <label class="toggle"><input type="checkbox" id="toggle-logging" checked onchange="saveSetting('logging',this.checked)"/><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>IP Kisitlamasi</h4><p>Sadece izin verilen IP'lerden erisim</p></div>
+          <label class="toggle"><input type="checkbox" id="toggle-ip" onchange="saveSetting('ip',this.checked)"/><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Brute Force Korumasi</h4><p>Hizli ardisik denemeleri engelle</p></div>
+          <label class="toggle"><input type="checkbox" id="toggle-bruteforce" checked onchange="saveSetting('bruteforce',this.checked)"/><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Oturum Zaman Asimi</h4><p>Hareketsizlikte otomatik cikis</p></div>
+          <label class="toggle"><input type="checkbox" id="toggle-timeout" checked onchange="saveSetting('timeout',this.checked)"/><span class="slider"></span></label>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-exclamation-circle"></i> Acil Islemler</h3></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn-sm btn-orange" onclick="unlockAccount()"><i class="fas fa-unlock"></i> Hesap Kilidini Ac</button>
+          <button class="btn-sm btn-red" onclick="clearAllLogs()"><i class="fas fa-trash"></i> Tum Loglari Sil</button>
+          <button class="btn-sm btn-purple" onclick="showPanel('totp',null)"><i class="fas fa-mobile-alt"></i> 2FA Yonet</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIFRE POLİTİKASI -->
+    <div class="panel" id="panel-password">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-key"></i> Sifre Politikasi</h3></div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Minimum Uzunluk</h4><p>En az kac karakter olmali</p></div>
+          <select style="padding:8px 12px;border:1.5px solid #d1d5db;border-radius:7px;font-size:13px;outline:none">
+            <option>8 karakter</option><option selected>12 karakter</option><option>16 karakter</option>
+          </select>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Buyuk Harf Zorunlu</h4><p>En az 1 buyuk harf icermeli</p></div>
+          <label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Kucuk Harf Zorunlu</h4><p>En az 1 kucuk harf icermeli</p></div>
+          <label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Rakam Zorunlu</h4><p>En az 1 rakam icermeli</p></div>
+          <label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Ozel Karakter Zorunlu</h4><p>En az 1 ozel karakter (!@#$%)</p></div>
+          <label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Sifre Degistirme Suresi</h4><p>Kac gunde bir sifre degistirilmeli</p></div>
+          <select style="padding:8px 12px;border:1.5px solid #d1d5db;border-radius:7px;font-size:13px;outline:none">
+            <option>30 gun</option><option selected>90 gun</option><option>180 gun</option><option>Hic</option>
+          </select>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-check-circle"></i> Sifre Guc Testi</h3></div>
+        <div class="fg">
+          <label>Test Edilecek Sifre</label>
+          <div class="input-wrap">
+            <input type="password" id="test-pass" placeholder="Sifre girin..." oninput="checkPassStrength(this.value)"/>
+            <button class="eye-btn" type="button" onclick="toggleEye('test-pass','eye-test')"><i class="fas fa-eye" id="eye-test"></i></button>
+          </div>
+        </div>
+        <div class="strength-bar"><div class="strength-fill" id="strength-fill" style="width:0%;background:#ccc"></div></div>
+        <div id="strength-label" style="font-size:12px;color:var(--gr);margin-top:6px">Sifre girin...</div>
+        <div class="pass-rules" id="pass-rules">
+          <div class="rule-item" id="rule-len"><i class="fas fa-circle"></i> En az 12 karakter</div>
+          <div class="rule-item" id="rule-upper"><i class="fas fa-circle"></i> Buyuk harf iceriyor</div>
+          <div class="rule-item" id="rule-lower"><i class="fas fa-circle"></i> Kucuk harf iceriyor</div>
+          <div class="rule-item" id="rule-num"><i class="fas fa-circle"></i> Rakam iceriyor</div>
+          <div class="rule-item" id="rule-special"><i class="fas fa-circle"></i> Ozel karakter iceriyor (!@#$%^&*)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IP KISITLAMASI -->
+    <div class="panel" id="panel-ip">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-network-wired"></i> IP Beyaz Listesi</h3></div>
+        <div class="alert alert-warn show" style="margin-bottom:14px">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span>IP kisitlamasi aktif degilse tum IP'lerden erisim mumkundur. Aktif edilirse sadece listedeki IP'ler erisebilir.</span>
+        </div>
+        <div class="setting-row" style="margin-bottom:16px">
+          <div class="setting-info"><h4>IP Kisitlamasini Etkinlestir</h4><p>Sadece asagidaki IP'lerden erisime izin ver</p></div>
+          <label class="toggle"><input type="checkbox" id="ip-enabled" onchange="toggleIPRestriction(this.checked)"/><span class="slider"></span></label>
+        </div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:12px;margin-bottom:14px;font-size:12px;color:#065f46">
+          <i class="fas fa-info-circle"></i> Mevcut IP adresiniz: <strong id="current-ip">Tespit ediliyor...</strong>
+        </div>
+        <div class="ip-list" id="ip-list"></div>
+        <div class="ip-add-row">
+          <input type="text" id="new-ip" placeholder="Ornek: 192.168.1.1 veya 192.168.1.0/24"/>
+          <button class="btn-sm btn-green" onclick="addIP()"><i class="fas fa-plus"></i> Ekle</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-ban"></i> Engellenen IP'ler</h3></div>
+        <div class="alert alert-info show">
+          <i class="fas fa-info-circle"></i>
+          <span>Cok fazla basarisiz giris yapan IP'ler otomatik olarak engellenir.</span>
+        </div>
+        <div id="blocked-ips" style="margin-top:12px">
+          <p style="font-size:13px;color:var(--gr)">Engellenen IP bulunmuyor.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2FA YONETİMİ -->
+    <div class="panel" id="panel-totp">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-mobile-alt"></i> Iki Adimli Dogrulama (2FA)</h3></div>
+        <div class="alert alert-success show" style="margin-bottom:16px">
+          <i class="fas fa-check-circle"></i>
+          <span>2FA aktif ve calisiyor. Her girisde dogrulama kodu isteniyor.</span>
+        </div>
+        <div style="background:linear-gradient(135deg,#1a0005,#0d0d0d);border-radius:12px;padding:24px;text-align:center;margin-bottom:16px">
+          <div style="font-size:11px;color:#aaa;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Gecerli 2FA Kodu</div>
+          <div style="font-size:42px;font-weight:900;color:#fff;letter-spacing:10px;font-family:monospace" id="live-totp">------</div>
+          <div style="margin-top:12px">
+            <div class="progress-bar" style="background:rgba(255,255,255,.2)">
+              <div class="progress-fill" id="live-totp-progress" style="background:#fff;width:100%"></div>
+            </div>
+            <div style="font-size:11px;color:#aaa;margin-top:6px" id="live-totp-timer">30 saniye</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="background:var(--lt);border-radius:10px;padding:14px">
+            <div style="font-size:11px;color:var(--gr);margin-bottom:4px">Gizli Anahtar</div>
+            <div style="font-size:13px;font-weight:700;font-family:monospace;color:var(--blk)">YAPIGUC2026BETON</div>
+          </div>
+          <div style="background:var(--lt);border-radius:10px;padding:14px">
+            <div style="font-size:11px;color:var(--gr);margin-bottom:4px">Algoritma</div>
+            <div style="font-size:13px;font-weight:700;color:var(--blk)">TOTP / SHA-256</div>
+          </div>
+          <div style="background:var(--lt);border-radius:10px;padding:14px">
+            <div style="font-size:11px;color:var(--gr);margin-bottom:4px">Yenileme Suresi</div>
+            <div style="font-size:13px;font-weight:700;color:var(--blk)">30 saniye</div>
+          </div>
+          <div style="background:var(--lt);border-radius:10px;padding:14px">
+            <div style="font-size:11px;color:var(--gr);margin-bottom:4px">Tolerans Penceresi</div>
+            <div style="font-size:13px;font-weight:700;color:var(--blk)">+/- 30 saniye</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-info-circle"></i> Nasil Kullanilir?</h3></div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:28px;height:28px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;flex-shrink:0">1</div>
+            <div><div style="font-size:13px;font-weight:700;margin-bottom:2px">Giris Ekraninda Sifrenizi Girin</div><div style="font-size:12px;color:var(--gr)">Yonetici sifrenizi dogru girdikten sonra 2FA adimina gecilir.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:28px;height:28px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;flex-shrink:0">2</div>
+            <div><div style="font-size:13px;font-weight:700;margin-bottom:2px">Bu Panelden Kodu Alin</div><div style="font-size:12px;color:var(--gr)">Yukaridaki canli kodu giris ekranina girin. Kod her 30 saniyede yenilenir.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:28px;height:28px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;flex-shrink:0">3</div>
+            <div><div style="font-size:13px;font-weight:700;margin-bottom:2px">Google Authenticator ile de Kullanabilirsiniz</div><div style="font-size:12px;color:var(--gr)">Gizli anahtari (YAPIGUC2026BETON) Google Authenticator uygulamasina ekleyin.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ MODAL: Sifre Degistir ══════════════════════════════ -->
+<div class="modal-overlay" id="change-pass-modal">
+<div class="modal">
+  <button class="modal-close" onclick="closeModal('change-pass-modal')">X</button>
+  <h2><i class="fas fa-key" style="color:var(--red);margin-right:8px"></i>Sifre Degistir</h2>
+  <div class="alert alert-error" id="cp-err"></div>
+  <div class="alert alert-success" id="cp-ok"></div>
+  <div class="fg"><label>Mevcut Sifre</label><div class="input-wrap"><input type="password" id="cp-old" placeholder="Mevcut sifreniz"/></div></div>
+  <div class="fg"><label>Yeni Sifre</label><div class="input-wrap"><input type="password" id="cp-new" placeholder="Yeni sifreniz" oninput="checkPassStrength(this.value,'cp')"/></div></div>
+  <div class="strength-bar"><div class="strength-fill" id="cp-strength-fill" style="width:0%;background:#ccc"></div></div>
+  <div class="fg" style="margin-top:10px"><label>Yeni Sifre (Tekrar)</label><div class="input-wrap"><input type="password" id="cp-confirm" placeholder="Yeni sifrenizi tekrar girin"/></div></div>
+  <button class="btn-sm btn-red" onclick="changePassword()" style="width:100%;justify-content:center;padding:12px;margin-top:8px"><i class="fas fa-save"></i> Sifreyi Degistir</button>
+</div>
+</div>
+
+<script>
+/* ══ GİRİŞ MANTIĞI ══════════════════════════════════════════ */
+var _step1Pass = '';
+var _totpInterval = null;
+var _lockoutInterval = null;
+
+function checkLockout(){
+  if(!window.YGSecurity) return;
+  if(YGSecurity.isLocked()){
+    var a = YGSecurity.getAttempts();
+    document.getElementById('lockout-box').style.display = 'block';
+    document.getElementById('btn-step1').disabled = true;
+    document.getElementById('pass-input').disabled = true;
+    startLockoutTimer(a.lockedUntil);
+  }
+}
+
+function startLockoutTimer(until){
+  if(_lockoutInterval) clearInterval(_lockoutInterval);
+  _lockoutInterval = setInterval(function(){
+    var remaining = Math.max(0, until - Date.now());
+    var m = Math.floor(remaining / 60000);
+    var s = Math.floor((remaining % 60000) / 1000);
+    document.getElementById('lockout-timer').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    if(remaining <= 0){
+      clearInterval(_lockoutInterval);
+      document.getElementById('lockout-box').style.display = 'none';
+      document.getElementById('btn-step1').disabled = false;
+      document.getElementById('pass-input').disabled = false;
+      showAlert('warn-1', 'Hesap kilidi kaldirildi. Tekrar deneyebilirsiniz.', 'warn');
+    }
+  }, 1000);
+}
+
+function doStep1(){
+  var pass = document.getElementById('pass-input').value;
+  if(!pass){ showAlert('err-1', 'Lutfen sifrenizi girin.', 'error'); return; }
+  var result = YGSecurity.validateLogin(pass);
+  if(!result.ok){
+    showAlert('err-1', result.error, 'error');
+    if(result.locked){
+      var a = YGSecurity.getAttempts();
+      document.getElementById('lockout-box').style.display = 'block';
+      document.getElementById('btn-step1').disabled = true;
+      document.getElementById('pass-input').disabled = true;
+      startLockoutTimer(a.lockedUntil);
+    }
+    return;
+  }
+  _step1Pass = pass;
+  // Adim 2'ye gec
+  document.getElementById('step-1').style.display = 'none';
+  document.getElementById('step-2').style.display = 'block';
+  document.getElementById('dot-1').classList.remove('active');
+  document.getElementById('dot-1').classList.add('done');
+  document.getElementById('dot-2').classList.add('active');
+  startTOTPDisplay();
+  document.querySelector('.totp-digit').focus();
+}
+
+function backToStep1(){
+  document.getElementById('step-2').style.display = 'none';
+  document.getElementById('step-1').style.display = 'block';
+  document.getElementById('dot-2').classList.remove('active');
+  document.getElementById('dot-1').classList.remove('done');
+  document.getElementById('dot-1').classList.add('active');
+  if(_totpInterval) clearInterval(_totpInterval);
+}
+
+function startTOTPDisplay(){
+  function update(){
+    var code = YGSecurity.getTOTP(YGSecurity.CFG.TOTP_SECRET);
+    document.getElementById('totp-display').textContent = code;
+    var epoch = Math.floor(Date.now() / 1000);
+    var remaining = 30 - (epoch % 30);
+    document.getElementById('totp-expires').textContent = remaining + ' saniye icinde yenilenir';
+    var pct = (remaining / 30) * 100;
+    document.getElementById('totp-progress').style.width = pct + '%';
+    document.getElementById('totp-progress').style.background = remaining <= 5 ? '#ef4444' : remaining <= 10 ? '#f97316' : '#fff';
+  }
+  update();
+  _totpInterval = setInterval(update, 1000);
+}
+
+function totpInput(el){
+  el.value = el.value.replace(/[^0-9]/g, '');
+  if(el.value.length === 1){
+    el.classList.add('filled');
+    var idx = parseInt(el.dataset.idx);
+    var next = document.querySelector('.totp-digit[data-idx="' + (idx+1) + '"]');
+    if(next) next.focus();
+    else checkAutoSubmit();
+  } else {
+    el.classList.remove('filled');
+  }
+}
+
+function totpKey(e, el){
+  if(e.key === 'Backspace' && !el.value){
+    var idx = parseInt(el.dataset.idx);
+    var prev = document.querySelector('.totp-digit[data-idx="' + (idx-1) + '"]');
+    if(prev){ prev.focus(); prev.value = ''; prev.classList.remove('filled'); }
+  }
+}
+
+function checkAutoSubmit(){
+  var digits = document.querySelectorAll('.totp-digit');
+  var code = '';
+  digits.forEach(function(d){ code += d.value; });
+  if(code.length === 6) doStep2();
+}
+
+function doStep2(){
+  var digits = document.querySelectorAll('.totp-digit');
+  var code = '';
+  digits.forEach(function(d){ code += d.value; });
+  if(code.length !== 6){ showAlert('err-2', 'Lutfen 6 haneli kodu tam girin.', 'error'); return; }
+
+  var result = YGSecurity.validateLogin(_step1Pass, code);
+  if(!result.ok){
+    showAlert('err-2', result.error, 'error');
+    digits.forEach(function(d){ d.value = ''; d.classList.remove('filled'); });
+    document.querySelector('.totp-digit').focus();
+    return;
+  }
+
+  // Basarili
+  if(_totpInterval) clearInterval(_totpInterval);
+  YGSecurity.createSession('admin');
+  document.getElementById('step-2').style.display = 'none';
+  document.getElementById('step-3').style.display = 'block';
+  document.getElementById('dot-2').classList.remove('active');
+  document.getElementById('dot-2').classList.add('done');
+  document.getElementById('dot-3').classList.add('active');
+  setTimeout(function(){
+    document.getElementById('login-wrap').style.display = 'none';
+    initDashboard();
+    YGSecurity.startSessionWatcher(function(){
+      showNotify('Oturum suresi doldu! Yeniden giris yapiniz.', 'error');
+      setTimeout(function(){ location.reload(); }, 2000);
+    });
+  }, 1200);
+}
+
+/* ── Oturum kontrolu ── */
+if(YGSecurity.isSessionValid()){
+  document.getElementById('login-wrap').style.display = 'none';
+  initDashboard();
+  YGSecurity.startSessionWatcher(function(){
+    showNotify('Oturum suresi doldu!', 'error');
+    setTimeout(function(){ location.reload(); }, 2000);
+  });
+} else {
+  checkLockout();
+}
+
+/* ══ PANEL ══════════════════════════════════════════════════ */
+function showPanel(id, btn){
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('panel-' + id).classList.add('active');
+  document.querySelectorAll('.sb-item').forEach(function(n){ n.classList.remove('active'); });
+  if(btn) btn.classList.add('active');
+  var titles = {
+    dashboard:'Guvenlik Genel Bakis', logs:'Erisim Loglari', attempts:'Basarisiz Girisler',
+    session:'Oturum Yonetimi', settings:'Guvenlik Ayarlari', password:'Sifre Politikasi',
+    ip:'IP Kisitlamasi', totp:'2FA Yonetimi'
+  };
+  document.getElementById('page-title').textContent = titles[id] || id;
+  if(id === 'logs') renderLogs();
+  if(id === 'attempts') renderAttempts();
+  if(id === 'session') renderSession();
+  if(id === 'ip') renderIP();
+  if(id === 'totp') startLiveTOTP();
+}
+
+/* ══ DASHBOARD ══════════════════════════════════════════════ */
+function initDashboard(){
+  updateSessionBadge();
+  setInterval(updateSessionBadge, 30000);
+  var logs = YGSecurity.getSecurityLogs();
+  var success = logs.filter(function(l){ return l.event === 'LOGIN_SUCCESS'; }).length;
+  var fail = logs.filter(function(l){ return l.event === 'LOGIN_FAIL'; }).length;
+  var locked = logs.filter(function(l){ return l.event === 'ACCOUNT_LOCKED'; }).length;
+  var s = YGSecurity.getSession();
+  var sessionMin = s ? Math.floor((Date.now() - s.created) / 60000) : 0;
+  document.getElementById('s-success').textContent = success;
+  document.getElementById('s-fail').textContent = fail;
+  document.getElementById('s-locked').textContent = locked;
+  document.getElementById('s-session').textContent = sessionMin;
+  document.getElementById('s-total').textContent = logs.length;
+
+  // Guvenlik durumu
+  var a = YGSecurity.getAttempts();
+  var statusHTML = '';
+  var items = [
+    {label:'2FA Aktif', ok:true, icon:'fas fa-shield-alt'},
+    {label:'Giris Kilitleme Aktif', ok:true, icon:'fas fa-lock'},
+    {label:'Oturum Zaman Asimi (30 dk)', ok:true, icon:'fas fa-clock'},
+    {label:'Guvenlik Loglama', ok:true, icon:'fas fa-list'},
+    {label:'Hesap Durumu', ok:!YGSecurity.isLocked(), icon:'fas fa-user-check', warn: YGSecurity.isLocked() ? 'Kilitli!' : 'Normal'},
+    {label:'Basarisiz Deneme Sayisi', ok:a.count < 3, icon:'fas fa-exclamation-triangle', warn: a.count + ' deneme'}
+  ];
+  items.forEach(function(item){
+    statusHTML += '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0f0f0">' +
+      '<div style="display:flex;align-items:center;gap:10px">' +
+      '<i class="' + item.icon + '" style="color:' + (item.ok ? 'var(--green)' : 'var(--red)') + ';width:16px"></i>' +
+      '<span style="font-size:13px">' + item.label + '</span></div>' +
+      '<span class="badge ' + (item.ok ? 'b-green' : 'b-red') + '">' + (item.warn || (item.ok ? 'OK' : 'Sorun')) + '</span>' +
+      '</div>';
+  });
+  document.getElementById('security-status').innerHTML = statusHTML;
+
+  // Son olaylar
+  var recent = logs.slice(0, 8);
+  var tbody = document.getElementById('recent-events');
+  tbody.innerHTML = recent.length ? recent.map(function(l){
+    return '<tr>' +
+      '<td style="font-size:11px;color:var(--gr)">' + new Date(l.ts).toLocaleString('tr-TR') + '</td>' +
+      '<td>' + l.event + '</td>' +
+      '<td style="font-size:11px;max-width:200px;overflow:hidden;text-overflow:ellipsis">' + (l.detail||'') + '</td>' +
+      '<td>' + levelBadge(l.level) + '</td>' +
+      '</tr>';
+  }).join('') : '<tr><td colspan="4" style="text-align:center;color:var(--gr);padding:20px">Log bulunamadi</td></tr>';
+}
+
+function updateSessionBadge(){
+  var rem = YGSecurity.getRemainingMinutes();
+  document.getElementById('session-remaining').textContent = rem;
+}
+
+function extendSession(){
+  var s = YGSecurity.getSession();
+  if(s){
+    s.expires = Date.now() + 30 * 60000;
+    sessionStorage.setItem(YGSecurity.CFG.SESSION_KEY, JSON.stringify(s));
+    updateSessionBadge();
+    showNotify('Oturum 30 dakika uzatildi!', 'success');
+    YGSecurity.secLog('SESSION_EXTENDED', 'Manuel uzatma', 'INFO');
+  }
+}
+
+function doLogout(){
+  YGSecurity.destroySession();
+  showNotify('Cikis yapildi.', 'success');
+  setTimeout(function(){ location.reload(); }, 800);
+}
+
+/* ══ LOGLAR ══════════════════════════════════════════════════ */
+function levelBadge(level){
+  var map = {INFO:'b-blue',WARN:'b-orange',CRITICAL:'b-red',ERROR:'b-red'};
+  return '<span class="badge ' + (map[level]||'b-gray') + '">' + (level||'INFO') + '</span>';
+}
+
+function renderLogs(){
+  var logs = YGSecurity.getSecurityLogs();
+  var filter = document.getElementById('log-filter') ? document.getElementById('log-filter').value : 'all';
+  var search = document.getElementById('log-search') ? document.getElementById('log-search').value.toLowerCase() : '';
+  if(filter !== 'all') logs = logs.filter(function(l){ return l.event === filter; });
+  if(search) logs = logs.filter(function(l){ return JSON.stringify(l).toLowerCase().indexOf(search) >= 0; });
+  var tbody = document.getElementById('logs-table');
+  tbody.innerHTML = logs.length ? logs.map(function(l){
+    return '<tr>' +
+      '<td style="font-size:11px;color:var(--gr);white-space:nowrap">' + new Date(l.ts).toLocaleString('tr-TR') + '</td>' +
+      '<td><span style="font-size:11px;font-weight:600">' + l.event + '</span></td>' +
+      '<td style="font-size:11px;max-width:220px">' + (l.detail||'') + '</td>' +
+      '<td>' + levelBadge(l.level) + '</td>' +
+      '<td style="font-size:11px;color:var(--gr)">' + (l.page||'') + '</td>' +
+      '</tr>';
+  }).join('') : '<tr><td colspan="5" style="text-align:center;color:var(--gr);padding:20px">Log bulunamadi</td></tr>';
+}
+
+function exportLogs(){
+  var logs = YGSecurity.getSecurityLogs();
+  var csv = 'Tarih,Olay,Detay,Seviye,Sayfa\n';
+  logs.forEach(function(l){
+    csv += '"' + new Date(l.ts).toLocaleString('tr-TR') + '","' + l.event + '","' + (l.detail||'') + '","' + (l.level||'') + '","' + (l.page||'') + '"\n';
+  });
+  var blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'yapiguc-guvenlik-loglari-' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+  showNotify('Loglar disa aktarildi!', 'success');
+}
+
+function clearAllLogs(){
+  if(confirm('Tum guvenlik loglarini silmek istiyor musunuz?')){
+    YGSecurity.clearSecurityLogs();
+    renderLogs();
+    initDashboard();
+    showNotify('Loglar temizlendi.', 'success');
+  }
+}
+
+/* ══ DENEMELER ══════════════════════════════════════════════ */
+function renderAttempts(){
+  var a = YGSecurity.getAttempts();
+  var locked = YGSecurity.isLocked();
+  var info = document.getElementById('attempts-info');
+  info.innerHTML = '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">' +
+    '<div style="background:var(--lt);border-radius:10px;padding:16px;text-align:center"><div style="font-size:28px;font-weight:900;color:' + (a.count > 0 ? 'var(--red)' : 'var(--green)') + '">' + a.count + '</div><div style="font-size:11px;color:var(--gr)">Basarisiz Deneme</div></div>' +
+    '<div style="background:var(--lt);border-radius:10px;padding:16px;text-align:center"><div style="font-size:28px;font-weight:900;color:' + (locked ? 'var(--red)' : 'var(--green)') + '">' + (locked ? 'Kilitli' : 'Acik') + '</div><div style="font-size:11px;color:var(--gr)">Hesap Durumu</div></div>' +
+    '<div style="background:var(--lt);border-radius:10px;padding:16px;text-align:center"><div style="font-size:28px;font-weight:900;color:var(--blue)">5</div><div style="font-size:11px;color:var(--gr)">Maks Deneme Hakki</div></div>' +
+    '</div>' +
+    '<div style="display:flex;gap:8px">' +
+    '<button class="btn-sm btn-orange" onclick="unlockAccount()"><i class="fas fa-unlock"></i> Kilidi Ac</button>' +
+    '<button class="btn-sm btn-gray" onclick="resetAttempts()"><i class="fas fa-redo"></i> Sayaci Sifirla</button>' +
+    '</div>';
+
+  var logs = YGSecurity.getSecurityLogs().filter(function(l){ return l.event === 'LOGIN_FAIL' || l.event === 'ACCOUNT_LOCKED'; });
+  var stats = document.getElementById('attempts-stats');
+  stats.innerHTML = logs.length ? '<table><thead><tr><th>Zaman</th><th>Olay</th><th>Detay</th></tr></thead><tbody>' +
+    logs.slice(0,20).map(function(l){
+      return '<tr><td style="font-size:11px;color:var(--gr)">' + new Date(l.ts).toLocaleString('tr-TR') + '</td>' +
+        '<td>' + levelBadge(l.level) + '</td>' +
+        '<td style="font-size:11px">' + (l.detail||'') + '</td></tr>';
+    }).join('') + '</tbody></table>' : '<p style="color:var(--gr);font-size:13px">Basarisiz giris denemesi yok.</p>';
+}
+
+function unlockAccount(){
+  localStorage.setItem(YGSecurity.CFG.ATTEMPTS_KEY, JSON.stringify({count:0,lockedUntil:0}));
+  YGSecurity.secLog('ACCOUNT_UNLOCKED', 'Manuel kilit kaldirildi', 'INFO');
+  showNotify('Hesap kilidi kaldirildi!', 'success');
+  renderAttempts();
+}
+
+function resetAttempts(){
+  localStorage.setItem(YGSecurity.CFG.ATTEMPTS_KEY, JSON.stringify({count:0,lockedUntil:0}));
+  showNotify('Deneme sayaci sifirlandi!', 'success');
+  renderAttempts();
+}
+
+/* ══ OTURUM ══════════════════════════════════════════════════ */
+function renderSession(){
+  var s = YGSecurity.getSession();
+  var info = document.getElementById('session-info');
+  if(!s){ info.innerHTML = '<p style="color:var(--gr)">Aktif oturum yok.</p>'; return; }
+  var created = new Date(s.created).toLocaleString('tr-TR');
+  var expires = new Date(s.expires).toLocaleString('tr-TR');
+  var duration = Math.floor((Date.now() - s.created) / 60000);
+  info.innerHTML = '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">' +
+    '<div style="background:var(--lt);border-radius:10px;padding:14px"><div style="font-size:11px;color:var(--gr);margin-bottom:4px">Kullanici</div><div style="font-size:14px;font-weight:700">admin</div></div>' +
+    '<div style="background:var(--lt);border-radius:10px;padding:14px"><div style="font-size:11px;color:var(--gr);margin-bottom:4px">Giris Zamani</div><div style="font-size:13px;font-weight:600">' + created + '</div></div>' +
+    '<div style="background:var(--lt);border-radius:10px;padding:14px"><div style="font-size:11px;color:var(--gr);margin-bottom:4px">Bitis Zamani</div><div style="font-size:13px;font-weight:600">' + expires + '</div></div>' +
+    '<div style="background:var(--lt);border-radius:10px;padding:14px"><div style="font-size:11px;color:var(--gr);margin-bottom:4px">Gecen Sure</div><div style="font-size:14px;font-weight:700">' + duration + ' dakika</div></div>' +
+    '</div>';
+}
+
+/* ══ IP ══════════════════════════════════════════════════════ */
+var ipList = JSON.parse(localStorage.getItem('yg_ip_list') || '[]');
+
+function renderIP(){
+  // Mevcut IP'yi goster
+  fetch('https://api.ipify.org?format=json').then(function(r){ return r.json(); }).then(function(d){
+    document.getElementById('current-ip').textContent = d.ip;
+  }).catch(function(){
+    document.getElementById('current-ip').textContent = 'Tespit edilemedi';
+  });
+
+  var list = document.getElementById('ip-list');
+  if(ipList.length === 0){
+    list.innerHTML = '<p style="font-size:13px;color:var(--gr)">Henuz IP eklenmedi. Tum IP\'lerden erisim acik.</p>';
+    return;
+  }
+  list.innerHTML = ipList.map(function(ip, i){
+    return '<div class="ip-item">' +
+      '<code>' + ip + '</code>' +
+      '<button class="btn-sm btn-red" onclick="removeIP(' + i + ')"><i class="fas fa-trash"></i></button>' +
+      '</div>';
+  }).join('');
+}
+
+function addIP(){
+  var val = document.getElementById('new-ip').value.trim();
+  if(!val){ showNotify('IP adresi girin!', 'error'); return; }
+  if(ipList.indexOf(val) >= 0){ showNotify('Bu IP zaten listede!', 'warn'); return; }
+  ipList.push(val);
+  localStorage.setItem('yg_ip_list', JSON.stringify(ipList));
+  document.getElementById('new-ip').value = '';
+  renderIP();
+  showNotify(val + ' eklendi!', 'success');
+  YGSecurity.secLog('IP_ADDED', val, 'INFO');
+}
+
+function removeIP(i){
+  var ip = ipList[i];
+  ipList.splice(i, 1);
+  localStorage.setItem('yg_ip_list', JSON.stringify(ipList));
+  renderIP();
+  showNotify(ip + ' kaldirildi!', 'success');
+  YGSecurity.secLog('IP_REMOVED', ip, 'INFO');
+}
+
+function toggleIPRestriction(enabled){
+  showNotify(enabled ? 'IP kisitlamasi aktif edildi!' : 'IP kisitlamasi devre disi!', enabled ? 'success' : 'warn');
+  YGSecurity.secLog('IP_RESTRICTION', enabled ? 'Aktif' : 'Devre disi', 'INFO');
+}
+
+/* ══ SIFRE GUCU ══════════════════════════════════════════════ */
+function checkPassStrength(pass, prefix){
+  prefix = prefix || '';
+  var rules = {
+    len    : pass.length >= 12,
+    upper  : /[A-Z]/.test(pass),
+    lower  : /[a-z]/.test(pass),
+    num    : /[0-9]/.test(pass),
+    special: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(pass)
+  };
+  var score = Object.values(rules).filter(Boolean).length;
+  var pct = (score / 5) * 100;
+  var colors = ['#ef4444','#f97316','#eab308','#22c55e','#16a34a'];
+  var labels = ['Cok Zayif','Zayif','Orta','Guclu','Cok Guclu'];
+  var fillId = prefix ? prefix + '-strength-fill' : 'strength-fill';
+  var labelId = prefix ? null : 'strength-label';
+  var fill = document.getElementById(fillId);
+  if(fill){ fill.style.width = pct + '%'; fill.style.background = colors[score-1] || '#ccc'; }
+  if(labelId){
+    var lbl = document.getElementById(labelId);
+    if(lbl) lbl.textContent = pass ? (labels[score-1] || 'Cok Zayif') : 'Sifre girin...';
+    if(lbl) lbl.style.color = colors[score-1] || 'var(--gr)';
+  }
+  if(!prefix){
+    var ruleMap = {len:'rule-len',upper:'rule-upper',lower:'rule-lower',num:'rule-num',special:'rule-special'};
+    Object.keys(rules).forEach(function(k){
+      var el = document.getElementById(ruleMap[k]);
+      if(el){
+        el.classList.toggle('ok', rules[k]);
+        el.querySelector('i').className = rules[k] ? 'fas fa-check-circle' : 'fas fa-circle';
+      }
+    });
+  }
+}
+
+/* ══ CANLI TOTP ══════════════════════════════════════════════ */
+var _liveTotpInterval = null;
+function startLiveTOTP(){
+  function update(){
+    var code = YGSecurity.getTOTP(YGSecurity.CFG.TOTP_SECRET);
+    var el = document.getElementById('live-totp');
+    if(el) el.textContent = code;
+    var epoch = Math.floor(Date.now() / 1000);
+    var remaining = 30 - (epoch % 30);
+    var prog = document.getElementById('live-totp-progress');
+    var timer = document.getElementById('live-totp-timer');
+    if(prog) prog.style.width = ((remaining/30)*100) + '%';
+    if(prog) prog.style.background = remaining <= 5 ? '#ef4444' : remaining <= 10 ? '#f97316' : '#fff';
+    if(timer) timer.textContent = remaining + ' saniye';
+  }
+  if(_liveTotpInterval) clearInterval(_liveTotpInterval);
+  update();
+  _liveTotpInterval = setInterval(update, 1000);
+}
+
+/* ══ AYARLAR ══════════════════════════════════════════════════ */
+function saveSetting(key, val){
+  var settings = JSON.parse(localStorage.getItem('yg_settings') || '{}');
+  settings[key] = val;
+  localStorage.setItem('yg_settings', JSON.stringify(settings));
+  showNotify('Ayar kaydedildi!', 'success');
+  YGSecurity.secLog('SETTING_CHANGED', key + ' = ' + val, 'INFO');
+}
+
+/* ══ YARDIMCI ══════════════════════════════════════════════ */
+function showAlert(id, msg, type){
+  var el = document.getElementById(id);
+  if(!el) return;
+  el.className = 'alert alert-' + type + ' show';
+  el.innerHTML = '<i class="fas fa-' + (type==='error'?'times-circle':type==='warn'?'exclamation-triangle':'info-circle') + '"></i><span>' + msg + '</span>';
+  setTimeout(function(){ el.classList.remove('show'); }, 5000);
+}
+
+function toggleEye(inputId, iconId){
+  var inp = document.getElementById(inputId);
+  var ico = document.getElementById(iconId);
+  if(inp.type === 'password'){ inp.type = 'text'; ico.className = 'fas fa-eye-slash'; }
+  else { inp.type = 'password'; ico.className = 'fas fa-eye'; }
+}
+
+function showNotify(msg, type){
+  type = type || 'success';
+  var container = document.getElementById('notify');
+  var item = document.createElement('div');
+  item.className = 'notify-item ' + type;
+  item.textContent = msg;
+  container.appendChild(item);
+  setTimeout(function(){ item.remove(); }, 4000);
+}
+
+function showModal(id){ document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+document.querySelectorAll('.modal-overlay').forEach(function(o){
+  o.addEventListener('click', function(e){ if(e.target===this){ this.classList.remove('open'); document.body.style.overflow=''; } });
+});
+
+document.getElementById('pass-input').addEventListener('keydown', function(e){
+  if(e.key === 'Enter') doStep1();
+});
+</script>
+</body>
+</html>
