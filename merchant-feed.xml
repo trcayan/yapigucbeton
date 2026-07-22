@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Yapıgüç Beton Ürün Kataloğu</title>
+    <link>https://yapigucbeton.com.tr</link>
+    <description>Hatay Antakya parke taşı, bordür, şev taşı ve beton bariyer üretimi</description>
+    <language>tr</language>
+
+    <item>
+      <g:id>parke-asik-6cm-gri</g:id>
+      <g:title>Aşık Kilit Parke Taşı 6cm - Gri</g:title>
+      <g:description>ISO 9001 belgeli, yüksek dayanımlı kilit parke taşı. Hatay Antakya fabrikasından direkt satış. Yaya ve araç trafiği için ideal.</g:description>
+      <g:link>https://yapigucbeton.com.tr/index.html#urunler</g:link>
+      <g:image_link>https://yapigucbeton.com.tr/logo.png</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>0 TRY</g:price>
+      <g:brand>Yapıgüç Beton</g:brand>
+      <g:google_product_category>Building Materials</g:google_product_category>
+      <g:product_type>Parke Taşı > Kilit Parke > Aşık Taşı</g:product_type>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:shipping>
+        <g:country>TR</g:country>
+        <g:service>Standart Teslimat</g:service>
+        <g:price>0 TRY</g:price>
+      </g:shipping>
+      <g:custom_label_0>Hatay</g:custom_label_0>
+      <g:custom_label_1>Parke Taşı</g:custom_label_1>
+    </item>
+
+    <item>
+      <g:id>parke-asik-8cm-gri</g:id>
+      <g:title>Aşık Kilit Parke Taşı 8cm - Gri (Araç Trafiği)</g:title>
+      <g:description>Araç trafiği için 8cm kalınlıkta kilit parke taşı. ISO belgeli üretim. Otopark, yol ve sanayi sahası için ideal.</g:description>
+      <g:link>https://yapigucbeton.com.tr/index.html#urunler</g:link>
+      <g:image_link>https://yapigucbeton.com.tr/logo.png</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>0 TRY</g:price>
+      <g:brand>Yapıgüç Beton</g:brand>
+      <g:google_product_category>Building Materials</g:google_product_category>
+      <g:product_type>Parke Taşı > Kilit Parke > Aşık Taşı</g:product_type>
+      <g:identifier_exists>false</g:identifier_exists>
+    </item>
+
+    <item>
+      <g:id>bordur-yol-100x25x15</g:id>
+      <g:title>Yol Bordürü 100x25x15 cm</g:title>
+      <g:description>Standart yol bordürü. Beton yol kenarı sınırlama elemanı. ISO belgeli üretim. Hatay Antakya fabrikasından direkt satış.</g:description>
+      <g:link>https://yapigucbeton.com.tr/bordur-tasi.html</g:link>
+      <g:image_link>https://yapigucbeton.com.tr/logo.png</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>0 TRY</g:price>
+      <g:brand>Yapıgüç Beton</g:brand>
+      <g:google_product_category>Building Materials</g:google_product_category>
+      <g:product_type>Bordür Taşı > Yol Bordürü</g:product_type>
+      <g:identifier_exists>false</g:identifier_exists>
+    </item>
+
+    <item>
+      <g:id>beton-bariyer-jersey</g:id>
+      <g:title>Jersey Beton Bariyer - Yol Güvenlik Bariyeri</g:title>
+      <g:description>Jersey tipi beton yol güvenlik bariyeri. Şantiye ve yol çalışmaları için. ISO belgeli üretim. Hatay Antakya fabrikasından direkt satış.</g:description>
+      <g:link>https://yapigucbeton.com.tr/beton-bariyer.html</g:link>
+      <g:image_link>https://yapigucbeton.com.tr/logo.png</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>0 TRY</g:price>
+      <g:brand>Yapıgüç Beton</g:brand>
+      <g:google_product_category>Building Materials</g:google_product_category>
+      <g:product_type>Beton Bariyer > Jersey Bariyer</g:product_type>
+      <g:identifier_exists>false</g:identifier_exists>
+    </item>
+
+    <item>
+      <g:id>sev-tasi-standart</g:id>
+      <g:title>Şev Taşı - Yol Şev Koruma Elemanı</g:title>
+      <g:description>Yol şevleri ve eğimli alanlar için şev taşı. Toprak kaymasını önler. ISO belgeli üretim. Hatay Antakya fabrikasından direkt satış.</g:description>
+      <g:link>https://yapigucbeton.com.tr/sev-tasi.html</g:link>
+      <g:image_link>https://yapigucbeton.com.tr/logo.png</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>0 TRY</g:price>
+      <g:brand>Yapıgüç Beton</g:brand>
+      <g:google_product_category>Building Materials</g:google_product_category>
+      <g:product_type>Şev Taşı</g:product_type>
+      <g:identifier_exists>false</g:identifier_exists>
+    </item>
+
+  </channel>
+</rss>
