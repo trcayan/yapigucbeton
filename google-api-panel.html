@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>Rich Results & Schema Test — Yapıgüç Beton</title>
+<link rel="icon" href="favicon.png"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f6f9;color:#111;}
+.header{background:#111;padding:14px 24px;display:flex;align-items:center;gap:12px;}
+.header img{height:36px;}
+.header h1{color:#fff;font-size:16px;}
+.container{max-width:1000px;margin:0 auto;padding:32px 24px;}
+h2{font-size:18px;font-weight:800;color:#111;margin:28px 0 14px;padding-bottom:8px;border-bottom:2px solid #fee2e2;}
+.card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:16px;}
+.card h3{font-size:14px;font-weight:700;color:#c0001a;margin-bottom:10px;}
+.test-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:7px;font-size:12px;font-weight:700;text-decoration:none;margin:4px;transition:all .2s;}
+.btn-red{background:#c0001a;color:#fff;}
+.btn-blue{background:#1d4ed8;color:#fff;}
+.btn-green{background:#16a34a;color:#fff;}
+.btn-gray{background:#f3f4f6;color:#111;border:1px solid #e5e7eb;}
+.schema-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.schema-badge{background:#fff5f5;border:1px solid #fca5a5;color:#c0001a;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;}
+.api-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.api-info h4{font-size:14px;font-weight:700;margin-bottom:4px;}
+.api-info p{font-size:12px;color:#6b7280;}
+.status-badge{padding:4px 12px;border-radius:8px;font-size:11px;font-weight:700;white-space:nowrap;}
+.s-active{background:#d1fae5;color:#065f46;}
+.s-pending{background:#ffedd5;color:#92400e;}
+.s-setup{background:#dbeafe;color:#1e40af;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
+</style>
+</head>
+<body>
+<div class="header">
+  <img src="logo.png" alt="Yapıgüç Beton"/>
+  <h1>Google API & Rich Results Kontrol Paneli</h1>
+</div>
+<div class="container">
+
+  <h2>🔍 Schema & Rich Results Test</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Ana Sayfa Schema Testi</h3>
+      <p style="font-size:12px;color:#6b7280;margin-bottom:10px">30 farklı schema tipi mevcut</p>
+      <div class="schema-list">
+        <span class="schema-badge">LocalBusiness</span>
+        <span class="schema-badge">FAQPage</span>
+        <span class="schema-badge">Product</span>
+        <span class="schema-badge">BreadcrumbList</span>
+        <span class="schema-badge">WebSite</span>
+        <span class="schema-badge">Organization</span>
+        <span class="schema-badge">HowTo</span>
+        <span class="schema-badge">Review</span>
+        <span class="schema-badge">GeoCoordinates</span>
+        <span class="schema-badge">ServiceArea</span>
+      </div>
+      <div style="margin-top:12px">
+        <a href="https://search.google.com/test/rich-results?url=https://yapigucbeton.com.tr/" target="_blank" class="test-btn btn-red">🔍 Rich Results Test</a>
+        <a href="https://validator.schema.org/?url=https://yapigucbeton.com.tr/" target="_blank" class="test-btn btn-blue">✅ Schema Validator</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Blog Sayfaları Schema</h3>
+      <p style="font-size:12px;color:#6b7280;margin-bottom:10px">HowTo, FAQ, Article schema</p>
+      <div class="schema-list">
+        <span class="schema-badge">HowTo</span>
+        <span class="schema-badge">HowToStep</span>
+        <span class="schema-badge">HowToSupply</span>
+        <span class="schema-badge">FAQPage</span>
+        <span class="schema-badge">Article</span>
+      </div>
+      <div style="margin-top:12px">
+        <a href="https://search.google.com/test/rich-results?url=https://yapigucbeton.com.tr/parke-tasi-nasil-dosenir.html" target="_blank" class="test-btn btn-red">🔍 Döşeme Rehberi</a>
+        <a href="https://search.google.com/test/rich-results?url=https://yapigucbeton.com.tr/2026-hatay-parke-tasi-fiyatlari.html" target="_blank" class="test-btn btn-blue">🔍 Fiyat Makalesi</a>
+      </div>
+    </div>
+  </div>
+
+  <h2>📊 Google API Durumu</h2>
+  <div class="api-card">
+    <div class="api-info">
+      <h4>Google Analytics 4 (GA4)</h4>
+      <p>Measurement ID: G-YAPIGUC2026 | Trafik, dönüşüm ve kullanıcı davranışı takibi</p>
+    </div>
+    <div>
+      <span class="status-badge s-pending">⚠️ ID Güncellenmeli</span>
+      <div style="margin-top:6px">
+        <a href="https://analytics.google.com" target="_blank" class="test-btn btn-gray">GA4 Aç</a>
+      </div>
+    </div>
+  </div>
+  <div class="api-card">
+    <div class="api-info">
+      <h4>Google Tag Manager</h4>
+      <p>Container ID: GTM-YAPIGUC | Tüm tracking kodlarını merkezi yönet</p>
+    </div>
+    <div>
+      <span class="status-badge s-pending">⚠️ ID Güncellenmeli</span>
+      <div style="margin-top:6px">
+        <a href="https://tagmanager.google.com" target="_blank" class="test-btn btn-gray">GTM Aç</a>
+      </div>
+    </div>
+  </div>
+  <div class="api-card">
+    <div class="api-info">
+      <h4>Google Search Console</h4>
+      <p>Doğrulandı ✅ | Sitemap gönderildi | 29 URL indexlendi</p>
+    </div>
+    <div>
+      <span class="status-badge s-active">✅ Aktif</span>
+      <div style="margin-top:6px">
+        <a href="https://search.google.com/search-console" target="_blank" class="test-btn btn-gray">GSC Aç</a>
+      </div>
+    </div>
+  </div>
+  <div class="api-card">
+    <div class="api-info">
+      <h4>Google Merchant Center</h4>
+      <p>Ürün feed'i hazır: merchant-feed.xml | 5 ürün tanımlandı</p>
+    </div>
+    <div>
+      <span class="status-badge s-setup">🔧 Kurulum Gerekli</span>
+      <div style="margin-top:6px">
+        <a href="https://merchants.google.com" target="_blank" class="test-btn btn-gray">Merchant Aç</a>
+        <a href="/merchant-feed.xml" target="_blank" class="test-btn btn-gray">Feed Görüntüle</a>
+      </div>
+    </div>
+  </div>
+  <div class="api-card">
+    <div class="api-info">
+      <h4>Google PageSpeed Insights API</h4>
+      <p>API Key gerekli | Otomatik hız ölçümü için</p>
+    </div>
+    <div>
+      <span class="status-badge s-setup">🔧 API Key Gerekli</span>
+      <div style="margin-top:6px">
+        <a href="https://pagespeed.web.dev/analysis/https-yapigucbeton-com-tr/mobile" target="_blank" class="test-btn btn-gray">Manuel Test</a>
+      </div>
+    </div>
+  </div>
+  <div class="api-card">
+    <div class="api-info">
+      <h4>Google Indexing API</h4>
+      <p>Yeni sayfaları anında Google'a bildir | Service Account gerekli</p>
+    </div>
+    <div>
+      <span class="status-badge s-setup">🔧 Kurulum Gerekli</span>
+      <div style="margin-top:6px">
+        <a href="https://console.cloud.google.com" target="_blank" class="test-btn btn-gray">Cloud Console</a>
+      </div>
+    </div>
+  </div>
+  <div class="api-card">
+    <div class="api-info">
+      <h4>Google Maps Platform</h4>
+      <p>Embed harita aktif | Gelişmiş özellikler için API Key gerekli</p>
+    </div>
+    <div>
+      <span class="status-badge s-active">✅ Temel Aktif</span>
+      <div style="margin-top:6px">
+        <a href="https://console.cloud.google.com/apis/library/maps-embed-backend.googleapis.com" target="_blank" class="test-btn btn-gray">Maps API</a>
+      </div>
+    </div>
+  </div>
+  <div class="api-card">
+    <div class="api-info">
+      <h4>Google Business Profile API</h4>
+      <p>GMB profili mevcut | API ile otomatik yorum yönetimi</p>
+    </div>
+    <div>
+      <span class="status-badge s-setup">🔧 OAuth Gerekli</span>
+      <div style="margin-top:6px">
+        <a href="https://business.google.com" target="_blank" class="test-btn btn-gray">GMB Aç</a>
+      </div>
+    </div>
+  </div>
+
+  <h2>🚀 Hızlı Test Linkleri</h2>
+  <div class="card">
+    <h3>Google Araçları</h3>
+    <a href="https://search.google.com/test/rich-results?url=https://yapigucbeton.com.tr/" target="_blank" class="test-btn btn-red">Rich Results Test</a>
+    <a href="https://pagespeed.web.dev/analysis/https-yapigucbeton-com-tr/mobile" target="_blank" class="test-btn btn-blue">PageSpeed Mobile</a>
+    <a href="https://pagespeed.web.dev/analysis/https-yapigucbeton-com-tr/desktop" target="_blank" class="test-btn btn-blue">PageSpeed Desktop</a>
+    <a href="https://search.google.com/search-console/inspect?resource_id=https://yapigucbeton.com.tr/" target="_blank" class="test-btn btn-green">URL İnceleme</a>
+    <a href="https://validator.schema.org/?url=https://yapigucbeton.com.tr/" target="_blank" class="test-btn btn-gray">Schema Validator</a>
+    <a href="https://www.google.com/webmasters/tools/mobile-friendly/?url=https://yapigucbeton.com.tr/" target="_blank" class="test-btn btn-gray">Mobil Uyumluluk</a>
+  </div>
+
+  <h2>📋 API Key Alma Rehberi</h2>
+  <div class="card">
+    <h3>Google Cloud Console'dan API Key Alma</h3>
+    <ol style="padding-left:20px;font-size:13px;line-height:2">
+      <li><a href="https://console.cloud.google.com" target="_blank" style="color:#c0001a">console.cloud.google.com</a> adresine gidin</li>
+      <li>trgokmenyilmaz@hotmail.com ile giriş yapın</li>
+      <li>"Yeni Proje" → "yapigucbeton" adını verin → Oluştur</li>
+      <li>Sol menü → "API ve Hizmetler" → "Kitaplık"</li>
+      <li>Şu API'leri etkinleştirin: <strong>Maps JavaScript API, PageSpeed Insights API, Indexing API, Translate API</strong></li>
+      <li>"Kimlik Bilgileri" → "+ Kimlik Bilgileri Oluştur" → "API Anahtarı"</li>
+      <li>Oluşturulan KEY'i Office Agent'a gönderin → Otomatik kurulum yapılır!</li>
+    </ol>
+    <div style="margin-top:14px">
+      <a href="https://console.cloud.google.com" target="_blank" class="test-btn btn-red">🚀 Cloud Console'u Aç</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
