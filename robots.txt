@@ -5,3 +5,6 @@ Disallow: /admin.html
 
 Sitemap: https://yapigucbeton.com.tr/sitemap.xml
 Disallow: /strateji.html
+
+# Google Merchant Center Feed
+Allow: /merchant-feed.xml
