@@ -494,8 +494,64 @@ footer{background:#0a0a0a;color:#888;}
   }
   </script>
   <meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width"/>
+
+  <!-- Google Analytics 4 (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YAPIGUC2026"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YAPIGUC2026', {
+      'page_title': document.title,
+      'page_location': window.location.href,
+      'send_page_view': true,
+      'cookie_flags': 'SameSite=None;Secure',
+      'anonymize_ip': true,
+      'allow_google_signals': true,
+      'allow_ad_personalization_signals': false
+    });
+    // Özel olaylar
+    function trackEvent(action, category, label, value) {
+      gtag('event', action, {
+        'event_category': category,
+        'event_label': label,
+        'value': value
+      });
+    }
+    // Form gönderimi takibi
+    document.addEventListener('DOMContentLoaded', function() {
+      // Telefon tıklaması
+      document.querySelectorAll('a[href^="tel:"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          trackEvent('phone_click', 'contact', el.href, 1);
+        });
+      });
+      // WhatsApp tıklaması
+      document.querySelectorAll('a[href*="wa.me"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          trackEvent('whatsapp_click', 'contact', 'whatsapp', 1);
+        });
+      });
+      // Form gönderimi
+      document.querySelectorAll('form').forEach(function(form) {
+        form.addEventListener('submit', function() {
+          trackEvent('form_submit', 'lead', form.id || 'form', 1);
+        });
+      });
+    });
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-YAPIGUC');</script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-YAPIGUC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div id="preloader">
 <div class="pl-inner">
 <img width="180" height="60" loading="lazy" decoding="async" alt="Yapıgüç" class="pl-logo" src="logo.png?expires=1784566579&amp;signature=3c513b49e7da210bc6eb5023bbcdbeac753ccc3ce5a78ddfa743e30284fc4dc5"/>
@@ -727,7 +783,10 @@ footer{background:#0a0a0a;color:#888;}
 </div>
 </div>
 <div class="map">
-<iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d500!2d36.20594776534193!3d36.31018678401355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1525ed9c3dfcaac1%3A0x56eed11909880627!2zWWFwxLFnw7zDpyBraWxpdCBwYXJrZSB2ZSBib3Jkw7xyIMO8cmV0aW0gdGVzaXNp!5e0!3m2!1str!2str!4v1718800000000!5m2!1str!2str"></iframe>
+<iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3189.5!2d36.20594776534193!3d36.31018678401355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1525ed9c3dfcaac1%3A0x56eed11909880627!2zWWFwxLFnw7zDpyBCZXRvbiBQYXJrZSBUZXNpc2k!5e0!3m2!1str!2str!4v1720000000000!5m2!1str!2str"
+          width="100%" height="400" style="border:0;border-radius:12px;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" title="Yapıgüç Beton Konum"></iframe>
 </div>
 </div>
 </div>
