@@ -23,6 +23,69 @@ p{color:#aaa;font-size:15px;line-height:1.7;margin-bottom:28px;}
 .links a{color:#888;text-decoration:none;font-size:13px;transition:color .2s;}
 .links a:hover{color:#c0001a;}
 </style>
+  <!-- Google Analytics 4 (GA4) — G-6VFS9XKBMJ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6VFS9XKBMJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6VFS9XKBMJ', {
+      'page_title': document.title,
+      'page_location': window.location.href,
+      'anonymize_ip': true,
+      'allow_google_signals': true
+    });
+    // Gelişmiş Event Tracking
+    document.addEventListener('DOMContentLoaded', function() {
+      // Telefon tıklaması
+      document.querySelectorAll('a[href^="tel:"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          gtag('event', 'phone_call', {'event_category':'contact','event_label':el.href,'value':1});
+        });
+      });
+      // WhatsApp tıklaması
+      document.querySelectorAll('a[href*="wa.me"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          gtag('event', 'whatsapp_click', {'event_category':'contact','event_label':'whatsapp','value':1});
+        });
+      });
+      // Telegram tıklaması
+      document.querySelectorAll('a[href*="t.me"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          gtag('event', 'telegram_click', {'event_category':'contact','event_label':'telegram','value':1});
+        });
+      });
+      // Form gönderimi
+      document.querySelectorAll('form').forEach(function(form) {
+        form.addEventListener('submit', function() {
+          gtag('event', 'form_submit', {'event_category':'lead','event_label':form.id||'form','value':1});
+        });
+      });
+      // Sertifika görüntüleme
+      document.querySelectorAll('[onclick*="openCert"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          gtag('event', 'certificate_view', {'event_category':'engagement','event_label':'certificate'});
+        });
+      });
+      // Ürün detay açma
+      document.querySelectorAll('[onclick*="openProduct"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          gtag('event', 'product_view', {'event_category':'engagement','event_label':'product_detail'});
+        });
+      });
+      // Scroll derinliği
+      var scrolled = {};
+      window.addEventListener('scroll', function() {
+        var pct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+        [25,50,75,90].forEach(function(p) {
+          if(pct >= p && !scrolled[p]) {
+            scrolled[p] = true;
+            gtag('event', 'scroll_depth', {'event_category':'engagement','event_label':p+'%','value':p});
+          }
+        });
+      });
+    });
+  </script>
 </head>
 <body>
 <div class="box">
