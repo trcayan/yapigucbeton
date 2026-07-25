@@ -4,58 +4,56 @@ Tarih: 2026-07-25
 ## Hatay-Antakya
 Kelime: hatay antakya parke tasi
 
-İşte Hatay-Antakya için 3 versiyon Google Ads reklam metni:
-
-**Versiyon 1**  
+Versiyon 1:  
 BASLIK1: Hatay Antakya Parke  
-BASLIK2: Kaliteli Parke Taşı  
+BASLIK2: Kaliteli Beton Çözümleri  
 BASLIK3: ISO Belgeli Üretim  
 ACIKLAMA1: 30+ yıllık deneyimle hizmetinizdeyiz.  
-ACIKLAMA2: Güvenilir ve uygun fiyatlarla!
+ACIKLAMA2: Arayın, en iyi fiyatları alın!  
 
----
-
-**Versiyon 2**  
+Versiyon 2:  
 BASLIK1: Antakya Parke Taşı  
-BASLIK2: Kaliteli ve Dayanıklı  
-BASLIK3: Yapı Güçlendirici  
-ACIKLAMA1: Hatay'da lider parke tedarikçisi.  
-ACIKLAMA2: 0532 374 69 45 ile iletişime geçin!
+BASLIK2: Güvenilir Beton Markası  
+BASLIK3: Deneyimli Ekibimizle  
+ACIKLAMA1: Hatay'da kaliteli parke taşları.  
+ACIKLAMA2: 0532 374 69 45'i arayın!  
 
----
-
-**Versiyon 3**  
-BASLIK1: Hatay Parke Taşı  
-BASLIK2: Uzman Ekiple Hizmet  
-BASLIK3: 30 Yıl Güvenilirlik  
-ACIKLAMA1: ISO belgeli parke taşlarıyla.  
-ACIKLAMA2: 0532 374 69 45, hemen arayın!
+Versiyon 3:  
+BASLIK1: Parke Taşı Hatay  
+BASLIK2: Uygun Fiyat Garantisi  
+BASLIK3: Uzman Destek Hattı  
+ACIKLAMA1: ISO belgeli parke taşları burada!  
+ACIKLAMA2: 30+ yıl güvenle hizmet. Arayın!
 
 ---
 
 ## Iskenderun
 Kelime: iskenderun parke tasi
 
-Versiyon 1:  
+**Versiyon 1**  
 BASLIK1: Iskenderun Parke Taşı  
-BASLIK2: Dayanıklı ve Şık  
-BASLIK3: Uzman Ekiple Kalite  
-ACIKLAMA1: 30+ yıl tecrübe, ISO belgeli.  
-ACIKLAMA2: İhtiyacınıza uygun çözümler!
+BASLIK2: Kaliteyi Yakalayın  
+BASLIK3: Hızlı Teslimat  
+ACIKLAMA1: 30+ yıl tecrübeyle parke taşı.  
+ACIKLAMA2: ISO belgeli ürünler, hemen arayın!
 
-Versiyon 2:  
-BASLIK1: Parlak Iskenderun Parke  
-BASLIK2: Estetik ve Ekonomik  
-BASLIK3: Hızlı Kurulum Hizmeti  
-ACIKLAMA1: Kaliteli parke taşları için hemen ara!  
-ACIKLAMA2: 0532 374 69 45’ten ulaşın.
+---
 
-Versiyon 3:  
-BASLIK1: Iskenderun'un Parke Taşı  
-BASLIK2: Güvenilir ve Uzman  
-BASLIK3: 30 Yıldır Yanınızda  
-ACIKLAMA1: ISO belgeli firma, kaliteli taşlar.  
-ACIKLAMA2: İhtiyacınıza göre çeşitler!
+**Versiyon 2**  
+BASLIK1: Uygun Fiyatlı Parke  
+BASLIK2: Iskenderun İçin En İyi  
+BASLIK3: Kalite ve Güven  
+ACIKLAMA1: İhtiyacınıza uygun parke taşı.  
+ACIKLAMA2: 0532 374 69 45’ten bize ulaşın!
+
+---
+
+**Versiyon 3**  
+BASLIK1: Iskenderun için Parke  
+BASLIK2: Güvenilir ve Dayanıklı  
+BASLIK3: 30 Yıl Tecrübe  
+ACIKLAMA1: Yüksek kaliteli parke taşları.  
+ACIKLAMA2: ISO belgeli, hemen arayın!
 
 ---
 
@@ -64,86 +62,88 @@ Kelime: adana parke tasi
 
 **Versiyon 1**  
 BASLIK1: Adana Parke Taşı  
-BASLIK2: Kalite ve Güven  
-BASLIK3: Uygun Fiyat Garantisi  
-ACIKLAMA1: 30+ yıl deneyimle parke taşı.  
-ACIKLAMA2: ISO belgeli, her bütçeye uygun.
+BASLIK2: Kaliteli ve Dayanıklı  
+BASLIK3: 30 Yıldır Güvenle  
+ACIKLAMA1: Adana'da parke taşı ihtiyaçlarınız için uzman kadro.  
+ACIKLAMA2: ISO belgeli ürünler, hızlı teslimat!
 
 ---
 
 **Versiyon 2**  
-BASLIK1: Adana’nın En İyisi  
-BASLIK2: Parke Taşı Çeşitleri  
-BASLIK3: Uzman Ekiple Hizmet  
-ACIKLAMA1: Kaliteli ve şık parke taşları.  
-ACIKLAMA2: Hızlı teslimat, mükemmel hizmet.
+BASLIK1: Parke Taşı Adana  
+BASLIK2: 30+ Yıl Deneyim  
+BASLIK3: Güvenilir İhtiyaçlar  
+ACIKLAMA1: Adana'da en iyi kalite parke taşları.  
+ACIKLAMA2: Uygun fiyatlarla sizlerle buluşuyor!
 
 ---
 
 **Versiyon 3**  
-BASLIK1: Adana Parke Taşı  
-BASLIK2: Uygun Fiyatlı Çözümler  
-BASLIK3: Hızlı ve Güvenilir  
-ACIKLAMA1: 30 yılı aşkın sektör tecrübesi.  
-ACIKLAMA2: ISO belgeli ürünler, rahatlıkla alın.
+BASLIK1: Adana'nın Parke Taşı  
+BASLIK2: ISO Belgelidir  
+BASLIK3: Yüksek Kalite  
+ACIKLAMA1: Yılların deneyimiyle parke taşı temin edin.  
+ACIKLAMA2: İletişim: 0532 374 69 45
 
 ---
 
 ## Mersin
 Kelime: mersin parke tasi
 
-İşte Mersin için 3 versiyon Google Ads önerisi:
-
 **Versiyon 1**  
 BASLIK1: Mersin Parke Taşı  
-BASLIK2: Kaliteli Beton Ürünler  
-BASLIK3: ISO Belgeli Güvencesi  
-ACIKLAMA1: 30+ yıl deneyim ile güvenilir.  
-ACIKLAMA2: Hızla teslimat ve uygun fiyatlar!
+BASLIK2: Kalite ve Güven  
+BASLIK3: Yapiguc Beton ile Tanışın  
+ACIKLAMA1: 30 yıllık deneyim ile parke taşı!   
+ACIKLAMA2: ISO belgeli, güvenilir hizmet.  
+
+---
 
 **Versiyon 2**  
-BASLIK1: Parke Taşı Mersin'de  
-BASLIK2: Yapiguc Beton Kalitesi  
-BASLIK3: Hızlı Üretim ve Teslimat  
-ACIKLAMA1: Şık ve dayanıklı parke taşları.  
-ACIKLAMA2: 0532 374 69 45 ile iletişime geçin!
+BASLIK1: Mersin’de Parke Taşı  
+BASLIK2: Uygun Fiyat Garantisi  
+BASLIK3: Yapiguc Beton  
+ACIKLAMA1: 30+ yıllık tecrübe, kaliteli ürün!  
+ACIKLAMA2: İletişim: 0532 374 69 45  
+
+---
 
 **Versiyon 3**  
-BASLIK1: Mersin'de Parke Taşı  
-BASLIK2: 30 Yıl Güvenilir Hizmet  
-BASLIK3: Uygun Fiyat Garantisi  
-ACIKLAMA1: Anlayışlı ekibimizle hizmetinizdeyiz.  
-ACIKLAMA2: Hemen arayın, çözümlerimizi görün!
+BASLIK1: Mersin Kaliteli Parke  
+BASLIK2: Yapiguc Beton Farkı  
+BASLIK3: ISO Belgeli Üretim  
+ACIKLAMA1: Parke taşı ihtiyacınız için buradayız!  
+ACIKLAMA2: Hızlı ve güvenilir hizmet.  
 
 ---
 
 ## Gaziantep
 Kelime: gaziantep parke tasi
 
-**Versiyon 1**  
+**Versiyon 1:**  
 BASLIK1: Gaziantep Parke Taşı  
-BASLIK2: Kalite ve Güven  
-BASLIK3: 30+ Yıllık Deneyim  
-ACIKLAMA1: Hatay'da ISO belgeli parke taşı.  
-ACIKLAMA2: İhtiyacınıza uygun çözümler için arayın!
+BASLIK2: Kaliteli ve Dayanıklı  
+BASLIK3: 30 Yıldır Güvenle  
+ACIKLAMA1: ISO belgeli parke taşı.  
+ACIKLAMA2: Bizimle iletişime geçin!  
 
 ---
 
-**Versiyon 2**  
-BASLIK1: Kaliteli Parke Taşı  
-BASLIK2: Gaziantep İçin Özel  
-BASLIK3: Yapiguc Beton  
-ACIKLAMA1: Uzman ekiple güvenilir parke taşı.  
-ACIKLAMA2: 30+ yıl deneyim, hemen arayın!
+**Versiyon 2:**  
+BASLIK1: Uygun Fiyatlı Parke  
+BASLIK2: Gaziantep'te Kalite  
+BASLIK3: 30 Yıldır Lideriz  
+ACIKLAMA1: Parke taşı ihtiyacınıza özel.  
+ACIKLAMA2: Hızla sipariş vermek için arayın!  
 
 ---
 
-**Versiyon 3**  
-BASLIK1: Gaziantep Parke Çözümleri  
-BASLIK2: Uygun Fiyat Garantisi  
-BASLIK3: Hızlı Teslimat  
-ACIKLAMA1: ISO belgeli parke taşlarımızı keşfedin.  
-ACIKLAMA2: 0532 374 69 45 ile iletişime geçin!
+**Versiyon 3:**  
+BASLIK1: Gaziantep'te Parke Taşı  
+BASLIK2: Dayanıklı ve Estetik  
+BASLIK3: Yılların Güvencesi  
+ACIKLAMA1: Kaliteli parke taşı seçenekleri.  
+ACIKLAMA2: Hemen iletişim kurun, fırsatları görün!
 
 ---
 
@@ -151,13 +151,13 @@ ACIKLAMA2: 0532 374 69 45 ile iletişime geçin!
 
 **Versiyon 1:**
 
-Başlık: بلاط باركيه عالي الجودة  
-Açıklama: منتجات باركيه من هاتاي، تركيا. جودة معتمدة منذ 30 عامًا!
+Başlık: بلاط باركيه من هاتاي  
+Açıklama: بلاط باركيه عالي الجودة، 30 عامًا من الخبرة. اتصل الآن!
 
 ---
 
 **Versiyon 2:**
 
-Başlık: بلاط باركيه من هاتاي  
-Açıklama: توجه إلى سوق سوريا مع بلاط باركيه موثوق! اتصل الآن.
+Başlık: بلاط باركيه بسعر مناسب  
+Açıklama: بلاط باركيه من هاتاي، ISO معتمد. اتصل بنا اليوم!
 
