@@ -1,203 +1,182 @@
-# YAPIGÜÇ BETON — GOOGLE ADS REKLAM METİNLERİ
-Üretim Tarihi: 2026-07-25 | OpenAI GPT-4o-mini
+# YAPIGUC BETON - GOOGLE ADS REKLAM METINLERI
+Uretim: 2026-07-25 | OpenAI GPT-4o-mini
 
-## Hatay/Antakya
-**Hedef Kelime:** hatay antakya parke taşı
+## Hatay-Antakya
+Hedef: hatay antakya parke tasi
+
+İşte "hatay antakya parke taşı" anahtar kelimesi için hazırlanmış 3 farklı Google Ads reklam metni versiyonu:
 
 ### Versiyon A
-**BAŞLIK 1:** Hatay Antakya Parke Taşı  
-**BAŞLIK 2:** Kaliteli Kilit Parke Taşı  
-**BAŞLIK 3:** 30+ Yıllık Deneyim  
+**BASLIK 1:** Hatay Antakya Parke Taşı  
+**BASLIK 2:** Kalite ve Güven Sunuyoruz  
+**BASLIK 3:** 30+ Yıl Deneyimimizle  
+**ACIKLAMA 1:** Yapiguc Beton’dan ISO belgeli parke taşları. Uzman kadromuzla kaliteli hizmet.  
+**ACIKLAMA 2:** Hızla teslimat ve uygun fiyatlarla istediğiniz parke taşına ulaşın! 0532 374 69 45.
 
-**AÇIKLAMA 1:** Yüksek kalite parke taşlarıyla alanınızı güzelleştirin.  
-**AÇIKLAMA 2:** ISO belgeli, güvenilir beton ürünleri için hemen arayın!  
+---
 
 ### Versiyon B
-**BAŞLIK 1:** Antakya'da Parke Taşı  
-**BAŞLIK 2:** Ekonomik Çözümler Burada!  
-**BAŞLIK 3:** Yapıgüç Beton Farkıyla  
+**BASLIK 1:** Antakya Parke Taşı İhtiyacınız mı?  
+**BASLIK 2:** Kilit Parke Taşı Çeşitleri  
+**BASLIK 3:** Profesyonel Destek Sağlıyoruz  
+**ACIKLAMA 1:** 30 yıllık tecrübemizle Hatay'da kaliteli parke taşı. Uygun fiyatlar, hızlı teslimat!  
+**ACIKLAMA 2:** ISO belgeli, güvenilir ürünler için hemen arayın: 0532 374 69 45.
 
-**AÇIKLAMA 1:** Hatay Antakya'da %100 kaliteli parke taşı.  
-**AÇIKLAMA 2:** Hızlı teslimat, uygun fiyatlar. Bizi arayın!  
+---
 
 ### Versiyon C
-**BAŞLIK 1:** Kaliteli Parke Taşları  
-**BAŞLIK 2:** Hatay Antakya’da Güvenilir  
-**BAŞLIK 3:** Beton Ürünlerimizle Tanışın  
-
-**AÇIKLAMA 1:** 30 yıllık deneyimle en iyi parke çözümleri.  
-**AÇIKLAMA 2:** Yaşam alanlarınızı modernize edin, hemen arayın!  
-
----
-
-## İskenderun
-**Hedef Kelime:** iskenderun parke taşı
-
-**Versiyon A:**
-
-BAŞLIK 1: İskenderun Parke Taşı  
-BAŞLIK 2: Kalite ve Güven  
-BAŞLIK 3: 30 Yıl Deneyim  
-
-AÇIKLAMA 1: ISO belgeli kilit parke taşlarıyla alanınızı güzelleştirin.  
-AÇIKLAMA 2: Hızla teslimat, uygun fiyatlar! Hemen arayın: 0532 374 69 45  
+**BASLIK 1:** Hatay Parke Taşı Temin Edin  
+**BASLIK 2:** Yapiguc Beton ile Tanışın  
+**BASLIK 3:** Kaliteli Ürün Garantisi  
+**ACIKLAMA 1:** Hatay Antakya'da kaliteli kilit parke taşları ihtiyaçlarınızı karşılıyoruz.  
+**ACIKLAMA 2:** 30+ yılı aşkın deneyim, ISO belgeli ürünler. Bize ulaşın: 0532 374 69 45.
 
 ---
 
-**Versiyon B:**
+## Iskenderun
+Hedef: iskenderun parke tasi
 
-BAŞLIK 1: İskenderun İçin Parke Taşı  
-BAŞLIK 2: Uygun Fiyat, Yüksek Kalite  
-BAŞLIK 3: Şimdi Sipariş Verin!  
+A Versiyonu:  
+**BASLIK 1:** İskenderun Parke Taşı  
+**BASLIK 2:** Kaliteli ve Dayanıklı  
+**BASLIK 3:** 30+ Yıl Deneyim  
+**ACIKLAMA 1:** Yapiguc Beton'un kaliteli parke taşlarıyla İskenderun'da estetik alanlar oluşturun.  
+**ACIKLAMA 2:** ISO belgeli ürünlerimizle güvenilir çözüm! Hemen arayın: 0532 374 69 45  
 
-AÇIKLAMA 1: Estetik ve dayanıklı parke taşlarıyla dış mekanlarınızı yenileyin.  
-AÇIKLAMA 2: Yapıgüç Beton ile kaliteli çözümler için arayın!  
+B Versiyonu:  
+**BASLIK 1:** İskenderun için Parke Taşı  
+**BASLIK 2:** Uygun Fiyat Garantisi  
+**BASLIK 3:** Hızlı Teslimat, Kalite  
+**ACIKLAMA 1:** İskenderun'da kaliteli parke taşları ile projelerinizi tamamlayın.  
+**ACIKLAMA 2:** Yapiguc Beton ile iletişime geçin, teklif alın! 0532 374 69 45  
 
----
-
-**Versiyon C:**
-
-BAŞLIK 1: Kaliteli Parke Taşı  
-BAŞLIK 2: İskenderun'da Güvenilir  
-BAŞLIK 3: Hızlı Teslimat Garantili  
-
-AÇIKLAMA 1: 30+ yıllık deneyimle parke taşı ihtiyaçlarınızı karşılıyoruz.  
-AÇIKLAMA 2: Hemen arayın! Detaylar: 0532 374 69 45  
+C Versiyonu:  
+**BASLIK 1:** İskenderun'un En İyisi  
+**BASLIK 2:** Parke Taşı Seçenekleri  
+**BASLIK 3:** Dayanıklı ve Estetik  
+**ACIKLAMA 1:** Yapiguc Beton, İskenderun'da uzun ömürlü ve şık parke taşları sunar.  
+**ACIKLAMA 2:** Yılların tecrübesiyle güvenilir hizmet! Arayın: 0532 374 69 45  
 
 ---
 
 ## Adana
-**Hedef Kelime:** adana parke taşı
+Hedef: adana parke tasi
 
-**Versiyon A:**
-
-BAŞLIK 1: Adana Kilit Parke Taşı  
-BAŞLIK 2: 30 Yıldır Sektördeyiz  
-BAŞLIK 3: ISO Belgeli Güvenilir Ürünler  
-
-AÇIKLAMA 1: Yapıgüç Beton ile dayanıklı parke taşı siparişi verin!  
-AÇIKLAMA 2: Hızlı teslimat ve uygun fiyat seçenekleriyle!  
+### Versiyon A
+**BASLIK 1:** Adana'da Kaliteli Parke Taşı  
+**BASLIK 2:** Yapıguç Beton ile Tanışın!  
+**BASLIK 3:** 30+ Yıl Deneyimle Güvenilir  
+**ACIKLAMA 1:** Adana'da dayanıklı parke taşları arıyorsanız, doğru yerdesiniz!  
+**ACIKLAMA 2:** ISO belgeli ürünlerimizle mekanlarınıza şıklık katın, hemen arayın!  
 
 ---
 
-**Versiyon B:**
-
-BAŞLIK 1: Adana'da Kaliteli Parke  
-BAŞLIK 2: 30 Yıllık Tecrübe  
-BAŞLIK 3: Hızlı Teslimat Garantisi  
-
-AÇIKLAMA 1: Kilit parke taşı ihtiyacınız için bize ulaşın!  
-AÇIKLAMA 2: Yapıgüç Beton, ISO belgeli ürünlerle hizmetinizde!  
+### Versiyon B
+**BASLIK 1:** Uygun Fiyatlı Parke Taşı  
+**BASLIK 2:** Adana'da Beton Çözümleri  
+**BASLIK 3:** Hızlı ve Güvenilir Servis  
+**ACIKLAMA 1:** Yapıguç Beton ile Adana'da estetik ve sağlam parke taşlarına ulaşın.  
+**ACIKLAMA 2:** 30 yıllık tecrübeyle kaliteli tasarımlar, hemen iletişime geçin!  
 
 ---
 
-**Versiyon C:**
-
-BAŞLIK 1: Adana'da Parke Taşı Satışı  
-BAŞLIK 2: Güçlü ve Dayanıklı Çözümler  
-BAŞLIK 3: Yapıgüç Beton İle Tanışın  
-
-AÇIKLAMA 1: Parke taşı siparişiniz için bizi arayın!  
-AÇIKLAMA 2: 30 yıllık deneyim ve kaliteli hizmet sunuyoruz!
+### Versiyon C
+**BASLIK 1:** Adana Parke Taşı Satışı  
+**BASLIK 2:** Yapıguç Beton Farkıyla  
+**BASLIK 3:** ISO Belgeli Kalite Garantisi  
+**ACIKLAMA 1:** Adana'da her ihtiyacınıza uygun parke taşları sizleri bekliyor.  
+**ACIKLAMA 2:** Uygun fiyat ve kaliteli ürün için arayın, hayallerinizi gerçekleştirelim!  
 
 ---
 
 ## Mersin
-**Hedef Kelime:** mersin parke taşı
+Hedef: mersin parke tasi
 
-### Versiyon A
-**BAŞLIK 1:** Mersin Parke Taşı İmalatı  
-**BAŞLIK 2:** Dayanıklı ve Şık Seçenekler  
-**BAŞLIK 3:** Hızlı Teslimat ile 30 Yıl Deneyim  
+**Versiyon A:**
 
-**AÇIKLAMA 1:** Yapıgüç Beton'dan Mersin için kaliteli parke taşları.  
-**AÇIKLAMA 2:** Hemen arayın, uygun fiyatlarla sipariş verin!  
+**BASLIK 1:** Mersin Parke Taşı  
+**BASLIK 2:** Kaliteli ve Dayanıklı  
+**BASLIK 3:** ISO Belgeli Üretim  
 
----
+**ACIKLAMA 1:** Yapiguc Beton ile Mersin'de kaliteli parke taşı temin edin. 30+ yıl deneyim!  
+**ACIKLAMA 2:** Düşük fiyat ve yüksek kalite için hemen arayın: 0532 374 69 45.
 
-### Versiyon B
-**BAŞLIK 1:** Mersin'de Parke Taşı  
-**BAŞLIK 2:** ISO Belgeli Üretim  
-**BAŞLIK 3:** Uzman Ekiple Güvenli Alım  
 
-**AÇIKLAMA 1:** Mersin için özel kilit parke taşları, hemen keşfedin.  
-**AÇIKLAMA 2:** 30+ yıl deneyimle kaliteyi yakalayın!  
+**Versiyon B:**
 
----
+**BASLIK 1:** Mersin'de Parke Taşı  
+**BASLIK 2:** 30 Yıldır Güvenilir  
+**BASLIK 3:** Uygun Fiyat Garantisi  
 
-### Versiyon C
-**BAŞLIK 1:** Parke Taşı Mersin Fırsatları  
-**BAŞLIK 2:** Beton Ürünler Uygun Fiyat  
-**BAŞLIK 3:** Kaliteyi Seçin, Hızla Gelin  
+**ACIKLAMA 1:** Yapiguc Beton, Mersin'de en iyi parke taşlarını sunuyor. Hızlı teslimat!  
+**ACIKLAMA 2:** Kaliteyi uygun fiyata almak için hemen bilgi alın: 0532 374 69 45.
 
-**AÇIKLAMA 1:** Mersin'deki projeleriniz için ihtiyacınız olan parke taşlarımız burada!  
-**AÇIKLAMA 2:** 0532 374 69 45'i arayın, hızlı çözümü bulun!  
+
+**Versiyon C:**
+
+**BASLIK 1:** Kaliteli Parke Taşı Mersin  
+**BASLIK 2:** Beton Bariyer ve Bordur  
+**BASLIK 3:** Eşsiz Tasarım Seçenekleri  
+
+**ACIKLAMA 1:** Mersin'de parke taşı için Yapiguc Beton'u tercih edin. Uzman kadro ile çalışın!  
+**ACIKLAMA 2:** İletişim için arayın: 0532 374 69 45, kaliteli ürünler sizleri bekliyor!
 
 ---
 
 ## Gaziantep
-**Hedef Kelime:** gaziantep parke taşı
+Hedef: gaziantep parke tasi
+
+İşte Gaziantep için "gaziantep parke taşı" hedef kelimesi ile oluşturduğum 3 farklı Google Ads reklam metni:
 
 **Versiyon A:**
 
-BAŞLIK 1: Gaziantep Parke Taşı  
-BAŞLIK 2: Kaliteli Kilit Parke  
-BAŞLIK 3: 30 Yıl Deneyim  
-
-AÇIKLAMA 1: Gaziantep'teki en iyi parke taşı seçenekleri.  
-AÇIKLAMA 2: ISO belgeli Yapıgüç Beton ile kaliteli hizmet.  
+BASLIK 1: Gaziantep Parke Taşı  
+BASLIK 2: Kaliteyi Yakalayın  
+BASLIK 3: 30 Yıl Deneyim  
+ACIKLAMA 1: Yapiguc Beton'dan sertifikalı parke taşları!  
+ACIKLAMA 2: Uygun fiyatlı, dayanıklı ve estetik. Hemen arayın!  
 
 ---
 
 **Versiyon B:**
 
-BAŞLIK 1: Uygun Fiyatlı Parke Taşı  
-BAŞLIK 2: Gaziantep'te Güvenilir  
-BAŞLIK 3: 30+ Yıl Tecrübe  
-
-AÇIKLAMA 1: Gaziantep'te parke taşı ihtiyacınızı karşılayın.  
-AÇIKLAMA 2: Kalitenin adresi: Yapıgüç Beton!  
+BASLIK 1: Kaliteli Parke Taşları  
+BASLIK 2: Gaziantep İçin İdeal Seçim  
+BASLIK 3: ISO Belgeli Ürünler  
+ACIKLAMA 1: Yapiguc Beton ile alanınızı güzelleştirin.  
+ACIKLAMA 2: Sizin için özel fiyatlar ve hızlı teslimat!  
 
 ---
 
 **Versiyon C:**
 
-BAŞLIK 1: Gaziantep Parke Çözümleri  
-BAŞLIK 2: Dayanıklı ve Şık  
-BAŞLIK 3: Hızlı Teslimat  
+BASLIK 1: Gaziantep Parke Taşı Temini  
+BASLIK 2: Şimdi Sipariş Verin  
+BASLIK 3: Uzman Kadro İle Hizmette  
+ACIKLAMA 1: Yapiguc Beton, kaliteli parke taşında öncü!  
+ACIKLAMA 2: Her bütçeye uygun seçeneklerle sizi bekliyoruz!  
 
-AÇIKLAMA 1: Gaziantep’te ihtiyacınıza uygun parke taşları.  
-AÇIKLAMA 2: 30 yıl deneyim, güvenilir ürünler sunuyoruz.  
-
----
-
-## Suriye/Arapça
-**Hedef Kelime:** بلاط أرصفة هاتاي
-
-### Versiyon A
-**BAŞLIK 1:** بلاط أرصفة هاتاي  
-**BAŞLIK 2:** أفضل جودة من يابغوت  
-**BAŞLIK 3:** 30+ سنة خبرة  
-**AÇIKLAMA 1:** بلاط أرصفة عالي الجودة، معتمد ISO.  
-**AÇIKLAMA 2:** اتصل بنا اليوم: 0532 374 69 45  
+Umarım beğenirsiniz!
 
 ---
 
-### Versiyon B
-**BAŞLIK 1:** بلاط أرصفة بأسعار مناسبة  
-**BAŞLIK 2:** منتجات هاتاي المميزة  
-**BAŞLIK 3:** شركة يابغوت  
-**AÇIKLAMA 1:** لأفضل بلاط أرصفة، اختر يابغوت.  
-**AÇIKLAMA 2:** احصل على عرضك الآن!  
+## Suriye/Arapca
 
----
+Tabii, işte Suriye ve Arap pazarı için yazılmış üç farklı Google Ads reklam metni:
 
-### Versiyon C
-**BAŞLIK 1:** بلاط أرصفة هاتاي  
-**BAŞLIK 2:** حلول بتونية موثوقة  
-**BAŞLIK 3:** الجودة والخبرة  
-**AÇIKLAMA 1:** توفير بلاط أرصفة استثنائي في هاتاي.  
-**AÇIKLAMA 2:** استفسر الآن: 0532 374 69 45  
+### Versiyon 1:
+**عنوان:** أحجار الرصف والبلاطات الخرسانية من يابيجوك - Hatay, تركيا  
+**وصف:** مع أكثر من 30 عامًا من الخبرة وموثوقة بشهادات ISO، نقدم أفضل أحجار الرصف، الحواجز الخرسانية والأرصفة. اتصل بنا اليوم! 0532 374 69 45  
+
+### Versiyon 2:
+**عنوان:** منتجات خرسانية بأفضل جودة - يابيجوك، هاتاي  
+**وصف:** اجعل مشروعك يتألق مع أحجار الرصف والحواجز الاسمنتية من مصنعنا بجودة عالية. اتصل الآن لمعلومات حصرية! 0532 374 69 45  
+
+### Versiyon 3:
+**عنوان:** يابيجوك - خبرة 30 سنة في صناعة الخرسانة  
+**وصف:** نوفر لك جميع احتياجات البناء من أحجار الرصف، الحواجز وما تحتاجه لمشاريعك. خدمات متميزة وأسعار تنافسية! 0532 374 69 45  
+
+Bu reklam metinleri, hedef kitlenizi çekmek ve ürünlerinizi tanıtmak için tasarlandı. Başarılar dilerim!
 
 ---
 
