@@ -158,6 +158,168 @@ footer{background:#0a0a0a;color:#888;}
 .md p.sub{font-size:14px;color:var(--gr);margin-bottom:24px;}
 @media(max-width:900px){.fgrid{grid-template-columns:1fr 1fr;}.lg{grid-template-columns:1fr;}.qa-g{grid-template-columns:1fr;}.qa-i{border-right:none;border-bottom:1px solid rgba(255,255,255,.2);}.gg{grid-template-columns:repeat(2,1fr);}.gi.wide{grid-column:span 2;}}
 @media(max-width:680px){nav{display:none;}.hbg{display:block;}.fg{grid-template-columns:1fr;}.fgrid{grid-template-columns:1fr;}.gg{grid-template-columns:repeat(2,1fr);}}
+
+/* ═══════════════════════════════════════════════
+   YÜZEN BUTONLAR — Gelişmiş Sistem v2.0
+   ═══════════════════════════════════════════════ */
+
+/* ── SAĞ TARAF BUTON GRUBU ── */
+.float-group-right {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 8000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ── SOL TARAF BUTON GRUBU ── */
+.float-group-left {
+  position: fixed;
+  bottom: 24px;
+  left: 20px;
+  z-index: 7998;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ── TEMEL BUTON STİLİ ── */
+.float-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 22px;
+  color: #fff;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
+  animation: floatIn 0.5s ease forwards;
+  opacity: 0;
+}
+
+.float-btn:nth-child(1) { animation-delay: 0.1s; }
+.float-btn:nth-child(2) { animation-delay: 0.2s; }
+.float-btn:nth-child(3) { animation-delay: 0.3s; }
+.float-btn:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes floatIn {
+  from { opacity: 0; transform: scale(0.5) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.float-btn:hover {
+  transform: scale(1.15) translateY(-3px);
+}
+
+/* ── TOOLTIP ── */
+.float-btn::before {
+  content: attr(data-tip);
+  position: absolute;
+  right: 62px;
+  background: rgba(0,0,0,.75);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  transform: translateX(6px);
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+.float-btn:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Sol taraf tooltip sağda göster */
+.float-group-left .float-btn::before {
+  right: auto;
+  left: 62px;
+  transform: translateX(-6px);
+}
+.float-group-left .float-btn:hover::before {
+  transform: translateX(0);
+}
+
+/* ── WHATSAPP ── */
+.float-btn-wa {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  box-shadow: 0 4px 16px rgba(37,211,102,.45);
+  animation: waPulse 2.5s infinite;
+}
+@keyframes waPulse {
+  0%,100% { box-shadow: 0 4px 16px rgba(37,211,102,.45); }
+  50%      { box-shadow: 0 4px 28px rgba(37,211,102,.75); }
+}
+.float-btn-wa:hover { box-shadow: 0 6px 24px rgba(37,211,102,.7); }
+
+/* ── TELEGRAM ── */
+.float-btn-tg {
+  background: linear-gradient(135deg, #2aabee, #1a7fc1);
+  box-shadow: 0 4px 16px rgba(42,171,238,.4);
+}
+.float-btn-tg:hover { box-shadow: 0 6px 24px rgba(42,171,238,.7); }
+
+/* ── TELEFON ── */
+.float-btn-tel {
+  background: linear-gradient(135deg, #c0001a, #8a0012);
+  box-shadow: 0 4px 16px rgba(192,0,26,.4);
+  animation: telRing 3s infinite;
+}
+@keyframes telRing {
+  0%,90%,100% { transform: rotate(0deg); }
+  92%          { transform: rotate(-15deg); }
+  94%          { transform: rotate(15deg); }
+  96%          { transform: rotate(-10deg); }
+  98%          { transform: rotate(10deg); }
+}
+.float-btn-tel:hover {
+  animation: none;
+  transform: scale(1.15) translateY(-3px);
+  box-shadow: 0 6px 24px rgba(192,0,26,.7);
+}
+
+/* ── SCROLL TOP ── */
+.float-btn-scroll {
+  background: linear-gradient(135deg, #374151, #111827);
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s;
+}
+.float-btn-scroll.visible {
+  opacity: 1 !important;
+  pointer-events: all;
+  animation: none;
+}
+.float-btn-scroll:hover { box-shadow: 0 6px 24px rgba(0,0,0,.5); }
+
+/* ── AI CHATBOT ── */
+#yb { bottom: 24px !important; right: 20px !important; }
+
+/* ── MOBİL UYUM ── */
+@media (max-width: 480px) {
+  .float-group-right { right: 12px; bottom: 16px; gap: 10px; }
+  .float-group-left  { left: 12px;  bottom: 16px; gap: 10px; }
+  .float-btn { width: 46px; height: 46px; font-size: 19px; }
+  .float-btn::before { display: none; }
+  #yb { right: 12px !important; bottom: 16px !important; }
+}
+
+/* ── SCROLL TOP ESKİ STİL OVERRIDE ── */
+#scroll-top { display: none !important; }
 </style>
 <meta content="parke taşı, bordür taşı, beton eleman, şev taşı, beton bariyer, kilit parke, Hatay beton, Antakya parke, yapıgüç beton" name="keywords"/>
 <meta content="index, follow" name="robots"/>
@@ -184,7 +346,7 @@ footer{background:#0a0a0a;color:#888;}
   .pl-text{font-size:13px;color:#888;margin-top:10px;font-family:'Roboto',sans-serif;}
 
   /* SCROLL TO TOP */
-  #scroll-top{position:fixed;bottom:160px;right:24px;width:44px;height:44px;background:var(--red);color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:18px;display:none;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(192,0,26,.4);transition:all .3s;z-index:7999;}
+  #scroll-top-old{display:none;width:44px;height:44px;background:var(--red);color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:18px;display:none;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(192,0,26,.4);transition:all .3s;z-index:7999;}
   #scroll-top.show{display:flex;}
   #scroll-top:hover{background:var(--red2);transform:translateY(-3px);}
 
@@ -1026,11 +1188,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 </section>
 
-<div style="position:fixed;bottom:90px;right:24px;z-index:8000;display:flex;flex-direction:column;gap:10px">
-<a href="https://t.me/+905405163636" onmouseout="this.style.transform=''" onmouseover="this.style.transform='scale(1.1)'" style="width:52px;height:52px;background:#0088cc;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;text-decoration:none;box-shadow:0 4px 16px rgba(0,136,204,.4);transition:all .3s" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-<a href="https://wa.me/905405163636" onmouseout="this.style.transform=''" onmouseover="this.style.transform='scale(1.1)'" style="width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:all .3s" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-</div>
-
 <div style="position:fixed;top:80px;right:16px;z-index:7000;display:flex;flex-direction:column;gap:6px">
 <button id="btn-tr" onclick="setLang('tr')" style="background:var(--red);color:#fff;border:none;padding:5px 10px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer">TR</button>
 <button id="btn-en" onclick="setLang('en')" style="background:#e5e7eb;color:#374151;border:none;padding:5px 10px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer">EN</button>
@@ -1409,19 +1566,13 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click'
 <a href="#iletisim" onclick="closeMobileMenu()">İletişim</a>
 <a href="bayi-giris.html" style="color:var(--red)!important"><i class="fas fa-store"></i> Bayi Girişi</a>
 </div>
-<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Yukarı Çık"><i class="fas fa-arrow-up"></i></button>
+
 <div id="kvkk-banner">
 <p>🍪 Bu web sitesi, size daha iyi hizmet sunmak için çerezler kullanmaktadır. Sitemizi kullanmaya devam ederek <a href="#">Gizlilik Politikamızı</a> ve <a href="#">KVKK Aydınlatma Metnimizi</a> kabul etmiş sayılırsınız.</p>
 <div class="kvkk-btns">
 <button class="kvkk-accept" onclick="acceptKvkk()">Kabul Et</button>
 <button class="kvkk-reject" onclick="rejectKvkk()">Reddet</button>
 </div>
-</div>
-
-<div id="callback-btn" style="position:fixed;bottom:24px;left:24px;z-index:7998;">
-  <button onclick="openCallback()" style="background:#1d4ed8;color:#fff;border:none;width:52px;height:52px;border-radius:50%;cursor:pointer;font-size:20px;box-shadow:0 4px 16px rgba(29,78,216,.4);transition:all .3s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform=''">
-    <i class="fas fa-phone-alt"></i>
-  </button>
 </div>
 
 <div id="callback-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9001;align-items:center;justify-content:center;padding:20px">
