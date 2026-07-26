@@ -159,11 +159,23 @@ footer{background:#0a0a0a;color:#888;}
 @media(max-width:900px){.fgrid{grid-template-columns:1fr 1fr;}.lg{grid-template-columns:1fr;}.qa-g{grid-template-columns:1fr;}.qa-i{border-right:none;border-bottom:1px solid rgba(255,255,255,.2);}.gg{grid-template-columns:repeat(2,1fr);}.gi.wide{grid-column:span 2;}}
 @media(max-width:680px){nav{display:none;}.hbg{display:block;}.fg{grid-template-columns:1fr;}.fgrid{grid-template-columns:1fr;}.gg{grid-template-columns:repeat(2,1fr);}}
 
-/* ═══════════════════════════════════════════════
-   YÜZEN BUTONLAR — Gelişmiş Sistem v2.0
-   ═══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   YÜZEN BUTONLAR — Performans Optimize v4.0
+   GPU hızlandırma + Mobil uyum + Erişilebilirlik
+   ═══════════════════════════════════════════════════════════ */
 
-/* ── SAĞ TARAF BUTON GRUBU ── */
+/* ── GPU KATMANI — Tüm animasyonlu elementler ── */
+.float-group-right,
+.float-group-left,
+.float-btn {
+  transform: translate3d(0,0,0);   /* GPU katmanına al */
+  backface-visibility: hidden;      /* Flicker önle */
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+/* ── CONTAINER ── */
 .float-group-right {
   position: fixed;
   bottom: 24px;
@@ -173,9 +185,8 @@ footer{background:#0a0a0a;color:#888;}
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  transition: gap 0.3s cubic-bezier(.34,1.56,.64,1);
 }
-
-/* ── SOL TARAF BUTON GRUBU ── */
 .float-group-left {
   position: fixed;
   bottom: 24px;
@@ -185,9 +196,10 @@ footer{background:#0a0a0a;color:#888;}
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  transition: gap 0.3s cubic-bezier(.34,1.56,.64,1);
 }
 
-/* ── TEMEL BUTON STİLİ ── */
+/* ── TEMEL BUTON ── */
 .float-btn {
   width: 52px;
   height: 52px;
@@ -198,368 +210,245 @@ footer{background:#0a0a0a;color:#888;}
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  font-size: 22px;
   color: #fff;
   position: relative;
-  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
-  animation: floatIn 0.5s ease forwards;
-  opacity: 0;
+  /* Sadece transform ve opacity GPU'da — box-shadow CPU'da */
+  transition:
+    transform 0.3s cubic-bezier(.34,1.56,.64,1),
+    opacity   0.25s ease,
+    border-radius 0.25s ease;
+  animation: floatIn 0.5s cubic-bezier(.34,1.56,.64,1) both;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
-.float-btn:nth-child(1) { animation-delay: 0.1s; }
-.float-btn:nth-child(2) { animation-delay: 0.2s; }
-.float-btn:nth-child(3) { animation-delay: 0.3s; }
-.float-btn:nth-child(4) { animation-delay: 0.4s; }
+.float-btn:nth-child(1) { animation-delay: 0.05s; }
+.float-btn:nth-child(2) { animation-delay: 0.12s; }
+.float-btn:nth-child(3) { animation-delay: 0.19s; }
+.float-btn:nth-child(4) { animation-delay: 0.26s; }
 
 @keyframes floatIn {
-  from { opacity: 0; transform: scale(0.5) translateY(20px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
+  from { opacity: 0; transform: translate3d(0,20px,0) scale(0.6); }
+  to   { opacity: 1; transform: translate3d(0,0,0)   scale(1);   }
 }
 
-.float-btn:hover {
-  transform: scale(1.15) translateY(-3px);
+/* ── HOVER — Sadece masaüstü ── */
+@media (hover: hover) and (pointer: fine) {
+  /* Accordion: grup hover'da boşluk artar */
+  .float-group-right:hover,
+  .float-group-left:hover {
+    gap: 18px;
+  }
+
+  /* Repel: hover olmayan butonlar küçülür */
+  .float-group-right:hover .float-btn:not(:hover),
+  .float-group-left:hover  .float-btn:not(:hover) {
+    transform: translate3d(0,0,0) scale(0.87);
+    opacity: 0.72;
+  }
+
+  /* Hover butonu büyür + morph */
+  .float-btn:hover {
+    transform: translate3d(0,-4px,0) scale(1.18) !important;
+    border-radius: 35%;
+    opacity: 1 !important;
+    z-index: 10;
+  }
+
+  /* Komşu buton itme (CSS :has) */
+  .float-btn:has(+ .float-btn:hover) {
+    transform: translate3d(0,-8px,0) scale(0.9) !important;
+    opacity: 0.8 !important;
+  }
+  .float-btn:hover + .float-btn {
+    transform: translate3d(0,8px,0) scale(0.9) !important;
+    opacity: 0.8 !important;
+  }
 }
 
-/* ── TOOLTIP ── */
-.float-btn::before {
-  content: attr(data-tip);
-  position: absolute;
-  right: 62px;
-  background: rgba(0,0,0,.75);
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 7px;
-  font-size: 12px;
-  font-weight: 600;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s, transform 0.2s;
-  transform: translateX(6px);
-  font-family: 'Segoe UI', Arial, sans-serif;
-}
-.float-btn:hover::before {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Sol taraf tooltip sağda göster */
-.float-group-left .float-btn::before {
-  right: auto;
-  left: 62px;
-  transform: translateX(-6px);
-}
-.float-group-left .float-btn:hover::before {
-  transform: translateX(0);
+/* ── TOOLTIP — Sadece masaüstü ── */
+@media (hover: hover) and (pointer: fine) {
+  .float-btn::before {
+    content: attr(data-tip);
+    position: absolute;
+    right: 62px;
+    top: 50%;
+    transform: translate3d(8px,-50%,0);
+    background: rgba(17,24,39,.92);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.22s cubic-bezier(.34,1.56,.64,1);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    border: 1px solid rgba(255,255,255,.08);
+  }
+  .float-btn:hover::before {
+    opacity: 1;
+    transform: translate3d(0,-50%,0);
+  }
+  .float-group-left .float-btn::before {
+    right: auto;
+    left: 62px;
+    transform: translate3d(-8px,-50%,0);
+  }
+  .float-group-left .float-btn:hover::before {
+    transform: translate3d(0,-50%,0);
+  }
 }
 
 /* ── WHATSAPP ── */
 .float-btn-wa {
-  background: linear-gradient(135deg, #25d366, #128c7e);
+  background: linear-gradient(135deg,#25d366,#128c7e);
   box-shadow: 0 4px 16px rgba(37,211,102,.45);
-  animation: waPulse 2.5s infinite;
+}
+/* Pulse — sadece masaüstü, GPU'da */
+@media (hover: hover) {
+  .float-btn-wa {
+    animation: floatIn 0.5s cubic-bezier(.34,1.56,.64,1) both,
+               waPulse 2.8s ease-in-out 1s infinite;
+  }
 }
 @keyframes waPulse {
   0%,100% { box-shadow: 0 4px 16px rgba(37,211,102,.45); }
   50%      { box-shadow: 0 4px 28px rgba(37,211,102,.75); }
 }
-.float-btn-wa:hover { box-shadow: 0 6px 24px rgba(37,211,102,.7); }
 
 /* ── TELEGRAM ── */
 .float-btn-tg {
-  background: linear-gradient(135deg, #2aabee, #1a7fc1);
+  background: linear-gradient(135deg,#2aabee,#1a7fc1);
   box-shadow: 0 4px 16px rgba(42,171,238,.4);
 }
-.float-btn-tg:hover { box-shadow: 0 6px 24px rgba(42,171,238,.7); }
 
 /* ── TELEFON ── */
 .float-btn-tel {
-  background: linear-gradient(135deg, #c0001a, #8a0012);
+  background: linear-gradient(135deg,#c0001a,#8a0012);
   box-shadow: 0 4px 16px rgba(192,0,26,.4);
-  animation: telRing 3s infinite;
+}
+@media (hover: hover) {
+  .float-btn-tel {
+    animation: floatIn 0.5s cubic-bezier(.34,1.56,.64,1) both,
+               telRing 4s ease-in-out 2s infinite;
+  }
 }
 @keyframes telRing {
-  0%,90%,100% { transform: rotate(0deg); }
-  92%          { transform: rotate(-15deg); }
-  94%          { transform: rotate(15deg); }
-  96%          { transform: rotate(-10deg); }
-  98%          { transform: rotate(10deg); }
-}
-.float-btn-tel:hover {
-  animation: none;
-  transform: scale(1.15) translateY(-3px);
-  box-shadow: 0 6px 24px rgba(192,0,26,.7);
+  0%,88%,100% { transform: translate3d(0,0,0) rotate(0deg); }
+  90%          { transform: translate3d(0,0,0) rotate(-12deg); }
+  92%          { transform: translate3d(0,0,0) rotate(12deg); }
+  94%          { transform: translate3d(0,0,0) rotate(-8deg); }
+  96%          { transform: translate3d(0,0,0) rotate(8deg); }
+  98%          { transform: translate3d(0,0,0) rotate(-4deg); }
 }
 
 /* ── SCROLL TOP ── */
 .float-btn-scroll {
-  background: linear-gradient(135deg, #374151, #111827);
+  background: linear-gradient(135deg,#374151,#111827);
   box-shadow: 0 4px 16px rgba(0,0,0,.3);
-  opacity: 0;
+  opacity: 0 !important;
   pointer-events: none;
-  transition: opacity 0.3s, transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s;
+  transform: translate3d(0,12px,0) scale(0.8) !important;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(.34,1.56,.64,1) !important;
 }
 .float-btn-scroll.visible {
   opacity: 1 !important;
   pointer-events: all;
-  animation: none;
-}
-.float-btn-scroll:hover { box-shadow: 0 6px 24px rgba(0,0,0,.5); }
-
-/* ── AI CHATBOT ── */
-#yb { bottom: 24px !important; right: 20px !important; }
-
-/* ── MOBİL UYUM ── */
-@media (max-width: 480px) {
-  .float-group-right { right: 12px; bottom: 16px; gap: 10px; }
-  .float-group-left  { left: 12px;  bottom: 16px; gap: 10px; }
-  .float-btn { width: 46px; height: 46px; font-size: 19px; }
-  .float-btn::before { display: none; }
-  #yb { right: 12px !important; bottom: 16px !important; }
+  transform: translate3d(0,0,0) scale(1) !important;
 }
 
-/* ── SCROLL TOP ESKİ STİL OVERRIDE ── */
-#scroll-top { display: none !important; }
-
-/* ═══════════════════════════════════════════════════════════
-   YÜZEN BUTONLAR — İleri Düzey Animasyon Sistemi v3.0
-   Accordion + Repel + Parallax + Morph efektleri
-   ═══════════════════════════════════════════════════════════ */
-
-/* ── TEMEL CONTAINER ── */
-.float-group-right,
-.float-group-left {
-  will-change: transform;
-  transition: transform 0.1s linear;
-}
-
-/* ── ACCORDION EFEKTİ ──
-   Hover'da grup genişler, butonlar arası boşluk artar */
-.float-group-right:hover,
-.float-group-left:hover {
-  gap: 16px !important;
-}
-
-.float-group-right .float-btn,
-.float-group-left .float-btn {
-  transition:
-    transform 0.35s cubic-bezier(.34,1.56,.64,1),
-    box-shadow 0.3s ease,
-    gap 0.3s ease,
-    opacity 0.3s ease,
-    margin 0.3s cubic-bezier(.34,1.56,.64,1);
-  will-change: transform, box-shadow;
-}
-
-/* ── REPEL EFEKTİ ──
-   Hover'daki buton büyür, komşular uzaklaşır */
-.float-group-right:hover .float-btn:not(:hover),
-.float-group-left:hover .float-btn:not(:hover) {
-  transform: scale(0.88);
-  opacity: 0.75;
-}
-
-/* Hover'daki buton */
-.float-group-right .float-btn:hover,
-.float-group-left .float-btn:hover {
-  transform: scale(1.22) translateY(-4px) !important;
-  z-index: 10;
-  opacity: 1 !important;
-}
-
-/* Hover'daki butonun hemen üstündeki */
-.float-group-right .float-btn:hover + .float-btn,
-.float-group-left .float-btn:hover + .float-btn {
-  transform: scale(0.9) translateY(8px) !important;
-  opacity: 0.8 !important;
-}
-
-/* Hover'daki butonun önceki kardeşi — CSS :has ile */
-.float-group-right .float-btn:has(+ .float-btn:hover),
-.float-group-left .float-btn:has(+ .float-btn:hover) {
-  transform: scale(0.9) translateY(-8px) !important;
-  opacity: 0.8 !important;
-}
-
-/* ── MORPH EFEKTİ ──
-   Hover'da buton şekli değişir (daire → yuvarlatılmış kare) */
-.float-btn {
-  border-radius: 50%;
-  transition:
-    border-radius 0.3s ease,
-    transform 0.35s cubic-bezier(.34,1.56,.64,1),
-    box-shadow 0.3s ease,
-    opacity 0.3s ease;
-}
-.float-btn:hover {
-  border-radius: 35% !important;
-}
-
-/* ── RIPPLE EFEKTİ ──
-   Tıklamada dalga yayılır */
-.float-btn {
-  overflow: hidden;
-}
+/* ── RIPPLE ── */
 .float-btn .ripple {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,.35);
   transform: scale(0);
-  animation: rippleAnim 0.6s linear;
+  animation: rippleAnim 0.55s linear;
   pointer-events: none;
+  will-change: transform, opacity;
 }
 @keyframes rippleAnim {
   to { transform: scale(4); opacity: 0; }
 }
 
-/* ── GLOW TRAIL EFEKTİ ──
-   Hover'da butonun arkasında ışık izi */
-.float-btn-wa::after {
-  content: '';
+/* ── PULSE RING — WhatsApp ── */
+.pulse-ring {
   position: absolute;
-  inset: -4px;
+  inset: -5px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(37,211,102,.3) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.3s;
-  transform: scale(0.8);
-  z-index: -1;
+  border: 2px solid rgba(37,211,102,.5);
+  animation: pulseRing 2.5s ease-out infinite;
+  pointer-events: none;
+  will-change: transform, opacity;
 }
-.float-btn-wa:hover::after { opacity: 1; transform: scale(1.3); }
-
-.float-btn-tg::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(42,171,238,.3) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.3s;
-  transform: scale(0.8);
-  z-index: -1;
+.pulse-ring:nth-child(2) { animation-delay: 0.8s; }
+@keyframes pulseRing {
+  0%   { transform: scale(0.92); opacity: 0.7; }
+  100% { transform: scale(1.65); opacity: 0; }
 }
-.float-btn-tg:hover::after { opacity: 1; transform: scale(1.3); }
 
-.float-btn-tel::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(192,0,26,.3) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.3s;
-  transform: scale(0.8);
-  z-index: -1;
-}
-.float-btn-tel:hover::after { opacity: 1; transform: scale(1.3); }
-
-/* ── BADGE BOUNCE ──
-   Yeni mesaj badge'i zıplar */
+/* ── BADGE ── */
 .float-badge {
   position: absolute;
-  top: -4px;
-  right: -4px;
+  top: -4px; right: -4px;
   background: #ef4444;
   color: #fff;
   font-size: 9px;
   font-weight: 800;
-  width: 18px;
-  height: 18px;
+  width: 18px; height: 18px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 2px solid #fff;
-  animation: badgeBounce 1s cubic-bezier(.36,.07,.19,.97) infinite;
+  animation: badgeBounce 1.2s cubic-bezier(.36,.07,.19,.97) infinite;
+  will-change: transform;
 }
 @keyframes badgeBounce {
-  0%,100% { transform: translateY(0) scale(1); }
-  30%      { transform: translateY(-4px) scale(1.1); }
-  60%      { transform: translateY(-2px) scale(1.05); }
+  0%,100% { transform: translate3d(0,0,0) scale(1); }
+  35%      { transform: translate3d(0,-4px,0) scale(1.12); }
+  65%      { transform: translate3d(0,-2px,0) scale(1.06); }
 }
 
-/* ── SCROLL INDICATOR ──
-   Scroll hızına göre butonlar hafifçe eğilir */
-.float-group-right.scrolling-fast {
-  transform: translateY(-6px) rotate(2deg);
-}
-.float-group-left.scrolling-fast {
-  transform: translateY(-6px) rotate(-2deg);
-}
-.float-group-right.scrolling-up {
-  transform: translateY(4px);
-}
-.float-group-left.scrolling-up {
-  transform: translateY(4px);
-}
-
-/* ── STAGGER GİRİŞ ANİMASYONU ── */
-@keyframes floatIn {
-  0%   { opacity: 0; transform: scale(0.3) translateY(30px) rotate(-10deg); }
-  60%  { opacity: 1; transform: scale(1.1) translateY(-5px) rotate(3deg); }
-  80%  { transform: scale(0.95) translateY(2px) rotate(-1deg); }
-  100% { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
-}
-
-/* ── TOOLTIP GELİŞMİŞ ── */
-.float-btn::before {
-  background: rgba(17,24,39,.9);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  box-shadow: 0 4px 12px rgba(0,0,0,.3);
-  transition: opacity 0.2s ease, transform 0.25s cubic-bezier(.34,1.56,.64,1);
-}
-.float-btn:hover::before {
-  transform: translateX(0) scale(1.02);
-}
-
-/* ── PULSE RING ──
-   WhatsApp etrafında yayılan halka */
-.float-btn-wa {
-  position: relative;
-}
-.float-btn-wa .pulse-ring {
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 2px solid rgba(37,211,102,.5);
-  animation: pulseRing 2s ease-out infinite;
-}
-.float-btn-wa .pulse-ring:nth-child(2) {
-  animation-delay: 0.7s;
-}
-@keyframes pulseRing {
-  0%   { transform: scale(0.9); opacity: 0.8; }
-  100% { transform: scale(1.6); opacity: 0; }
-}
-
-/* ── MOBİL DOKUNMA EFEKTİ ── */
+/* ── MOBİL ── */
 @media (max-width: 480px) {
+  .float-group-right { right: 12px; bottom: 16px; gap: 10px; }
+  .float-group-left  { left: 12px;  bottom: 16px; gap: 10px; }
+  .float-btn { width: 46px; height: 46px; }
+  .float-btn svg { width: 20px; height: 20px; }
+  /* Mobilde aktif state */
   .float-btn:active {
-    transform: scale(0.9) !important;
-    transition: transform 0.1s ease !important;
-  }
-  .float-btn::before { display: none !important; }
-  .float-btn::after  { display: none !important; }
-  .float-group-right:hover .float-btn:not(:hover) {
-    transform: none;
-    opacity: 1;
+    transform: translate3d(0,0,0) scale(0.92) !important;
+    transition: transform 0.08s ease !important;
   }
 }
 
-/* ── DARK MODE UYUM ── */
-@media (prefers-color-scheme: dark) {
-  .float-btn::before {
-    background: rgba(255,255,255,.9);
-    color: #111;
-    border-color: rgba(0,0,0,.1);
+/* ── ERİŞİLEBİLİRLİK — Hareket azalt ── */
+@media (prefers-reduced-motion: reduce) {
+  .float-btn,
+  .float-group-right,
+  .float-group-left,
+  .pulse-ring,
+  .float-badge {
+    animation: none !important;
+    transition: opacity 0.2s ease !important;
   }
+  .float-btn-wa  { box-shadow: 0 4px 16px rgba(37,211,102,.45); }
+  .float-btn-tel { box-shadow: 0 4px 16px rgba(192,0,26,.4); }
+  .float-btn-scroll { transform: translate3d(0,0,0) !important; }
+  .float-btn-scroll.visible { opacity: 1 !important; }
 }
+
+/* ── AI CHATBOT KONUM ── */
+#yb { bottom: 24px !important; right: 20px !important; }
+
+/* Eski scroll-top gizle */
+#scroll-top { display: none !important; }
 </style>
 <meta content="parke taşı, bordür taşı, beton eleman, şev taşı, beton bariyer, kilit parke, Hatay beton, Antakya parke, yapıgüç beton" name="keywords"/>
 <meta content="index, follow" name="robots"/>
@@ -1856,189 +1745,242 @@ Tawk_API.onLoad = function(){
   </div>
   <script src="ai-chat.js"></script>
 
-<!-- Gelişmiş Yüzen Buton Animasyon Sistemi v3.0 -->
+<!-- Yüzen Buton Animasyon Sistemi v4.0 — Performans Optimize -->
 <script>
 (function(){
 'use strict';
 
-// ── RIPPLE EFEKTİ ────────────────────────────────────────
-document.querySelectorAll('.float-btn').forEach(function(btn){
-  btn.addEventListener('click', function(e){
-    var rect = btn.getBoundingClientRect();
-    var x = e.clientX - rect.left;
-    var y = e.clientY - rect.top;
-    var ripple = document.createElement('span');
-    ripple.className = 'ripple';
-    ripple.style.cssText = 'width:60px;height:60px;left:'+(x-30)+'px;top:'+(y-30)+'px;';
-    btn.appendChild(ripple);
-    setTimeout(function(){ ripple.remove(); }, 700);
-  });
-});
+/* ── CİHAZ TESPİTİ ─────────────────────────────────────── */
+var IS_TOUCH  = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+var IS_MOBILE = IS_TOUCH || window.innerWidth < 768;
+var REDUCED   = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var HAS_HOVER = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-// ── PARALLAX SCROLL EFEKTİ ───────────────────────────────
-var lastScrollY = window.scrollY;
-var lastScrollTime = Date.now();
-var scrollVelocity = 0;
-var ticking = false;
+/* ── ELEMENTLER ─────────────────────────────────────────── */
 var rightGroup = document.querySelector('.float-group-right');
 var leftGroup  = document.querySelector('.float-group-left');
+var allBtns    = document.querySelectorAll('.float-btn');
+var scrollBtn  = document.getElementById('float-scroll-top');
 
-function updateParallax(){
-  var now = Date.now();
-  var dt  = now - lastScrollTime;
-  var dy  = window.scrollY - lastScrollY;
-  scrollVelocity = dt > 0 ? dy / dt : 0;
-  lastScrollY    = window.scrollY;
-  lastScrollTime = now;
+/* ── RECT CACHE — Layout thrashing önle ─────────────────── */
+var rectCache = new Map();
+var rectDirty = true;
 
-  var speed = Math.abs(scrollVelocity);
-  var dir   = scrollVelocity > 0 ? 'down' : 'up';
-
-  // Parallax offset — scroll hızına göre
-  var offset = Math.min(speed * 8, 20);
-  var rotate = Math.min(speed * 3, 6);
-
-  if(rightGroup){
-    if(speed > 0.5){
-      rightGroup.style.transform = dir === 'down'
-        ? 'translateY('+offset+'px) rotate('+rotate+'deg)'
-        : 'translateY(-'+offset+'px) rotate(-'+rotate+'deg)';
-    } else {
-      rightGroup.style.transform = '';
-    }
-  }
-  if(leftGroup){
-    if(speed > 0.5){
-      leftGroup.style.transform = dir === 'down'
-        ? 'translateY('+offset+'px) rotate(-'+rotate+'deg)'
-        : 'translateY(-'+offset+'px) rotate('+rotate+'deg)';
-    } else {
-      leftGroup.style.transform = '';
-    }
-  }
-
-  // Hız sınıfları
-  if(rightGroup){
-    rightGroup.classList.toggle('scrolling-fast', speed > 1.5);
-    rightGroup.classList.toggle('scrolling-up', dir === 'up' && speed > 0.5);
-  }
-  if(leftGroup){
-    leftGroup.classList.toggle('scrolling-fast', speed > 1.5);
-    leftGroup.classList.toggle('scrolling-up', dir === 'up' && speed > 0.5);
-  }
-
-  ticking = false;
+function updateRects() {
+  rectDirty = false;
+  allBtns.forEach(function(btn) {
+    rectCache.set(btn, btn.getBoundingClientRect());
+  });
 }
 
-window.addEventListener('scroll', function(){
-  if(!ticking){
-    requestAnimationFrame(updateParallax);
-    ticking = true;
-  }
-}, {passive: true});
-
-// Scroll durduğunda sıfırla
-var scrollStopTimer;
-window.addEventListener('scroll', function(){
-  clearTimeout(scrollStopTimer);
-  scrollStopTimer = setTimeout(function(){
-    if(rightGroup) rightGroup.style.transform = '';
-    if(leftGroup)  leftGroup.style.transform  = '';
-    scrollVelocity = 0;
+/* Sadece resize'da güncelle */
+var resizeTimer;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function() {
+    rectDirty = true;
+    IS_MOBILE = IS_TOUCH || window.innerWidth < 768;
   }, 150);
 }, {passive: true});
 
-// ── REPEL EFEKTİ (JS ile güçlendirilmiş) ────────────────
-document.querySelectorAll('.float-group-right, .float-group-left').forEach(function(group){
-  var btns = group.querySelectorAll('.float-btn');
+/* ── RIPPLE EFEKTİ ──────────────────────────────────────── */
+allBtns.forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    var rect = btn.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+    var rip = document.createElement('span');
+    rip.className = 'ripple';
+    rip.style.cssText = 'width:60px;height:60px;left:'+(x-30)+'px;top:'+(y-30)+'px;position:absolute;';
+    btn.appendChild(rip);
+    setTimeout(function() { if(rip.parentNode) rip.parentNode.removeChild(rip); }, 600);
+  });
+});
 
-  group.addEventListener('mousemove', function(e){
-    btns.forEach(function(btn, idx){
-      var rect   = btn.getBoundingClientRect();
-      var btnCX  = rect.left + rect.width  / 2;
-      var btnCY  = rect.top  + rect.height / 2;
-      var dx     = e.clientX - btnCX;
-      var dy     = e.clientY - btnCY;
-      var dist   = Math.sqrt(dx*dx + dy*dy);
-      var maxD   = 80;
+/* ── SCROLL TOP ─────────────────────────────────────────── */
+if(scrollBtn) {
+  var scrollTicking = false;
+  window.addEventListener('scroll', function() {
+    if(!scrollTicking) {
+      requestAnimationFrame(function() {
+        scrollBtn.classList.toggle('visible', window.scrollY > 300);
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, {passive: true});
+}
 
-      if(dist < maxD && dist > 0){
-        var force  = (1 - dist/maxD) * 12;
-        var angle  = Math.atan2(dy, dx);
-        var pushX  = -Math.cos(angle) * force;
-        var pushY  = -Math.sin(angle) * force;
-        btn.style.transform = 'translate('+pushX+'px,'+pushY+'px) scale('+(1 + force*0.015)+')';
-      } else {
-        btn.style.transform = '';
+/* ── PARALLAX SCROLL — Sadece masaüstü ─────────────────── */
+if(!IS_MOBILE && !REDUCED && (rightGroup || leftGroup)) {
+  var lastY      = window.scrollY;
+  var velocity   = 0;
+  var parTicking = false;
+  var stopTimer;
+
+  /* Velocity hesapla — RAF içinde */
+  var prevTime = performance.now();
+
+  function applyParallax() {
+    var dy    = window.scrollY - lastY;
+    var now   = performance.now();
+    var dt    = Math.max(now - prevTime, 1);
+    velocity  = dy / dt * 16; /* normalize to ~60fps */
+    prevTime  = now;
+    lastY     = window.scrollY;
+
+    var offset = Math.min(Math.abs(velocity) * 6, 18);
+    var rotate = Math.min(Math.abs(velocity) * 2, 5);
+    var dir    = velocity > 0 ? 1 : -1;
+
+    if(Math.abs(velocity) > 0.3) {
+      if(rightGroup) rightGroup.style.transform =
+        'translate3d(0,'+(dir*offset)+'px,0) rotate('+(dir*rotate)+'deg)';
+      if(leftGroup)  leftGroup.style.transform  =
+        'translate3d(0,'+(dir*offset)+'px,0) rotate('+(-dir*rotate)+'deg)';
+    }
+    parTicking = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if(!parTicking) {
+      requestAnimationFrame(applyParallax);
+      parTicking = true;
+    }
+    /* Scroll durduğunda sıfırla */
+    clearTimeout(stopTimer);
+    stopTimer = setTimeout(function() {
+      velocity = 0;
+      if(rightGroup) rightGroup.style.transform = 'translate3d(0,0,0)';
+      if(leftGroup)  leftGroup.style.transform  = 'translate3d(0,0,0)';
+    }, 120);
+  }, {passive: true});
+}
+
+/* ── REPEL + MAGNETIC — Sadece masaüstü, RAF throttle ───── */
+if(HAS_HOVER && !IS_MOBILE && !REDUCED) {
+
+  /* Rect'leri ilk yüklemede al */
+  requestAnimationFrame(updateRects);
+
+  [rightGroup, leftGroup].forEach(function(group) {
+    if(!group) return;
+    var btns = group.querySelectorAll('.float-btn');
+    var mouseX = 0, mouseY = 0;
+    var mmTicking = false;
+
+    /* TEK mousemove listener — RAF ile throttle */
+    group.addEventListener('mousemove', function(e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      if(!mmTicking) {
+        requestAnimationFrame(function() {
+          /* Rect cache kullan — reflow yok */
+          if(rectDirty) updateRects();
+
+          btns.forEach(function(btn) {
+            var rect = rectCache.get(btn);
+            if(!rect) return;
+
+            var cx   = rect.left + rect.width  * 0.5;
+            var cy   = rect.top  + rect.height * 0.5;
+            var dx   = mouseX - cx;
+            var dy   = mouseY - cy;
+            var dist = Math.sqrt(dx*dx + dy*dy);
+
+            if(dist < 90 && dist > 1) {
+              /* Repel kuvveti */
+              var repelForce  = (1 - dist/90) * 14;
+              var angle       = Math.atan2(dy, dx);
+              var pushX       = -Math.cos(angle) * repelForce;
+              var pushY       = -Math.sin(angle) * repelForce;
+
+              /* Magnetic kuvveti (yakında çeker) */
+              var magForce = dist < 30 ? (30 - dist) / 30 * 8 : 0;
+              var magX     = Math.cos(angle) * magForce;
+              var magY     = Math.sin(angle) * magForce;
+
+              var totalX = pushX + magX;
+              var totalY = pushY + magY;
+              var rot    = totalX * 0.25;
+
+              btn.style.transform =
+                'translate3d('+totalX.toFixed(1)+'px,'+totalY.toFixed(1)+'px,0)'+
+                ' scale('+(1 + repelForce*0.012).toFixed(3)+')'+
+                ' rotate('+rot.toFixed(1)+'deg)';
+            } else {
+              btn.style.transform = 'translate3d(0,0,0)';
+            }
+          });
+          mmTicking = false;
+        });
+        mmTicking = true;
       }
-    });
+    }, {passive: true});
+
+    /* Mouse ayrılınca spring ile sıfırla */
+    group.addEventListener('mouseleave', function() {
+      btns.forEach(function(btn) {
+        btn.style.transition = 'transform 0.45s cubic-bezier(.34,1.56,.64,1)';
+        btn.style.transform  = 'translate3d(0,0,0)';
+        setTimeout(function() { btn.style.transition = ''; }, 500);
+      });
+    }, {passive: true});
   });
 
-  group.addEventListener('mouseleave', function(){
-    btns.forEach(function(btn){
-      btn.style.transform = '';
-    });
+  /* ── ACCORDION ── */
+  [rightGroup, leftGroup].forEach(function(group) {
+    if(!group) return;
+    group.addEventListener('mouseenter', function() {
+      group.style.gap = '18px';
+    }, {passive: true});
+    group.addEventListener('mouseleave', function() {
+      group.style.gap = '12px';
+    }, {passive: true});
   });
-});
-
-// ── ACCORDION EFEKTİ (JS ile) ────────────────────────────
-document.querySelectorAll('.float-group-right, .float-group-left').forEach(function(group){
-  group.addEventListener('mouseenter', function(){
-    group.style.gap = '16px';
-  });
-  group.addEventListener('mouseleave', function(){
-    group.style.gap = '12px';
-  });
-});
-
-// ── SCROLL TOP BUTONU ────────────────────────────────────
-var scrollBtn = document.getElementById('float-scroll-top');
-if(scrollBtn){
-  window.addEventListener('scroll', function(){
-    scrollBtn.classList.toggle('visible', window.scrollY > 300);
-  }, {passive:true});
 }
 
-// ── PULSE RING EKLEME ────────────────────────────────────
-var waBtn = document.querySelector('.float-btn-wa');
-if(waBtn){
-  waBtn.insertAdjacentHTML('afterbegin',
-    '<span class="pulse-ring"></span><span class="pulse-ring"></span>');
+/* ── PULSE RING — WhatsApp ──────────────────────────────── */
+if(!REDUCED) {
+  var waBtn = document.querySelector('.float-btn-wa');
+  if(waBtn) {
+    var r1 = document.createElement('span');
+    var r2 = document.createElement('span');
+    r1.className = r2.className = 'pulse-ring';
+    r2.style.animationDelay = '0.8s';
+    waBtn.insertAdjacentElement('afterbegin', r2);
+    waBtn.insertAdjacentElement('afterbegin', r1);
+  }
 }
 
-// ── BADGE ANIMASYONU ─────────────────────────────────────
-// 5 saniye sonra WhatsApp'ta badge göster
-setTimeout(function(){
+/* ── BADGE — 8sn sonra WhatsApp'ta ─────────────────────── */
+setTimeout(function() {
   var wa = document.querySelector('.float-btn-wa');
-  if(wa && !wa.querySelector('.float-badge')){
+  if(wa && !wa.querySelector('.float-badge')) {
     var badge = document.createElement('span');
     badge.className = 'float-badge';
     badge.textContent = '1';
     wa.appendChild(badge);
-    // 30 saniye sonra kaldır
-    setTimeout(function(){ badge.remove(); }, 30000);
+    setTimeout(function() {
+      if(badge.parentNode) badge.parentNode.removeChild(badge);
+    }, 25000);
   }
 }, 8000);
 
-// ── MAGNETIC EFEKTİ ──────────────────────────────────────
-// Fare yaklaştığında buton mıknatıs gibi çeker
-document.querySelectorAll('.float-btn').forEach(function(btn){
-  btn.addEventListener('mousemove', function(e){
-    var rect = btn.getBoundingClientRect();
-    var cx   = rect.left + rect.width  / 2;
-    var cy   = rect.top  + rect.height / 2;
-    var dx   = (e.clientX - cx) * 0.25;
-    var dy   = (e.clientY - cy) * 0.25;
-    btn.style.transform = 'translate('+dx+'px,'+dy+'px) scale(1.18) rotate('+dx*0.3+'deg)';
+/* ── MOBİL DOKUNMA GERİBİLDİRİMİ ───────────────────────── */
+if(IS_TOUCH) {
+  allBtns.forEach(function(btn) {
+    btn.addEventListener('touchstart', function() {
+      btn.style.transform = 'translate3d(0,0,0) scale(0.92)';
+    }, {passive: true});
+    btn.addEventListener('touchend', function() {
+      btn.style.transform = 'translate3d(0,0,0) scale(1)';
+    }, {passive: true});
   });
-  btn.addEventListener('mouseleave', function(){
-    btn.style.transform = '';
-    btn.style.transition = 'transform 0.5s cubic-bezier(.34,1.56,.64,1)';
-    setTimeout(function(){ btn.style.transition = ''; }, 500);
-  });
-});
+}
 
-console.log('Yapiguc Float Buttons v3.0 loaded');
+console.log('YG Float v4.0 | mobile:'+IS_MOBILE+' touch:'+IS_TOUCH+' reduced:'+REDUCED);
 })();
 </script>
 
