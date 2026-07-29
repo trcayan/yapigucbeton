@@ -3,476 +3,106 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>3D Urun Goruntuleyici | Yapiguc Beton</title>
-<meta name="description" content="Yapiguc Beton urunlerini 3D olarak inceleyin. Parke tasi, bordur ve beton bariyerleri 360 derece dondurun."/>
+<title>3D Urun Goruntuleyici — Yakim Asamasinda | Yapiguc Beton</title>
+<meta name="robots" content="noindex"/>
 <link rel="icon" href="favicon.png"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#0a0a0a;color:#fff;overflow-x:hidden;}
-.header{background:rgba(0,0,0,.9);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.1);}
-.header img{height:36px;}
-.header a{color:#fff;text-decoration:none;font-size:13px;opacity:.8;}
-.hero{padding:36px 24px 20px;text-align:center;}
-.hero h1{font-size:clamp(20px,4vw,34px);font-weight:900;margin-bottom:8px;}
-.hero h1 span{color:#c0001a;}
-.hero p{font-size:14px;color:#aaa;max-width:500px;margin:0 auto;}
-.container{max-width:1100px;margin:0 auto;padding:16px 24px 40px;}
-.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;}
-.tab{padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#aaa;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;}
-.tab.active{background:#c0001a;border-color:#c0001a;color:#fff;}
-.main-grid{display:grid;grid-template-columns:1fr 300px;gap:20px;}
-@media(max-width:768px){.main-grid{grid-template-columns:1fr;}}
-.viewer-box{background:linear-gradient(135deg,#111,#1a0005);border-radius:16px;overflow:hidden;position:relative;border:1px solid rgba(192,0,26,.2);}
-#c3d{display:block;width:100%;cursor:grab;}
-#c3d:active{cursor:grabbing;}
-.controls{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;}
-.ctrl{background:rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.2);color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
-.ctrl:hover{background:rgba(192,0,26,.7);}
-.hint{position:absolute;top:12px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.6);border-radius:20px;padding:5px 14px;font-size:11px;color:#aaa;white-space:nowrap;}
-.rot-info{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.5);border-radius:8px;padding:5px 10px;font-size:11px;color:#aaa;}
-.panel{display:flex;flex-direction:column;gap:14px;}
-.pcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;}
-.pcard h3{font-size:13px;font-weight:700;margin-bottom:12px;color:#fff;}
-.spec{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px;}
-.spec:last-child{border:none;}
-.spec .lbl{color:#aaa;}
-.spec .val{color:#fff;font-weight:600;}
-.colors{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
-.col-opt{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .2s;}
-.col-opt.active{border-color:#fff;transform:scale(1.2);}
-.cta-card{background:rgba(192,0,26,.15);border:1px solid rgba(192,0,26,.3);border-radius:12px;padding:16px;text-align:center;}
-.cta-card h3{font-size:14px;font-weight:700;margin-bottom:6px;}
-.cta-card p{font-size:11px;color:#aaa;margin-bottom:12px;}
-.cta-btns{display:flex;flex-direction:column;gap:8px;}
-.cbtn{padding:10px;border-radius:8px;font-weight:700;text-decoration:none;font-size:13px;text-align:center;border:none;cursor:pointer;}
-.cbtn-red{background:#c0001a;color:#fff;}
-.cbtn-green{background:#25d366;color:#fff;}
-.footer{background:#111;color:#aaa;padding:20px;text-align:center;font-size:13px;margin-top:20px;}
-.footer a{color:#c0001a;text-decoration:none;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:linear-gradient(135deg,#0d0d0d,#1a0005);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;padding:24px;}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(192,0,26,.3);border-radius:20px;padding:48px 40px;max-width:520px;width:100%;text-align:center;backdrop-filter:blur(10px);}
+.icon{font-size:64px;margin-bottom:20px;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.badge{display:inline-block;background:rgba(192,0,26,.2);border:1px solid rgba(192,0,26,.5);color:#ff6b6b;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;}
+h1{font-size:28px;font-weight:900;margin-bottom:12px;line-height:1.2;}
+h1 span{color:#c0001a;}
+p{font-size:15px;color:#aaa;line-height:1.7;margin-bottom:28px;}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px;text-align:left;}
+.feat{background:rgba(255,255,255,.05);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:13px;color:#ddd;}
+.feat-icon{font-size:20px;flex-shrink:0;}
+.model-info{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px;margin-bottom:24px;text-align:left;}
+.model-info h3{font-size:14px;font-weight:700;margin-bottom:12px;color:#fff;}
+.model-list{display:flex;flex-direction:column;gap:8px;}
+.model-item{display:flex;align-items:center;justify-content:space-between;font-size:13px;}
+.model-item .name{color:#ddd;display:flex;align-items:center;gap:8px;}
+.model-item .status{font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px;}
+.status-wait{background:rgba(217,119,6,.2);color:#fbbf24;border:1px solid rgba(217,119,6,.3);}
+.status-done{background:rgba(22,163,74,.2);color:#4ade80;border:1px solid rgba(22,163,74,.3);}
+.progress-wrap{margin-bottom:28px;}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;color:#aaa;margin-bottom:8px;}
+.progress-bar{height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,#c0001a,#ff6b6b);border-radius:3px;width:40%;animation:prog 2s ease-in-out infinite alternate;}
+@keyframes prog{from{width:35%;}to{width:45%;}}
+.upload-info{background:rgba(29,78,216,.1);border:1px solid rgba(29,78,216,.3);border-radius:10px;padding:14px;margin-bottom:24px;font-size:13px;color:#93c5fd;text-align:left;}
+.upload-info strong{color:#60a5fa;display:block;margin-bottom:6px;}
+.links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.link-btn{padding:10px 20px;border-radius:8px;font-weight:700;text-decoration:none;font-size:13px;transition:all .2s;}
+.link-red{background:#c0001a;color:#fff;}
+.link-red:hover{background:#8a0012;}
+.link-wa{background:#25d366;color:#fff;}
+.link-wa:hover{background:#1da851;}
+.link-gray{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);}
+.link-gray:hover{background:rgba(255,255,255,.2);}
 </style>
 </head>
 <body>
-<header class="header">
-  <a href="index.html"><img src="logo.png" alt="Yapiguc Beton"/></a>
-  <a href="index.html">Ana Sayfa</a>
-</header>
-<div class="hero">
+<div class="card">
+  <div class="icon">🔲</div>
+  <div class="badge">Yakim Asamasinda</div>
   <h1>3D Urun <span>Goruntuleyici</span></h1>
-  <p>Urunlerimizi 360 derece dondurun, yakinlastirin ve farkli renklerde inceleyin.</p>
-</div>
-<div class="container">
-  <div class="tabs">
-    <button class="tab active" onclick="loadProd('parke',this)">Kilit Parke</button>
-    <button class="tab" onclick="loadProd('bordur',this)">Bordur Tasi</button>
-    <button class="tab" onclick="loadProd('bariyer',this)">Beton Bariyer</button>
-    <button class="tab" onclick="loadProd('sev',this)">Sev Tasi</button>
-    <button class="tab" onclick="loadProd('kup',this)">Kup Tasi</button>
+  <p>Urunlerimizi 360 derece dondurun, yakinlastirin ve farkli renklerde inceleyin. Gercekci 3D modeller yuklendikten sonra aktif olacak!</p>
+
+  <div class="features">
+    <div class="feat"><span class="feat-icon">🔄</span>360° Dondurme</div>
+    <div class="feat"><span class="feat-icon">🔍</span>Yakinlastirma</div>
+    <div class="feat"><span class="feat-icon">🎨</span>Renk Degistirme</div>
+    <div class="feat"><span class="feat-icon">📐</span>Teknik Olcular</div>
+    <div class="feat"><span class="feat-icon">💡</span>Gercekci Isik</div>
+    <div class="feat"><span class="feat-icon">📱</span>Mobil Uyumlu</div>
   </div>
-  <div class="main-grid">
-    <div class="viewer-box">
-      <canvas id="c3d"></canvas>
-      <div class="hint">Surkle: Dondur | Tekerlek: Yakinlastir</div>
-      <div class="rot-info" id="rot-info">0 / 0</div>
-      <div class="controls">
-        <button class="ctrl" onclick="resetCam()" title="Sifirla">&#8635;</button>
-        <button class="ctrl" onclick="zoom(0.15)" title="Yakinlastir">+</button>
-        <button class="ctrl" onclick="zoom(-0.15)" title="Uzaklastir">-</button>
-        <button class="ctrl" id="auto-btn" onclick="toggleAuto()" title="Oto Dondur">&#9654;</button>
+
+  <div class="model-info">
+    <h3>3D Model Durumu</h3>
+    <div class="model-list">
+      <div class="model-item">
+        <span class="name">🧱 Kilit Parke Tasi</span>
+        <span class="status status-wait">Model Bekleniyor</span>
       </div>
-    </div>
-    <div class="panel">
-      <div class="pcard">
-        <h3 id="prod-name">Kilit Parke Tasi</h3>
-        <div id="prod-specs"></div>
+      <div class="model-item">
+        <span class="name">📏 Bordur Tasi</span>
+        <span class="status status-wait">Model Bekleniyor</span>
       </div>
-      <div class="pcard">
-        <h3>Renk Secimi</h3>
-        <div class="colors">
-          <div class="col-opt active" style="background:#9ca3af" data-r="0.62" data-g="0.64" data-b="0.67" title="Gri"></div>
-          <div class="col-opt" style="background:#dc2626" data-r="0.86" data-g="0.15" data-b="0.15" title="Kirmizi"></div>
-          <div class="col-opt" style="background:#f59e0b" data-r="0.96" data-g="0.62" data-b="0.04" title="Sari"></div>
-          <div class="col-opt" style="background:#1d4ed8" data-r="0.11" data-g="0.31" data-b="0.85" title="Mavi"></div>
-          <div class="col-opt" style="background:#16a34a" data-r="0.09" data-g="0.64" data-b="0.29" title="Yesil"></div>
-          <div class="col-opt" style="background:#111827" data-r="0.07" data-g="0.09" data-b="0.15" title="Siyah"></div>
-          <div class="col-opt" style="background:#fb923c" data-r="0.98" data-g="0.57" data-b="0.24" title="Turuncu"></div>
-          <div class="col-opt" style="background:#fef3c7;border:1px solid #aaa" data-r="0.99" data-g="0.95" data-b="0.78" title="Krem"></div>
-        </div>
+      <div class="model-item">
+        <span class="name">🚧 Beton Bariyer</span>
+        <span class="status status-wait">Model Bekleniyor</span>
       </div>
-      <div class="cta-card">
-        <h3>Bu Urunu Siparis Et</h3>
-        <p>Fabrikadan direkt satis, hizli teslimat</p>
-        <div class="cta-btns">
-          <button class="cbtn cbtn-red" onclick="orderProd()">Teklif Al</button>
-          <a href="https://wa.me/905405163636" target="_blank" class="cbtn cbtn-green">WhatsApp</a>
-        </div>
+      <div class="model-item">
+        <span class="name">⛰️ Sev Tasi</span>
+        <span class="status status-wait">Model Bekleniyor</span>
+      </div>
+      <div class="model-item">
+        <span class="name">🔲 Kup Tasi</span>
+        <span class="status status-wait">Model Bekleniyor</span>
       </div>
     </div>
   </div>
+
+  <div class="upload-info">
+    <strong>Model Nasil Gonderilir?</strong>
+    Urun fotograflarinizi veya 3D model dosyalarinizi (GLB, OBJ, FBX) WhatsApp uzerinden gonderin.
+    Modeller sisteme yuklendikten sonra 3D goruntuleyici aktif olacak.
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label"><span>Gelistirme Sureci</span><span>%40</span></div>
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+  </div>
+
+  <div class="links">
+    <a href="index.html" class="link-btn link-red">Ana Sayfa</a>
+    <a href="https://wa.me/905405163636?text=3D model gondermek istiyorum. Hangi format kabul ediyorsunuz?" target="_blank" class="link-btn link-wa">Model Gonder</a>
+    <a href="simulator.html" class="link-btn link-gray">Simulatoru Goster</a>
+  </div>
 </div>
-<footer class="footer">
-  <p>2026 <a href="index.html">Yapiguc Beton</a> | Antakya / Hatay | <a href="tel:05323746945">0532 374 69 45</a></p>
-</footer>
-
-<script>
-var canvas = document.getElementById('c3d');
-var ctx = canvas.getContext('2d');
-var W, H;
-var rotX = 0.35, rotY = 0.6, zoomF = 1.0;
-var drag = false, lx, ly;
-var autoOn = false, autoTimer;
-var curProd = 'parke';
-var curR = 0.62, curG = 0.64, curB = 0.67;
-
-var PRODS = {
-  parke:{
-    name:'Kilit Parke Tasi',
-    specs:[
-      {l:'Boyut',v:'20 x 10 cm'},
-      {l:'Kalinlik',v:'6 / 8 / 10 cm'},
-      {l:'Agirlik',v:'~2.8 kg/adet'},
-      {l:'M2 Adedi',v:'50 adet/m2'},
-      {l:'Dayanim',v:'C35 Beton'},
-      {l:'Standart',v:'TS EN 1338'}
-    ]
-  },
-  bordur:{
-    name:'Bordur Tasi',
-    specs:[
-      {l:'Boyut',v:'100 x 25 cm'},
-      {l:'Yukseklik',v:'15 cm'},
-      {l:'Agirlik',v:'~35 kg/adet'},
-      {l:'Adet/m',v:'1 adet/m'},
-      {l:'Dayanim',v:'C30 Beton'},
-      {l:'Standart',v:'TS EN 1340'}
-    ]
-  },
-  bariyer:{
-    name:'Beton Bariyer',
-    specs:[
-      {l:'Tip',v:'Jersey / F-Tipi'},
-      {l:'Uzunluk',v:'100 cm'},
-      {l:'Yukseklik',v:'80 cm'},
-      {l:'Agirlik',v:'~350 kg'},
-      {l:'Dayanim',v:'C30 Beton'},
-      {l:'Kullanim',v:'Yol guvenligi'}
-    ]
-  },
-  sev:{
-    name:'Sev Tasi',
-    specs:[
-      {l:'Boyut',v:'40 x 20 cm'},
-      {l:'Kalinlik',v:'8 cm'},
-      {l:'Agirlik',v:'~12 kg/adet'},
-      {l:'M2 Adedi',v:'12 adet/m2'},
-      {l:'Dayanim',v:'C25 Beton'},
-      {l:'Kullanim',v:'Yol sevleri'}
-    ]
-  },
-  kup:{
-    name:'Kup Tasi',
-    specs:[
-      {l:'Boyut',v:'10 x 10 cm'},
-      {l:'Kalinlik',v:'10 cm'},
-      {l:'Agirlik',v:'~2.5 kg/adet'},
-      {l:'M2 Adedi',v:'100 adet/m2'},
-      {l:'Dayanim',v:'C35 Beton'},
-      {l:'Standart',v:'TS EN 1342'}
-    ]
-  }
-};
-
-function resize(){
-  var box = canvas.parentElement;
-  W = canvas.width = box.clientWidth;
-  H = canvas.height = Math.round(W * 0.65);
-  draw();
-}
-
-// 3D projeksiyon
-function proj(x,y,z){
-  var cx=Math.cos(rotX), sx=Math.sin(rotX);
-  var cy=Math.cos(rotY), sy=Math.sin(rotY);
-  var y2=y*cx-z*sx, z2=y*sx+z*cx;
-  var x2=x*cy+z2*sy, z3=-x*sy+z2*cy;
-  var sc=zoomF*Math.min(W,H)*0.28/(z3+5);
-  return {x:W/2+x2*sc, y:H/2+y2*sc, z:z3};
-}
-
-function rgb(r,g,b,light){
-  return 'rgb('+Math.round(Math.min(255,r*255*light))+','+Math.round(Math.min(255,g*255*light))+','+Math.round(Math.min(255,b*255*light))+')';
-}
-
-function drawFace(pts,color){
-  ctx.beginPath();
-  ctx.moveTo(pts[0].x,pts[0].y);
-  for(var i=1;i<pts.length;i++) ctx.lineTo(pts[i].x,pts[i].y);
-  ctx.closePath();
-  ctx.fillStyle=color;
-  ctx.fill();
-  ctx.strokeStyle='rgba(0,0,0,0.25)';
-  ctx.lineWidth=0.8;
-  ctx.stroke();
-}
-
-// Genel kutu ciz
-function drawBox(verts, faces, r,g,b){
-  var pv = verts.map(function(v){return proj(v[0],v[1],v[2]);});
-  // Z-sort
-  var sorted = faces.slice().sort(function(a,b){
-    var za=a.i.reduce(function(s,i){return s+pv[i].z;},0)/a.i.length;
-    var zb=b.i.reduce(function(s,i){return s+pv[i].z;},0)/b.i.length;
-    return za-zb;
-  });
-  sorted.forEach(function(f){
-    drawFace(f.i.map(function(i){return pv[i];}), rgb(r,g,b,f.l));
-  });
-}
-
-// Kilit parke tasi — karakteristik kilit sekli
-function drawParke(r,g,b){
-  // Ana govde (dikdortgen)
-  var verts=[
-    [-1.8,-0.5,-0.8],[1.8,-0.5,-0.8],[1.8,0.5,-0.8],[-1.8,0.5,-0.8],
-    [-1.8,-0.5, 0.8],[1.8,-0.5, 0.8],[1.8,0.5, 0.8],[-1.8,0.5, 0.8]
-  ];
-  var faces=[
-    {i:[4,5,6,7],l:1.0},  // on
-    {i:[0,1,2,3],l:0.45}, // arka
-    {i:[0,4,7,3],l:0.65}, // sol
-    {i:[1,5,6,2],l:0.75}, // sag
-    {i:[3,2,6,7],l:0.95}, // ust
-    {i:[0,1,5,4],l:0.35}, // alt
-  ];
-  drawBox(verts,faces,r,g,b);
-
-  // Kilit cikintilari (ust ve alt)
-  // Ust cikinti
-  var v2=[
-    [-0.6,-0.5,-0.8],[0.6,-0.5,-0.8],[0.6,-0.5,-0.4],[-0.6,-0.5,-0.4],
-    [-0.6,-0.9, 0.4],[0.6,-0.9, 0.4],[0.6,-0.9, 0.8],[-0.6,-0.9, 0.8]
-  ];
-  var f2=[
-    {i:[4,5,6,7],l:0.9},{i:[0,1,2,3],l:0.4},
-    {i:[0,4,7,3],l:0.6},{i:[1,5,6,2],l:0.7},
-    {i:[3,2,6,7],l:0.85},{i:[0,1,5,4],l:0.3}
-  ];
-  drawBox(v2,f2,r,g,b);
-
-  // Alt cikinti
-  var v3=[
-    [-0.6,0.5,-0.4],[0.6,0.5,-0.4],[0.6,0.5, 0.8],[-0.6,0.5, 0.8],
-    [-0.6,0.9,-0.4],[0.6,0.9,-0.4],[0.6,0.9, 0.8],[-0.6,0.9, 0.8]
-  ];
-  drawBox(v3,f2,r,g,b);
-}
-
-// Bordur tasi — uzun dikdortgen prizma
-function drawBordur(r,g,b){
-  var verts=[
-    [-3.0,-0.6,-0.8],[3.0,-0.6,-0.8],[3.0,0.6,-0.8],[-3.0,0.6,-0.8],
-    [-3.0,-0.6, 0.8],[3.0,-0.6, 0.8],[3.0,0.6, 0.8],[-3.0,0.6, 0.8]
-  ];
-  var faces=[
-    {i:[4,5,6,7],l:1.0},
-    {i:[0,1,2,3],l:0.45},
-    {i:[0,4,7,3],l:0.65},
-    {i:[1,5,6,2],l:0.75},
-    {i:[3,2,6,7],l:0.95},
-    {i:[0,1,5,4],l:0.35},
-  ];
-  drawBox(verts,faces,r,g,b);
-
-  // Ust yuzey detay cizgisi
-  var pv=verts.map(function(v){return proj(v[0],v[1],v[2]);});
-  ctx.beginPath();
-  ctx.moveTo(pv[3].x,pv[3].y);
-  ctx.lineTo(pv[2].x,pv[2].y);
-  ctx.lineTo(pv[6].x,pv[6].y);
-  ctx.lineTo(pv[7].x,pv[7].y);
-  ctx.strokeStyle=rgb(r,g,b,1.3);
-  ctx.lineWidth=2;
-  ctx.stroke();
-}
-
-// Beton bariyer — Jersey profili
-function drawBariyer(r,g,b){
-  // Jersey bariyerin karakteristik trapez profili
-  // Alt genis, ust dar, ortada egim
-  var sections=[
-    // Alt genis kisim
-    {v:[[-2.5,-1.2,-0.55],[2.5,-1.2,-0.55],[2.5,-0.4,-0.7],[-2.5,-0.4,-0.7],
-        [-2.5,-1.2, 0.55],[2.5,-1.2, 0.55],[2.5,-0.4, 0.7],[-2.5,-0.4, 0.7]],
-     f:[{i:[4,5,6,7],l:1.0},{i:[0,1,2,3],l:0.45},{i:[0,4,7,3],l:0.6},{i:[1,5,6,2],l:0.7},{i:[3,2,6,7],l:0.9},{i:[0,1,5,4],l:0.3}]},
-    // Orta egimli kisim
-    {v:[[-2.5,-0.4,-0.7],[2.5,-0.4,-0.7],[2.5,0.4,-0.45],[-2.5,0.4,-0.45],
-        [-2.5,-0.4, 0.7],[2.5,-0.4, 0.7],[2.5,0.4, 0.45],[-2.5,0.4, 0.45]],
-     f:[{i:[4,5,6,7],l:0.95},{i:[0,1,2,3],l:0.4},{i:[0,4,7,3],l:0.65},{i:[1,5,6,2],l:0.75},{i:[3,2,6,7],l:0.85},{i:[0,1,5,4],l:0.35}]},
-    // Ust dar kisim
-    {v:[[-2.5,0.4,-0.45],[2.5,0.4,-0.45],[2.5,1.2,-0.3],[-2.5,1.2,-0.3],
-        [-2.5,0.4, 0.45],[2.5,0.4, 0.45],[2.5,1.2, 0.3],[-2.5,1.2, 0.3]],
-     f:[{i:[4,5,6,7],l:0.9},{i:[0,1,2,3],l:0.4},{i:[0,4,7,3],l:0.6},{i:[1,5,6,2],l:0.7},{i:[3,2,6,7],l:0.8},{i:[0,1,5,4],l:0.3}]}
-  ];
-
-  // Tum yuzleri topla ve z-sort yap
-  var allFaces=[];
-  sections.forEach(function(sec){
-    var pv=sec.v.map(function(v){return proj(v[0],v[1],v[2]);});
-    sec.f.forEach(function(f){
-      var z=f.i.reduce(function(s,i){return s+pv[i].z;},0)/f.i.length;
-      allFaces.push({pts:f.i.map(function(i){return pv[i];}),l:f.l,z:z});
-    });
-  });
-  allFaces.sort(function(a,b){return a.z-b.z;});
-  allFaces.forEach(function(f){drawFace(f.pts,rgb(r,g,b,f.l));});
-}
-
-// Sev tasi — egimli yuzey
-function drawSev(r,g,b){
-  // Trapez kesitli sev tasi
-  var verts=[
-    [-2.0,-0.3,-1.0],[2.0,-0.3,-1.0],[2.0,0.3,-0.5],[-2.0,0.3,-0.5],
-    [-2.0,-0.3, 1.0],[2.0,-0.3, 1.0],[2.0,0.3, 1.0],[-2.0,0.3, 1.0]
-  ];
-  var faces=[
-    {i:[4,5,6,7],l:1.0},
-    {i:[0,1,2,3],l:0.45},
-    {i:[0,4,7,3],l:0.65},
-    {i:[1,5,6,2],l:0.75},
-    {i:[3,2,6,7],l:0.95},
-    {i:[0,1,5,4],l:0.35},
-  ];
-  drawBox(verts,faces,r,g,b);
-}
-
-// Kup tasi — kare prizma
-function drawKup(r,g,b){
-  var verts=[
-    [-1.0,-1.0,-1.0],[1.0,-1.0,-1.0],[1.0,1.0,-1.0],[-1.0,1.0,-1.0],
-    [-1.0,-1.0, 1.0],[1.0,-1.0, 1.0],[1.0,1.0, 1.0],[-1.0,1.0, 1.0]
-  ];
-  var faces=[
-    {i:[4,5,6,7],l:1.0},
-    {i:[0,1,2,3],l:0.45},
-    {i:[0,4,7,3],l:0.65},
-    {i:[1,5,6,2],l:0.75},
-    {i:[3,2,6,7],l:0.95},
-    {i:[0,1,5,4],l:0.35},
-  ];
-  drawBox(verts,faces,r,g,b);
-}
-
-function draw(){
-  ctx.clearRect(0,0,W,H);
-
-  // Arka plan
-  var grad=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*0.6);
-  grad.addColorStop(0,'#1a0005');
-  grad.addColorStop(1,'#0a0a0a');
-  ctx.fillStyle=grad;
-  ctx.fillRect(0,0,W,H);
-
-  // Zemin grid
-  ctx.strokeStyle='rgba(192,0,26,0.12)';
-  ctx.lineWidth=0.5;
-  for(var i=-8;i<=8;i++){
-    var p1=proj(i*0.6,-1.5,-8),p2=proj(i*0.6,-1.5,8);
-    var p3=proj(-8,-1.5,i*0.6),p4=proj(8,-1.5,i*0.6);
-    ctx.beginPath();ctx.moveTo(p1.x,p1.y);ctx.lineTo(p2.x,p2.y);ctx.stroke();
-    ctx.beginPath();ctx.moveTo(p3.x,p3.y);ctx.lineTo(p4.x,p4.y);ctx.stroke();
-  }
-
-  // Golge
-  var sh=proj(0,-1.48,0);
-  var sg=ctx.createRadialGradient(sh.x,sh.y,0,sh.x,sh.y,100*zoomF);
-  sg.addColorStop(0,'rgba(0,0,0,0.5)');
-  sg.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle=sg;
-  ctx.fillRect(0,0,W,H);
-
-  // Urunu ciz
-  if(curProd==='parke') drawParke(curR,curG,curB);
-  else if(curProd==='bordur') drawBordur(curR,curG,curB);
-  else if(curProd==='bariyer') drawBariyer(curR,curG,curB);
-  else if(curProd==='sev') drawSev(curR,curG,curB);
-  else if(curProd==='kup') drawKup(curR,curG,curB);
-
-  document.getElementById('rot-info').textContent=
-    Math.round(rotY*180/Math.PI)+'° / '+Math.round(rotX*180/Math.PI)+'°';
-}
-
-// Mouse
-canvas.addEventListener('mousedown',function(e){drag=true;lx=e.clientX;ly=e.clientY;});
-canvas.addEventListener('mousemove',function(e){
-  if(!drag)return;
-  rotY+=(e.clientX-lx)*0.012;
-  rotX+=(e.clientY-ly)*0.012;
-  rotX=Math.max(-1.3,Math.min(1.3,rotX));
-  lx=e.clientX;ly=e.clientY;draw();
-});
-canvas.addEventListener('mouseup',function(){drag=false;});
-canvas.addEventListener('mouseleave',function(){drag=false;});
-canvas.addEventListener('wheel',function(e){
-  e.preventDefault();
-  zoomF=Math.max(0.3,Math.min(3,zoomF-e.deltaY*0.001));
-  draw();
-},{passive:false});
-
-// Touch
-canvas.addEventListener('touchstart',function(e){drag=true;lx=e.touches[0].clientX;ly=e.touches[0].clientY;},{passive:true});
-canvas.addEventListener('touchmove',function(e){
-  if(!drag)return;
-  rotY+=(e.touches[0].clientX-lx)*0.012;
-  rotX+=(e.touches[0].clientY-ly)*0.012;
-  rotX=Math.max(-1.3,Math.min(1.3,rotX));
-  lx=e.touches[0].clientX;ly=e.touches[0].clientY;draw();
-},{passive:true});
-canvas.addEventListener('touchend',function(){drag=false;});
-
-function resetCam(){rotX=0.35;rotY=0.6;zoomF=1.0;draw();}
-function zoom(d){zoomF=Math.max(0.3,Math.min(3,zoomF+d));draw();}
-function toggleAuto(){
-  if(autoOn){clearInterval(autoTimer);autoOn=false;document.getElementById('auto-btn').innerHTML='&#9654;';}
-  else{autoOn=true;document.getElementById('auto-btn').innerHTML='&#9646;&#9646;';autoTimer=setInterval(function(){rotY+=0.018;draw();},16);}
-}
-
-function loadProd(id,btn){
-  curProd=id;
-  document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active');});
-  if(btn)btn.classList.add('active');
-  var p=PRODS[id];
-  document.getElementById('prod-name').textContent=p.name;
-  var html='';
-  p.specs.forEach(function(s){html+='<div class="spec"><span class="lbl">'+s.l+'</span><span class="val">'+s.v+'</span></div>';});
-  document.getElementById('prod-specs').innerHTML=html;
-  resetCam();
-  if(window.gtag)gtag('event','product_3d',{event_category:'engagement',event_label:id});
-}
-
-// Renk secimi
-document.querySelectorAll('.col-opt').forEach(function(el){
-  el.addEventListener('click',function(){
-    document.querySelectorAll('.col-opt').forEach(function(c){c.classList.remove('active');});
-    el.classList.add('active');
-    curR=parseFloat(el.dataset.r);
-    curG=parseFloat(el.dataset.g);
-    curB=parseFloat(el.dataset.b);
-    draw();
-  });
-});
-
-function orderProd(){
-  var msg='Merhaba, 3D goruntuleyicide '+PRODS[curProd].name+' urununu inceledim. Fiyat teklifi almak istiyorum.';
-  window.open('https://wa.me/905405163636?text='+encodeURIComponent(msg),'_blank');
-}
-
-// Baslat
-window.addEventListener('resize',resize);
-window.addEventListener('load',function(){
-  resize();
-  loadProd('parke',null);
-  toggleAuto(); // Otomatik dondur
-});
-</script>
 <script src="ai-chat.js"></script>
 </body>
 </html>
