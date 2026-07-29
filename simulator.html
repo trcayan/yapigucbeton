@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Parke Taşı Döşeme Simülatörü | Yapıgüç Beton</title>
+<meta name="description" content="Parke taşı döşeme simülatörü: zemin boyutunuzu girin, kaç adet parke taşı gerektiğini hesaplayın. Renk ve desen seçin, önizleyin."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://yapigucbeton.com.tr/simulator.html"/>
+<link rel="icon" href="favicon.png"/>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TMJXX7KB');</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f6f9;color:#111;}
+.header{background:#111;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.header img{height:40px;}
+.header a{color:#fff;text-decoration:none;font-size:13px;font-weight:600;}
+.hero{background:linear-gradient(135deg,#1a0005,#c0001a);color:#fff;padding:50px 24px;text-align:center;}
+.hero h1{font-size:clamp(22px,4vw,36px);font-weight:900;margin-bottom:10px;}
+.hero p{font-size:15px;opacity:.9;max-width:580px;margin:0 auto;}
+.container{max-width:1100px;margin:0 auto;padding:32px 24px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:768px){.grid{grid-template-columns:1fr;}}
+.card{background:#fff;border-radius:14px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08);}
+.card h2{font-size:16px;font-weight:800;color:#111;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.card h2 span{background:#fee2e2;color:#c0001a;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0;}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+.fg label{font-size:12px;font-weight:700;color:#374151;}
+.fg input,.fg select{padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;outline:none;transition:border .2s;}
+.fg input:focus,.fg select:focus{border-color:#c0001a;}
+.color-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.color-btn{height:44px;border-radius:8px;border:3px solid transparent;cursor:pointer;transition:all .2s;position:relative;}
+.color-btn.active{border-color:#c0001a;transform:scale(1.05);}
+.color-btn.active::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-weight:900;font-size:16px;text-shadow:0 1px 3px rgba(0,0,0,.5);}
+.pattern-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+.pattern-btn{padding:10px 6px;border:2px solid #e5e7eb;border-radius:8px;cursor:pointer;text-align:center;font-size:11px;font-weight:600;color:#374151;background:#fff;transition:all .2s;}
+.pattern-btn.active{border-color:#c0001a;background:#fff5f5;color:#c0001a;}
+.pattern-preview{font-size:20px;display:block;margin-bottom:4px;}
+.btn-calc{width:100%;padding:14px;background:linear-gradient(135deg,#c0001a,#8a0012);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;margin-top:8px;}
+.btn-calc:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(192,0,26,.4);}
+.result-box{background:linear-gradient(135deg,#fff5f5,#fff);border:2px solid #fca5a5;border-radius:12px;padding:20px;margin-top:16px;display:none;}
+.result-box.show{display:block;animation:fadeIn .4s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px;}
+.result-item{background:#fff;border-radius:10px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.result-val{font-size:24px;font-weight:900;color:#c0001a;}
+.result-lbl{font-size:11px;color:#6b7280;margin-top:2px;}
+.preview-canvas{width:100%;border-radius:12px;overflow:hidden;background:#f9fafb;border:2px solid #e5e7eb;min-height:300px;position:relative;display:flex;align-items:center;justify-content:center;}
+canvas{display:block;max-width:100%;border-radius:10px;}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.cta-btn{flex:1;padding:12px;border-radius:8px;font-weight:700;text-decoration:none;font-size:13px;text-align:center;border:none;cursor:pointer;transition:all .2s;}
+.cta-red{background:#c0001a;color:#fff;}
+.cta-green{background:#25d366;color:#fff;}
+.cta-blue{background:#1d4ed8;color:#fff;}
+.cta-btn:hover{transform:translateY(-1px);}
+.tip{background:#f0fdf4;border-left:3px solid #16a34a;border-radius:0 8px 8px 0;padding:10px 14px;font-size:12px;color:#065f46;margin-top:12px;}
+.footer{background:#111;color:#aaa;padding:20px;text-align:center;font-size:13px;margin-top:40px;}
+.footer a{color:#c0001a;text-decoration:none;}
+</style>
+</head>
+<body>
+<header class="header">
+  <a href="index.html"><img src="logo.png" alt="Yapıgüç Beton"/></a>
+  <a href="index.html">← Ana Sayfa</a>
+</header>
+<div class="hero">
+  <h1>🧱 Parke Taşı Döşeme Simülatörü</h1>
+  <p>Zemin boyutunuzu girin, renk ve desen seçin — kaç adet parke taşı gerektiğini anında hesaplayın ve önizleyin.</p>
+</div>
+<div class="container">
+  <div class="grid">
+
+    <!-- SOL: Ayarlar -->
+    <div>
+      <div class="card">
+        <h2><span>1</span> Zemin Boyutları</h2>
+        <div class="fg">
+          <label>Uzunluk (metre)</label>
+          <input type="number" id="length" placeholder="Örn: 20" min="1" max="1000" step="0.5" oninput="updatePreview()"/>
+        </div>
+        <div class="fg">
+          <label>Genişlik (metre)</label>
+          <input type="number" id="width" placeholder="Örn: 15" min="1" max="1000" step="0.5" oninput="updatePreview()"/>
+        </div>
+        <div class="fg">
+          <label>Parke Taşı Kalınlığı</label>
+          <select id="thickness" onchange="updatePreview()">
+            <option value="6">6 cm — Yaya trafiği</option>
+            <option value="8" selected>8 cm — Araç trafiği</option>
+            <option value="10">10 cm — Ağır araç / sanayi</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Parke Taşı Tipi</label>
+          <select id="ptype" onchange="updatePreview()">
+            <option value="asik">Aşık Kilit Parke (20x10 cm)</option>
+            <option value="dikdortgen">Dikdörtgen Parke (20x10 cm)</option>
+            <option value="kare">Kare Parke (20x20 cm)</option>
+            <option value="begonit">Begonit Parke (22.5x11.25 cm)</option>
+            <option value="kup">Küp Taşı (10x10 cm)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h2><span>2</span> Renk Seçimi</h2>
+        <div class="color-grid">
+          <button class="color-btn active" style="background:#9ca3af;" data-color="#9ca3af" data-name="Gri" onclick="selectColor(this)" title="Gri"></button>
+          <button class="color-btn" style="background:#dc2626;" data-color="#dc2626" data-name="Kırmızı" onclick="selectColor(this)" title="Kırmızı"></button>
+          <button class="color-btn" style="background:#f59e0b;" data-color="#f59e0b" data-name="Sarı" onclick="selectColor(this)" title="Sarı"></button>
+          <button class="color-btn" style="background:#1d4ed8;" data-color="#1d4ed8" data-name="Mavi" onclick="selectColor(this)" title="Mavi"></button>
+          <button class="color-btn" style="background:#16a34a;" data-color="#16a34a" data-name="Yeşil" onclick="selectColor(this)" title="Yeşil"></button>
+          <button class="color-btn" style="background:#7c3aed;" data-color="#7c3aed" data-name="Mor" onclick="selectColor(this)" title="Mor"></button>
+          <button class="color-btn" style="background:#111827;" data-color="#111827" data-name="Siyah" onclick="selectColor(this)" title="Siyah"></button>
+          <button class="color-btn" style="background:#fef3c7;border:1px solid #e5e7eb;" data-color="#fef3c7" data-name="Krem" onclick="selectColor(this)" title="Krem"></button>
+        </div>
+        <div id="color-name" style="font-size:12px;color:#6b7280;text-align:center;">Seçili: Gri</div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h2><span>3</span> Döşeme Deseni</h2>
+        <div class="pattern-grid">
+          <button class="pattern-btn active" data-pattern="herringbone" onclick="selectPattern(this)">
+            <span class="pattern-preview">⬡</span>Balıksırtı
+          </button>
+          <button class="pattern-btn" data-pattern="straight" onclick="selectPattern(this)">
+            <span class="pattern-preview">▦</span>Düz Sıra
+          </button>
+          <button class="pattern-btn" data-pattern="diagonal" onclick="selectPattern(this)">
+            <span class="pattern-preview">◈</span>Çapraz
+          </button>
+          <button class="pattern-btn" data-pattern="basket" onclick="selectPattern(this)">
+            <span class="pattern-preview">⊞</span>Sepet Örgü
+          </button>
+          <button class="pattern-btn" data-pattern="random" onclick="selectPattern(this)">
+            <span class="pattern-preview">⬢</span>Karma
+          </button>
+          <button class="pattern-btn" data-pattern="border" onclick="selectPattern(this)">
+            <span class="pattern-preview">⬜</span>Çerçeveli
+          </button>
+        </div>
+        <button class="btn-calc" onclick="calculate()">🧮 Hesapla & Önizle</button>
+      </div>
+    </div>
+
+    <!-- SAĞ: Önizleme & Sonuç -->
+    <div>
+      <div class="card">
+        <h2><span>👁</span> Canlı Önizleme</h2>
+        <div class="preview-canvas">
+          <canvas id="previewCanvas" width="400" height="300"></canvas>
+        </div>
+        <div class="tip">💡 Gerçek görünüm için renk ve desen seçin, ardından "Hesapla" butonuna tıklayın.</div>
+      </div>
+
+      <div class="result-box" id="resultBox">
+        <h3 style="font-size:15px;font-weight:800;color:#111;margin-bottom:14px;">📊 Hesaplama Sonuçları</h3>
+        <div class="result-grid">
+          <div class="result-item">
+            <div class="result-val" id="res-area">0</div>
+            <div class="result-lbl">Toplam Alan (m²)</div>
+          </div>
+          <div class="result-item">
+            <div class="result-val" id="res-count">0</div>
+            <div class="result-lbl">Parke Taşı Adedi</div>
+          </div>
+          <div class="result-item">
+            <div class="result-val" id="res-extra">0</div>
+            <div class="result-lbl">Fire Payı (+%10)</div>
+          </div>
+          <div class="result-item">
+            <div class="result-val" id="res-total">0</div>
+            <div class="result-lbl">Toplam Sipariş Adedi</div>
+          </div>
+        </div>
+        <div style="background:#f9fafb;border-radius:8px;padding:12px;margin-bottom:14px;font-size:13px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <span style="color:#6b7280;">Parke Tipi:</span>
+            <span style="font-weight:700;" id="res-type">—</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <span style="color:#6b7280;">Kalınlık:</span>
+            <span style="font-weight:700;" id="res-thick">—</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <span style="color:#6b7280;">Renk:</span>
+            <span style="font-weight:700;" id="res-color">—</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <span style="color:#6b7280;">Desen:</span>
+            <span style="font-weight:700;" id="res-pattern">—</span>
+          </div>
+        </div>
+        <div class="cta-row">
+          <button class="cta-btn cta-red" onclick="orderNow()">📋 Teklif Al</button>
+          <a href="https://wa.me/905405163636" target="_blank" class="cta-btn cta-green">💬 WhatsApp</a>
+          <button class="cta-btn cta-blue" onclick="printResult()">🖨️ Yazdır</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>© 2026 <a href="index.html">Yapıgüç Beton</a> | Anayazı Mah. Paymar Sokak No:1, Antakya / Hatay | <a href="tel:05323746945">0532 374 69 45</a></p>
+</footer>
+
+<script>
+var selectedColor = '#9ca3af';
+var selectedColorName = 'Gri';
+var selectedPattern = 'herringbone';
+
+var TYPES = {
+  asik:      {name:'Aşık Kilit Parke', w:0.20, h:0.10, perM2:50},
+  dikdortgen:{name:'Dikdörtgen Parke', w:0.20, h:0.10, perM2:50},
+  kare:      {name:'Kare Parke',       w:0.20, h:0.20, perM2:25},
+  begonit:   {name:'Begonit Parke',    w:0.225,h:0.1125,perM2:40},
+  kup:       {name:'Küp Taşı',         w:0.10, h:0.10, perM2:100}
+};
+
+var PATTERNS = {
+  herringbone:'Balıksırtı', straight:'Düz Sıra', diagonal:'Çapraz',
+  basket:'Sepet Örgü', random:'Karma', border:'Çerçeveli'
+};
+
+function selectColor(btn) {
+  document.querySelectorAll('.color-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  selectedColor = btn.dataset.color;
+  selectedColorName = btn.dataset.name;
+  document.getElementById('color-name').textContent = 'Seçili: ' + selectedColorName;
+  drawPreview();
+}
+
+function selectPattern(btn) {
+  document.querySelectorAll('.pattern-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  selectedPattern = btn.dataset.pattern;
+  drawPreview();
+}
+
+function drawPreview() {
+  var canvas = document.getElementById('previewCanvas');
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+
+  var type = TYPES[document.getElementById('ptype').value] || TYPES.asik;
+  var scale = 40;
+  var pw = type.w * scale * 10;
+  var ph = type.h * scale * 10;
+  var gap = 2;
+  var color = selectedColor;
+  var darkColor = shadeColor(color, -20);
+  var lightColor = shadeColor(color, 20);
+
+  ctx.fillStyle = '#e5e7eb';
+  ctx.fillRect(0,0,W,H);
+
+  if(selectedPattern === 'herringbone') {
+    for(var row=0; row<Math.ceil(H/(ph+gap))+2; row++) {
+      for(var col=0; col<Math.ceil(W/(pw+gap))+2; col++) {
+        var x, y, w, h;
+        if(row%2===0) {
+          x = col*(pw+gap) - (row%4===0?0:pw/2);
+          y = row*(ph+gap);
+          w=pw; h=ph;
+        } else {
+          x = col*(ph+gap) - (row%4===1?0:ph/2);
+          y = row*(pw+gap);
+          w=ph; h=pw;
+        }
+        drawBrick(ctx, x, y, w, h, color, darkColor, gap);
+      }
+    }
+  } else if(selectedPattern === 'straight') {
+    for(var row=0; row<Math.ceil(H/(ph+gap))+1; row++) {
+      var offset = row%2===0 ? 0 : pw/2;
+      for(var col=-1; col<Math.ceil(W/(pw+gap))+1; col++) {
+        drawBrick(ctx, col*(pw+gap)+offset, row*(ph+gap), pw, ph, color, darkColor, gap);
+      }
+    }
+  } else if(selectedPattern === 'diagonal') {
+    ctx.save();
+    ctx.translate(W/2, H/2);
+    ctx.rotate(Math.PI/4);
+    for(var row=-5; row<15; row++) {
+      for(var col=-5; col<15; col++) {
+        drawBrick(ctx, col*(pw+gap)-W, row*(ph+gap)-H, pw, ph, color, darkColor, gap);
+      }
+    }
+    ctx.restore();
+  } else if(selectedPattern === 'basket') {
+    for(var row=0; row<Math.ceil(H/(pw+gap))+1; row++) {
+      for(var col=0; col<Math.ceil(W/(pw+gap))+1; col++) {
+        var isHoriz = (row+col)%2===0;
+        var x=col*(pw+gap), y=row*(pw+gap);
+        if(isHoriz) drawBrick(ctx,x,y,pw,ph,color,darkColor,gap);
+        else drawBrick(ctx,x,y,ph,pw,color,darkColor,gap);
+      }
+    }
+  } else if(selectedPattern === 'border') {
+    // Çerçeve
+    for(var col=0; col<Math.ceil(W/(pw+gap))+1; col++) {
+      drawBrick(ctx, col*(pw+gap), 0, pw, ph, darkColor, shadeColor(darkColor,-20), gap);
+      drawBrick(ctx, col*(pw+gap), H-ph-gap, pw, ph, darkColor, shadeColor(darkColor,-20), gap);
+    }
+    for(var row=1; row<Math.ceil(H/(ph+gap)); row++) {
+      drawBrick(ctx, 0, row*(ph+gap), pw, ph, darkColor, shadeColor(darkColor,-20), gap);
+      drawBrick(ctx, W-pw-gap, row*(ph+gap), pw, ph, darkColor, shadeColor(darkColor,-20), gap);
+      for(var col=1; col<Math.ceil((W-2*(pw+gap))/(pw+gap))+1; col++) {
+        var offset = row%2===0?0:pw/2;
+        drawBrick(ctx, pw+gap+col*(pw+gap)+offset, row*(ph+gap), pw, ph, color, darkColor, gap);
+      }
+    }
+  } else {
+    // Random/Karma
+    var colors2 = [color, darkColor, lightColor, shadeColor(color,10)];
+    for(var row=0; row<Math.ceil(H/(ph+gap))+1; row++) {
+      var offset = row%2===0?0:pw/2;
+      for(var col=-1; col<Math.ceil(W/(pw+gap))+1; col++) {
+        var c = colors2[Math.floor(Math.abs(Math.sin(row*7+col*13)*4))];
+        drawBrick(ctx, col*(pw+gap)+offset, row*(ph+gap), pw, ph, c, shadeColor(c,-15), gap);
+      }
+    }
+  }
+}
+
+function drawBrick(ctx, x, y, w, h, fill, dark, gap) {
+  ctx.fillStyle = fill;
+  ctx.fillRect(x+gap/2, y+gap/2, w-gap, h-gap);
+  ctx.fillStyle = dark;
+  ctx.fillRect(x+gap/2, y+h-gap*1.5, w-gap, gap);
+  ctx.fillRect(x+w-gap*1.5, y+gap/2, gap, h-gap);
+}
+
+function shadeColor(color, percent) {
+  var num = parseInt(color.replace('#',''), 16);
+  var r = Math.min(255, Math.max(0, (num>>16) + percent));
+  var g = Math.min(255, Math.max(0, ((num>>8)&0xff) + percent));
+  var b = Math.min(255, Math.max(0, (num&0xff) + percent));
+  return '#' + ((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1);
+}
+
+function calculate() {
+  var len = parseFloat(document.getElementById('length').value) || 0;
+  var wid = parseFloat(document.getElementById('width').value) || 0;
+  var thick = document.getElementById('thickness').value;
+  var ptype = document.getElementById('ptype').value;
+
+  if(!len || !wid) {
+    alert('Lütfen uzunluk ve genişlik değerlerini girin!');
+    return;
+  }
+
+  var area = len * wid;
+  var type = TYPES[ptype];
+  var count = Math.ceil(area * type.perM2);
+  var extra = Math.ceil(count * 0.10);
+  var total = count + extra;
+
+  document.getElementById('res-area').textContent = area.toFixed(1);
+  document.getElementById('res-count').textContent = count.toLocaleString('tr-TR');
+  document.getElementById('res-extra').textContent = extra.toLocaleString('tr-TR');
+  document.getElementById('res-total').textContent = total.toLocaleString('tr-TR');
+  document.getElementById('res-type').textContent = type.name;
+  document.getElementById('res-thick').textContent = thick + ' cm';
+  document.getElementById('res-color').textContent = selectedColorName;
+  document.getElementById('res-pattern').textContent = PATTERNS[selectedPattern];
+
+  var box = document.getElementById('resultBox');
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth', block:'nearest'});
+
+  drawPreview();
+
+  if(window.gtag) gtag('event','simulator_calculate',{event_category:'engagement',event_label:ptype,value:Math.round(area)});
+}
+
+function updatePreview() { drawPreview(); }
+
+function orderNow() {
+  var len = document.getElementById('length').value || '?';
+  var wid = document.getElementById('width').value || '?';
+  var total = document.getElementById('res-total').textContent || '?';
+  var type = document.getElementById('res-type').textContent || '?';
+  var msg = 'Merhaba, parke taşı simülatöründen hesaplama yaptım:
+' +
+    'Alan: ' + len + 'x' + wid + ' m = ' + (len*wid).toFixed(1) + ' m²
+' +
+    'Ürün: ' + type + '
+' +
+    'Renk: ' + selectedColorName + '
+' +
+    'Toplam: ' + total + ' adet
+' +
+    'Fiyat teklifi almak istiyorum.';
+  window.open('https://wa.me/905405163636?text=' + encodeURIComponent(msg), '_blank');
+}
+
+function printResult() { window.print(); }
+
+// İlk çizim
+drawPreview();
+</script>
+<script src="ai-chat.js"></script>
+</body>
+</html>
