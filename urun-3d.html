@@ -3,364 +3,475 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>3D Ürün Görüntüleyici | Yapıgüç Beton</title>
-<meta name="description" content="Yapıgüç Beton ürünlerini 3D olarak inceleyin. Parke taşı, bordür ve beton bariyerleri 360° döndürün, yakınlaştırın."/>
+<title>3D Urun Goruntuleyici | Yapiguc Beton</title>
+<meta name="description" content="Yapiguc Beton urunlerini 3D olarak inceleyin. Parke tasi, bordur ve beton bariyerleri 360 derece dondurun."/>
 <link rel="icon" href="favicon.png"/>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TMJXX7KB');</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#0d0d0d;color:#fff;overflow-x:hidden;}
-.header{background:rgba(0,0,0,.8);backdrop-filter:blur(10px);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.1);}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#0a0a0a;color:#fff;overflow-x:hidden;}
+.header{background:rgba(0,0,0,.9);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.1);}
 .header img{height:36px;}
-.header a{color:#fff;text-decoration:none;font-size:13px;font-weight:600;opacity:.8;}
-.hero{padding:40px 24px 20px;text-align:center;}
-.hero h1{font-size:clamp(22px,4vw,36px);font-weight:900;margin-bottom:8px;}
+.header a{color:#fff;text-decoration:none;font-size:13px;opacity:.8;}
+.hero{padding:36px 24px 20px;text-align:center;}
+.hero h1{font-size:clamp(20px,4vw,34px);font-weight:900;margin-bottom:8px;}
 .hero h1 span{color:#c0001a;}
 .hero p{font-size:14px;color:#aaa;max-width:500px;margin:0 auto;}
-.container{max-width:1100px;margin:0 auto;padding:20px 24px 40px;}
-.product-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;}
-.tab-btn{padding:8px 18px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#aaa;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;}
-.tab-btn.active{background:#c0001a;border-color:#c0001a;color:#fff;}
-.viewer-grid{display:grid;grid-template-columns:1fr 340px;gap:20px;}
-@media(max-width:768px){.viewer-grid{grid-template-columns:1fr;}}
-.viewer-box{background:linear-gradient(135deg,#111,#1a0005);border-radius:16px;overflow:hidden;position:relative;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;border:1px solid rgba(192,0,26,.2);}
-canvas#viewer3d{display:block;width:100%;height:100%;}
-.viewer-controls{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;}
-.ctrl-btn{background:rgba(0,0,0,.6);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
-.ctrl-btn:hover{background:rgba(192,0,26,.6);}
-.viewer-hint{position:absolute;top:12px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.6);backdrop-filter:blur(6px);border-radius:20px;padding:6px 14px;font-size:11px;color:#aaa;white-space:nowrap;}
-.info-panel{display:flex;flex-direction:column;gap:14px;}
-.info-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px;}
-.info-card h3{font-size:14px;font-weight:700;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
-.spec-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;}
-.spec-row:last-child{border-bottom:none;}
-.spec-row .label{color:#aaa;}
-.spec-row .value{color:#fff;font-weight:600;}
-.color-opts{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
-.color-opt{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .2s;}
-.color-opt.active{border-color:#fff;transform:scale(1.15);}
-.cta-card{background:linear-gradient(135deg,rgba(192,0,26,.2),rgba(138,0,18,.2));border:1px solid rgba(192,0,26,.3);border-radius:12px;padding:18px;text-align:center;}
-.cta-card h3{font-size:15px;font-weight:700;margin-bottom:8px;}
-.cta-card p{font-size:12px;color:#aaa;margin-bottom:14px;}
+.container{max-width:1100px;margin:0 auto;padding:16px 24px 40px;}
+.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;}
+.tab{padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#aaa;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;}
+.tab.active{background:#c0001a;border-color:#c0001a;color:#fff;}
+.main-grid{display:grid;grid-template-columns:1fr 300px;gap:20px;}
+@media(max-width:768px){.main-grid{grid-template-columns:1fr;}}
+.viewer-box{background:linear-gradient(135deg,#111,#1a0005);border-radius:16px;overflow:hidden;position:relative;border:1px solid rgba(192,0,26,.2);}
+#c3d{display:block;width:100%;cursor:grab;}
+#c3d:active{cursor:grabbing;}
+.controls{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;}
+.ctrl{background:rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.2);color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.ctrl:hover{background:rgba(192,0,26,.7);}
+.hint{position:absolute;top:12px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.6);border-radius:20px;padding:5px 14px;font-size:11px;color:#aaa;white-space:nowrap;}
+.rot-info{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.5);border-radius:8px;padding:5px 10px;font-size:11px;color:#aaa;}
+.panel{display:flex;flex-direction:column;gap:14px;}
+.pcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;}
+.pcard h3{font-size:13px;font-weight:700;margin-bottom:12px;color:#fff;}
+.spec{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px;}
+.spec:last-child{border:none;}
+.spec .lbl{color:#aaa;}
+.spec .val{color:#fff;font-weight:600;}
+.colors{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.col-opt{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .2s;}
+.col-opt.active{border-color:#fff;transform:scale(1.2);}
+.cta-card{background:rgba(192,0,26,.15);border:1px solid rgba(192,0,26,.3);border-radius:12px;padding:16px;text-align:center;}
+.cta-card h3{font-size:14px;font-weight:700;margin-bottom:6px;}
+.cta-card p{font-size:11px;color:#aaa;margin-bottom:12px;}
 .cta-btns{display:flex;flex-direction:column;gap:8px;}
-.cta-btn{padding:10px;border-radius:8px;font-weight:700;text-decoration:none;font-size:13px;text-align:center;border:none;cursor:pointer;transition:all .2s;}
-.cta-red{background:#c0001a;color:#fff;}
-.cta-green{background:#25d366;color:#fff;}
-.rotate-indicator{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.5);border-radius:8px;padding:6px 10px;font-size:11px;color:#aaa;}
+.cbtn{padding:10px;border-radius:8px;font-weight:700;text-decoration:none;font-size:13px;text-align:center;border:none;cursor:pointer;}
+.cbtn-red{background:#c0001a;color:#fff;}
+.cbtn-green{background:#25d366;color:#fff;}
+.footer{background:#111;color:#aaa;padding:20px;text-align:center;font-size:13px;margin-top:20px;}
+.footer a{color:#c0001a;text-decoration:none;}
 </style>
 </head>
 <body>
 <header class="header">
-  <a href="index.html"><img src="logo.png" alt="Yapıgüç Beton"/></a>
-  <a href="index.html">← Ana Sayfa</a>
+  <a href="index.html"><img src="logo.png" alt="Yapiguc Beton"/></a>
+  <a href="index.html">Ana Sayfa</a>
 </header>
 <div class="hero">
-  <h1>3D Ürün <span>Görüntüleyici</span></h1>
-  <p>Ürünlerimizi 360° döndürün, yakınlaştırın ve farklı renklerde inceleyin.</p>
+  <h1>3D Urun <span>Goruntuleyici</span></h1>
+  <p>Urunlerimizi 360 derece dondurun, yakinlastirin ve farkli renklerde inceleyin.</p>
 </div>
 <div class="container">
-  <div class="product-tabs">
-    <button class="tab-btn active" onclick="loadProduct('parke')">🧱 Kilit Parke</button>
-    <button class="tab-btn" onclick="loadProduct('bordur')">📏 Bordür Taşı</button>
-    <button class="tab-btn" onclick="loadProduct('bariyer')">🚧 Beton Bariyer</button>
-    <button class="tab-btn" onclick="loadProduct('sev')">⛰️ Şev Taşı</button>
-    <button class="tab-btn" onclick="loadProduct('kup')">🔲 Küp Taşı</button>
+  <div class="tabs">
+    <button class="tab active" onclick="loadProd('parke',this)">Kilit Parke</button>
+    <button class="tab" onclick="loadProd('bordur',this)">Bordur Tasi</button>
+    <button class="tab" onclick="loadProd('bariyer',this)">Beton Bariyer</button>
+    <button class="tab" onclick="loadProd('sev',this)">Sev Tasi</button>
+    <button class="tab" onclick="loadProd('kup',this)">Kup Tasi</button>
   </div>
-
-  <div class="viewer-grid">
+  <div class="main-grid">
     <div class="viewer-box">
-      <canvas id="viewer3d"></canvas>
-      <div class="viewer-hint">🖱️ Sürükle: Döndür | Tekerlek: Yakınlaştır</div>
-      <div class="rotate-indicator" id="rot-indicator">0° / 0°</div>
-      <div class="viewer-controls">
-        <button class="ctrl-btn" onclick="resetView()" title="Sıfırla">⟳</button>
-        <button class="ctrl-btn" onclick="zoomIn()" title="Yakınlaştır">+</button>
-        <button class="ctrl-btn" onclick="zoomOut()" title="Uzaklaştır">−</button>
-        <button class="ctrl-btn" onclick="autoRotate()" title="Otomatik Döndür" id="auto-btn">▶</button>
+      <canvas id="c3d"></canvas>
+      <div class="hint">Surkle: Dondur | Tekerlek: Yakinlastir</div>
+      <div class="rot-info" id="rot-info">0 / 0</div>
+      <div class="controls">
+        <button class="ctrl" onclick="resetCam()" title="Sifirla">&#8635;</button>
+        <button class="ctrl" onclick="zoom(0.15)" title="Yakinlastir">+</button>
+        <button class="ctrl" onclick="zoom(-0.15)" title="Uzaklastir">-</button>
+        <button class="ctrl" id="auto-btn" onclick="toggleAuto()" title="Oto Dondur">&#9654;</button>
       </div>
     </div>
-
-    <div class="info-panel">
-      <div class="info-card">
-        <h3>📦 <span id="prod-name">Kilit Parke Taşı</span></h3>
-        <div id="prod-specs">
-          <div class="spec-row"><span class="label">Boyut</span><span class="value">20 × 10 cm</span></div>
-          <div class="spec-row"><span class="label">Kalınlık</span><span class="value">6 / 8 / 10 cm</span></div>
-          <div class="spec-row"><span class="label">Ağırlık</span><span class="value">~2.8 kg/adet</span></div>
-          <div class="spec-row"><span class="label">M² Adedi</span><span class="value">50 adet/m²</span></div>
-          <div class="spec-row"><span class="label">Dayanım</span><span class="value">C35 Beton</span></div>
-          <div class="spec-row"><span class="label">Standart</span><span class="value">TS EN 1338</span></div>
+    <div class="panel">
+      <div class="pcard">
+        <h3 id="prod-name">Kilit Parke Tasi</h3>
+        <div id="prod-specs"></div>
+      </div>
+      <div class="pcard">
+        <h3>Renk Secimi</h3>
+        <div class="colors">
+          <div class="col-opt active" style="background:#9ca3af" data-r="0.62" data-g="0.64" data-b="0.67" title="Gri"></div>
+          <div class="col-opt" style="background:#dc2626" data-r="0.86" data-g="0.15" data-b="0.15" title="Kirmizi"></div>
+          <div class="col-opt" style="background:#f59e0b" data-r="0.96" data-g="0.62" data-b="0.04" title="Sari"></div>
+          <div class="col-opt" style="background:#1d4ed8" data-r="0.11" data-g="0.31" data-b="0.85" title="Mavi"></div>
+          <div class="col-opt" style="background:#16a34a" data-r="0.09" data-g="0.64" data-b="0.29" title="Yesil"></div>
+          <div class="col-opt" style="background:#111827" data-r="0.07" data-g="0.09" data-b="0.15" title="Siyah"></div>
+          <div class="col-opt" style="background:#fb923c" data-r="0.98" data-g="0.57" data-b="0.24" title="Turuncu"></div>
+          <div class="col-opt" style="background:#fef3c7;border:1px solid #aaa" data-r="0.99" data-g="0.95" data-b="0.78" title="Krem"></div>
         </div>
       </div>
-
-      <div class="info-card">
-        <h3>🎨 Renk Seçimi</h3>
-        <div class="color-opts" id="color-opts">
-          <div class="color-opt active" style="background:#9ca3af;" data-color="0.6,0.6,0.6" onclick="changeColor(this)" title="Gri"></div>
-          <div class="color-opt" style="background:#dc2626;" data-color="0.86,0.15,0.15" onclick="changeColor(this)" title="Kırmızı"></div>
-          <div class="color-opt" style="background:#f59e0b;" data-color="0.96,0.62,0.04" onclick="changeColor(this)" title="Sarı"></div>
-          <div class="color-opt" style="background:#1d4ed8;" data-color="0.11,0.31,0.85" onclick="changeColor(this)" title="Mavi"></div>
-          <div class="color-opt" style="background:#16a34a;" data-color="0.09,0.64,0.29" onclick="changeColor(this)" title="Yeşil"></div>
-          <div class="color-opt" style="background:#111827;" data-color="0.07,0.09,0.15" onclick="changeColor(this)" title="Siyah"></div>
-        </div>
-      </div>
-
       <div class="cta-card">
-        <h3>Bu Ürünü Sipariş Et</h3>
-        <p>Fabrikadan direkt satış, hızlı teslimat</p>
+        <h3>Bu Urunu Siparis Et</h3>
+        <p>Fabrikadan direkt satis, hizli teslimat</p>
         <div class="cta-btns">
-          <button class="cta-btn cta-red" onclick="orderProduct()">📋 Teklif Al</button>
-          <a href="https://wa.me/905405163636" target="_blank" class="cta-btn cta-green">💬 WhatsApp</a>
+          <button class="cbtn cbtn-red" onclick="orderProd()">Teklif Al</button>
+          <a href="https://wa.me/905405163636" target="_blank" class="cbtn cbtn-green">WhatsApp</a>
         </div>
       </div>
     </div>
   </div>
 </div>
+<footer class="footer">
+  <p>2026 <a href="index.html">Yapiguc Beton</a> | Antakya / Hatay | <a href="tel:05323746945">0532 374 69 45</a></p>
+</footer>
 
 <script>
-var canvas = document.getElementById('viewer3d');
+var canvas = document.getElementById('c3d');
 var ctx = canvas.getContext('2d');
 var W, H;
-var rotX = 0.4, rotY = 0.5, zoom = 1;
-var isDragging = false, lastX, lastY;
-var isAutoRotating = false, autoTimer;
-var currentProduct = 'parke';
-var currentColor = [0.6, 0.6, 0.6];
+var rotX = 0.35, rotY = 0.6, zoomF = 1.0;
+var drag = false, lx, ly;
+var autoOn = false, autoTimer;
+var curProd = 'parke';
+var curR = 0.62, curG = 0.64, curB = 0.67;
 
-function resize() {
-  var box = canvas.parentElement;
-  W = canvas.width  = box.clientWidth;
-  H = canvas.height = box.clientHeight;
-  draw();
-}
-
-// 3D Projeksiyon
-function project(x, y, z) {
-  var cosX = Math.cos(rotX), sinX = Math.sin(rotX);
-  var cosY = Math.cos(rotY), sinY = Math.sin(rotY);
-  var y2 = y*cosX - z*sinX;
-  var z2 = y*sinX + z*cosX;
-  var x2 = x*cosY + z2*sinY;
-  var z3 = -x*sinY + z2*cosY;
-  var scale = zoom * Math.min(W,H) * 0.35 / (z3 + 4);
-  return {x: W/2 + x2*scale, y: H/2 + y2*scale, z: z3};
-}
-
-function face(pts, color, ctx) {
-  ctx.beginPath();
-  ctx.moveTo(pts[0].x, pts[0].y);
-  for(var i=1;i<pts.length;i++) ctx.lineTo(pts[i].x, pts[i].y);
-  ctx.closePath();
-  ctx.fillStyle = color;
-  ctx.fill();
-  ctx.strokeStyle = 'rgba(0,0,0,0.3)';
-  ctx.lineWidth = 0.5;
-  ctx.stroke();
-}
-
-function shade(r,g,b,light) {
-  return 'rgb('+Math.round(r*255*light)+','+Math.round(g*255*light)+','+Math.round(b*255*light)+')';
-}
-
-var PRODUCTS = {
-  parke: {
-    name:'Kilit Parke Taşı',
+var PRODS = {
+  parke:{
+    name:'Kilit Parke Tasi',
     specs:[
-      {l:'Boyut',v:'20 × 10 cm'},{l:'Kalınlık',v:'6 / 8 / 10 cm'},
-      {l:'Ağırlık',v:'~2.8 kg/adet'},{l:'M² Adedi',v:'50 adet/m²'},
-      {l:'Dayanım',v:'C35 Beton'},{l:'Standart',v:'TS EN 1338'}
-    ],
-    draw: function(r,g,b) { drawBox(r,g,b, 2,1,0.6); }
+      {l:'Boyut',v:'20 x 10 cm'},
+      {l:'Kalinlik',v:'6 / 8 / 10 cm'},
+      {l:'Agirlik',v:'~2.8 kg/adet'},
+      {l:'M2 Adedi',v:'50 adet/m2'},
+      {l:'Dayanim',v:'C35 Beton'},
+      {l:'Standart',v:'TS EN 1338'}
+    ]
   },
-  bordur: {
-    name:'Bordür Taşı',
+  bordur:{
+    name:'Bordur Tasi',
     specs:[
-      {l:'Boyut',v:'100 × 25 cm'},{l:'Yükseklik',v:'15 cm'},
-      {l:'Ağırlık',v:'~35 kg/adet'},{l:'Adet/m',v:'1 adet/m'},
-      {l:'Dayanım',v:'C30 Beton'},{l:'Standart',v:'TS EN 1340'}
-    ],
-    draw: function(r,g,b) { drawBox(r,g,b, 3,0.5,0.8); }
+      {l:'Boyut',v:'100 x 25 cm'},
+      {l:'Yukseklik',v:'15 cm'},
+      {l:'Agirlik',v:'~35 kg/adet'},
+      {l:'Adet/m',v:'1 adet/m'},
+      {l:'Dayanim',v:'C30 Beton'},
+      {l:'Standart',v:'TS EN 1340'}
+    ]
   },
-  bariyer: {
+  bariyer:{
     name:'Beton Bariyer',
     specs:[
-      {l:'Tip',v:'Jersey / F-Tipi'},{l:'Uzunluk',v:'100 cm'},
-      {l:'Yükseklik',v:'80 cm'},{l:'Ağırlık',v:'~350 kg'},
-      {l:'Dayanım',v:'C30 Beton'},{l:'Kullanım',v:'Yol güvenliği'}
-    ],
-    draw: function(r,g,b) { drawBariyer(r,g,b); }
+      {l:'Tip',v:'Jersey / F-Tipi'},
+      {l:'Uzunluk',v:'100 cm'},
+      {l:'Yukseklik',v:'80 cm'},
+      {l:'Agirlik',v:'~350 kg'},
+      {l:'Dayanim',v:'C30 Beton'},
+      {l:'Kullanim',v:'Yol guvenligi'}
+    ]
   },
-  sev: {
-    name:'Şev Taşı',
+  sev:{
+    name:'Sev Tasi',
     specs:[
-      {l:'Boyut',v:'40 × 20 cm'},{l:'Kalınlık',v:'8 cm'},
-      {l:'Ağırlık',v:'~12 kg/adet'},{l:'M² Adedi',v:'12 adet/m²'},
-      {l:'Dayanım',v:'C25 Beton'},{l:'Kullanım',v:'Yol şevleri'}
-    ],
-    draw: function(r,g,b) { drawBox(r,g,b, 2,0.4,1); }
+      {l:'Boyut',v:'40 x 20 cm'},
+      {l:'Kalinlik',v:'8 cm'},
+      {l:'Agirlik',v:'~12 kg/adet'},
+      {l:'M2 Adedi',v:'12 adet/m2'},
+      {l:'Dayanim',v:'C25 Beton'},
+      {l:'Kullanim',v:'Yol sevleri'}
+    ]
   },
-  kup: {
-    name:'Küp Taşı',
+  kup:{
+    name:'Kup Tasi',
     specs:[
-      {l:'Boyut',v:'10 × 10 cm'},{l:'Kalınlık',v:'10 cm'},
-      {l:'Ağırlık',v:'~2.5 kg/adet'},{l:'M² Adedi',v:'100 adet/m²'},
-      {l:'Dayanım',v:'C35 Beton'},{l:'Standart',v:'TS EN 1342'}
-    ],
-    draw: function(r,g,b) { drawBox(r,g,b, 1,1,1); }
+      {l:'Boyut',v:'10 x 10 cm'},
+      {l:'Kalinlik',v:'10 cm'},
+      {l:'Agirlik',v:'~2.5 kg/adet'},
+      {l:'M2 Adedi',v:'100 adet/m2'},
+      {l:'Dayanim',v:'C35 Beton'},
+      {l:'Standart',v:'TS EN 1342'}
+    ]
   }
 };
 
-function drawBox(r,g,b, w,h,d) {
-  var pts = [
-    [-w,-h,-d],[ w,-h,-d],[ w, h,-d],[-w, h,-d],
-    [-w,-h, d],[ w,-h, d],[ w, h, d],[-w, h, d]
-  ].map(function(p){return project(p[0],p[1],p[2]);});
+function resize(){
+  var box = canvas.parentElement;
+  W = canvas.width = box.clientWidth;
+  H = canvas.height = Math.round(W * 0.65);
+  draw();
+}
 
-  var faces = [
-    {i:[4,5,6,7], light:1.0},   // ön
-    {i:[0,1,2,3], light:0.5},   // arka
-    {i:[0,4,7,3], light:0.7},   // sol
-    {i:[1,5,6,2], light:0.8},   // sağ
-    {i:[3,2,6,7], light:0.9},   // üst
-    {i:[0,1,5,4], light:0.4},   // alt
-  ];
+// 3D projeksiyon
+function proj(x,y,z){
+  var cx=Math.cos(rotX), sx=Math.sin(rotX);
+  var cy=Math.cos(rotY), sy=Math.sin(rotY);
+  var y2=y*cx-z*sx, z2=y*sx+z*cx;
+  var x2=x*cy+z2*sy, z3=-x*sy+z2*cy;
+  var sc=zoomF*Math.min(W,H)*0.28/(z3+5);
+  return {x:W/2+x2*sc, y:H/2+y2*sc, z:z3};
+}
 
+function rgb(r,g,b,light){
+  return 'rgb('+Math.round(Math.min(255,r*255*light))+','+Math.round(Math.min(255,g*255*light))+','+Math.round(Math.min(255,b*255*light))+')';
+}
+
+function drawFace(pts,color){
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x,pts[0].y);
+  for(var i=1;i<pts.length;i++) ctx.lineTo(pts[i].x,pts[i].y);
+  ctx.closePath();
+  ctx.fillStyle=color;
+  ctx.fill();
+  ctx.strokeStyle='rgba(0,0,0,0.25)';
+  ctx.lineWidth=0.8;
+  ctx.stroke();
+}
+
+// Genel kutu ciz
+function drawBox(verts, faces, r,g,b){
+  var pv = verts.map(function(v){return proj(v[0],v[1],v[2]);});
   // Z-sort
-  faces.sort(function(a,b){
-    var za = a.i.reduce(function(s,i){return s+pts[i].z;},0)/4;
-    var zb = b.i.reduce(function(s,i){return s+pts[i].z;},0)/4;
+  var sorted = faces.slice().sort(function(a,b){
+    var za=a.i.reduce(function(s,i){return s+pv[i].z;},0)/a.i.length;
+    var zb=b.i.reduce(function(s,i){return s+pv[i].z;},0)/b.i.length;
     return za-zb;
   });
-
-  faces.forEach(function(f){
-    face(f.i.map(function(i){return pts[i];}), shade(r,g,b,f.light), ctx);
+  sorted.forEach(function(f){
+    drawFace(f.i.map(function(i){return pv[i];}), rgb(r,g,b,f.l));
   });
 }
 
-function drawBariyer(r,g,b) {
-  // Jersey bariyer şekli — trapez gövde
-  var shapes = [
-    {pts:[[-2,-1.5,-0.4],[ 2,-1.5,-0.4],[ 2,-0.5,-0.6],[-2,-0.5,-0.6]], light:0.9},
-    {pts:[[-2,-0.5,-0.6],[ 2,-0.5,-0.6],[ 2, 1.0,-0.3],[-2, 1.0,-0.3]], light:1.0},
-    {pts:[[-2,-1.5, 0.4],[ 2,-1.5, 0.4],[ 2,-0.5, 0.6],[-2,-0.5, 0.6]], light:0.7},
-    {pts:[[-2,-0.5, 0.6],[ 2,-0.5, 0.6],[ 2, 1.0, 0.3],[-2, 1.0, 0.3]], light:0.8},
-    {pts:[[-2,-1.5,-0.4],[-2,-1.5, 0.4],[-2,-0.5, 0.6],[-2,-0.5,-0.6]], light:0.6},
-    {pts:[[ 2,-1.5,-0.4],[ 2,-1.5, 0.4],[ 2,-0.5, 0.6],[ 2,-0.5,-0.6]], light:0.75},
-    {pts:[[-2, 1.0,-0.3],[ 2, 1.0,-0.3],[ 2, 1.0, 0.3],[-2, 1.0, 0.3]], light:0.95},
-    {pts:[[-2,-1.5,-0.4],[ 2,-1.5,-0.4],[ 2,-1.5, 0.4],[-2,-1.5, 0.4]], light:0.4},
+// Kilit parke tasi — karakteristik kilit sekli
+function drawParke(r,g,b){
+  // Ana govde (dikdortgen)
+  var verts=[
+    [-1.8,-0.5,-0.8],[1.8,-0.5,-0.8],[1.8,0.5,-0.8],[-1.8,0.5,-0.8],
+    [-1.8,-0.5, 0.8],[1.8,-0.5, 0.8],[1.8,0.5, 0.8],[-1.8,0.5, 0.8]
   ];
-  var allPts = shapes.map(function(s){
-    return {pts:s.pts.map(function(p){return project(p[0],p[1],p[2]);}), light:s.light};
-  });
-  allPts.sort(function(a,b){
-    var za=a.pts.reduce(function(s,p){return s+p.z;},0)/4;
-    var zb=b.pts.reduce(function(s,p){return s+p.z;},0)/4;
-    return za-zb;
-  });
-  allPts.forEach(function(s){
-    face(s.pts, shade(r,g,b,s.light), ctx);
-  });
+  var faces=[
+    {i:[4,5,6,7],l:1.0},  // on
+    {i:[0,1,2,3],l:0.45}, // arka
+    {i:[0,4,7,3],l:0.65}, // sol
+    {i:[1,5,6,2],l:0.75}, // sag
+    {i:[3,2,6,7],l:0.95}, // ust
+    {i:[0,1,5,4],l:0.35}, // alt
+  ];
+  drawBox(verts,faces,r,g,b);
+
+  // Kilit cikintilari (ust ve alt)
+  // Ust cikinti
+  var v2=[
+    [-0.6,-0.5,-0.8],[0.6,-0.5,-0.8],[0.6,-0.5,-0.4],[-0.6,-0.5,-0.4],
+    [-0.6,-0.9, 0.4],[0.6,-0.9, 0.4],[0.6,-0.9, 0.8],[-0.6,-0.9, 0.8]
+  ];
+  var f2=[
+    {i:[4,5,6,7],l:0.9},{i:[0,1,2,3],l:0.4},
+    {i:[0,4,7,3],l:0.6},{i:[1,5,6,2],l:0.7},
+    {i:[3,2,6,7],l:0.85},{i:[0,1,5,4],l:0.3}
+  ];
+  drawBox(v2,f2,r,g,b);
+
+  // Alt cikinti
+  var v3=[
+    [-0.6,0.5,-0.4],[0.6,0.5,-0.4],[0.6,0.5, 0.8],[-0.6,0.5, 0.8],
+    [-0.6,0.9,-0.4],[0.6,0.9,-0.4],[0.6,0.9, 0.8],[-0.6,0.9, 0.8]
+  ];
+  drawBox(v3,f2,r,g,b);
 }
 
-function draw() {
+// Bordur tasi — uzun dikdortgen prizma
+function drawBordur(r,g,b){
+  var verts=[
+    [-3.0,-0.6,-0.8],[3.0,-0.6,-0.8],[3.0,0.6,-0.8],[-3.0,0.6,-0.8],
+    [-3.0,-0.6, 0.8],[3.0,-0.6, 0.8],[3.0,0.6, 0.8],[-3.0,0.6, 0.8]
+  ];
+  var faces=[
+    {i:[4,5,6,7],l:1.0},
+    {i:[0,1,2,3],l:0.45},
+    {i:[0,4,7,3],l:0.65},
+    {i:[1,5,6,2],l:0.75},
+    {i:[3,2,6,7],l:0.95},
+    {i:[0,1,5,4],l:0.35},
+  ];
+  drawBox(verts,faces,r,g,b);
+
+  // Ust yuzey detay cizgisi
+  var pv=verts.map(function(v){return proj(v[0],v[1],v[2]);});
+  ctx.beginPath();
+  ctx.moveTo(pv[3].x,pv[3].y);
+  ctx.lineTo(pv[2].x,pv[2].y);
+  ctx.lineTo(pv[6].x,pv[6].y);
+  ctx.lineTo(pv[7].x,pv[7].y);
+  ctx.strokeStyle=rgb(r,g,b,1.3);
+  ctx.lineWidth=2;
+  ctx.stroke();
+}
+
+// Beton bariyer — Jersey profili
+function drawBariyer(r,g,b){
+  // Jersey bariyerin karakteristik trapez profili
+  // Alt genis, ust dar, ortada egim
+  var sections=[
+    // Alt genis kisim
+    {v:[[-2.5,-1.2,-0.55],[2.5,-1.2,-0.55],[2.5,-0.4,-0.7],[-2.5,-0.4,-0.7],
+        [-2.5,-1.2, 0.55],[2.5,-1.2, 0.55],[2.5,-0.4, 0.7],[-2.5,-0.4, 0.7]],
+     f:[{i:[4,5,6,7],l:1.0},{i:[0,1,2,3],l:0.45},{i:[0,4,7,3],l:0.6},{i:[1,5,6,2],l:0.7},{i:[3,2,6,7],l:0.9},{i:[0,1,5,4],l:0.3}]},
+    // Orta egimli kisim
+    {v:[[-2.5,-0.4,-0.7],[2.5,-0.4,-0.7],[2.5,0.4,-0.45],[-2.5,0.4,-0.45],
+        [-2.5,-0.4, 0.7],[2.5,-0.4, 0.7],[2.5,0.4, 0.45],[-2.5,0.4, 0.45]],
+     f:[{i:[4,5,6,7],l:0.95},{i:[0,1,2,3],l:0.4},{i:[0,4,7,3],l:0.65},{i:[1,5,6,2],l:0.75},{i:[3,2,6,7],l:0.85},{i:[0,1,5,4],l:0.35}]},
+    // Ust dar kisim
+    {v:[[-2.5,0.4,-0.45],[2.5,0.4,-0.45],[2.5,1.2,-0.3],[-2.5,1.2,-0.3],
+        [-2.5,0.4, 0.45],[2.5,0.4, 0.45],[2.5,1.2, 0.3],[-2.5,1.2, 0.3]],
+     f:[{i:[4,5,6,7],l:0.9},{i:[0,1,2,3],l:0.4},{i:[0,4,7,3],l:0.6},{i:[1,5,6,2],l:0.7},{i:[3,2,6,7],l:0.8},{i:[0,1,5,4],l:0.3}]}
+  ];
+
+  // Tum yuzleri topla ve z-sort yap
+  var allFaces=[];
+  sections.forEach(function(sec){
+    var pv=sec.v.map(function(v){return proj(v[0],v[1],v[2]);});
+    sec.f.forEach(function(f){
+      var z=f.i.reduce(function(s,i){return s+pv[i].z;},0)/f.i.length;
+      allFaces.push({pts:f.i.map(function(i){return pv[i];}),l:f.l,z:z});
+    });
+  });
+  allFaces.sort(function(a,b){return a.z-b.z;});
+  allFaces.forEach(function(f){drawFace(f.pts,rgb(r,g,b,f.l));});
+}
+
+// Sev tasi — egimli yuzey
+function drawSev(r,g,b){
+  // Trapez kesitli sev tasi
+  var verts=[
+    [-2.0,-0.3,-1.0],[2.0,-0.3,-1.0],[2.0,0.3,-0.5],[-2.0,0.3,-0.5],
+    [-2.0,-0.3, 1.0],[2.0,-0.3, 1.0],[2.0,0.3, 1.0],[-2.0,0.3, 1.0]
+  ];
+  var faces=[
+    {i:[4,5,6,7],l:1.0},
+    {i:[0,1,2,3],l:0.45},
+    {i:[0,4,7,3],l:0.65},
+    {i:[1,5,6,2],l:0.75},
+    {i:[3,2,6,7],l:0.95},
+    {i:[0,1,5,4],l:0.35},
+  ];
+  drawBox(verts,faces,r,g,b);
+}
+
+// Kup tasi — kare prizma
+function drawKup(r,g,b){
+  var verts=[
+    [-1.0,-1.0,-1.0],[1.0,-1.0,-1.0],[1.0,1.0,-1.0],[-1.0,1.0,-1.0],
+    [-1.0,-1.0, 1.0],[1.0,-1.0, 1.0],[1.0,1.0, 1.0],[-1.0,1.0, 1.0]
+  ];
+  var faces=[
+    {i:[4,5,6,7],l:1.0},
+    {i:[0,1,2,3],l:0.45},
+    {i:[0,4,7,3],l:0.65},
+    {i:[1,5,6,2],l:0.75},
+    {i:[3,2,6,7],l:0.95},
+    {i:[0,1,5,4],l:0.35},
+  ];
+  drawBox(verts,faces,r,g,b);
+}
+
+function draw(){
   ctx.clearRect(0,0,W,H);
-  // Arka plan gradient
-  var grad = ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)/2);
+
+  // Arka plan
+  var grad=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*0.6);
   grad.addColorStop(0,'#1a0005');
-  grad.addColorStop(1,'#0d0d0d');
-  ctx.fillStyle = grad;
+  grad.addColorStop(1,'#0a0a0a');
+  ctx.fillStyle=grad;
   ctx.fillRect(0,0,W,H);
 
-  // Grid zemin
-  ctx.strokeStyle = 'rgba(192,0,26,0.1)';
-  ctx.lineWidth = 0.5;
-  for(var i=-5;i<=5;i++) {
-    var p1=project(i*0.5,-1.5,-5), p2=project(i*0.5,-1.5,5);
-    var p3=project(-5,-1.5,i*0.5), p4=project(5,-1.5,i*0.5);
+  // Zemin grid
+  ctx.strokeStyle='rgba(192,0,26,0.12)';
+  ctx.lineWidth=0.5;
+  for(var i=-8;i<=8;i++){
+    var p1=proj(i*0.6,-1.5,-8),p2=proj(i*0.6,-1.5,8);
+    var p3=proj(-8,-1.5,i*0.6),p4=proj(8,-1.5,i*0.6);
     ctx.beginPath();ctx.moveTo(p1.x,p1.y);ctx.lineTo(p2.x,p2.y);ctx.stroke();
     ctx.beginPath();ctx.moveTo(p3.x,p3.y);ctx.lineTo(p4.x,p4.y);ctx.stroke();
   }
 
-  // Gölge
-  var shadow = project(0,-1.49,0);
-  var grad2 = ctx.createRadialGradient(shadow.x,shadow.y,0,shadow.x,shadow.y,80*zoom);
-  grad2.addColorStop(0,'rgba(0,0,0,0.4)');
-  grad2.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle = grad2;
+  // Golge
+  var sh=proj(0,-1.48,0);
+  var sg=ctx.createRadialGradient(sh.x,sh.y,0,sh.x,sh.y,100*zoomF);
+  sg.addColorStop(0,'rgba(0,0,0,0.5)');
+  sg.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=sg;
   ctx.fillRect(0,0,W,H);
 
-  PRODUCTS[currentProduct].draw(currentColor[0],currentColor[1],currentColor[2]);
+  // Urunu ciz
+  if(curProd==='parke') drawParke(curR,curG,curB);
+  else if(curProd==='bordur') drawBordur(curR,curG,curB);
+  else if(curProd==='bariyer') drawBariyer(curR,curG,curB);
+  else if(curProd==='sev') drawSev(curR,curG,curB);
+  else if(curProd==='kup') drawKup(curR,curG,curB);
 
-  document.getElementById('rot-indicator').textContent =
+  document.getElementById('rot-info').textContent=
     Math.round(rotY*180/Math.PI)+'° / '+Math.round(rotX*180/Math.PI)+'°';
 }
 
-// Mouse/Touch kontrolleri
-canvas.addEventListener('mousedown',function(e){isDragging=true;lastX=e.clientX;lastY=e.clientY;});
+// Mouse
+canvas.addEventListener('mousedown',function(e){drag=true;lx=e.clientX;ly=e.clientY;});
 canvas.addEventListener('mousemove',function(e){
-  if(!isDragging)return;
-  rotY+=(e.clientX-lastX)*0.01;
-  rotX+=(e.clientY-lastY)*0.01;
-  rotX=Math.max(-1.2,Math.min(1.2,rotX));
-  lastX=e.clientX;lastY=e.clientY;
-  draw();
+  if(!drag)return;
+  rotY+=(e.clientX-lx)*0.012;
+  rotX+=(e.clientY-ly)*0.012;
+  rotX=Math.max(-1.3,Math.min(1.3,rotX));
+  lx=e.clientX;ly=e.clientY;draw();
 });
-canvas.addEventListener('mouseup',function(){isDragging=false;});
-canvas.addEventListener('mouseleave',function(){isDragging=false;});
+canvas.addEventListener('mouseup',function(){drag=false;});
+canvas.addEventListener('mouseleave',function(){drag=false;});
 canvas.addEventListener('wheel',function(e){
   e.preventDefault();
-  zoom=Math.max(0.3,Math.min(3,zoom-e.deltaY*0.001));
+  zoomF=Math.max(0.3,Math.min(3,zoomF-e.deltaY*0.001));
   draw();
 },{passive:false});
 
 // Touch
-canvas.addEventListener('touchstart',function(e){isDragging=true;lastX=e.touches[0].clientX;lastY=e.touches[0].clientY;},{passive:true});
+canvas.addEventListener('touchstart',function(e){drag=true;lx=e.touches[0].clientX;ly=e.touches[0].clientY;},{passive:true});
 canvas.addEventListener('touchmove',function(e){
-  if(!isDragging)return;
-  rotY+=(e.touches[0].clientX-lastX)*0.01;
-  rotX+=(e.touches[0].clientY-lastY)*0.01;
-  rotX=Math.max(-1.2,Math.min(1.2,rotX));
-  lastX=e.touches[0].clientX;lastY=e.touches[0].clientY;
-  draw();
+  if(!drag)return;
+  rotY+=(e.touches[0].clientX-lx)*0.012;
+  rotX+=(e.touches[0].clientY-ly)*0.012;
+  rotX=Math.max(-1.3,Math.min(1.3,rotX));
+  lx=e.touches[0].clientX;ly=e.touches[0].clientY;draw();
 },{passive:true});
-canvas.addEventListener('touchend',function(){isDragging=false;});
+canvas.addEventListener('touchend',function(){drag=false;});
 
-function resetView(){rotX=0.4;rotY=0.5;zoom=1;draw();}
-function zoomIn(){zoom=Math.min(3,zoom+0.2);draw();}
-function zoomOut(){zoom=Math.max(0.3,zoom-0.2);draw();}
-function autoRotate(){
-  if(isAutoRotating){clearInterval(autoTimer);isAutoRotating=false;document.getElementById('auto-btn').textContent='▶';}
-  else{isAutoRotating=true;document.getElementById('auto-btn').textContent='⏸';autoTimer=setInterval(function(){rotY+=0.02;draw();},16);}
+function resetCam(){rotX=0.35;rotY=0.6;zoomF=1.0;draw();}
+function zoom(d){zoomF=Math.max(0.3,Math.min(3,zoomF+d));draw();}
+function toggleAuto(){
+  if(autoOn){clearInterval(autoTimer);autoOn=false;document.getElementById('auto-btn').innerHTML='&#9654;';}
+  else{autoOn=true;document.getElementById('auto-btn').innerHTML='&#9646;&#9646;';autoTimer=setInterval(function(){rotY+=0.018;draw();},16);}
 }
 
-function loadProduct(id) {
-  currentProduct=id;
-  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
-  event.target.classList.add('active');
-  var p=PRODUCTS[id];
+function loadProd(id,btn){
+  curProd=id;
+  document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active');});
+  if(btn)btn.classList.add('active');
+  var p=PRODS[id];
   document.getElementById('prod-name').textContent=p.name;
   var html='';
-  p.specs.forEach(function(s){html+='<div class="spec-row"><span class="label">'+s.l+'</span><span class="value">'+s.v+'</span></div>';});
+  p.specs.forEach(function(s){html+='<div class="spec"><span class="lbl">'+s.l+'</span><span class="val">'+s.v+'</span></div>';});
   document.getElementById('prod-specs').innerHTML=html;
-  resetView();
-  if(window.gtag)gtag('event','product_3d_view',{event_category:'engagement',event_label:id});
+  resetCam();
+  if(window.gtag)gtag('event','product_3d',{event_category:'engagement',event_label:id});
 }
 
-function changeColor(el) {
-  document.querySelectorAll('.color-opt').forEach(function(c){c.classList.remove('active');});
-  el.classList.add('active');
-  currentColor=el.dataset.color.split(',').map(Number);
-  draw();
-}
+// Renk secimi
+document.querySelectorAll('.col-opt').forEach(function(el){
+  el.addEventListener('click',function(){
+    document.querySelectorAll('.col-opt').forEach(function(c){c.classList.remove('active');});
+    el.classList.add('active');
+    curR=parseFloat(el.dataset.r);
+    curG=parseFloat(el.dataset.g);
+    curB=parseFloat(el.dataset.b);
+    draw();
+  });
+});
 
-function orderProduct() {
-  var msg='Merhaba, 3D görüntüleyicide '+PRODUCTS[currentProduct].name+' ürününü inceledim. Fiyat teklifi almak istiyorum.';
+function orderProd(){
+  var msg='Merhaba, 3D goruntuleyicide '+PRODS[curProd].name+' urununu inceledim. Fiyat teklifi almak istiyorum.';
   window.open('https://wa.me/905405163636?text='+encodeURIComponent(msg),'_blank');
 }
 
+// Baslat
 window.addEventListener('resize',resize);
-resize();
-autoRotate(); // Başlangıçta otomatik döndür
+window.addEventListener('load',function(){
+  resize();
+  loadProd('parke',null);
+  toggleAuto(); // Otomatik dondur
+});
 </script>
 <script src="ai-chat.js"></script>
 </body>
