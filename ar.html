@@ -126,6 +126,28 @@ ul li{margin-bottom:7px;color:#374151;font-size:15px;}
 <h2>اتصل بنا الآن</h2>
 <p>إذا كنت مهتمًا بمنتجاتنا أو لديك أي استفسارات، فلا تتردد في الاتصال بنا على الرقم التالي: <strong>+90 532 374 69 45</strong>. نحن هنا لمساعدتك في تحقيق مشاريع البناء الخاصة بك.</p>
 
+
+<!-- Arapca AI Chatbot -->
+<script>
+(function(){
+var EP='https://yapigucbeton-chat.trgokmenyilmaz.workers.dev';
+var m=[],o=false,b=false;
+document.head.insertAdjacentHTML('beforeend','<style>#ayb{position:fixed;bottom:24px;right:20px;z-index:8500}#aybt{width:54px;height:54px;background:linear-gradient(135deg,#c0001a,#8a0012);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(192,0,26,.5);animation:ayp 2s infinite}@keyframes ayp{0%,100%{box-shadow:0 4px 16px rgba(192,0,26,.4)}50%{box-shadow:0 4px 28px rgba(192,0,26,.8)}}#aybt svg{width:24px;height:24px;fill:#fff}#ayw{position:fixed;bottom:88px;right:20px;width:310px;height:420px;background:#fff;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.2);z-index:8501;display:none;flex-direction:column;overflow:hidden;font-family:Arial,sans-serif;direction:rtl}#ayw.on{display:flex}#ayh{background:linear-gradient(135deg,#c0001a,#8a0012);color:#fff;padding:12px 14px;display:flex;align-items:center;gap:8px}#ayh b{font-size:13px;flex:1}#ayc{background:none;border:none;color:#fff;font-size:17px;cursor:pointer}#aym{flex:1;overflow-y:auto;padding:11px;display:flex;flex-direction:column;gap:8px;background:#f9fafb}.ayg{max-width:85%;padding:9px 12px;border-radius:11px;font-size:13px;line-height:1.6;word-wrap:break-word}.ayg.b{background:#fff;color:#111;align-self:flex-start;box-shadow:0 1px 4px rgba(0,0,0,.08)}.ayg.u{background:#c0001a;color:#fff;align-self:flex-end}#ayq{padding:7px 11px;display:flex;gap:5px;flex-wrap:wrap;background:#fff;border-top:1px solid #f3f4f6}.ayqb{background:#fff5f5;border:1px solid #fca5a5;color:#c0001a;padding:3px 9px;border-radius:10px;font-size:11px;font-weight:600;cursor:pointer}#aya{padding:9px 11px;display:flex;gap:7px;background:#fff;border-top:1px solid #f3f4f6;direction:rtl}#ayi{flex:1;padding:8px 11px;border:1.5px solid #e5e7eb;border-radius:17px;font-size:13px;outline:none;direction:rtl}#ays{width:34px;height:34px;background:#c0001a;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}#ays svg{width:15px;height:15px;fill:#fff}</style>');
+var w=document.createElement('div');
+w.innerHTML='<div id="ayb"><button id="aybt" onclick="AYC.t()"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></button></div><div id="ayw"><div id="ayh"><b>مساعد يابيغوتش</b><button id="ayc" onclick="AYC.t()">&#x2715;</button></div><div id="aym"></div><div id="ayq"><button class="ayqb" onclick="AYC.q(0)">الاسعار</button><button class="ayqb" onclick="AYC.q(1)">التوصيل</button><button class="ayqb" onclick="AYC.q(2)">المنتجات</button><button class="ayqb" onclick="AYC.q(3)">عرض سعر</button></div><div id="aya"><input id="ayi" type="text" placeholder="اكتب رسالتك..." maxlength="200"/><button id="ays" onclick="AYC.s()"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div></div>';
+document.body.appendChild(w);
+document.getElementById('ayi').addEventListener('keydown',function(e){if(e.key==='Enter')AYC.s();});
+var Q=['ما هي الاسعار؟','هل تقومون بالتوصيل الى سوريا؟','ما هي المنتجات المتاحة؟','اريد عرض سعر'];
+var SYS='انت مساعد شركة يابيغوتش بيتون. الشركة في هاتاي انطاكيا تركيا. الهاتف: 905323746945+. المنتجات: بلاط الارصفة، حواجز الطرق، حجر الميل. التوصيل الى سوريا متاح. اجب باختصار بالعربية.';
+function am(t,r){var x=document.getElementById('aym');var d=document.createElement('div');d.className='ayg '+r;d.textContent=t;x.appendChild(d);x.scrollTop=x.scrollHeight;}
+window.AYC={
+  t:function(){o=!o;document.getElementById('ayw').classList.toggle('on',o);if(o&&m.length===0){setTimeout(function(){am('مرحبا! اهلا بكم في يابيغوتش بيتون. كيف يمكنني مساعدتكم؟','b');m.push({role:'assistant',content:'مرحبا!'});},300);}if(o)document.getElementById('ayi').focus();},
+  q:function(i){document.getElementById('ayi').value=Q[i];AYC.s();},
+  s:function(){if(b)return;var i=document.getElementById('ayi');var t=i.value.trim();if(!t)return;i.value='';am(t,'u');m.push({role:'user',content:t});b=true;am('...','b');var r=[{role:'system',content:SYS}].concat(m.slice(-4));var x=new XMLHttpRequest();x.open('POST',EP);x.setRequestHeader('Content-Type','application/json');x.onload=function(){var l=document.getElementById('aym').lastChild;if(l&&l.textContent==='...')l.remove();b=false;if(x.status===200){var d=JSON.parse(x.responseText);am(d.reply,'b');m.push({role:'assistant',content:d.reply});}else{am('عذرا، يرجى الاتصال: 905323746945+','b');}};x.onerror=function(){var l=document.getElementById('aym').lastChild;if(l)l.remove();b=false;am('خطا في الاتصال. الهاتف: 905323746945+','b');};x.send(JSON.stringify({model:'gpt-4o-mini',messages:r,max_tokens:150}));
+  }
+};
+})();
+</script>
 </body>
 </html>
 ``` 
@@ -151,5 +173,27 @@ document.querySelectorAll('.faq-item').forEach(function(item){
 });
 </script>
 <script src="ai-chat.js"></script>
+
+<!-- Arapca AI Chatbot -->
+<script>
+(function(){
+var EP='https://yapigucbeton-chat.trgokmenyilmaz.workers.dev';
+var m=[],o=false,b=false;
+document.head.insertAdjacentHTML('beforeend','<style>#ayb{position:fixed;bottom:24px;right:20px;z-index:8500}#aybt{width:54px;height:54px;background:linear-gradient(135deg,#c0001a,#8a0012);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(192,0,26,.5);animation:ayp 2s infinite}@keyframes ayp{0%,100%{box-shadow:0 4px 16px rgba(192,0,26,.4)}50%{box-shadow:0 4px 28px rgba(192,0,26,.8)}}#aybt svg{width:24px;height:24px;fill:#fff}#ayw{position:fixed;bottom:88px;right:20px;width:310px;height:420px;background:#fff;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.2);z-index:8501;display:none;flex-direction:column;overflow:hidden;font-family:Arial,sans-serif;direction:rtl}#ayw.on{display:flex}#ayh{background:linear-gradient(135deg,#c0001a,#8a0012);color:#fff;padding:12px 14px;display:flex;align-items:center;gap:8px}#ayh b{font-size:13px;flex:1}#ayc{background:none;border:none;color:#fff;font-size:17px;cursor:pointer}#aym{flex:1;overflow-y:auto;padding:11px;display:flex;flex-direction:column;gap:8px;background:#f9fafb}.ayg{max-width:85%;padding:9px 12px;border-radius:11px;font-size:13px;line-height:1.6;word-wrap:break-word}.ayg.b{background:#fff;color:#111;align-self:flex-start;box-shadow:0 1px 4px rgba(0,0,0,.08)}.ayg.u{background:#c0001a;color:#fff;align-self:flex-end}#ayq{padding:7px 11px;display:flex;gap:5px;flex-wrap:wrap;background:#fff;border-top:1px solid #f3f4f6}.ayqb{background:#fff5f5;border:1px solid #fca5a5;color:#c0001a;padding:3px 9px;border-radius:10px;font-size:11px;font-weight:600;cursor:pointer}#aya{padding:9px 11px;display:flex;gap:7px;background:#fff;border-top:1px solid #f3f4f6;direction:rtl}#ayi{flex:1;padding:8px 11px;border:1.5px solid #e5e7eb;border-radius:17px;font-size:13px;outline:none;direction:rtl}#ays{width:34px;height:34px;background:#c0001a;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}#ays svg{width:15px;height:15px;fill:#fff}</style>');
+var w=document.createElement('div');
+w.innerHTML='<div id="ayb"><button id="aybt" onclick="AYC.t()"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></button></div><div id="ayw"><div id="ayh"><b>مساعد يابيغوتش</b><button id="ayc" onclick="AYC.t()">&#x2715;</button></div><div id="aym"></div><div id="ayq"><button class="ayqb" onclick="AYC.q(0)">الاسعار</button><button class="ayqb" onclick="AYC.q(1)">التوصيل</button><button class="ayqb" onclick="AYC.q(2)">المنتجات</button><button class="ayqb" onclick="AYC.q(3)">عرض سعر</button></div><div id="aya"><input id="ayi" type="text" placeholder="اكتب رسالتك..." maxlength="200"/><button id="ays" onclick="AYC.s()"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div></div>';
+document.body.appendChild(w);
+document.getElementById('ayi').addEventListener('keydown',function(e){if(e.key==='Enter')AYC.s();});
+var Q=['ما هي الاسعار؟','هل تقومون بالتوصيل الى سوريا؟','ما هي المنتجات المتاحة؟','اريد عرض سعر'];
+var SYS='انت مساعد شركة يابيغوتش بيتون. الشركة في هاتاي انطاكيا تركيا. الهاتف: 905323746945+. المنتجات: بلاط الارصفة، حواجز الطرق، حجر الميل. التوصيل الى سوريا متاح. اجب باختصار بالعربية.';
+function am(t,r){var x=document.getElementById('aym');var d=document.createElement('div');d.className='ayg '+r;d.textContent=t;x.appendChild(d);x.scrollTop=x.scrollHeight;}
+window.AYC={
+  t:function(){o=!o;document.getElementById('ayw').classList.toggle('on',o);if(o&&m.length===0){setTimeout(function(){am('مرحبا! اهلا بكم في يابيغوتش بيتون. كيف يمكنني مساعدتكم؟','b');m.push({role:'assistant',content:'مرحبا!'});},300);}if(o)document.getElementById('ayi').focus();},
+  q:function(i){document.getElementById('ayi').value=Q[i];AYC.s();},
+  s:function(){if(b)return;var i=document.getElementById('ayi');var t=i.value.trim();if(!t)return;i.value='';am(t,'u');m.push({role:'user',content:t});b=true;am('...','b');var r=[{role:'system',content:SYS}].concat(m.slice(-4));var x=new XMLHttpRequest();x.open('POST',EP);x.setRequestHeader('Content-Type','application/json');x.onload=function(){var l=document.getElementById('aym').lastChild;if(l&&l.textContent==='...')l.remove();b=false;if(x.status===200){var d=JSON.parse(x.responseText);am(d.reply,'b');m.push({role:'assistant',content:d.reply});}else{am('عذرا، يرجى الاتصال: 905323746945+','b');}};x.onerror=function(){var l=document.getElementById('aym').lastChild;if(l)l.remove();b=false;am('خطا في الاتصال. الهاتف: 905323746945+','b');};x.send(JSON.stringify({model:'gpt-4o-mini',messages:r,max_tokens:150}));
+  }
+};
+})();
+</script>
 </body>
 </html>
