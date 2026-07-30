@@ -2097,5 +2097,315 @@ console.log('YG Float v4.0 | mobile:'+IS_MOBILE+' touch:'+IS_TOUCH+' reduced:'+R
     🇬🇧
   </a>
 </div>
+
+<!-- ═══════════════════════════════════════════════
+     GOOGLE ÇEVİRİCİ WIDGET
+     ═══════════════════════════════════════════════ -->
+
+<!-- Google Translate CSS -->
+<style>
+/* Google Translate Widget Özelleştirme */
+#google-translate-wrap {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 9500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#gt-toggle-btn {
+  background: linear-gradient(135deg, #4285f4, #1a73e8);
+  color: #fff;
+  border: none;
+  border-radius: 12px 0 0 12px;
+  padding: 12px 10px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 1px;
+  box-shadow: -3px 0 12px rgba(66,133,244,.4);
+  transition: all .3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+#gt-toggle-btn:hover {
+  background: linear-gradient(135deg, #1a73e8, #0d47a1);
+  padding-right: 14px;
+  box-shadow: -4px 0 16px rgba(66,133,244,.6);
+}
+
+#gt-toggle-btn .gt-icon {
+  font-size: 18px;
+  writing-mode: horizontal-tb;
+}
+
+#gt-panel {
+  background: #fff;
+  border-radius: 12px 0 0 12px;
+  box-shadow: -4px 0 24px rgba(0,0,0,.15);
+  padding: 16px;
+  width: 220px;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid #e5e7eb;
+  border-right: none;
+  margin-bottom: 8px;
+}
+
+#gt-panel.open {
+  display: flex;
+  animation: slideLeft .3s ease;
+}
+
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+#gt-panel h4 {
+  font-size: 13px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#gt-panel h4 img {
+  height: 16px;
+}
+
+.gt-lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  transition: all .2s;
+  text-align: left;
+  width: 100%;
+}
+
+.gt-lang-btn:hover {
+  border-color: #4285f4;
+  background: #f0f4ff;
+  color: #1a73e8;
+}
+
+.gt-lang-btn.active {
+  border-color: #4285f4;
+  background: #e8f0fe;
+  color: #1a73e8;
+}
+
+.gt-lang-btn .flag {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.gt-divider {
+  height: 1px;
+  background: #f3f4f6;
+  margin: 4px 0;
+}
+
+#google_translate_element {
+  display: none !important;
+}
+
+/* Google Translate toolbar'ı gizle */
+.goog-te-banner-frame,
+.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+.goog-te-gadget {
+  display: none !important;
+}
+
+/* Çeviri aktifken bildirim */
+#gt-active-badge {
+  display: none;
+  position: fixed;
+  top: 70px;
+  right: 16px;
+  background: #4285f4;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  z-index: 9400;
+  box-shadow: 0 2px 8px rgba(66,133,244,.4);
+}
+
+@media (max-width: 480px) {
+  #google-translate-wrap {
+    top: auto;
+    bottom: 100px;
+    right: 0;
+  }
+  #gt-panel {
+    width: 180px;
+  }
+}
+</style>
+
+<!-- Google Translate Widget HTML -->
+<div id="google-translate-wrap">
+  <div id="gt-panel">
+    <h4>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#4285f4"><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+      Dil Seçin
+    </h4>
+    <button class="gt-lang-btn active" onclick="translateTo('tr')" id="btn-tr">
+      <span class="flag">🇹🇷</span> Türkçe
+    </button>
+    <button class="gt-lang-btn" onclick="translateTo('en')" id="btn-en">
+      <span class="flag">🇬🇧</span> English
+    </button>
+    <button class="gt-lang-btn" onclick="translateTo('ar')" id="btn-ar">
+      <span class="flag">🇸🇦</span> العربية
+    </button>
+    <button class="gt-lang-btn" onclick="translateTo('de')" id="btn-de">
+      <span class="flag">🇩🇪</span> Deutsch
+    </button>
+    <button class="gt-lang-btn" onclick="translateTo('fr')" id="btn-fr">
+      <span class="flag">🇫🇷</span> Français
+    </button>
+    <button class="gt-lang-btn" onclick="translateTo('ru')" id="btn-ru">
+      <span class="flag">🇷🇺</span> Русский
+    </button>
+    <button class="gt-lang-btn" onclick="translateTo('fa')" id="btn-fa">
+      <span class="flag">🇮🇷</span> فارسی
+    </button>
+    <div class="gt-divider"></div>
+    <button class="gt-lang-btn" onclick="translateTo('tr')" style="color:#c0001a;border-color:#fca5a5;">
+      <span class="flag">🔄</span> Sıfırla (TR)
+    </button>
+  </div>
+
+  <button id="gt-toggle-btn" onclick="toggleTranslate()">
+    <span class="gt-icon">🌐</span>
+    <span>ÇEVİR</span>
+  </button>
+</div>
+
+<div id="gt-active-badge">🌐 Çeviri Aktif</div>
+
+<!-- Google Translate Element (gizli) -->
+<div id="google_translate_element"></div>
+
+<!-- Google Translate Script -->
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'tr',
+    includedLanguages: 'en,ar,de,fr,ru,fa,zh-CN,ja,ko,es,it,pt,nl,pl,uk,az,ka,hy',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+
+function toggleTranslate() {
+  var panel = document.getElementById('gt-panel');
+  panel.classList.toggle('open');
+}
+
+// Panel dışına tıklayınca kapat
+document.addEventListener('click', function(e) {
+  var wrap = document.getElementById('google-translate-wrap');
+  if (wrap && !wrap.contains(e.target)) {
+    document.getElementById('gt-panel').classList.remove('open');
+  }
+});
+
+function translateTo(lang) {
+  // Tüm butonları sıfırla
+  document.querySelectorAll('.gt-lang-btn').forEach(function(b) {
+    b.classList.remove('active');
+  });
+
+  if (lang === 'tr') {
+    // Türkçeye dön — cookie sil
+    var cookie = document.cookie;
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + location.hostname;
+    document.getElementById('gt-active-badge').style.display = 'none';
+    document.getElementById('btn-tr').classList.add('active');
+    document.getElementById('gt-panel').classList.remove('open');
+    location.reload();
+    return;
+  }
+
+  // Google Translate cookie ayarla
+  document.cookie = 'googtrans=/tr/' + lang + '; path=/';
+  document.cookie = 'googtrans=/tr/' + lang + '; path=/; domain=' + location.hostname;
+
+  // Select element üzerinden çeviri tetikle
+  var select = document.querySelector('.goog-te-combo');
+  if (select) {
+    select.value = lang;
+    select.dispatchEvent(new Event('change'));
+  } else {
+    // Widget henüz yüklenmediyse yenile
+    location.reload();
+  }
+
+  // Aktif butonu işaretle
+  var btn = document.getElementById('btn-' + lang);
+  if (btn) btn.classList.add('active');
+
+  // Badge göster
+  var badge = document.getElementById('gt-active-badge');
+  var langNames = {en:'English',ar:'العربية',de:'Deutsch',fr:'Français',ru:'Русский',fa:'فارسی'};
+  badge.textContent = '🌐 ' + (langNames[lang] || lang);
+  badge.style.display = 'block';
+
+  // Paneli kapat
+  document.getElementById('gt-panel').classList.remove('open');
+
+  if (window.gtag) gtag('event', 'translate', {event_category: 'engagement', event_label: lang});
+}
+
+// Sayfa yüklenince mevcut dili kontrol et
+window.addEventListener('load', function() {
+  var cookie = document.cookie;
+  var match = cookie.match(/googtrans=\/tr\/([a-z-]+)/);
+  if (match && match[1] && match[1] !== 'tr') {
+    var lang = match[1];
+    var btn = document.getElementById('btn-' + lang);
+    if (btn) {
+      document.querySelectorAll('.gt-lang-btn').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+    }
+    var badge = document.getElementById('gt-active-badge');
+    var langNames = {en:'English',ar:'العربية',de:'Deutsch',fr:'Français',ru:'Русский',fa:'فارسی'};
+    badge.textContent = '🌐 ' + (langNames[lang] || lang);
+    badge.style.display = 'block';
+  }
+});
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
