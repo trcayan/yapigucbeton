@@ -449,6 +449,68 @@ footer{background:#0a0a0a;color:#888;}
 
 /* Eski scroll-top gizle */
 #scroll-top { display: none !important; }
+
+/* ── STICKY CTA BAR ── */
+#sticky-cta {
+  position: fixed;
+  top: -70px;
+  left: 0;
+  right: 0;
+  z-index: 9000;
+  background: linear-gradient(135deg, #c0001a, #8a0012);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(192,0,26,.4);
+  transition: top 0.4s cubic-bezier(.34,1.56,.64,1);
+  gap: 12px;
+}
+#sticky-cta.visible { top: 0; }
+#sticky-cta .sc-text {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+#sticky-cta .sc-text span { font-size: 12px; font-weight: 400; opacity: .85; }
+#sticky-cta .sc-btns { display: flex; gap: 8px; flex-shrink: 0; }
+#sticky-cta .sc-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+}
+#sticky-cta .sc-btn-white { background: #fff; color: #c0001a; }
+#sticky-cta .sc-btn-white:hover { background: #f3f4f6; }
+#sticky-cta .sc-btn-green { background: #25d366; color: #fff; }
+#sticky-cta .sc-btn-green:hover { background: #1da851; }
+#sticky-cta .sc-close {
+  background: rgba(255,255,255,.2);
+  border: none;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+@media(max-width:600px){
+  #sticky-cta .sc-text span { display: none; }
+  #sticky-cta .sc-btn { padding: 7px 12px; font-size: 12px; }
+}
 </style>
 <meta content="parke taşı, bordür taşı, beton eleman, şev taşı, beton bariyer, kilit parke, Hatay beton, Antakya parke, yapıgüç beton" name="keywords"/>
 <meta content="index, follow" name="robots"/>
@@ -838,6 +900,20 @@ footer{background:#0a0a0a;color:#888;}
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-TMJXX7KB');</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://yapigucbeton.com.tr/"},
+    {"@type":"ListItem","position":2,"name":"Ürünler","item":"https://yapigucbeton.com.tr/#urunler"},
+    {"@type":"ListItem","position":3,"name":"Hatay Parke Taşı","item":"https://yapigucbeton.com.tr/hatay-parke-tasi.html"},
+    {"@type":"ListItem","position":4,"name":"Blog","item":"https://yapigucbeton.com.tr/parke-tasi-nasil-dosenir.html"}
+  ]
+}
+</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -909,6 +985,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 </div>
 </section>
+
+<!-- Breadcrumb Navigasyon -->
+<nav aria-label="Breadcrumb" style="background:#f9fafb;border-bottom:1px solid #f3f4f6;padding:8px 0;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+    <ol style="list-style:none;display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px;color:#6b7280;">
+      <li><a href="index.html" style="color:#c0001a;text-decoration:none;font-weight:600;">🏠 Ana Sayfa</a></li>
+      <li style="color:#d1d5db;">›</li>
+      <li><a href="#urunler" style="color:#c0001a;text-decoration:none;">Ürünler</a></li>
+      <li style="color:#d1d5db;">›</li>
+      <li><a href="hatay-parke-tasi.html" style="color:#c0001a;text-decoration:none;">Hatay Parke Taşı</a></li>
+      <li style="color:#d1d5db;">›</li>
+      <li style="color:#374151;font-weight:600;">Yapıgüç Beton</li>
+    </ol>
+  </div>
+</nav>
 <div class="qa">
 <div class="c" style="padding:0">
 <div class="qa-g">
@@ -2388,5 +2479,138 @@ window.addEventListener('load', function() {
 });
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- ═══════════════════════════════════════════════
+     EXIT INTENT POPUP
+     ═══════════════════════════════════════════════ -->
+<div id="exit-popup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:99999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);">
+  <div style="background:#fff;border-radius:20px;max-width:480px;width:100%;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.4);animation:popIn .4s cubic-bezier(.34,1.56,.64,1);">
+    <style>@keyframes popIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}</style>
+    <!-- Üst kısım -->
+    <div style="background:linear-gradient(135deg,#c0001a,#8a0012);padding:28px 28px 20px;text-align:center;position:relative;">
+      <button onclick="closeExitPopup()" style="position:absolute;top:12px;right:14px;background:rgba(255,255,255,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;">✕</button>
+      <div style="font-size:40px;margin-bottom:8px;">🎁</div>
+      <h2 style="color:#fff;font-size:22px;font-weight:900;margin-bottom:6px;">Gitmeden Önce!</h2>
+      <p style="color:rgba(255,255,255,.9);font-size:14px;">Ücretsiz fiyat teklifi alın, size özel fiyat sunalım</p>
+    </div>
+    <!-- Alt kısım -->
+    <div style="padding:24px 28px;">
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#374151;">
+          <span style="color:#16a34a;font-size:18px;">✅</span> Fabrikadan direkt satış — aracı yok
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#374151;">
+          <span style="color:#16a34a;font-size:18px;">✅</span> ISO 9001 belgeli kalite güvencesi
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#374151;">
+          <span style="color:#16a34a;font-size:18px;">✅</span> 24 saat içinde fiyat teklifi
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#374151;">
+          <span style="color:#16a34a;font-size:18px;">✅</span> Hatay ve çevre illere hızlı teslimat
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <a href="tel:05323746945" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#c0001a;color:#fff;padding:14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;" onclick="closeExitPopup()">
+          📞 Hemen Ara: 0532 374 69 45
+        </a>
+        <a href="https://wa.me/905405163636?text=Merhaba, fiyat teklifi almak istiyorum." target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:#fff;padding:14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;" onclick="closeExitPopup()">
+          💬 WhatsApp ile Teklif Al
+        </a>
+        <button onclick="closeExitPopup()" style="background:none;border:none;color:#9ca3af;font-size:13px;cursor:pointer;padding:6px;">Hayır teşekkürler, devam edeceğim</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var shown = false;
+  var dismissed = sessionStorage.getItem('exit_popup_dismissed');
+  if(dismissed) return;
+
+  // Mouse sayfadan çıkınca göster (masaüstü)
+  document.addEventListener('mouseleave', function(e){
+    if(e.clientY <= 0 && !shown && !dismissed){
+      shown = true;
+      showExitPopup();
+    }
+  });
+
+  // Mobil: 30 saniye sonra göster
+  if('ontouchstart' in window){
+    setTimeout(function(){
+      if(!shown && !sessionStorage.getItem('exit_popup_dismissed')){
+        shown = true;
+        showExitPopup();
+      }
+    }, 30000);
+  }
+
+  // Scroll %70'e gelince göster
+  window.addEventListener('scroll', function(){
+    var scrollPct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    if(scrollPct > 70 && !shown && !sessionStorage.getItem('exit_popup_dismissed')){
+      shown = true;
+      setTimeout(showExitPopup, 2000);
+    }
+  }, {passive:true});
+})();
+
+function showExitPopup(){
+  var popup = document.getElementById('exit-popup');
+  popup.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  if(window.gtag) gtag('event','exit_popup_shown',{event_category:'engagement'});
+}
+
+function closeExitPopup(){
+  var popup = document.getElementById('exit-popup');
+  popup.style.display = 'none';
+  document.body.style.overflow = '';
+  sessionStorage.setItem('exit_popup_dismissed','1');
+}
+
+// Popup dışına tıklayınca kapat
+document.getElementById('exit-popup').addEventListener('click', function(e){
+  if(e.target === this) closeExitPopup();
+});
+</script>
+
+<!-- STICKY CTA BAR -->
+<div id="sticky-cta">
+  <div class="sc-text">
+    🏗️ Yapıgüç Beton
+    <span>— Hatay'dan Türkiye'ye Parke Taşı, Bordür, Beton Eleman</span>
+  </div>
+  <div class="sc-btns">
+    <a href="tel:05323746945" class="sc-btn sc-btn-white">📞 Ara</a>
+    <a href="#siparis" class="sc-btn sc-btn-green" onclick="document.getElementById('sticky-cta').classList.remove('visible')">📋 Teklif Al</a>
+  </div>
+  <button class="sc-close" onclick="closeStickyBar()" title="Kapat">✕</button>
+</div>
+
+<script>
+(function(){
+  var bar = document.getElementById('sticky-cta');
+  var closed = sessionStorage.getItem('sticky_cta_closed');
+  if(closed) return;
+
+  var lastScroll = 0;
+  window.addEventListener('scroll', function(){
+    var current = window.scrollY;
+    if(current > 300 && !sessionStorage.getItem('sticky_cta_closed')){
+      bar.classList.add('visible');
+    } else if(current < 100){
+      bar.classList.remove('visible');
+    }
+    lastScroll = current;
+  }, {passive:true});
+})();
+
+function closeStickyBar(){
+  document.getElementById('sticky-cta').classList.remove('visible');
+  sessionStorage.setItem('sticky_cta_closed','1');
+}
+</script>
 </body>
 </html>
